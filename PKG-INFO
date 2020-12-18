@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: lisacattools
+Version: 0.0.6
+Summary: A small example package for using LISA catalogs
+Home-page: https://github.com/tlittenberg/ldasoft
+Author: James I. Thorpe, Tyson B. Littenberg
+Author-email: tyson.b.littenberg@nasa.gov
+License: UNKNOWN
+Description: # lisacattools Package
+        
+        This is a simple package for using LISA catalogs. 
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown

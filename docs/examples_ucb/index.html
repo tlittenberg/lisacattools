@@ -40,7 +40,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Detections table" href="plot_source_table.html" />
+    <link rel="next" title="Parameter table" href="plot_source_table.html" />
     <link rel="prev" title="Module functions" href="../function.html" /> 
 </head>
 
@@ -94,8 +94,8 @@
 <p class="caption"><span class="caption-text">Examples:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">UCB Use Case Gallery</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="plot_source_table.html">Detections table</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_freq_amp.html">Frequency-Amplitude plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_source_table.html">Parameter table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_freq_amp.html">Scatter plots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_source_parameters.html">Corner plots</a></li>
 </ul>
 </li>
@@ -167,16 +167,19 @@
             
   <div class="section" id="ucb-use-case-gallery">
 <span id="sphx-glr-examples-ucb"></span><h1>UCB Use Case Gallery<a class="headerlink" href="#ucb-use-case-gallery" title="Permalink to this headline">¶</a></h1>
-<p>Below are examples using UCB catalogs:</p>
-<div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to display a list of detections and point estimates for their par..."><div class="figure align-default" id="id1">
-<img alt="Detections table" src="../_images/sphx_glr_plot_source_table_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_source_table.html#sphx-glr-examples-ucb-plot-source-table-py"><span class="std std-ref">Detections table</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p>Below are examples using UCB catalogs.
+Catalog data products are formatted as <code class="docutils literal notranslate"><span class="pre">`pandas`</span></code> data frames and stored in <code class="docutils literal notranslate"><span class="pre">HDF5</span></code> files.
+Top level catalog files have the list of all candidate detections, point estimates, etc.
+In addition, posterior samples for each candidate are stored as separate data frames and grouped together by frequency segments.  There are different catalog products for different LISA observing times.</p>
+<div class="sphx-glr-thumbcontainer" tooltip="Display a table of detections and point estimates for their parameters."><div class="figure align-default" id="id1">
+<img alt="Parameter table" src="../_images/sphx_glr_plot_source_table_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_source_table.html#sphx-glr-examples-ucb-plot-source-table-py"><span class="std std-ref">Parameter table</span></a></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div><div class="toctree-wrapper compound">
 </div>
-<div class="sphx-glr-thumbcontainer" tooltip="This example will demonstrate how to display a scatter plot of detections."><div class="figure align-default" id="id2">
-<img alt="Frequency-Amplitude plot" src="../_images/sphx_glr_plot_freq_amp_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_freq_amp.html#sphx-glr-examples-ucb-plot-freq-amp-py"><span class="std std-ref">Frequency-Amplitude plot</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<div class="sphx-glr-thumbcontainer" tooltip="Display a scatter plot of detections&#x27; point estimates."><div class="figure align-default" id="id2">
+<img alt="Scatter plots" src="../_images/sphx_glr_plot_freq_amp_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="plot_freq_amp.html#sphx-glr-examples-ucb-plot-freq-amp-py"><span class="std std-ref">Scatter plots</span></a></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div><div class="toctree-wrapper compound">
 </div>
@@ -205,7 +208,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="plot_source_table.html" class="btn btn-neutral float-right" title="Detections table" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="plot_source_table.html" class="btn btn-neutral float-right" title="Parameter table" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../function.html" class="btn btn-neutral float-left" title="Module functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

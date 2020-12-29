@@ -18,10 +18,10 @@
 .. _sphx_glr_examples_ucb_plot_source_table.py:
 
 
-Detections table
+Parameter table
 ====================
 
-This example demonstrates how to display a list of detections and point estimates for their parameters.
+Display a table of detections and point estimates for their parameters.
 
 .. GENERATED FROM PYTHON SOURCE LINES 7-14
 
@@ -133,7 +133,7 @@ This example demonstrates how to display a list of detections and point estimate
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.757 seconds)
+   **Total running time of the script:** ( 0 minutes  1.354 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_source_table.py:

@@ -7,18 +7,21 @@
 UCB Use Case Gallery
 ====================
 
-Below are examples using UCB catalogs:
+Below are examples using UCB catalogs.
+Catalog data products are formatted as ```pandas``` data frames and stored in ``HDF5`` files.
+Top level catalog files have the list of all candidate detections, point estimates, etc.
+In addition, posterior samples for each candidate are stored as separate data frames and grouped together by frequency segments.  There are different catalog products for different LISA observing times. 
 
 
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to display a list of detections and point estimates for their par...">
+    <div class="sphx-glr-thumbcontainer" tooltip="Display a table of detections and point estimates for their parameters.">
 
 .. only:: html
 
  .. figure:: /examples_ucb/images/thumb/sphx_glr_plot_source_table_thumb.png
-     :alt: Detections table
+     :alt: Parameter table
 
      :ref:`sphx_glr_examples_ucb_plot_source_table.py`
 
@@ -34,12 +37,12 @@ Below are examples using UCB catalogs:
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This example will demonstrate how to display a scatter plot of detections.">
+    <div class="sphx-glr-thumbcontainer" tooltip="Display a scatter plot of detections&#x27; point estimates.">
 
 .. only:: html
 
  .. figure:: /examples_ucb/images/thumb/sphx_glr_plot_freq_amp_thumb.png
-     :alt: Frequency-Amplitude plot
+     :alt: Scatter plots
 
      :ref:`sphx_glr_examples_ucb_plot_freq_amp.py`
 

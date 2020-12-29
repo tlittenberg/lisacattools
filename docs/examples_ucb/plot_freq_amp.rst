@@ -18,10 +18,10 @@
 .. _sphx_glr_examples_ucb_plot_freq_amp.py:
 
 
-Frequency-Amplitude plot
+Scatter plots
 ========================
 
-This example will demonstrate how to display a scatter plot of detections.
+Display a scatter plot of detections' point estimates.
 
 .. GENERATED FROM PYTHON SOURCE LINES 7-56
 
@@ -90,7 +90,7 @@ This example will demonstrate how to display a scatter plot of detections.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.795 seconds)
+   **Total running time of the script:** ( 0 minutes  0.807 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_freq_amp.py:

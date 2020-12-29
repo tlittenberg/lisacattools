@@ -1,8 +1,8 @@
 """
-Frequency-Amplitude plot
+Scatter plots
 ========================
 
-This example will demonstrate how to display a scatter plot of detections.
+Display a scatter plot of detections' point estimates.
 """
 
 import numpy as np

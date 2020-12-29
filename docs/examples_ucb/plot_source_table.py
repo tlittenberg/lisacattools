@@ -1,8 +1,8 @@
 """
-Detections table
+Parameter table
 ====================
 
-This example demonstrates how to display a list of detections and point estimates for their parameters.
+Display a table of detections and point estimates for their parameters.
 """
 
 import pandas as pd

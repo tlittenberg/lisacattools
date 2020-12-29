@@ -5,7 +5,7 @@
 .. _sphx_glr_examples_ucb:
 
 UCB Use Case Gallery
-================
+====================
 
 Below are examples using UCB catalogs:
 

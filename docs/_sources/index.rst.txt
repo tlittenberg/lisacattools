@@ -19,6 +19,7 @@ to document your module.
 .. toctree::
    :maxdepth: 2
    :caption: Examples:
+
    examples_ucb/index
    examples_smbh/index
 

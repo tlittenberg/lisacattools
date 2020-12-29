@@ -5,7 +5,7 @@
 .. _sphx_glr_examples_smbh:
 
 SMBH Use Case Gallery
-================
+=====================
 
 Below are examples using SMBH catalogs:
 

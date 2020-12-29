@@ -3,5 +3,22 @@ Getting started
 
 Get started with our package with these steps:
 
-1. Install the package
-2. Read this great documentation and the examples!
+Installation
+------------
+
+Dependencies for lisacattools are::
+
+     os
+     numpy
+     pandas
+     matplotlib
+
+Optional modules include::
+
+     astropy
+     ligo.skymap
+
+Install lisacattools with::
+
+     pip install lisacattools
+

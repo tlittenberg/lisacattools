@@ -3,11 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to lisacattools's documentation!
-==========================================
+lisacattools
+============
 
-This repository can be used as a template for using Sphinx and Sphinx-Gallery
-to document your module.
+lisacattools is a python module for interacting with simulated LISA source catalogs.
 
 .. toctree::
    :maxdepth: 2

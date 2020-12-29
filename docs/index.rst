@@ -16,6 +16,8 @@ to document your module.
    getting_started
    function
 
+.. toctree::
+   :maxdepth: 2
    :caption: Examples:
    examples_ucb/index
    examples_smbh/index

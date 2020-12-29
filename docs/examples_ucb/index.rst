@@ -13,7 +13,7 @@ Below are examples using UCB catalogs:
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This example will demonstrate how to display a list of detections.">
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to display a list of detections and point estimates for their par...">
 
 .. only:: html
 
@@ -52,6 +52,27 @@ Below are examples using UCB catalogs:
    :hidden:
 
    /examples_ucb/plot_freq_amp
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Produce corner plots for a single sources&#x27; parameters.">
+
+.. only:: html
+
+ .. figure:: /examples_ucb/images/thumb/sphx_glr_plot_source_parameters_thumb.png
+     :alt: Corner plots
+
+     :ref:`sphx_glr_examples_ucb_plot_source_parameters.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples_ucb/plot_source_parameters
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

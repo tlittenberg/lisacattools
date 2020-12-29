@@ -13,7 +13,7 @@ import matplotlib.colors as colors
 import lisacattools.lisacattools as lisacat
 
 #load catalog
-catFile = '../../Research/GalacticBinaries/Radler/06mo/cat15728640_v2/cat15728640_v2.h5'
+catFile = 'cat15728640_v2/cat15728640_v2.h5'
 cat = pd.read_hdf(catFile, key='detections')
 meta = pd.read_hdf(catFile, key='metadata')
 

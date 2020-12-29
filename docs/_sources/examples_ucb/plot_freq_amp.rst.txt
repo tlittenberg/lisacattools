@@ -46,7 +46,7 @@ This example will demonstrate how to display a scatter plot of detections.
     import lisacattools.lisacattools as lisacat
 
     #load catalog
-    catFile = '../../Research/GalacticBinaries/Radler/06mo/cat15728640_v2/cat15728640_v2.h5'
+    catFile = 'cat15728640_v2/cat15728640_v2.h5'
     cat = pd.read_hdf(catFile, key='detections')
     meta = pd.read_hdf(catFile, key='metadata')
 
@@ -90,7 +90,7 @@ This example will demonstrate how to display a scatter plot of detections.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.871 seconds)
+   **Total running time of the script:** ( 0 minutes  0.795 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_freq_amp.py:

@@ -21,7 +21,7 @@
 Detections table
 ====================
 
-This example will demonstrate how to display a list of detections.
+This example demonstrates how to display a list of detections and point estimates for their parameters.
 
 .. GENERATED FROM PYTHON SOURCE LINES 7-14
 
@@ -126,14 +126,14 @@ This example will demonstrate how to display a list of detections.
     import pandas as pd
     import dataframe_image as dfi
 
-    #some comment
-    df = pd.read_hdf('../../Research/GalacticBinaries/Radler/06mo/cat15728640_v2/cat15728640_v2.h5', key = 'detections')
+    #load parameter table and display top of data frame
+    df = pd.read_hdf('cat15728640_v2/cat15728640_v2.h5', key = 'detections')
     df[['SNR','Frequency','Amplitude','Ecliptic Longitude','Ecliptic Latitude','Inclination']].head()
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.150 seconds)
+   **Total running time of the script:** ( 0 minutes  3.757 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_source_table.py:

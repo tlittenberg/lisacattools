@@ -2,12 +2,12 @@
 
 
 
-.. _sphx_glr_examples:
+.. _sphx_glr_examples_ucb:
 
-Use Case Gallery
+UCB Use Case Gallery
 ================
 
-Below are examples using my module:
+Below are examples using UCB catalogs:
 
 
 
@@ -17,10 +17,10 @@ Below are examples using my module:
 
 .. only:: html
 
- .. figure:: /examples/images/thumb/sphx_glr_plot_source_table_thumb.png
+ .. figure:: /examples_ucb/images/thumb/sphx_glr_plot_source_table_thumb.png
      :alt: Detections table
 
-     :ref:`sphx_glr_examples_plot_source_table.py`
+     :ref:`sphx_glr_examples_ucb_plot_source_table.py`
 
 .. raw:: html
 
@@ -30,7 +30,7 @@ Below are examples using my module:
 .. toctree::
    :hidden:
 
-   /examples/plot_source_table
+   /examples_ucb/plot_source_table
 
 .. raw:: html
 
@@ -38,10 +38,10 @@ Below are examples using my module:
 
 .. only:: html
 
- .. figure:: /examples/images/thumb/sphx_glr_plot_freq_amp_thumb.png
+ .. figure:: /examples_ucb/images/thumb/sphx_glr_plot_freq_amp_thumb.png
      :alt: Frequency-Amplitude plot
 
-     :ref:`sphx_glr_examples_plot_freq_amp.py`
+     :ref:`sphx_glr_examples_ucb_plot_freq_amp.py`
 
 .. raw:: html
 
@@ -51,7 +51,7 @@ Below are examples using my module:
 .. toctree::
    :hidden:
 
-   /examples/plot_freq_amp
+   /examples_ucb/plot_freq_amp
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>
@@ -66,13 +66,13 @@ Below are examples using my module:
 
   .. container:: sphx-glr-download sphx-glr-download-python
 
-    :download:`Download all examples in Python source code: examples_python.zip </examples/examples_python.zip>`
+    :download:`Download all examples in Python source code: examples_ucb_python.zip </examples_ucb/examples_ucb_python.zip>`
 
 
 
   .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-    :download:`Download all examples in Jupyter notebooks: examples_jupyter.zip </examples/examples_jupyter.zip>`
+    :download:`Download all examples in Jupyter notebooks: examples_ucb_jupyter.zip </examples_ucb/examples_ucb_jupyter.zip>`
 
 
 .. only:: html

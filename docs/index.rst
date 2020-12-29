@@ -14,8 +14,9 @@ to document your module.
    :caption: Contents:
 
    getting_started
+   examples_ucb/index
+   examples_smbh/index
    function
-   examples/index
 
 
 Indices and tables

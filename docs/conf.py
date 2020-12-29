@@ -63,9 +63,9 @@ html_static_path = ['_static']
 # sphinx-gallery configuration
 sphinx_gallery_conf = {
     # path to your example scripts
-    'examples_dirs': ['../examples'],
+    'examples_dirs': ['../examples_ucb', '../examples_smbh'],
     # path to where to save gallery generated output
-    'gallery_dirs': ['examples'],
+    'gallery_dirs': ['examples_ucb', 'examples_smbh'],
 }
 
 # configuration for intersphinx: refer to the Python standard library.

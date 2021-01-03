@@ -10,6 +10,48 @@ SMBH Use Case Gallery
 Below are examples using SMBH catalogs:
 
 
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot component masses of all detections">
+
+.. only:: html
+
+ .. figure:: /examples_smbh/images/thumb/sphx_glr_plot_catalog_m1_m2_thumb.png
+     :alt: Catalog mass plot
+
+     :ref:`sphx_glr_examples_smbh_plot_catalog_m1_m2.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples_smbh/plot_catalog_m1_m2
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Display a table of catalog files, detection list, and timeline of mergers..">
+
+.. only:: html
+
+ .. figure:: /examples_smbh/images/thumb/sphx_glr_plot_source_list_thumb.png
+     :alt: Source list
+
+     :ref:`sphx_glr_examples_smbh_plot_source_list.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples_smbh/plot_source_list
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

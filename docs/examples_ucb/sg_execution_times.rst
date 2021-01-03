@@ -5,12 +5,12 @@
 
 Computation times
 =================
-**00:02.160** total execution time for **examples_ucb** files:
+**00:02.198** total execution time for **examples_ucb** files:
 
 +----------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_ucb_plot_source_table.py` (``plot_source_table.py``)           | 00:01.354 | 0.0 MB |
-+----------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_ucb_plot_freq_amp.py` (``plot_freq_amp.py``)                   | 00:00.807 | 0.0 MB |
+| :ref:`sphx_glr_examples_ucb_plot_freq_amp.py` (``plot_freq_amp.py``)                   | 00:02.198 | 0.0 MB |
 +----------------------------------------------------------------------------------------+-----------+--------+
 | :ref:`sphx_glr_examples_ucb_plot_source_parameters.py` (``plot_source_parameters.py``) | 00:00.000 | 0.0 MB |
++----------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_ucb_plot_source_table.py` (``plot_source_table.py``)           | 00:00.000 | 0.0 MB |
 +----------------------------------------------------------------------------------------+-----------+--------+

@@ -2,7 +2,7 @@
 Scatter plots
 ========================
 
-Display a scatter plot of detections' point estimates.
+Scatter plot of detections' point estimates and LISA sensitivity curve.
 """
 
 import numpy as np

@@ -1,10 +1,7 @@
-Getting started
+Installation
 ===============
 
-Get started with our package with these steps:
-
-Installation
-------------
+The lisacattools module and all dependencies can be installed using ``pip``:
 
 Dependencies for lisacattools are::
 
@@ -15,6 +12,8 @@ Dependencies for lisacattools are::
 
 Optional modules include::
 
+     corner
+     chainconsumer
      astropy
      ligo.skymap
 

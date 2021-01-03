@@ -37,7 +37,7 @@ In addition, posterior samples for each candidate are stored as separate data fr
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Display a scatter plot of detections&#x27; point estimates.">
+    <div class="sphx-glr-thumbcontainer" tooltip="Scatter plot of detections&#x27; point estimates and LISA sensitivity curve.">
 
 .. only:: html
 

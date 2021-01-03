@@ -21,7 +21,7 @@
 Scatter plots
 ========================
 
-Display a scatter plot of detections' point estimates.
+Scatter plot of detections' point estimates and LISA sensitivity curve.
 
 .. GENERATED FROM PYTHON SOURCE LINES 7-56
 
@@ -90,7 +90,7 @@ Display a scatter plot of detections' point estimates.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.807 seconds)
+   **Total running time of the script:** ( 0 minutes  2.198 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_freq_amp.py:

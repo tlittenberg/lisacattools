@@ -76,6 +76,27 @@ In addition, posterior samples for each candidate are stored as separate data fr
    :hidden:
 
    /examples_ucb/plot_source_parameters
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot 1-sigma contours of well-localized sources&#x27; sky location in galactic coordinates.">
+
+.. only:: html
+
+ .. figure:: /examples_ucb/images/thumb/sphx_glr_plot_source_sky_ellipses_thumb.png
+     :alt: Sky Localization Ellipses
+
+     :ref:`sphx_glr_examples_ucb_plot_source_sky_ellipses.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples_ucb/plot_source_sky_ellipses
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

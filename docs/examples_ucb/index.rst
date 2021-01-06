@@ -79,6 +79,27 @@ In addition, posterior samples for each candidate are stored as separate data fr
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot joint posterior of all catalog sources in galactic coordinates.">
+
+.. only:: html
+
+ .. figure:: /examples_ucb/images/thumb/sphx_glr_plot_source_joint_sky_pdf_thumb.png
+     :alt: Joint PDF of sky location
+
+     :ref:`sphx_glr_examples_ucb_plot_source_joint_sky_pdf.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples_ucb/plot_source_joint_sky_pdf
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Plot 1-sigma contours of well-localized sources&#x27; sky location in galactic coordinates.">
 
 .. only:: html

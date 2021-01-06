@@ -143,9 +143,9 @@ Load catalog and compute sky areas
 
 .. GENERATED FROM PYTHON SOURCE LINES 46-50
 
-Cut source catalog on localization, and plot skymap of selected sources
-In this example we use 100 sq deg as the localization threshold
-10 sq deg is more appropriate for EM follow-up, but makes for a 
+Cut source catalog on localization, and plot skymap of selected sources. 
+In this example we use 100 sq deg as the localization threshold. 
+*NOTE:* 10 sq deg is more appropriate for EM follow-up, but makes for a 
 less interesting figure
 
 .. GENERATED FROM PYTHON SOURCE LINES 50-87
@@ -203,7 +203,7 @@ less interesting figure
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 2 minutes  29.204 seconds)
+   **Total running time of the script:** ( 3 minutes  11.123 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_source_sky_ellipses.py:

@@ -43,9 +43,9 @@ cat.insert(len(cat.columns),'Sky Area',area,True)
 cat[['SNR','Frequency','Sky Area']].head()
 
 #%% 
-# Cut source catalog on localization, and plot skymap of selected sources
-# In this example we use 100 sq deg as the localization threshold
-# 10 sq deg is more appropriate for EM follow-up, but makes for a 
+# Cut source catalog on localization, and plot skymap of selected sources. 
+# In this example we use 100 sq deg as the localization threshold. 
+# *NOTE:* 10 sq deg is more appropriate for EM follow-up, but makes for a 
 # less interesting figure
 
 # Make new dataframe containing only "well-localized" events

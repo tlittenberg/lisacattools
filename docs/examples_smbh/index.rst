@@ -52,6 +52,27 @@ Below are examples using SMBH catalogs:
    :hidden:
 
    /examples_smbh/plot_source_list
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Corner plot of select parameters for the full catalog.">
+
+.. only:: html
+
+ .. figure:: /examples_smbh/images/thumb/sphx_glr_plot_catalog_corner_thumb.png
+     :alt: Full catalog corner plots
+
+     :ref:`sphx_glr_examples_smbh_plot_catalog_corner.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples_smbh/plot_catalog_corner
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

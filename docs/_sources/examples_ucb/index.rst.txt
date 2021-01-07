@@ -37,6 +37,27 @@ In addition, posterior samples for each candidate are stored as separate data fr
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Convert sampling parameters to derived parameters">
+
+.. only:: html
+
+ .. figure:: /examples_ucb/images/thumb/sphx_glr_plot_source_Mc_DL_thumb.png
+     :alt: Resampling posteriors
+
+     :ref:`sphx_glr_examples_ucb_plot_source_Mc_DL.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples_ucb/plot_source_Mc_DL
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Scatter plot of detections&#x27; point estimates and LISA sensitivity curve.">
 
 .. only:: html

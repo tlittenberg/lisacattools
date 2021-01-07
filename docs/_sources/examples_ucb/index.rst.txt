@@ -139,6 +139,27 @@ In addition, posterior samples for each candidate are stored as separate data fr
    :hidden:
 
    /examples_ucb/plot_source_sky_ellipses
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Create inferred map of the galaxy from chirping binaries">
+
+.. only:: html
+
+ .. figure:: /examples_ucb/images/thumb/sphx_glr_plot_galactic_coordinates_thumb.png
+     :alt: 3D map of the galaxy
+
+     :ref:`sphx_glr_examples_ucb_plot_galactic_coordinates.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples_ucb/plot_galactic_coordinates
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

@@ -5,12 +5,14 @@
 
 Computation times
 =================
-**00:07.882** total execution time for **examples_ucb** files:
+**00:08.847** total execution time for **examples_ucb** files:
 
 +----------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_ucb_plot_source_Mc_DL.py` (``plot_source_Mc_DL.py``)                 | 00:07.882 | 0.0 MB |
+| :ref:`sphx_glr_examples_ucb_plot_galactic_coordinates.py` (``plot_galactic_coordinates.py``) | 00:08.847 | 0.0 MB |
 +----------------------------------------------------------------------------------------------+-----------+--------+
 | :ref:`sphx_glr_examples_ucb_plot_freq_amp.py` (``plot_freq_amp.py``)                         | 00:00.000 | 0.0 MB |
++----------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_ucb_plot_source_Mc_DL.py` (``plot_source_Mc_DL.py``)                 | 00:00.000 | 0.0 MB |
 +----------------------------------------------------------------------------------------------+-----------+--------+
 | :ref:`sphx_glr_examples_ucb_plot_source_joint_sky_pdf.py` (``plot_source_joint_sky_pdf.py``) | 00:00.000 | 0.0 MB |
 +----------------------------------------------------------------------------------------------+-----------+--------+

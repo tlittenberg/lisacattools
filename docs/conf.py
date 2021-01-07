@@ -24,7 +24,7 @@ copyright = '2020, James I. Thorpe, Tyson B. Littenberg'
 author = 'James I. Thorpe, Tyson B. Littenberg'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.6'
+release = '0.0.7'
 
 
 # -- General configuration ---------------------------------------------------

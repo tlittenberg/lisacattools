@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="lisacattools", # Replace with your own username
-    version="0.0.6",
+    version="0.0.7",
     author="James I. Thorpe, Tyson B. Littenberg",
     author_email="tyson.b.littenberg@nasa.gov",
     description="A small example package for using LISA catalogs",

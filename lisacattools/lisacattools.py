@@ -200,6 +200,13 @@ def get_DL(df):
     df.insert(len(df.columns),'Luminosity Distance',r,True)
     return
     
+# get_Mchirp
+def get_Mchirp(df):
+    TSUN = 4.9169e-6 # Mass of the Sun \f$M_\odot G c^{-3}\f$ [s]
+    Mc = np.power(df['Frequency Derivative'] / (96./5.) / np.power(np.pi,8./3.) / np.power(df['Frequency'],11./3.),3./5.)/TSUN
+    df.insert(len(df.columns),'Chirp Mass',Mc,True)
+    return
+
 
 
 

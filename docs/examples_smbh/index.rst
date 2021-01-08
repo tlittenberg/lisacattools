@@ -73,6 +73,27 @@ Below are examples using SMBH catalogs:
    :hidden:
 
    /examples_smbh/plot_catalog_corner
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Corner plot of select parameters for a single source showing how  parameter estimation changes ...">
+
+.. only:: html
+
+ .. figure:: /examples_smbh/images/thumb/sphx_glr_plot_source_time_evolving_thumb.png
+     :alt: Time-evolving parameter estimation
+
+     :ref:`sphx_glr_examples_smbh_plot_source_time_evolving.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples_smbh/plot_source_time_evolving
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

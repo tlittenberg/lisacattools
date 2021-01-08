@@ -5,10 +5,10 @@
 
 Computation times
 =================
-**00:09.810** total execution time for **examples_smbh** files:
+**00:05.595** total execution time for **examples_smbh** files:
 
 +-----------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_smbh_plot_source_time_evolving.py` (``plot_source_time_evolving.py``) | 00:09.810 | 0.0 MB |
+| :ref:`sphx_glr_examples_smbh_plot_source_time_evolving.py` (``plot_source_time_evolving.py``) | 00:05.595 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------+-----------+--------+
 | :ref:`sphx_glr_examples_smbh_plot_catalog_corner.py` (``plot_catalog_corner.py``)             | 00:00.000 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------+-----------+--------+

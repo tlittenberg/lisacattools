@@ -34,7 +34,7 @@ catName = meta.index[catIdx]
 catFile = meta.iloc[catIdx]['location']
 cat = pd.read_hdf(catFile, key='detections')
 cat = cat.sort_values(by='Mass 1')
-cat
+cat[['Parent','Log Likelihood','Mass 1', 'Mass 2', 'Luminosity Distance']]
 
 #%% 
 # Choose a source from the list of detections and get its history through the different catalogs
@@ -46,7 +46,7 @@ sourceIdx = 'MBH005546845'
 srcHist = lisacat.getLineage(meta,catName,sourceIdx)
 srcHist.drop_duplicates(subset='Log Likelihood',keep='last',inplace=True)
 srcHist.sort_values(by='Observation Week',ascending=True,inplace=True)
-srcHist
+srcHist[['Observation Week','Parent','Log Likelihood','Mass 1', 'Mass 2', 'Luminosity Distance']]
 
 #%%
 # Load chains for different observing epochs of selected source

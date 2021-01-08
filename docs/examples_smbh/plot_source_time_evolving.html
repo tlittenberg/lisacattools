@@ -204,7 +204,7 @@ parameter estimation changes with observing time.</p>
 <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">catFile</span></a> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">catIdx</span></a><span class="p">][</span><span class="s1">&#39;location&#39;</span><span class="p">]</span>
 <span class="n">cat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">catFile</span></a><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;detections&#39;</span><span class="p">)</span>
 <span class="n">cat</span> <span class="o">=</span> <span class="n">cat</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Mass 1&#39;</span><span class="p">)</span>
-<span class="n">cat</span>
+<span class="n">cat</span><span class="p">[[</span><span class="s1">&#39;Parent&#39;</span><span class="p">,</span><span class="s1">&#39;Log Likelihood&#39;</span><span class="p">,</span><span class="s1">&#39;Mass 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Mass 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Luminosity Distance&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
@@ -230,32 +230,10 @@ parameter estimation changes with observing time.</p>
       <th>Log Likelihood</th>
       <th>Mass 1</th>
       <th>Mass 2</th>
-      <th>Spin 1</th>
-      <th>Spin 2</th>
-      <th>Merger Phase</th>
-      <th>Barycenter Merge Time</th>
       <th>Luminosity Distance</th>
-      <th>cos ecliptic colatitude</th>
-      <th>Ecliptic Longitude</th>
-      <th>Polarization</th>
-      <th>cos inclination</th>
-      <th>Detector Merger Time</th>
-      <th>Ecliptic Latitude</th>
-      <th>chain file</th>
     </tr>
     <tr>
       <th>name</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -270,18 +248,7 @@ parameter estimation changes with observing time.</p>
       <td>58.644439</td>
       <td>6043.582334</td>
       <td>1484.773218</td>
-      <td>0.824566</td>
-      <td>0.580256</td>
-      <td>1.571869</td>
-      <td>1.099327e+07</td>
       <td>22.671702</td>
-      <td>0.202097</td>
-      <td>0.551582</td>
-      <td>1.609824</td>
-      <td>-0.711813</td>
-      <td>10993320.0</td>
-      <td>0.203499</td>
-      <td>MBH_wk015C.h5</td>
     </tr>
     <tr>
       <th>MBH006058694</th>
@@ -289,18 +256,7 @@ parameter estimation changes with observing time.</p>
       <td>119.338404</td>
       <td>10349.085349</td>
       <td>3303.282920</td>
-      <td>0.967010</td>
-      <td>0.885836</td>
-      <td>1.614070</td>
-      <td>6.058695e+06</td>
       <td>47.235091</td>
-      <td>0.333101</td>
-      <td>1.464468</td>
-      <td>1.373326</td>
-      <td>-0.442646</td>
-      <td>6058450.0</td>
-      <td>0.339590</td>
-      <td>MBH_wk015C.h5</td>
     </tr>
     <tr>
       <th>MBH000373540</th>
@@ -308,18 +264,7 @@ parameter estimation changes with observing time.</p>
       <td>60.282950</td>
       <td>11191.400618</td>
       <td>1573.347120</td>
-      <td>0.912502</td>
-      <td>0.627869</td>
-      <td>1.555474</td>
-      <td>3.735402e+05</td>
       <td>22.205113</td>
-      <td>0.288597</td>
-      <td>2.336538</td>
-      <td>1.684530</td>
-      <td>-0.316716</td>
-      <td>373452.5</td>
-      <td>0.292761</td>
-      <td>MBH_wk015C.h5</td>
     </tr>
     <tr>
       <th>MBH002301433</th>
@@ -327,18 +272,7 @@ parameter estimation changes with observing time.</p>
       <td>67.615841</td>
       <td>12659.907280</td>
       <td>3912.600441</td>
-      <td>0.961883</td>
-      <td>0.867574</td>
-      <td>1.575534</td>
-      <td>2.301434e+06</td>
       <td>34.400859</td>
-      <td>0.373100</td>
-      <td>1.242727</td>
-      <td>1.585468</td>
-      <td>-0.013747</td>
-      <td>2301210.0</td>
-      <td>0.382348</td>
-      <td>MBH_wk015C.h5</td>
     </tr>
     <tr>
       <th>MBH005546845</th>
@@ -346,18 +280,7 @@ parameter estimation changes with observing time.</p>
       <td>652.996924</td>
       <td>13238.473697</td>
       <td>2707.606755</td>
-      <td>0.986599</td>
-      <td>0.903154</td>
-      <td>1.673776</td>
-      <td>5.546846e+06</td>
       <td>30.323258</td>
-      <td>0.480294</td>
-      <td>3.662275</td>
-      <td>1.810179</td>
-      <td>-0.800118</td>
-      <td>5547205.0</td>
-      <td>0.500989</td>
-      <td>MBH_wk015C.h5</td>
     </tr>
     <tr>
       <th>MBH004556400</th>
@@ -365,18 +288,7 @@ parameter estimation changes with observing time.</p>
       <td>243.337498</td>
       <td>15868.967713</td>
       <td>9036.333963</td>
-      <td>0.977598</td>
-      <td>0.962171</td>
-      <td>1.671275</td>
-      <td>4.556400e+06</td>
       <td>28.921349</td>
-      <td>0.756914</td>
-      <td>0.471104</td>
-      <td>1.576525</td>
-      <td>-0.410775</td>
-      <td>4556105.0</td>
-      <td>0.858578</td>
-      <td>MBH_wk015C.h5</td>
     </tr>
     <tr>
       <th>MBH004650719</th>
@@ -384,18 +296,7 @@ parameter estimation changes with observing time.</p>
       <td>446.562104</td>
       <td>22450.923508</td>
       <td>8796.170612</td>
-      <td>0.974075</td>
-      <td>0.933973</td>
-      <td>1.493337</td>
-      <td>4.650720e+06</td>
       <td>59.148264</td>
-      <td>-0.182069</td>
-      <td>1.626839</td>
-      <td>1.601119</td>
-      <td>0.460113</td>
-      <td>4650671.0</td>
-      <td>-0.183090</td>
-      <td>MBH_wk015C.h5</td>
     </tr>
     <tr>
       <th>MBH001865195</th>
@@ -403,18 +304,7 @@ parameter estimation changes with observing time.</p>
       <td>164.506458</td>
       <td>24034.822836</td>
       <td>8748.509775</td>
-      <td>0.972429</td>
-      <td>0.918015</td>
-      <td>2.297636</td>
-      <td>1.865195e+06</td>
       <td>95.079793</td>
-      <td>0.195796</td>
-      <td>3.250084</td>
-      <td>2.404726</td>
-      <td>-0.500549</td>
-      <td>1864860.0</td>
-      <td>0.197069</td>
-      <td>MBH_wk015C.h5</td>
     </tr>
     <tr>
       <th>MBH007449510</th>
@@ -422,18 +312,7 @@ parameter estimation changes with observing time.</p>
       <td>72.207804</td>
       <td>38276.504295</td>
       <td>2615.575967</td>
-      <td>0.970797</td>
-      <td>0.368108</td>
-      <td>1.559661</td>
-      <td>7.449511e+06</td>
       <td>100.930430</td>
-      <td>-0.682983</td>
-      <td>0.640946</td>
-      <td>1.612438</td>
-      <td>0.667808</td>
-      <td>7449392.0</td>
-      <td>-0.751839</td>
-      <td>MBH_wk015C.h5</td>
     </tr>
     <tr>
       <th>MBH006253789</th>
@@ -441,18 +320,7 @@ parameter estimation changes with observing time.</p>
       <td>260.016246</td>
       <td>51499.191655</td>
       <td>5166.812496</td>
-      <td>0.990408</td>
-      <td>0.815457</td>
-      <td>1.460127</td>
-      <td>6.253789e+06</td>
       <td>24.506354</td>
-      <td>0.592016</td>
-      <td>6.084030</td>
-      <td>1.503608</td>
-      <td>-0.374348</td>
-      <td>6253739.0</td>
-      <td>0.633558</td>
-      <td>MBH_wk015C.h5</td>
     </tr>
     <tr>
       <th>MBH011318669</th>
@@ -460,18 +328,7 @@ parameter estimation changes with observing time.</p>
       <td>740.270521</td>
       <td>142698.356416</td>
       <td>31498.663144</td>
-      <td>0.880107</td>
-      <td>0.685761</td>
-      <td>1.572697</td>
-      <td>1.131867e+07</td>
       <td>13.886229</td>
-      <td>0.788169</td>
-      <td>4.306482</td>
-      <td>1.567044</td>
-      <td>-0.831652</td>
-      <td>11318750.0</td>
-      <td>0.907828</td>
-      <td>MBH_wk015C.h5</td>
     </tr>
     <tr>
       <th>MBH007807200</th>
@@ -479,18 +336,7 @@ parameter estimation changes with observing time.</p>
       <td>189597.629550</td>
       <td>641359.177017</td>
       <td>83719.952286</td>
-      <td>0.988151</td>
-      <td>0.986588</td>
-      <td>0.975498</td>
-      <td>7.807201e+06</td>
       <td>14.897055</td>
-      <td>0.981188</td>
-      <td>4.567808</td>
-      <td>1.592036</td>
-      <td>-0.570242</td>
-      <td>7807296.0</td>
-      <td>1.376523</td>
-      <td>MBH_wk015C.h5</td>
     </tr>
   </tbody>
 </table>
@@ -505,7 +351,7 @@ parameter estimation changes with observing time.</p>
 <span class="n">srcHist</span> <span class="o">=</span> <span class="n">lisacat</span><span class="o">.</span><span class="n">getLineage</span><span class="p">(</span><span class="n">meta</span><span class="p">,</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">catName</span></a><span class="p">,</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sourceIdx</span></a><span class="p">)</span>
 <span class="n">srcHist</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s1">&#39;Log Likelihood&#39;</span><span class="p">,</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;last&#39;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">srcHist</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Observation Week&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">srcHist</span>
+<span class="n">srcHist</span><span class="p">[[</span><span class="s1">&#39;Observation Week&#39;</span><span class="p">,</span><span class="s1">&#39;Parent&#39;</span><span class="p">,</span><span class="s1">&#39;Log Likelihood&#39;</span><span class="p">,</span><span class="s1">&#39;Mass 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Mass 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Luminosity Distance&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
@@ -528,38 +374,14 @@ parameter estimation changes with observing time.</p>
     <tr style="text-align: right;">
       <th></th>
       <th>Observation Week</th>
-      <th>Catalog</th>
       <th>Parent</th>
       <th>Log Likelihood</th>
       <th>Mass 1</th>
       <th>Mass 2</th>
-      <th>Spin 1</th>
-      <th>Spin 2</th>
-      <th>Merger Phase</th>
-      <th>Barycenter Merge Time</th>
       <th>Luminosity Distance</th>
-      <th>cos ecliptic colatitude</th>
-      <th>Ecliptic Longitude</th>
-      <th>Polarization</th>
-      <th>cos inclination</th>
-      <th>Detector Merger Time</th>
-      <th>Ecliptic Latitude</th>
-      <th>chain file</th>
     </tr>
     <tr>
       <th>name</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -572,149 +394,65 @@ parameter estimation changes with observing time.</p>
     <tr>
       <th>MBH005540184</th>
       <td>4.0</td>
-      <td>MBHcatalog_week004</td>
       <td></td>
       <td>69.186329</td>
       <td>9058.387458</td>
       <td>3656.104345</td>
-      <td>0.447972</td>
-      <td>0.265300</td>
-      <td>1.583827</td>
-      <td>5.540184e+06</td>
       <td>32.844051</td>
-      <td>0.289695</td>
-      <td>3.123233</td>
-      <td>1.606603</td>
-      <td>-0.780413</td>
-      <td>5540173.0</td>
-      <td>0.293908</td>
-      <td>MBH_wk004C.h5</td>
     </tr>
     <tr>
       <th>MBH005542433</th>
       <td>5.0</td>
-      <td>MBHcatalog_week005</td>
       <td>MBH005540184</td>
       <td>105.454620</td>
       <td>11341.213640</td>
       <td>3043.851925</td>
-      <td>0.731180</td>
-      <td>0.104110</td>
-      <td>1.579964</td>
-      <td>5.542433e+06</td>
       <td>32.564748</td>
-      <td>0.158864</td>
-      <td>3.025568</td>
-      <td>1.593242</td>
-      <td>-0.697670</td>
-      <td>5542380.0</td>
-      <td>0.159540</td>
-      <td>MBH_wk005C.h5</td>
     </tr>
     <tr>
       <th>MBH005546150</th>
       <td>6.0</td>
-      <td>MBHcatalog_week006</td>
       <td>MBH005542433</td>
       <td>155.709338</td>
       <td>19916.458243</td>
       <td>2004.123403</td>
-      <td>0.865485</td>
-      <td>0.233904</td>
-      <td>1.572732</td>
-      <td>5.546150e+06</td>
       <td>31.018574</td>
-      <td>0.205724</td>
-      <td>3.256753</td>
-      <td>1.604540</td>
-      <td>-0.761606</td>
-      <td>5546153.0</td>
-      <td>0.207203</td>
-      <td>MBH_wk006C.h5</td>
     </tr>
     <tr>
       <th>MBH005546439</th>
       <td>7.0</td>
-      <td>MBHcatalog_week007</td>
       <td>MBH005546150</td>
       <td>226.169428</td>
       <td>21528.119205</td>
       <td>1896.116706</td>
-      <td>0.847665</td>
-      <td>0.298423</td>
-      <td>1.572021</td>
-      <td>5.546440e+06</td>
       <td>30.882839</td>
-      <td>0.311239</td>
-      <td>3.377012</td>
-      <td>1.575915</td>
-      <td>-0.786457</td>
-      <td>5546478.0</td>
-      <td>0.316496</td>
-      <td>MBH_wk007C.h5</td>
     </tr>
     <tr>
       <th>MBH005546810</th>
       <td>8.0</td>
-      <td>MBHcatalog_week008</td>
       <td>MBH005546439</td>
       <td>332.303904</td>
       <td>20199.039472</td>
       <td>1984.569259</td>
-      <td>0.887979</td>
-      <td>0.309512</td>
-      <td>1.576428</td>
-      <td>5.546810e+06</td>
       <td>30.559129</td>
-      <td>0.337593</td>
-      <td>3.491147</td>
-      <td>1.613373</td>
-      <td>-0.788486</td>
-      <td>5547041.0</td>
-      <td>0.344359</td>
-      <td>MBH_wk008C.h5</td>
     </tr>
     <tr>
       <th>MBH005546759</th>
       <td>9.0</td>
-      <td>MBHcatalog_week009</td>
       <td>MBH005546810</td>
       <td>523.048089</td>
       <td>16537.055819</td>
       <td>2292.503512</td>
-      <td>0.937927</td>
-      <td>0.548418</td>
-      <td>1.573987</td>
-      <td>5.546760e+06</td>
       <td>31.031316</td>
-      <td>0.463161</td>
-      <td>3.639771</td>
-      <td>1.638381</td>
-      <td>-0.819428</td>
-      <td>5547100.0</td>
-      <td>0.481558</td>
-      <td>MBH_wk009C.h5</td>
     </tr>
     <tr>
       <th>MBH005546845</th>
       <td>10.0</td>
-      <td>MBHcatalog_week010</td>
       <td>MBH005546759</td>
       <td>652.996924</td>
       <td>13238.473697</td>
       <td>2707.606755</td>
-      <td>0.986599</td>
-      <td>0.903154</td>
-      <td>1.673776</td>
-      <td>5.546846e+06</td>
       <td>30.323258</td>
-      <td>0.480294</td>
-      <td>3.662275</td>
-      <td>1.810179</td>
-      <td>-0.800118</td>
-      <td>5547205.0</td>
-      <td>0.500989</td>
-      <td>MBH_wk010C.h5</td>
     </tr>
   </tbody>
 </table>
@@ -763,7 +501,7 @@ parameter estimation changes with observing time.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>WARNING:chainconsumer:Parameter $m_2\ [{\rm M}_\odot]$ in chain Week 4 is not constrained
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  9.810 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.595 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-smbh-plot-source-time-evolving-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/389f39ab89ccfe5a11a7e55541d3fb24/plot_source_time_evolving.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_source_time_evolving.py</span></code></a></p>

@@ -18,7 +18,8 @@ from chainconsumer import ChainConsumer
 # Load the catalog files
 
 # Find the list of catalogs
-catFiles = glob.glob('MBH_wk*C.h5')
+catPath = 'MBH_catalog'
+catFiles = glob.glob(catPath+'/MBH_wk*C.h5')
 
 # Read individual DataFrames' metadata by specifying the key parameter
 dfs = list()
@@ -55,7 +56,7 @@ sources = list(cat.index)
 for source in sources:
 
     # get chain samples
-    samples = lisacat.getChain(cat,source)
+    samples = lisacat.getChain(cat,source,catPath)
     
     # get dataframe into numpy array
     df = samples[parameters].values

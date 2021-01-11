@@ -48,13 +48,14 @@ Corner plot of select parameters for the full catalog.
 
 Load the catalog files
 
-.. GENERATED FROM PYTHON SOURCE LINES 19-40
+.. GENERATED FROM PYTHON SOURCE LINES 19-41
 
 .. code-block:: default
 
 
     # Find the list of catalogs
-    catFiles = glob.glob('MBH_wk*C.h5')
+    catPath = 'MBH_catalog'
+    catFiles = glob.glob(catPath+'/MBH_wk*C.h5')
 
     # Read individual DataFrames' metadata by specifying the key parameter
     dfs = list()
@@ -80,11 +81,11 @@ Load the catalog files
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 41-42
+.. GENERATED FROM PYTHON SOURCE LINES 42-43
 
 Create the corner plot with ChainConsumer
 
-.. GENERATED FROM PYTHON SOURCE LINES 42-69
+.. GENERATED FROM PYTHON SOURCE LINES 43-70
 
 .. code-block:: default
 
@@ -104,7 +105,7 @@ Create the corner plot with ChainConsumer
     for source in sources:
 
         # get chain samples
-        samples = lisacat.getChain(cat,source)
+        samples = lisacat.getChain(cat,source,catPath)
     
         # get dataframe into numpy array
         df = samples[parameters].values
@@ -129,7 +130,7 @@ Create the corner plot with ChainConsumer
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  13.800 seconds)
+   **Total running time of the script:** ( 0 minutes  7.215 seconds)
 
 
 .. _sphx_glr_download_examples_smbh_plot_catalog_corner.py:

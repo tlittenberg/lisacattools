@@ -12,7 +12,8 @@ import matplotlib.pyplot as plt
 import lisacattools.lisacattools as lisacat
 
 # get list catalog files
-catFiles = glob.glob('MBH_wk*C.h5')
+catPath = 'MBH_catalog'
+catFiles = glob.glob(catPath+'/MBH_wk*C.h5')
 
 # append catalog files to master data frame
 dfs = list()
@@ -32,7 +33,7 @@ cat = pd.read_hdf(catFile, key='detections')
 fig, ax = plt.subplots(figsize = [8,6],dpi=100)
 srcs = list(cat.index)
 for idx, src in enumerate(srcs):
-    chain = lisacat.getChain(cat,src)
+    chain = lisacat.getChain(cat,src,catPath)
     l1,m1,h1 = np.quantile(np.array(chain['Mass 1']),[0.05,0.5,0.95])
     l2,m2,h2 = np.quantile(np.array(chain['Mass 2']),[0.05,0.5,0.95])
     if idx < 10:

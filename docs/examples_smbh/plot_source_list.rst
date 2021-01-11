@@ -27,7 +27,7 @@ Display a table of catalog files, detection list, and timeline of mergers..
 
 Load catalog and display list
 
-.. GENERATED FROM PYTHON SOURCE LINES 10-27
+.. GENERATED FROM PYTHON SOURCE LINES 10-28
 
 .. code-block:: default
 
@@ -37,7 +37,8 @@ Load catalog and display list
     import matplotlib.pyplot as plt
 
     # get list catalog files
-    catFiles = glob.glob('MBH_wk*C.h5')
+    catPath = 'MBH_catalog'
+    catFiles = glob.glob(catPath+'/MBH_wk*C.h5')
 
     # append catalog files to master data frame
     dfs = list()
@@ -55,12 +56,12 @@ Load catalog and display list
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 28-30
+.. GENERATED FROM PYTHON SOURCE LINES 29-31
 
 Load detections from final catalog. 
 Because catalogs are cummulative, this will include all sources
 
-.. GENERATED FROM PYTHON SOURCE LINES 30-37
+.. GENERATED FROM PYTHON SOURCE LINES 31-38
 
 .. code-block:: default
 
@@ -202,11 +203,11 @@ Because catalogs are cummulative, this will include all sources
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 38-39
+.. GENERATED FROM PYTHON SOURCE LINES 39-40
 
 Cumulative plot of observed mergers
 
-.. GENERATED FROM PYTHON SOURCE LINES 39-65
+.. GENERATED FROM PYTHON SOURCE LINES 40-66
 
 .. code-block:: default
 
@@ -250,7 +251,7 @@ Cumulative plot of observed mergers
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.235 seconds)
+   **Total running time of the script:** ( 0 minutes  0.302 seconds)
 
 
 .. _sphx_glr_download_examples_smbh_plot_source_list.py:

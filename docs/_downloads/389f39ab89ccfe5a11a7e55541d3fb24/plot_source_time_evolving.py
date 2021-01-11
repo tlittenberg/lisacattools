@@ -15,7 +15,8 @@ from chainconsumer import ChainConsumer
 
 
 # Find the list of catalogs
-catFiles = glob.glob('MBH_wk*C.h5')
+catPath = 'MBH_catalog'
+catFiles = glob.glob(catPath+'/MBH_wk*C.h5')
 
 # Read individual DataFrames' metadata by specifying the key parameter
 dfs = list()
@@ -53,7 +54,7 @@ srcHist[['Observation Week','Parent','Log Likelihood','Mass 1', 'Mass 2', 'Lumin
 epochs = list(srcHist.index)
 dfs = list()
 for epoch in epochs:
-    df = lisacat.getChain(srcHist,epoch)
+    df = lisacat.getChain(srcHist,epoch,catPath)
     df.insert(len(df.columns),'Source',epoch,True)
     df.insert(len(df.columns),'Observation Week',srcHist.loc[epoch]['Observation Week'],True)
     dfs.append(df[['Source','Observation Week','Mass 1','Mass 2','Spin 1','Spin 2','Ecliptic Latitude','Ecliptic Longitude','Luminosity Distance','Barycenter Merge Time','Merger Phase','Polarization', 'cos inclination']])

@@ -24,7 +24,7 @@ Time-evolving parameter estimation
 Corner plot of select parameters for a single source showing how 
 parameter estimation changes with observing time.
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-39
+.. GENERATED FROM PYTHON SOURCE LINES 8-40
 
 .. code-block:: default
 
@@ -38,7 +38,8 @@ parameter estimation changes with observing time.
 
 
     # Find the list of catalogs
-    catFiles = glob.glob('MBH_wk*C.h5')
+    catPath = 'MBH_catalog'
+    catFiles = glob.glob(catPath+'/MBH_wk*C.h5')
 
     # Read individual DataFrames' metadata by specifying the key parameter
     dfs = list()
@@ -204,11 +205,11 @@ parameter estimation changes with observing time.
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 40-41
+.. GENERATED FROM PYTHON SOURCE LINES 41-42
 
 Choose a source from the list of detections and get its history through the different catalogs
 
-.. GENERATED FROM PYTHON SOURCE LINES 41-51
+.. GENERATED FROM PYTHON SOURCE LINES 42-52
 
 .. code-block:: default
 
@@ -336,18 +337,18 @@ Choose a source from the list of detections and get its history through the diff
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 52-53
+.. GENERATED FROM PYTHON SOURCE LINES 53-54
 
 Load chains for different observing epochs of selected source
 
-.. GENERATED FROM PYTHON SOURCE LINES 53-63
+.. GENERATED FROM PYTHON SOURCE LINES 54-64
 
 .. code-block:: default
 
     epochs = list(srcHist.index)
     dfs = list()
     for epoch in epochs:
-        df = lisacat.getChain(srcHist,epoch)
+        df = lisacat.getChain(srcHist,epoch,catPath)
         df.insert(len(df.columns),'Source',epoch,True)
         df.insert(len(df.columns),'Observation Week',srcHist.loc[epoch]['Observation Week'],True)
         dfs.append(df[['Source','Observation Week','Mass 1','Mass 2','Spin 1','Spin 2','Ecliptic Latitude','Ecliptic Longitude','Luminosity Distance','Barycenter Merge Time','Merger Phase','Polarization', 'cos inclination']])
@@ -361,11 +362,11 @@ Load chains for different observing epochs of selected source
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 64-65
+.. GENERATED FROM PYTHON SOURCE LINES 65-66
 
 Create corner for multiple observing epochs
 
-.. GENERATED FROM PYTHON SOURCE LINES 65-94
+.. GENERATED FROM PYTHON SOURCE LINES 66-95
 
 .. code-block:: default
 
@@ -406,21 +407,13 @@ Create corner for multiple observing epochs
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    WARNING:chainconsumer:Parameter $m_2\ [{\rm M}_\odot]$ in chain Week 4 is not constrained
-
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.595 seconds)
+   **Total running time of the script:** ( 0 minutes  3.005 seconds)
 
 
 .. _sphx_glr_download_examples_smbh_plot_source_time_evolving.py:

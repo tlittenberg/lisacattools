@@ -23,7 +23,7 @@ Catalog mass plot
 
 Plot component masses of all detections
 
-.. GENERATED FROM PYTHON SOURCE LINES 7-52
+.. GENERATED FROM PYTHON SOURCE LINES 7-53
 
 
 
@@ -32,8 +32,23 @@ Plot component masses of all detections
     :class: sphx-glr-single-img
 
 
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    /Users/tlittenb/lisacattools/examples_smbh/plot_catalog_m1_m2.py:45: MatplotlibDeprecationWarning: The 'nonposx' parameter of __init__() has been renamed 'nonpositive' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+      ax.set_xscale('log', nonposx='clip')
+    /Users/tlittenb/lisacattools/examples_smbh/plot_catalog_m1_m2.py:46: MatplotlibDeprecationWarning: The 'nonposy' parameter of __init__() has been renamed 'nonpositive' since Matplotlib 3.3; support for the old name will be dropped two minor releases later.
+      ax.set_yscale('log', nonposy='clip')
 
 
+
+
+
+
+|
 
 .. code-block:: default
 
@@ -45,7 +60,8 @@ Plot component masses of all detections
     import lisacattools.lisacattools as lisacat
 
     # get list catalog files
-    catFiles = glob.glob('MBH_wk*C.h5')
+    catPath = 'MBH_catalog'
+    catFiles = glob.glob(catPath+'/MBH_wk*C.h5')
 
     # append catalog files to master data frame
     dfs = list()
@@ -65,7 +81,7 @@ Plot component masses of all detections
     fig, ax = plt.subplots(figsize = [8,6],dpi=100)
     srcs = list(cat.index)
     for idx, src in enumerate(srcs):
-        chain = lisacat.getChain(cat,src)
+        chain = lisacat.getChain(cat,src,catPath)
         l1,m1,h1 = np.quantile(np.array(chain['Mass 1']),[0.05,0.5,0.95])
         l2,m2,h2 = np.quantile(np.array(chain['Mass 2']),[0.05,0.5,0.95])
         if idx < 10:
@@ -86,7 +102,7 @@ Plot component masses of all detections
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.052 seconds)
+   **Total running time of the script:** ( 0 minutes  2.061 seconds)
 
 
 .. _sphx_glr_download_examples_smbh_plot_catalog_m1_m2.py:

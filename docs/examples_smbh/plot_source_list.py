@@ -13,7 +13,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # get list catalog files
-catFiles = glob.glob('MBH_wk*C.h5')
+catPath = 'MBH_catalog'
+catFiles = glob.glob(catPath+'/MBH_wk*C.h5')
 
 # append catalog files to master data frame
 dfs = list()

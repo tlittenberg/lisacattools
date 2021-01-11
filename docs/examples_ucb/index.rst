@@ -121,6 +121,27 @@ In addition, posterior samples for each candidate are stored as separate data fr
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Locate a source in an updated catalog and compare parameters.">
+
+.. only:: html
+
+ .. figure:: /examples_ucb/images/thumb/sphx_glr_plot_time_evolving_parameters_thumb.png
+     :alt: Connecting catalogs
+
+     :ref:`sphx_glr_examples_ucb_plot_time_evolving_parameters.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples_ucb/plot_time_evolving_parameters
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Plot 1-sigma contours of well-localized sources&#x27; sky location in galactic coordinates.">
 
 .. only:: html

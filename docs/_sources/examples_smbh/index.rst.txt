@@ -94,6 +94,27 @@ Below are examples using SMBH catalogs:
    :hidden:
 
    /examples_smbh/plot_source_time_evolving
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Violin plot of select parameters for a single source showing how  parameter estimation changes ...">
+
+.. only:: html
+
+ .. figure:: /examples_smbh/images/thumb/sphx_glr_plot_source_time_evolving_violin_thumb.png
+     :alt: Time-evolving violin plot
+
+     :ref:`sphx_glr_examples_smbh_plot_source_time_evolving_violin.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples_smbh/plot_source_time_evolving_violin
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

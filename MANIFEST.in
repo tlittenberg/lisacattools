@@ -1,0 +1,35 @@
+# Include the README
+include README
+
+# Include the license file
+include LICENCE
+include THIRD.txt
+
+# Include the configuration file
+recursive-include conf  *
+
+# Include dependencies
+include requirements*.txt
+
+# Include makefile
+include Makefile
+
+# Include docs
+recursive-include docs
+
+# Include Changelog
+include CHANGELOG
+
+# Include tests
+recursive-include tests/testsuites  *
+
+# Include scripts
+recursive-include scripts   *
+
+# Include main module
+include lisacattools/__init__.py
+include lisacattools/_version.py
+include lisacattools/logging.conf
+
+# Include tuto
+include tutorial/*.ipynb

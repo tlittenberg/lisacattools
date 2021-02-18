@@ -127,3 +127,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# virtual env
+.lisacattools-env
+lisacattools-env
+
+# build doc
+./docs/build
+./docs/tmp
+./docs/toto
+
+# data
+/tutorial/data/*.h5

@@ -1,4 +1,14 @@
-### Change requirements to requirements.txt (HEAD -> refactoring)
+### Add dependencies in setup.py (HEAD -> refactoring)
+>Thu, 18 Feb 2021 14:14:21 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Change requirements to requirements.txt (origin/refactoring)
 >Thu, 18 Feb 2021 13:49:27 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -8,7 +18,7 @@
 
 
 
-### Add licence in the header of each python file (origin/refactoring)
+### Add licence in the header of each python file
 >Thu, 18 Feb 2021 06:26:00 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

@@ -1,3 +1,21 @@
+# Copyright (C) 2021 - James I. Thorpe, Tyson B. Littenberg, Jean-Christophe
+# Malapert
+#
+# This file is part of lisacattools.
+#
+# lisacattools is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# lisacattools is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with lisacattools.  If not, see <https://www.gnu.org/licenses/>.
+
 from astropy.coordinates.builtin_frames import ecliptic
 import pandas as pd
 import matplotlib.transforms as transforms
@@ -79,9 +97,7 @@ def convert_ecliptic_to_galactic(data: pd.DataFrame):
             else data["ecliptic longitude"]
         )
     except:
-        raise Exception(
-            "ERROR: Unable to find ecliptic longitude in data frame"
-        )
+        raise Exception("ERROR: Unable to find ecliptic longitude in data frame")
     lamb = lamb.to_list()
 
     try:
@@ -95,15 +111,11 @@ def convert_ecliptic_to_galactic(data: pd.DataFrame):
         try:
             beta = (
                 np.pi / 2 - np.arccos(np.array(data["coslat"]))
-                if "cos ecliptic colatitude" in data.columns
-                or "coslat" in data.columns
-                else np.pi / 2
-                - np.arccos(np.array(data["cos ecliptic colatitude"]))
+                if "cos ecliptic colatitude" in data.columns or "coslat" in data.columns
+                else np.pi / 2 - np.arccos(np.array(data["cos ecliptic colatitude"]))
             )
         except:
-            raise Exception(
-                "ERROR: Unable to find ecliptic latitude in data frame"
-            )
+            raise Exception("ERROR: Unable to find ecliptic latitude in data frame")
 
     ecliptic_coord = SkyCoord(
         lamb * u.rad, beta * u.rad, frame="barycentrictrueecliptic"

@@ -1,3 +1,21 @@
+# Copyright (C) 2021 - James I. Thorpe, Tyson B. Littenberg, Jean-Christophe
+# Malapert
+#
+# This file is part of lisacattools.
+#
+# lisacattools is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# lisacattools is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with lisacattools.  If not, see <https://www.gnu.org/licenses/>.
+
 """This module is responsible for handling the loading of the LISA catalogs.
 The LISA catalogs contains an evolution of catalogs over the time.
 Each catalog contains several datasets :
@@ -274,9 +292,7 @@ class LisaCatalogs:
         """
         dfs = list()
         while src_name != "" and cat_name not in [None, ""]:
-            detections = self.get_catalog_by_name(cat_name).get_dataset(
-                "detections"
-            )
+            detections = self.get_catalog_by_name(cat_name).get_dataset("detections")
             src = detections.loc[[src_name]]
             try:
                 wk = self.metadata.loc[cat_name]["observation week"]
@@ -295,9 +311,7 @@ class LisaCatalogs:
             src_name = src.iloc[0]["Parent"]
 
         histDF = pd.concat(dfs, axis=0)
-        histDF.drop_duplicates(
-            subset="Log Likelihood", keep="last", inplace=True
-        )
+        histDF.drop_duplicates(subset="Log Likelihood", keep="last", inplace=True)
         histDF.sort_values(by="Observation Week", ascending=True, inplace=True)
         return histDF
 
@@ -313,9 +327,7 @@ class LisaCatalogs:
         """
 
         def _process_lineage(source_epoch, source_data, obs_week):
-            source_data.insert(
-                len(source_data.columns), "Source", source_epoch, True
-            )
+            source_data.insert(len(source_data.columns), "Source", source_epoch, True)
             source_data.insert(
                 len(source_data.columns), "Observation Week", obs_week, True
             )

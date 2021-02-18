@@ -1,3 +1,21 @@
+# Copyright (C) 2021 - James I. Thorpe, Tyson B. Littenberg, Jean-Christophe
+# Malapert
+#
+# This file is part of lisacattools.
+#
+# lisacattools is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# lisacattools is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with lisacattools.  If not, see <https://www.gnu.org/licenses/>.
+
 from .monitoring import UtilsMonitoring
 from .utils import HPhist, FrameEnum
 from .catalog import LisaCatalog, LisaCatalogs
@@ -39,9 +57,7 @@ class AbstractLisaAnalyze:
         pass
 
     @UtilsMonitoring.io(level=logging.DEBUG)
-    def _get_variable(
-        self, dico: Dict, variable: str, default_val: object
-    ) -> object:
+    def _get_variable(self, dico: Dict, variable: str, default_val: object) -> object:
         return default_val if variable not in dico else dico[variable]
 
     @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
@@ -165,12 +181,8 @@ class CatalogAnalysis(AbstractLisaAnalyze):
             chain = self.lisa_catalog.get_extracted_data_from(
                 f"{source}_chain", ["Mass 1", "Mass 2"]
             )
-            l1, m1, h1 = np.quantile(
-                np.array(chain["Mass 1"]), [0.05, 0.5, 0.95]
-            )
-            l2, m2, h2 = np.quantile(
-                np.array(chain["Mass 2"]), [0.05, 0.5, 0.95]
-            )
+            l1, m1, h1 = np.quantile(np.array(chain["Mass 1"]), [0.05, 0.5, 0.95])
+            l2, m2, h2 = np.quantile(np.array(chain["Mass 2"]), [0.05, 0.5, 0.95])
             if idx < 10:
                 mkr = "o"
             else:
@@ -191,9 +203,7 @@ class CatalogAnalysis(AbstractLisaAnalyze):
         ax.grid()
         ax.set_xlabel("Mass 1 [MSun]")
         ax.set_ylabel("Mass 2 [MSun]")
-        ax.set_title(
-            "90%% CI for Component Masses in %s " % self.lisa_catalog.name
-        )
+        ax.set_title("90%% CI for Component Masses in %s " % self.lisa_catalog.name)
         ax.legend(loc="lower right")
         if self.save_img_dir:
             fig.savefig(
@@ -219,9 +229,7 @@ class CatalogAnalysis(AbstractLisaAnalyze):
         """Plot skymap."""
         hp_map = HPhist(source, nside, system)
         fig = plt.figure(figsize=(8, 6), dpi=100)
-        ax = plt.axes(
-            [0.05, 0.05, 0.9, 0.9], projection="geo degrees mollweide"
-        )
+        ax = plt.axes([0.05, 0.05, 0.9, 0.9], projection="geo degrees mollweide")
         ax.grid()
         ax.imshow_hpx((hp_map), cmap="plasma")
         if self.save_img_dir:
@@ -309,9 +317,7 @@ class HistoryAnalysis(AbstractLisaAnalyze):
         ax.set_title(title)
         if self.save_img_dir:
             fig.savefig(
-                os.path.join(
-                    self.save_img_dir, title.replace(" ", "_") + ".png"
-                )
+                os.path.join(self.save_img_dir, title.replace(" ", "_") + ".png")
             )
 
     @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
@@ -385,9 +391,7 @@ class HistoryAnalysis(AbstractLisaAnalyze):
         fig.suptitle(title)
         if self.save_img_dir:
             fig.savefig(
-                os.path.join(
-                    self.save_img_dir, title.replace(" ", "_") + ".png"
-                )
+                os.path.join(self.save_img_dir, title.replace(" ", "_") + ".png")
             )
 
     @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
@@ -416,9 +420,7 @@ class HistoryAnalysis(AbstractLisaAnalyze):
         fig.suptitle(title)
         if self.save_img_dir:
             fig.savefig(
-                os.path.join(
-                    self.save_img_dir, title.replace(" ", "_") + ".png"
-                )
+                os.path.join(self.save_img_dir, title.replace(" ", "_") + ".png")
             )
 
     @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
@@ -439,9 +441,7 @@ class HistoryAnalysis(AbstractLisaAnalyze):
             wks (List): weeks to plot
             system (FrameEnum, optional): coordinate reference frame. Defaults to 'FrameEnum.GALACTIC'.
         """
-        title = self._get_variable(
-            kwargs, "title", "Sky Localization Evolution"
-        )
+        title = self._get_variable(kwargs, "title", "Sky Localization Evolution")
         fig = plt.figure(figsize=(10, 10), dpi=100)
         ncols = 2
         nrows = np.int(np.ceil(len(wks) / ncols))
@@ -459,7 +459,5 @@ class HistoryAnalysis(AbstractLisaAnalyze):
         fig.suptitle(title)
         if self.save_img_dir:
             fig.savefig(
-                os.path.join(
-                    self.save_img_dir, title.replace(" ", "_") + ".png"
-                )
+                os.path.join(self.save_img_dir, title.replace(" ", "_") + ".png")
             )

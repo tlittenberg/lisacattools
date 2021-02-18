@@ -36,7 +36,7 @@ make prepare-dev
 source .lisacattools-env
 ```
 
-Install the sotfware
+Install the sotfware and the external libraries for development purpose
 
 ```
 make install-dev

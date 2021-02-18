@@ -1,4 +1,14 @@
-### Refactoring (HEAD -> refactoring)
+### Add licence in the header of each python file (HEAD -> refactoring)
+>Thu, 18 Feb 2021 06:26:00 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Refactoring (origin/refactoring)
 >Thu, 18 Feb 2021 06:15:51 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

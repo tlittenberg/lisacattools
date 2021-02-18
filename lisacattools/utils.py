@@ -97,7 +97,9 @@ def convert_ecliptic_to_galactic(data: pd.DataFrame):
             else data["ecliptic longitude"]
         )
     except:
-        raise Exception("ERROR: Unable to find ecliptic longitude in data frame")
+        raise Exception(
+            "ERROR: Unable to find ecliptic longitude in data frame"
+        )
     lamb = lamb.to_list()
 
     try:
@@ -111,11 +113,15 @@ def convert_ecliptic_to_galactic(data: pd.DataFrame):
         try:
             beta = (
                 np.pi / 2 - np.arccos(np.array(data["coslat"]))
-                if "cos ecliptic colatitude" in data.columns or "coslat" in data.columns
-                else np.pi / 2 - np.arccos(np.array(data["cos ecliptic colatitude"]))
+                if "cos ecliptic colatitude" in data.columns
+                or "coslat" in data.columns
+                else np.pi / 2
+                - np.arccos(np.array(data["cos ecliptic colatitude"]))
             )
         except:
-            raise Exception("ERROR: Unable to find ecliptic latitude in data frame")
+            raise Exception(
+                "ERROR: Unable to find ecliptic latitude in data frame"
+            )
 
     ecliptic_coord = SkyCoord(
         lamb * u.rad, beta * u.rad, frame="barycentrictrueecliptic"

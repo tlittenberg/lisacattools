@@ -292,7 +292,9 @@ class LisaCatalogs:
         """
         dfs = list()
         while src_name != "" and cat_name not in [None, ""]:
-            detections = self.get_catalog_by_name(cat_name).get_dataset("detections")
+            detections = self.get_catalog_by_name(cat_name).get_dataset(
+                "detections"
+            )
             src = detections.loc[[src_name]]
             try:
                 wk = self.metadata.loc[cat_name]["observation week"]
@@ -311,7 +313,9 @@ class LisaCatalogs:
             src_name = src.iloc[0]["Parent"]
 
         histDF = pd.concat(dfs, axis=0)
-        histDF.drop_duplicates(subset="Log Likelihood", keep="last", inplace=True)
+        histDF.drop_duplicates(
+            subset="Log Likelihood", keep="last", inplace=True
+        )
         histDF.sort_values(by="Observation Week", ascending=True, inplace=True)
         return histDF
 
@@ -327,7 +331,9 @@ class LisaCatalogs:
         """
 
         def _process_lineage(source_epoch, source_data, obs_week):
-            source_data.insert(len(source_data.columns), "Source", source_epoch, True)
+            source_data.insert(
+                len(source_data.columns), "Source", source_epoch, True
+            )
             source_data.insert(
                 len(source_data.columns), "Observation Week", obs_week, True
             )

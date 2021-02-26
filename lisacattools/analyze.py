@@ -18,7 +18,7 @@
 
 from .monitoring import UtilsMonitoring
 from .utils import HPhist, FrameEnum
-from .catalog import LisaCatalog, LisaCatalogs
+from .catalog import GWCatalog, GWCatalogs
 from typing import Dict, List, NoReturn
 
 import corner
@@ -41,9 +41,9 @@ class LisaAnalyse:
     @staticmethod
     def create(catalog, save_dir=None):
         obj = None
-        if isinstance(catalog, LisaCatalog):
+        if isinstance(catalog, GWCatalog):
             obj = CatalogAnalysis(catalog, save_dir)
-        elif isinstance(catalog, LisaCatalogs):
+        elif isinstance(catalog, GWCatalogs):
             obj = HistoryAnalysis(catalog, save_dir)
         else:
             raise NotImplemented(f"type {type(catalog)} not implemented")
@@ -102,24 +102,24 @@ class AbstractLisaAnalyze:
 class CatalogAnalysis(AbstractLisaAnalyze):
     """Handle the analysis of one catalog."""
 
-    def __init__(self, lisa_catalog: LisaCatalog, save_img_dir=None):
+    def __init__(self, catalog: GWCatalog, save_img_dir=None):
         """Init the analysis with a Lisa catalog."""
-        self.lisa_catalog = lisa_catalog
+        self.catalog = catalog
         self.save_img_dir = save_img_dir
 
     @property
-    def lisa_catalog(self):
-        """Lisa catalog.
+    def catalog(self):
+        """Catalog.
 
-        :getter: Returns the Lisa catalog of this analysis
-        :setter: Sets the Lisa catalog.
-        :type: LisaCatalog
+        :getter: Returns the catalog of this analysis
+        :setter: Sets the catalog.
+        :type: GWCatalog
         """
-        return self._lisa_catalog
+        return self._catalog
 
-    @lisa_catalog.setter
-    def lisa_catalog(self, value):
-        self._lisa_catalog = value
+    @catalog.setter
+    def catalog(self, value):
+        self._catalog = value
 
     @property
     def save_img_dir(self):
@@ -139,9 +139,7 @@ class CatalogAnalysis(AbstractLisaAnalyze):
     def plot_mbh_mergers_history(self) -> NoReturn:
         """Plot the history of observed mergers."""
 
-        mergeTimes = self.lisa_catalog.get_extracted_data_from(
-            "detections", "Barycenter Merge Time"
-        )
+        mergeTimes = self.catalog.get_detections("Barycenter Merge Time")
         mergeTimes.sort_values(ascending=True, inplace=True)
         mergeT = np.insert(np.array(mergeTimes) / 86400, 0, 0)
         mergeCount = np.arange(0, len(mergeTimes) + 1)
@@ -159,13 +157,13 @@ class CatalogAnalysis(AbstractLisaAnalyze):
             )  # horizontal alignment can be left, right or center
         ax.set_xlabel("Observation Time [days]")
         ax.set_ylabel("Merger Count")
-        ax.set_title(f"MBH Mergers in catalog {self.lisa_catalog.name}")
+        ax.set_title(f"MBH Mergers in catalog {self.catalog.name}")
         ax.grid()
         if self.save_img_dir:
             fig.savefig(
                 os.path.join(
                     self.save_img_dir,
-                    "MBH_mergers_" + self.lisa_catalog.name + ".png",
+                    "MBH_mergers_" + self.catalog.name + ".png",
                 )
             )
         # plt.show()
@@ -175,13 +173,11 @@ class CatalogAnalysis(AbstractLisaAnalyze):
         """Plot the indivual sources."""
 
         fig, ax = plt.subplots(figsize=[8, 6], dpi=100)
-        detections = self.lisa_catalog.get_extracted_data_from(
-            "detections", ["Mass 1", "Mass 2"]
-        )
+        detections = self.catalog.get_detections(["Mass 1", "Mass 2"])
         sources = list(detections.index)
         for idx, source in enumerate(sources):
-            chain = self.lisa_catalog.get_extracted_data_from(
-                f"{source}_chain", ["Mass 1", "Mass 2"]
+            chain = self.catalog.get_source_sample(
+                source, ["Mass 1", "Mass 2"]
             )
             l1, m1, h1 = np.quantile(
                 np.array(chain["Mass 1"]), [0.05, 0.5, 0.95]
@@ -204,20 +200,18 @@ class CatalogAnalysis(AbstractLisaAnalyze):
                 marker=mkr,
                 markerfacecolor="none",
             )
-        ax.set_xscale("log", nonposx="clip")
-        ax.set_yscale("log", nonposy="clip")
+        ax.set_xscale("log", nonpositive="clip")
+        ax.set_yscale("log", nonpositive="clip")
         ax.grid()
         ax.set_xlabel("Mass 1 [MSun]")
         ax.set_ylabel("Mass 2 [MSun]")
-        ax.set_title(
-            "90%% CI for Component Masses in %s " % self.lisa_catalog.name
-        )
+        ax.set_title("90%% CI for Component Masses in %s " % self.catalog.name)
         ax.legend(loc="lower right")
         if self.save_img_dir:
             fig.savefig(
                 os.path.join(
                     self.save_img_dir,
-                    "component_masses" + self.lisa_catalog.name + ".png",
+                    "component_masses" + self.catalog.name + ".png",
                 )
             )
         # plt.show()
@@ -225,9 +219,7 @@ class CatalogAnalysis(AbstractLisaAnalyze):
     @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
     def plot_corners(self, source_name, params, *args, **kwargs) -> NoReturn:
         """Some corners plots."""
-        sources = self.lisa_catalog.get_extracted_data_from(
-            f"{source_name}_chain", params
-        )
+        sources = self.catalog.get_source_sample(source_name, params)
         self.plot_corners_ds(source_name, sources, *args, **kwargs)
 
     @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
@@ -249,24 +241,24 @@ class CatalogAnalysis(AbstractLisaAnalyze):
 class HistoryAnalysis(AbstractLisaAnalyze):
     """Analyse a particular source to see how it's parameter estimates improve over time"""
 
-    def __init__(self, lisa_catalogs: LisaCatalogs, save_img_dir=None):
+    def __init__(self, catalogs: GWCatalogs, save_img_dir=None):
         """Init the HistoryAnalysis with all catalogs to load the parameter estimates over the time."""
-        self.lisa_catalogs = lisa_catalogs
+        self.catalogs = catalogs
         self.save_img_dir = save_img_dir
 
     @property
-    def lisa_catalogs(self):
-        """Lisa catalogs.
+    def catalogs(self):
+        """Catalogs.
 
-        :getter: Returns the Lisa catalogs of this analysis
-        :setter: Sets the Lisa catalogs.
-        :type: LisaCatalogs
+        :getter: Returns the catalogs of this analysis
+        :setter: Sets the catalogs.
+        :type: GWCatalogs
         """
-        return self._lisa_catalogs
+        return self._catalogs
 
-    @lisa_catalogs.setter
-    def lisa_catalogs(self, value):
-        self._lisa_catalogs = value
+    @catalogs.setter
+    def catalogs(self, value):
+        self._catalogs = value
 
     @property
     def save_img_dir(self):
@@ -359,8 +351,8 @@ class HistoryAnalysis(AbstractLisaAnalyze):
             time_parameter (str): time parameter in the data
             parameter (str): parameter to plot over the time
         """
-        lisa_catalogs = self.lisa_catalogs
-        srcHist = lisa_catalogs.get_lineage(catalog_name, source_name)
+        catalogs = self.catalogs
+        srcHist = catalogs.get_lineage(catalog_name, source_name)  ## TODO
         self.plot_parameter_time_evolution(
             srcHist, time_parameter, parameter, *args, **kwargs
         )

@@ -29,7 +29,17 @@ from ._version import (
 )
 from .utils import FrameEnum
 from .analyze import LisaAnalyse, CatalogAnalysis, HistoryAnalysis
-from .catalog import LisaCatalogs, LisaCatalog
+from .catalog import GWCatalogs, GWCatalog, GWCatalogType
+from .utils import (
+    getSciRD,
+    get_DL,
+    get_Mchirp,
+    confidence_ellipse,
+    convert_ecliptic_to_galactic,
+    convert_galactic_to_cartesian,
+    ellipse_area,
+    HPhist,
+)
 import os
 import logging.config
 from logging import NullHandler
@@ -53,10 +63,19 @@ logging.setLogRecordFactory(LogRecord)  # pylint: disable=no-member
 
 
 __all__ = [
-    "LisaCatalogs",
-    "LisaCatalog",
+    "GWCatalogs",
+    "GWCatalog",
+    "GWCatalogType",
     "LisaAnalyse",
     "CatalogAnalysis",
     "HistoryAnalysis",
     "FrameEnum",
+    "getSciRD",
+    "get_DL",
+    "get_Mchirp",
+    "confidence_ellipse",
+    "convert_ecliptic_to_galactic",
+    "convert_galactic_to_cartesian",
+    "ellipse_area",
+    "HPhist",
 ]

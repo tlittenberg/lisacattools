@@ -16,269 +16,337 @@
 # You should have received a copy of the GNU General Public License
 # along with lisacattools.  If not, see <https://www.gnu.org/licenses/>.
 
-"""This module is responsible for handling the loading of the LISA catalogs.
-The LISA catalogs contains an evolution of catalogs over the time.
-Each catalog contains several datasets :
-- metadata
-- detections
-- sample for each detection
+"""This module is the interface for gravitational wavelength catalogs. It is
+responsible for :
+- register new catalog implementations as plugins
+- loading detections and source sample
 """
 
-import glob
-import logging
-import os
-import pandas as pd
-import numpy as np
+from abc import ABC, abstractmethod
+
 from typing import List, Union
+import importlib
+
+import pandas as pd
+
+from dataclasses import dataclass
+
 from .monitoring import UtilsMonitoring
+
 from .custom_logging import UtilsLogs
 
-UtilsLogs.addLoggingLevel("TRACE", 15)
+
+@dataclass
+class GWCatalogPlugin:
+    """Store information to load a plugin implementing the GW catalog.
+
+    The different information are:
+    - the module name
+    - the class name
+    """
+
+    module_name: str
+    class_name: str
 
 
-class LisaCatalog:
-    """Handling a Lisa catalog."""
+class GWCatalogType:
+    """GW catalog implementation.
 
-    def __init__(self, catalog_name: str, location: str):
-        """Init the loading of a Lisa catalog
+    New implementations can be added by adding an attribute using the register
+    method of the GWCatalogs class.
+    """
 
-        Args:
-            catalog_name (str): name of the catalog
-            location (str): location of the catalog
-        """
-        logging.getLogger().debug(
-            """Init LisaCatalog with :
-        - catalog_name: {catalog_name}
-        - location: {location}
-        """
+    LISA = GWCatalogPlugin("lisacattools.plugins.mbh", "LisaCatalogs")
+    UCB = GWCatalogPlugin("lisacattools.plugins.ucb", "UcbCatalogs")
+
+
+class GWCatalog:
+    """Interface for handling a GW catalog."""
+
+    @classmethod
+    def __subclasshook__(cls, subclass):
+        return (
+            hasattr(subclass, "name")
+            and callable(subclass.name)
+            and hasattr(subclass, "location")
+            and callable(subclass.location)
+            and hasattr(subclass, "get_detections")
+            and callable(subclass.get_detections)
+            and hasattr(subclass, "get_attr_detections")
+            and callable(subclass.get_attr_detections)
+            and hasattr(subclass, "get_median_source")
+            and callable(subclass.get_median_source)
+            and hasattr(subclass, "get_source_sample")
+            and callable(subclass.get_source_sample)
+            and hasattr(subclass, "get_attr_source_sample")
+            and callable(subclass.get_source_sample)
+            and hasattr(subclass, "describe_source_sample")
+            and callable(subclass.describe_source_sample)
+            or NotImplemented
         )
-        self.__name = catalog_name
-        self.__location = location
-        store = pd.HDFStore(location)
-        self.__datasets = store.keys()
-        store.close()
 
     @property
-    @UtilsMonitoring.io(level=logging.TRACE)
-    def name(self):
-        """Catalog name.
+    @abstractmethod
+    def name(self) -> str:
+        """Returns the name of the GW catalog.
 
-        :getter: Returns the catalog name
-        :type: str
-        """
-        return self.__name
-
-    @property
-    @UtilsMonitoring.io(level=logging.TRACE)
-    def location(self):
-        """Location of the catalog.
-
-        :getter: Returns the location of the catalog
-        :type: str
-        """
-        return self.__location
-
-    @property
-    @UtilsMonitoring.io(level=logging.TRACE)
-    def datasets(self):
-        """dataset.
-
-        :getter: Returns the list of datasets
-        :type: List
-        """
-        return self.__datasets
-
-    @UtilsMonitoring.time_spend(level=logging.DEBUG)
-    @UtilsMonitoring.io(level=logging.TRACE)
-    def get_dataset(self, name: str) -> pd.DataFrame:
-        """Returns a dataset based on its name.
-
-        Args:
-            name (str): name of the dataset
+        Raises:
+            NotImplementedError: Not implemented
 
         Returns:
-            pd.DataFrame: the dataset
+            str: name of the GW catalog
         """
-        return pd.read_hdf(self.location, key=name)
+        raise NotImplementedError("Not implemented")
 
-    @UtilsMonitoring.io(level=logging.TRACE)
-    def describe_dataset(self, name: str) -> pd.DataFrame:
-        """Describes a give dataset
+    @property
+    @abstractmethod
+    def location(self) -> str:
+        """Returns the location of the GW catalog.
 
-        Args:
-            name (str): dataset name to describe
+        Raises:
+            NotImplementedError: Not implemented
 
         Returns:
-            pd.DataFrame: statistics information on the dataset
+            str: the location of the GW catalog
         """
-        return self.get_dataset(name).describe()
+        raise NotImplementedError("Not implemented")
 
-    @UtilsMonitoring.io(level=logging.TRACE)
-    def get_extracted_data_from(
-        self, ds: str, keywords: Union[List, str]
+    @abstractmethod
+    def get_detections(
+        self, attr: List[str] = None
+    ) -> Union[List[str], pd.DataFrame]:
+        """Returns the GW detections.
+
+        When no argument is provided, the name of each detection is returned
+        When arguments are provided, each detection is returned with the attributes.
+
+        Args:
+            attr (List[str], optional): List of attributes. Defaults to None.
+
+        Raises:
+            NotImplementedError: Not implemented
+
+        Returns:
+            Union[List[str], pd.DataFrame]: the name of each detection or the asked attributed of each detection
+        """
+        raise NotImplementedError("Not implemented")
+
+    @abstractmethod
+    def get_attr_detections(self) -> List[str]:
+        """Returns the attributes of the detections catalog.
+
+        Raises:
+            NotImplementedError: Not implemented
+
+        Returns:
+            List[str]: the list of attributes
+        """
+        raise NotImplementedError("Not implemented")
+
+    @abstractmethod
+    def get_median_source(self, attr: str) -> pd.DataFrame:
+        """Returns the source for which the median is computed on the attribute.
+
+        Args:
+            attr (str): attribute name
+
+        Raises:
+            NotImplementedError: Not implemented
+
+        Returns:
+            pd.DataFrame: the source for which the median is computed on the attribute
+        """
+        raise NotImplementedError("Not implemented")
+
+    @abstractmethod
+    def get_source_sample(
+        self, source_name: str, attr: List[str]
     ) -> pd.DataFrame:
-        """Returns the extracted keywords from the dataset.
+        """Returns the sample of the source
 
         Args:
-            ds (str): name of the dataset
-            keywords (Union[List, str]): keyword(s) to extract
+            source_name (str): source name
+            attr (List[str]): the list of attributes to return in the result
+
+        Raises:
+            NotImplementedError: [description]
 
         Returns:
-            pd.DataFrame: the dataset with the selected keyword(s)
+            pd.DataFrame: the samples of the source
         """
-        return self.get_dataset(ds)[keywords].copy()
+        raise NotImplementedError("Not implemented")
 
-    @UtilsMonitoring.io(level=logging.TRACE)
-    def get_attributes_from(self, ds: str) -> List:
-        """Returns the attributes of the dataset.
+    @abstractmethod
+    def get_attr_source_sample(self, source_name: str) -> List[str]:
+        """Returns the attributes of the source sample catalog
 
         Args:
-            ds (str): dataset name
+            source_name (str): source name
+
+        Raises:
+            NotImplementedError: Not implemented
 
         Returns:
-            List: the list of attributes
+            List[str]: the attributes
         """
-        return list(self.get_dataset(ds).columns)
+        raise NotImplementedError("Not implemented")
 
-    @UtilsMonitoring.io(level=logging.TRACE)
-    def get_median_source(self, ds: str, attribute: str) -> pd.DataFrame:
-        """Returns the record for which we have computed the median of the attribute.
+    @abstractmethod
+    def describe_source_sample(self, source_name: str) -> pd.DataFrame:
+        """Give some statisctics about the source sample
 
         Args:
-            ds (str): dataset name
-            attribute (Union[List, str]): [description]
+            source_name (str): source name
+
+        Raises:
+            NotImplementedError: Not implemented
 
         Returns:
-            pd.DataFrame: the record
+            pd.DataFrame: statistics
         """
-        val = self.get_extracted_data_from(ds, attribute)
-        sourceIdx = self.get_dataset(ds).index.values[
-            np.argmin(np.abs(np.array(val) - val.median()))
-        ]
-        return self.get_dataset(ds).loc[[sourceIdx]]
+        raise NotImplementedError("Not implemented")
 
 
-class LisaCatalogs:
-    """Handling the LISA catalogs over the time"""
+class GWCatalogs(ABC):
+    """Interface fo handling GW catalogs over the time"""
 
-    def __init__(self, path: str, pattern: str = "MBH_wk*C.h5"):
-        """Init the loading of all the catalogs over the time according to the
-        path of the data and the pattern to select the files to load.
-
-        Args:
-            path (str): location of the data
-            pattern (str, optional): pattern to select the files to load. Defaults to 'MBH_wk*C.h5'.
-        """
-        logging.getLogger().debug(
-            """Init LisaCatalogs with :
-        - path: {path}
-        - pattern: {pattern}
-        """
+    @classmethod
+    def __subclasshook__(cls, subclass):
+        return (
+            hasattr(subclass, "metadata")
+            and callable(subclass.metadata)
+            and hasattr(subclass, "count")
+            and callable(subclass.count)
+            and hasattr(subclass, "get_catalogs_name")
+            and callable(subclass.get_catalogs_name)
+            and hasattr(subclass, "get_first_catalog")
+            and callable(subclass.get_first_catalog)
+            and hasattr(subclass, "get_last_catalog")
+            and callable(subclass.get_last_catalog)
+            and hasattr(subclass, "get_catalog")
+            and callable(subclass.get_catalog)
+            and hasattr(subclass, "get_catalog_by")
+            and callable(subclass.get_catalog_by)
+            and hasattr(subclass, "get_lineage")
+            and callable(subclass.get_lineage)
+            and hasattr(subclass, "get_lineage_data")
+            and callable(subclass.get_lineage_data)
+            or NotImplemented
         )
-        cat_files = glob.glob(path + os.path.sep + pattern)
-        logging.getLogger().debug(f"List of files to load {cat_files}")
-        self.__metadata = pd.concat(
-            [self._read_cats(cat_file) for cat_file in cat_files]
-        )
-        self.__metadata = self.__metadata.sort_values(by="observation week")
-        logging.getLogger().info(
-            f"LisaCatalogs has loaded {len(self.__metadata.index)} catalogs"
-        )
 
-    @UtilsMonitoring.time_spend(level=logging.DEBUG)
-    @UtilsMonitoring.io(level=logging.TRACE)
-    def _read_cats(self, cat_file: str) -> pd.DataFrame:
-        """Reads the metadata of a given catalog and the location of the file.
+    @staticmethod
+    def register(type: str, nodule_name: str, class_name: str):
+        """Register a new implementation of GWCatalogs
 
         Args:
-            cat_file (str): catalog to load
+            type (str): name of the implementation
+            nodule_name (str): nodule name where the implementation is done
+            class_name (str): class name of the implementation
+        """
+        setattr(
+            GWCatalogType, str(type), GWCatalogPlugin(nodule_name, class_name)
+        )
+
+    @staticmethod
+    def create(
+        type: GWCatalogPlugin, directory: str, pattern: str
+    ) -> "GWCatalogs":
+        """Create a new object for handling a set of specific catalogs.
 
         Returns:
-            pd.DataFrame: pandas data frame
+            GWCatalogs: the object implementing a set of specific catalogs
         """
-        df = pd.read_hdf(cat_file, key="metadata")
-        df["location"] = cat_file
-        return df
+        module = importlib.import_module(type.module_name)
+        my_class = getattr(module, type.class_name)
+        return my_class(directory, pattern)
 
     @property
-    @UtilsMonitoring.io(level=logging.TRACE)
-    def metadata(self):
-        """metadata of the catalogs.
+    @abstractmethod
+    def metadata(self) -> pd.DataFrame:
+        """metadata.
 
-        :getter: Returns the metadata of the LISA catalogs
+        :getter: Returns the metadata of the catalog set
         :type: pd.DataFrame
         """
-        return self.__metadata
+        raise NotImplementedError("Not implemented")
 
     @property
-    @UtilsMonitoring.io(level=logging.TRACE)
-    def count(self):
-        """Count the number of catalogs.
+    @abstractmethod
+    def count(self) -> int:
+        """Count the number of catalogs in the catalog set.
 
-        :getter: Returns the number of loaded LISA catalogs
+        :getter: Returns the number of catalogs in the catalog set
         :type: int
         """
-        return len(self.metadata)
+        raise NotImplementedError("Not implemented")
 
-    @UtilsMonitoring.io(level=logging.TRACE)
-    def get_catalogs_name(self) -> List:
-        """Returns the name of each catalog in the LISA catalogs as a list
+    @abstractmethod
+    def get_catalogs_name(self) -> List[str]:
+        """Returns the name of each catalog included in the catalog set
 
-        Returns:
-            List: name of each catalog
-        """
-        return list(self.metadata.index)
-
-    @UtilsMonitoring.io(level=logging.TRACE)
-    def get_first_catalog(self) -> LisaCatalog:
-        """Returns the first catalog.
+        Raises:
+            NotImplementedError: When the method is not implemented
 
         Returns:
-            LisaCatalog: the old one catalog
+            List[str]: name of each catalog
         """
-        location = self.metadata.iloc[0]["location"]
-        name = self.metadata.index[0]
-        return LisaCatalog(name, location)
+        raise NotImplementedError("Not implemented")
 
-    @UtilsMonitoring.io(level=logging.TRACE)
-    def get_last_catalog(self) -> LisaCatalog:
-        """Returns the last catalog.
+    @abstractmethod
+    def get_first_catalog(self) -> GWCatalog:
+        """Returns the first catalog from catalog set
+
+        Raises:
+            NotImplementedError: When the method is not implemented
 
         Returns:
-            LisaCatalog: the recent one catalog
+            GWCatalog: the fist catalog
         """
-        location = self.metadata.iloc[self.count - 1]["location"]
-        name = self.metadata.index[self.count - 1]
-        return LisaCatalog(name, location)
+        raise NotImplementedError("Not implemented")
 
-    @UtilsMonitoring.io(level=logging.TRACE)
-    def get_catalog(self, idx: int) -> LisaCatalog:
-        """Returns a given catalog by its number in the list of LISA catalogs
+    @abstractmethod
+    def get_last_catalog(self) -> GWCatalog:
+        """Returns the last catalog from the catalog set.
+
+        Raises:
+            NotImplementedError: When the method is not implemented
+
+        Returns:
+            GWCatalog: the last catalog
+        """
+        raise NotImplementedError("Not implemented")
+
+    @abstractmethod
+    def get_catalog(self, idx: int) -> GWCatalog:
+        """Returns a catalog based on its position in the catalog set
 
         Args:
-            idx (int): index of the catalog to retrieve
+            idx (int): position of the catalog (first idx: 0)
+
+        Raises:
+            NotImplementedError: When the method is not implemented
 
         Returns:
-            LisaCatalog: the Lisa catalog
+            GWCatalog: catalog
         """
-        location = self.metadata.iloc[idx]["location"]
-        name = self.metadata.index[idx]
-        return LisaCatalog(name, location)
+        raise NotImplementedError("Not implemented")
 
-    @UtilsMonitoring.io(level=logging.TRACE)
-    def get_catalog_by_name(self, name: str) -> LisaCatalog:
-        """Returns a given catalog by its name.
+    @abstractmethod
+    def get_catalog_by(self, name: str) -> GWCatalog:
+        """Returns a catalog based on its name in the catalog set
 
         Args:
-            name (str): name of the catalog to retrieve
+            name (str): name of the catalog
+
+        Raises:
+            NotImplementedError: When the method is not implemented
 
         Returns:
-            LisaCatalog: the Lisa catalog
+            GWCatalog: the catalog
         """
-        cat_idx = self.metadata.index.get_loc(name)
-        return self.get_catalog(cat_idx)
+        raise NotImplementedError("Not implemented")
 
-    @UtilsMonitoring.io(level=logging.TRACE)
+    @abstractmethod
     def get_lineage(self, cat_name: str, src_name: str) -> pd.DataFrame:
         """Returns a time-dependent catalog for the evolution of a particular
         source in a series of catalogs.
@@ -287,87 +355,25 @@ class LisaCatalogs:
             cat_name (str): catalog from which the lineage starts
             src_name (str): particular source
 
+        Raises:
+            NotImplementedError: When the method is not implemented
+
         Returns:
             pd.DataFrame: a time-dependent catalog for the evolution of a particular source in a series of catalogs
         """
-        dfs = list()
-        while src_name != "" and cat_name not in [None, ""]:
-            detections = self.get_catalog_by_name(cat_name).get_dataset(
-                "detections"
-            )
-            src = detections.loc[[src_name]]
-            try:
-                wk = self.metadata.loc[cat_name]["observation week"]
-            except:
-                wk = self.metadata.loc[cat_name]["Observation Week"]
+        raise NotImplementedError("Not implemented")
 
-            src.insert(0, "Observation Week", wk, True)
-            src.insert(1, "Catalog", cat_name, True)
-            dfs.append(src)
-            try:
-                prnt = self.metadata.loc[cat_name]["parent"]
-            except:
-                prnt = self.metadata.loc[cat_name]["Parent"]
-
-            cat_name = prnt
-            src_name = src.iloc[0]["Parent"]
-
-        histDF = pd.concat(dfs, axis=0)
-        histDF.drop_duplicates(
-            subset="Log Likelihood", keep="last", inplace=True
-        )
-        histDF.sort_values(by="Observation Week", ascending=True, inplace=True)
-        return histDF
-
-    @UtilsMonitoring.io(level=logging.TRACE)
+    @abstractmethod
     def get_lineage_data(self, lineage: pd.DataFrame) -> pd.DataFrame:
         """Returns the merge of all of the different epochs of obervation for the evolution of a particular source in a series of catalogs
 
         Args:
             lineage (pd.DataFrame): a time-dependent catalog for the evolution of a particular source in a series of catalogs
 
+        Raises:
+            NotImplementedError: When the method is not implemented
+
         Returns:
             pd.DataFrame: a time-dependent catalog for the evolution of a particular source in a series of catalogs seen at different epochs
         """
-
-        def _process_lineage(source_epoch, source_data, obs_week):
-            source_data.insert(
-                len(source_data.columns), "Source", source_epoch, True
-            )
-            source_data.insert(
-                len(source_data.columns), "Observation Week", obs_week, True
-            )
-            return source_data
-
-        source_epochs = list(lineage.index)
-
-        merge_source_epochs = pd.concat(
-            [
-                _process_lineage(
-                    source_epoch,
-                    self.get_catalog_by_name(
-                        lineage.loc[source_epoch]["Catalog"]
-                    ).get_dataset(f"{source_epoch}_chain"),
-                    lineage.loc[source_epoch]["Observation Week"],
-                )
-                for source_epoch in source_epochs
-            ]
-        )
-        merge_source_epochs = merge_source_epochs[
-            [
-                "Source",
-                "Observation Week",
-                "Mass 1",
-                "Mass 2",
-                "Spin 1",
-                "Spin 2",
-                "Ecliptic Latitude",
-                "Ecliptic Longitude",
-                "Luminosity Distance",
-                "Barycenter Merge Time",
-                "Merger Phase",
-                "Polarization",
-                "cos inclination",
-            ]
-        ].copy()
-        return merge_source_epochs
+        raise NotImplementedError("Not implemented")

@@ -15,16 +15,4 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with lisacattools.  If not, see <https://www.gnu.org/licenses/>.
-
-__name__ = "lisacattools"
-__version_info__ = ("0", "0", "7")
-__version__ = ".".join(__version_info__)
-__title__ = "Lisa Catalog Tools"
-__description__ = "A small example package for using LISA catalogs"
-__url__ = "https://github.com/tlittenberg/lisacattools"
-__author__ = "James I. Thorpe, Tyson B. Littenberg, Jean-Christophe Malapert"
-__author_email__ = "tyson.b.littenberg@nasa.gov"
-__license__ = "GPLV3"
-__copyright__ = (
-    "2020, James I. Thorpe, Tyson B. Littenberg, Jean-Christophe Malapert"
-)
+"""Plugins."""

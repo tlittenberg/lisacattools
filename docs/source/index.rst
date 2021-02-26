@@ -23,6 +23,18 @@ lisacattools is a python module for interacting with simulated LISA source catal
    examples_ucb/index
    examples_smbh/index
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Tests:
+
+   tests
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Coverage:
+
+   coverage
+
 
 Indices and tables
 ==================

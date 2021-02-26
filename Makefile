@@ -22,11 +22,11 @@ Usage:\n
 	-------------------------------------------------------------------------\n
 	make prepare-dev\t\t 		Prepare Development environment\n
 	make install-dev\t\t 		Install COTS\n
+	make data\t\t\t				Download data\n
 	make install-demo\t\t           Install demo\n
 	make test\t\t\t             Run units and integration tests\n
-	\n\t\t\t\t 					(run make server-test before)
 	\n
-	make demo\t\t\				Play the demo
+	make demo\t\t\t				Play the demo\n
 	make doc\t\t\t 				Generate the documentation\n
 	make visu-doc\t\t\t			View the generated documentation\n
 	make release\t\t\t 			Release the package\n
@@ -75,20 +75,23 @@ prepare-dev:
 install-dev:
 	pip install -r requirements.txt && pip install -r requirements-dev.txt
 
+data:
+	pip install -r requirements-data.txt && python scripts/data_download.py
+
 install-demo:
-	pip install -r requirements-demo.txt && echo "please download https://drive.google.com/u/0/uc?export=download&id=1iL071Fi5MxHle0CLOqg3JkZIgjQF8EwF , untar the file to tutorial/data"
+	make data && pip install -r requirements-demo.txt && echo "please download https://drive.google.com/u/0/uc?export=download&id=1iL071Fi5MxHle0CLOqg3JkZIgjQF8EwF , untar the file to tutorial/data"
 #
 # Development - create doc and tests
 # ----------------------------------
 #
 doc:
-	make html -C docs
+	make test && cp tests/results/*.html docs/source/_static/ && cp -r tests/results/coverage docs/source/_static/ && make html -C docs
 
 visu-doc:
 	firefox docs/build/html/index.html
 
 test:
-	scripts/run-tests.bash
+	make data && scripts/run-tests.bash
 
 #
 # Create distribution
@@ -98,15 +101,15 @@ changelog:
 	gitchangelog > CHANGELOG
 
 clean:
-	rm -rf dist/ build/ lisacattools.egg-info/ && make clean -C docs && find ./lisacattools -name '*.pyc' | xargs rm
+	rm -rf dist/ build/ lisacattools.egg-info/ docs/source/examples_* && make clean -C docs && find ./lisacattools -name '*.pyc' | xargs rm
 
 release:
 	make clean && make changelog && python3 setup.py sdist && make doc
 
 demo:
-	./lisacattools-env/bin/jupyter-notebook tutorial/MBHdemo.ipynb
+	make data && ./lisacattools-env/bin/jupyter-notebook tutorial/MBHdemo.ipynb
 
 licences:
 	pip-licenses
 
-.PHONY: help user prepare-dev install-dev doc visu-doc test changelog clean release licences
+.PHONY: help user prepare-dev install-dev doc visu-doc test changelog clean release demo licences

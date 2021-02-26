@@ -1,6 +1,5 @@
 import setuptools
-from os import path
-import glob
+from os import path, sep
 
 here = path.abspath(path.dirname(__file__))
 
@@ -26,11 +25,12 @@ setuptools.setup(
     license=about["__license__"],
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
+    package_data={"lisacattools": ["README.md", "logging.conf"]},
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
+    python_requires=">=3.6",
     install_requires=required,
 )

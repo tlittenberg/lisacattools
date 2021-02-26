@@ -133,9 +133,16 @@ dmypy.json
 lisacattools-env
 
 # build doc
-./docs/build
-./docs/tmp
-./docs/toto
+docs/build
+docs/source/examples_smbh/
+docs/source/examples_ucb/
+docs/source/_static/coverage/
+docs/source/_static/log.html
+docs/source/_static/report.html
 
 # data
-/tutorial/data/*.h5
+tutorial/data/mbh/
+tutorial/data/ucb/
+
+# Test report
+tests/results/

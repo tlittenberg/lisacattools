@@ -107,9 +107,6 @@ github-site:
 github-site-commit:
 	make github-site && cd docs/site/lisacattools && git add . && git commit -m "Rebuild docs"
 
-github-push-recursive:
-	git push --recurse-submodules=on-demand
-
 test:
 	make data && scripts/run-tests.bash
 

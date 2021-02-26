@@ -1,4 +1,14 @@
-### Improve makefile and doc generation (HEAD -> refactoring)
+### Remove push all from Makefile (HEAD -> refactoring)
+>Fri, 26 Feb 2021 11:58:41 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Improve makefile and doc generation
 >Fri, 26 Feb 2021 11:57:10 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

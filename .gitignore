@@ -70,6 +70,15 @@ instance/
 
 # Sphinx documentation
 docs/_build/
+docs/build
+docs/source/examples_smbh/
+docs/source/examples_ucb/
+docs/source/_static/coverage/
+docs/source/_static/log.html
+docs/source/_static/report.html
+sphinx-doc/doctrees/
+sphinx-doc/html/
+sphinx-doc/.git
 
 # PyBuilder
 target/
@@ -131,14 +140,6 @@ dmypy.json
 # virtual env
 .lisacattools-env
 lisacattools-env
-
-# build doc
-docs/build
-docs/source/examples_smbh/
-docs/source/examples_ucb/
-docs/source/_static/coverage/
-docs/source/_static/log.html
-docs/source/_static/report.html
 
 # data
 tutorial/data/mbh/

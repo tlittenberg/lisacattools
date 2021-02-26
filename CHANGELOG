@@ -1,4 +1,14 @@
-### Update .gitignore (HEAD -> refactoring)
+### Add directory for gh-pages (HEAD -> refactoring)
+>Fri, 26 Feb 2021 10:00:25 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Update .gitignore (origin/refactoring)
 >Fri, 26 Feb 2021 07:11:34 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -48,7 +58,7 @@
 
 
 
-### Add dependencies in setup.py (origin/refactoring)
+### Add dependencies in setup.py
 >Thu, 18 Feb 2021 14:14:21 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

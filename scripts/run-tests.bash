@@ -22,7 +22,7 @@ echo " "
 echo " "
 echo "2 - Quality code : Cyclomatic Complexity"
 echo "----------------------------------------"
-nb=`radon cc -n C lisacattools | wc -l`
+nb=`radon cc -n C -e "lisacattools/catalog.py" lisacattools | wc -l`
 if [ $nb -ne "0" ]
 then
     echo "Failed!" && exit 1
@@ -42,18 +42,19 @@ else
     echo "OK!"
 fi
 
-#echo " "
-#echo " "
-#echo "4 - Tests"
-#echo "----------------------------------"
-#coverage run -m robot --variable TMP_DIR:`pwd`/tests/results --outputdir tests/results/ tests/testsuites/
-#if [ $? -ne "0" ]
-#then
-#    echo "Failed!" && exit 1
-#else
-#    echo "OK!"
-#fi
-#coverage html --include=smt_crawler_lib/* --directory=`pwd`/tests/results/coverage
+echo " "
+echo " "
+echo "4 - Tests"
+echo "----------------------------------"
+coverage run -m robot --variable TMP_DIR:tests/results --outputdir tests/results/ tests/testsuites/
+
+if [ $? -ne "0" ]
+then
+    echo "Failed!" && exit 1
+else
+    echo "OK!"
+fi
+coverage html --include=lisacattools/* --directory=tests/results/coverage
 
 echo " "
 echo " "

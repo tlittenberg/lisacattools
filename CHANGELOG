@@ -1,4 +1,14 @@
-### Add directory for gh-pages (HEAD -> refactoring)
+### Add submodule for github (HEAD -> refactoring)
+>Fri, 26 Feb 2021 11:22:56 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Add directory for gh-pages (origin/refactoring)
 >Fri, 26 Feb 2021 10:00:25 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -8,7 +18,7 @@
 
 
 
-### Update .gitignore (origin/refactoring)
+### Update .gitignore
 >Fri, 26 Feb 2021 07:11:34 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

@@ -1,4 +1,14 @@
-### Add submodule for github (HEAD -> refactoring)
+### Improve makefile and doc generation (HEAD -> refactoring)
+>Fri, 26 Feb 2021 11:57:10 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Add submodule for github (origin/refactoring)
 >Fri, 26 Feb 2021 11:22:56 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -8,7 +18,7 @@
 
 
 
-### Add directory for gh-pages (origin/refactoring)
+### Add directory for gh-pages
 >Fri, 26 Feb 2021 10:00:25 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

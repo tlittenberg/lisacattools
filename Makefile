@@ -28,7 +28,12 @@ Usage:\n
 	\n
 	make demo\t\t\t				Play the demo\n
 	make doc\t\t\t 				Generate the documentation\n
+	make doc-pdf\t\t\t 			Generate the documentation as PDF\n
+	make github-site\t\t 		Generate the website for github\n
+	make github-site-commit\t 	Commit the changes to the website\n
+	make visu-doc-pdf\t\t 		View the generated PDF\n
 	make visu-doc\t\t\t			View the generated documentation\n
+	\n
 	make release\t\t\t 			Release the package\n
 	\n
 	-------------------------------------------------------------------------\n
@@ -87,8 +92,23 @@ install-demo:
 doc:
 	make test && cp tests/results/*.html docs/source/_static/ && cp -r tests/results/coverage docs/source/_static/ && make html -C docs
 
+doc-pdf:
+	make doc && make latexpdf -C docs
+
+visu-doc-pdf:
+	acroread docs/build/latex/lisacattools.pdf
+
 visu-doc:
 	firefox docs/build/html/index.html
+
+github-site:
+	git submodule init && git submodule update && make github -C docs
+
+github-site-commit:
+	make github-site && cd docs/site/lisacattools && git add . && git commit -m "Rebuild docs"
+
+github-push-recursive:
+	git push --recurse-submodules=on-demand
 
 test:
 	make data && scripts/run-tests.bash

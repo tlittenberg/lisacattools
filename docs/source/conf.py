@@ -85,3 +85,5 @@ intersphinx_mapping = {
     "matplotlib": ("https://matplotlib.org/", None),
     "pandas": ("https://pandas.pydata.org/", None),
 }
+
+latex_engine = "xelatex"

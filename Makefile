@@ -23,7 +23,6 @@ Usage:\n
 	make prepare-dev\t\t 		Prepare Development environment\n
 	make install-dev\t\t 		Install COTS\n
 	make data\t\t\t				Download data\n
-	make install-demo\t\t           Install demo\n
 	make test\t\t\t             Run units and integration tests\n
 	\n
 	make demo\t\t\t				Play the demo\n
@@ -83,8 +82,6 @@ install-dev:
 data:
 	pip install -r requirements-data.txt && python scripts/data_download.py
 
-install-demo:
-	make data && pip install -r requirements-demo.txt && echo "please download https://drive.google.com/u/0/uc?export=download&id=1iL071Fi5MxHle0CLOqg3JkZIgjQF8EwF , untar the file to tutorial/data"
 #
 # Development - create doc and tests
 # ----------------------------------
@@ -118,13 +115,13 @@ changelog:
 	gitchangelog > CHANGELOG
 
 clean:
-	rm -rf dist/ build/ lisacattools.egg-info/ docs/source/examples_* && make clean -C docs && find ./lisacattools -name '*.pyc' | xargs rm
+	rm -rf dist/ build/ lisacattools.egg-info/ docs/source/examples_* && make clean -C docs && find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
 
 release:
 	make clean && make changelog && python3 setup.py sdist && make doc
 
 demo:
-	make data && ./lisacattools-env/bin/jupyter-notebook tutorial/MBHdemo.ipynb
+	make data && pip install -r requirements-demo.txt && ./lisacattools-env/bin/jupyter-notebook tutorial/MBHdemo.ipynb
 
 licences:
 	pip-licenses

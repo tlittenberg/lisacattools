@@ -1,4 +1,14 @@
-### Reformatting (HEAD -> refactoring)
+### Clean up (HEAD -> refactoring)
+>Wed, 10 Mar 2021 00:50:40 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Reformatting (origin/refactoring)
 >Tue, 9 Mar 2021 23:25:21 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -18,7 +28,7 @@
 
 
 
-### Fix numpy warnings (origin/refactoring)
+### Fix numpy warnings
 >Tue, 9 Mar 2021 23:19:38 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

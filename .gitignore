@@ -79,7 +79,7 @@ docs/source/_static/report.html
 sphinx-doc/doctrees/
 sphinx-doc/html/
 sphinx-doc/.git
-
+docs/site/lisacattools/
 # PyBuilder
 target/
 

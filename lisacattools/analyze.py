@@ -57,9 +57,7 @@ class AbstractLisaAnalyze:
         pass
 
     @UtilsMonitoring.io(level=logging.DEBUG)
-    def _get_variable(
-        self, dico: Dict, variable: str, default_val: object
-    ) -> object:
+    def _get_variable(self, dico: Dict, variable: str, default_val: object) -> object:
         return default_val if variable not in dico else dico[variable]
 
     @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
@@ -176,15 +174,9 @@ class CatalogAnalysis(AbstractLisaAnalyze):
         detections = self.catalog.get_detections(["Mass 1", "Mass 2"])
         sources = list(detections.index)
         for idx, source in enumerate(sources):
-            chain = self.catalog.get_source_sample(
-                source, ["Mass 1", "Mass 2"]
-            )
-            l1, m1, h1 = np.quantile(
-                np.array(chain["Mass 1"]), [0.05, 0.5, 0.95]
-            )
-            l2, m2, h2 = np.quantile(
-                np.array(chain["Mass 2"]), [0.05, 0.5, 0.95]
-            )
+            chain = self.catalog.get_source_sample(source, ["Mass 1", "Mass 2"])
+            l1, m1, h1 = np.quantile(np.array(chain["Mass 1"]), [0.05, 0.5, 0.95])
+            l2, m2, h2 = np.quantile(np.array(chain["Mass 2"]), [0.05, 0.5, 0.95])
             if idx < 10:
                 mkr = "o"
             else:
@@ -229,9 +221,7 @@ class CatalogAnalysis(AbstractLisaAnalyze):
         """Plot skymap."""
         hp_map = HPhist(source, nside, system)
         fig = plt.figure(figsize=(8, 6), dpi=100)
-        ax = plt.axes(
-            [0.05, 0.05, 0.9, 0.9], projection="geo degrees mollweide"
-        )
+        ax = plt.axes([0.05, 0.05, 0.9, 0.9], projection="geo degrees mollweide")
         ax.grid()
         ax.imshow_hpx((hp_map), cmap="plasma")
         if self.save_img_dir:
@@ -319,9 +309,7 @@ class HistoryAnalysis(AbstractLisaAnalyze):
         ax.set_title(title)
         if self.save_img_dir:
             fig.savefig(
-                os.path.join(
-                    self.save_img_dir, title.replace(" ", "_") + ".png"
-                )
+                os.path.join(self.save_img_dir, title.replace(" ", "_") + ".png")
             )
 
     @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
@@ -395,9 +383,7 @@ class HistoryAnalysis(AbstractLisaAnalyze):
         fig.suptitle(title)
         if self.save_img_dir:
             fig.savefig(
-                os.path.join(
-                    self.save_img_dir, title.replace(" ", "_") + ".png"
-                )
+                os.path.join(self.save_img_dir, title.replace(" ", "_") + ".png")
             )
 
     @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
@@ -426,9 +412,7 @@ class HistoryAnalysis(AbstractLisaAnalyze):
         fig.suptitle(title)
         if self.save_img_dir:
             fig.savefig(
-                os.path.join(
-                    self.save_img_dir, title.replace(" ", "_") + ".png"
-                )
+                os.path.join(self.save_img_dir, title.replace(" ", "_") + ".png")
             )
 
     @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
@@ -449,9 +433,7 @@ class HistoryAnalysis(AbstractLisaAnalyze):
             wks (List): weeks to plot
             system (FrameEnum, optional): coordinate reference frame. Defaults to 'FrameEnum.GALACTIC'.
         """
-        title = self._get_variable(
-            kwargs, "title", "Sky Localization Evolution"
-        )
+        title = self._get_variable(kwargs, "title", "Sky Localization Evolution")
         fig = plt.figure(figsize=(10, 10), dpi=100)
         ncols = 2
         nrows = int(np.ceil(len(wks) / ncols))
@@ -469,7 +451,5 @@ class HistoryAnalysis(AbstractLisaAnalyze):
         fig.suptitle(title)
         if self.save_img_dir:
             fig.savefig(
-                os.path.join(
-                    self.save_img_dir, title.replace(" ", "_") + ".png"
-                )
+                os.path.join(self.save_img_dir, title.replace(" ", "_") + ".png")
             )

@@ -69,7 +69,7 @@ scales = ["log", "log", "linear", "linear", "linear", "linear"]
 
 # arrange the plots into a grid of subplots
 ncols = 2
-nrows = np.int(np.ceil(len(params) / ncols))
+nrows = int(np.ceil(len(params) / ncols))
 fig = plt.figure(figsize=[10, 10], dpi=100)
 
 # plot the violin plot for each parameter

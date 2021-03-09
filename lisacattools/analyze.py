@@ -375,7 +375,7 @@ class HistoryAnalysis(AbstractLisaAnalyze):
         """
         title = self._get_variable(kwargs, "title", "Parameter Evolution")
         x_title = self._get_variable(kwargs, "x_title", "Observation Week")
-        nrows = np.int(np.ceil(len(params) / 2))
+        nrows = int(np.ceil(len(params) / 2))
         fig = plt.figure(figsize=[10, 10], dpi=100)
 
         for idx, param in enumerate(params):
@@ -454,7 +454,7 @@ class HistoryAnalysis(AbstractLisaAnalyze):
         )
         fig = plt.figure(figsize=(10, 10), dpi=100)
         ncols = 2
-        nrows = np.int(np.ceil(len(wks) / ncols))
+        nrows = int(np.ceil(len(wks) / ncols))
         for idx, wk in enumerate(wks):
             hpmap = HPhist(
                 allEpochs[allEpochs["Observation Week"] == wk], nside, system

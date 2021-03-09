@@ -1,4 +1,14 @@
-### Remove push all from Makefile (HEAD -> refactoring)
+### Fix numpy warnings (HEAD -> refactoring)
+>Tue, 9 Mar 2021 23:19:38 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Remove push all from Makefile
 >Fri, 26 Feb 2021 11:58:41 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -18,7 +28,7 @@
 
 
 
-### Add submodule for github (origin/refactoring)
+### Add submodule for github
 >Fri, 26 Feb 2021 11:22:56 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

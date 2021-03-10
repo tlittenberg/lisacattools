@@ -101,7 +101,7 @@ visu-doc:
 	firefox docs/build/html/index.html
 
 github-site-prepare:
-	git submodule add -b gh-pages https://github.com/tlittenberg/lisacattools.git docs/site/lisacattools
+	git submodule add -b gh-pages -f https://github.com/tlittenberg/lisacattools.git docs/site/lisacattools
 
 github-site-init:
 	git submodule init && git submodule update && cp docs/index.html docs/site/lisacattools/ && cp docs/.nojekyll docs/site/lisacattools/

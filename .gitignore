@@ -80,6 +80,7 @@ sphinx-doc/doctrees/
 sphinx-doc/html/
 sphinx-doc/.git
 docs/site/lisacattools/
+.gitmodules
 # PyBuilder
 target/
 

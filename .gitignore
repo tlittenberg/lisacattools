@@ -70,7 +70,16 @@ instance/
 
 # Sphinx documentation
 docs/_build/
-
+docs/build
+docs/source/examples_smbh/
+docs/source/examples_ucb/
+docs/source/_static/coverage/
+docs/source/_static/log.html
+docs/source/_static/report.html
+sphinx-doc/doctrees/
+sphinx-doc/html/
+sphinx-doc/.git
+docs/site/lisacattools/
 # PyBuilder
 target/
 
@@ -127,3 +136,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# virtual env
+.lisacattools-env
+lisacattools-env
+
+# data
+tutorial/data/mbh/
+tutorial/data/ucb/
+
+# Test report
+tests/results/

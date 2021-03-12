@@ -1,0 +1,250 @@
+### Update .gitignore (HEAD -> refactoring)
+>Wed, 10 Mar 2021 01:07:10 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Clean up (origin/refactoring)
+>Wed, 10 Mar 2021 01:00:51 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Clean up
+>Wed, 10 Mar 2021 00:50:40 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Reformatting
+>Tue, 9 Mar 2021 23:25:21 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Fix numpy warnings
+>Tue, 9 Mar 2021 23:19:38 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Fix numpy warnings
+>Tue, 9 Mar 2021 23:19:38 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Remove push all from Makefile
+>Fri, 26 Feb 2021 11:58:41 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Improve makefile and doc generation
+>Fri, 26 Feb 2021 11:57:10 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Add submodule for github
+>Fri, 26 Feb 2021 11:22:56 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Add directory for gh-pages
+>Fri, 26 Feb 2021 10:00:25 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Update .gitignore
+>Fri, 26 Feb 2021 07:11:34 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Update docs with gallery, coverage report and tests report
+>Fri, 26 Feb 2021 07:10:46 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Add tests
+>Fri, 26 Feb 2021 07:09:13 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### refactor the code to take into account the different structures of the file formats. Using a plugin approach
+>Fri, 26 Feb 2021 07:00:10 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Add log configuration in the package during the distribution to avoid warnings
+>Fri, 26 Feb 2021 06:57:59 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Add dependencies in setup.py
+>Thu, 18 Feb 2021 14:14:21 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Change requirements to requirements.txt
+>Thu, 18 Feb 2021 13:49:27 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Add licence in the header of each python file
+>Thu, 18 Feb 2021 06:26:00 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Refactoring
+>Thu, 18 Feb 2021 06:15:51 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### adding chirp mass function (origin/main, origin/HEAD, main)
+>Thu, 7 Jan 2021 10:19:24 -0600
+
+>Author: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+>Commiter: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+
+
+
+### cleanup
+>Fri, 18 Dec 2020 13:19:00 -0600
+
+>Author: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+>Commiter: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+
+
+
+### adding docs
+>Fri, 18 Dec 2020 11:57:17 -0600
+
+>Author: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+>Commiter: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+
+
+
+### adding __init__.py
+>Thu, 17 Dec 2020 13:43:52 -0600
+
+>Author: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+>Commiter: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+
+
+
+### adding source code to repo
+>Thu, 17 Dec 2020 13:37:14 -0600
+
+>Author: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+>Commiter: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+
+
+
+### Initial commit
+>Thu, 17 Dec 2020 13:14:42 -0600
+
+>Author: Tyson Littenberg (tyson.b.littenberg@gmail.com)
+
+>Commiter: GitHub (noreply@github.com)
+
+
+
+

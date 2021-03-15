@@ -52,14 +52,12 @@ class UtilsMonitoring(object):
         object : the result of the function
         """
         if func is None:
-            return partial(
-                UtilsMonitoring.io, entry=entry, exit=exit, level=level
-            )
+            return partial(UtilsMonitoring.io, entry=entry, exit=exit, level=level)
 
         @wraps(func)
         def wrapped(*args, **kwargs):
             name = func.__qualname__
-            logger = logging.getLogger(name)
+            logger = logging.getLogger(__name__ + "." + name)
 
             if entry and logger.getEffectiveLevel() >= level:
                 msg = f"Entering '{name}' (args={args}, kwargs={kwargs})"
@@ -99,7 +97,7 @@ class UtilsMonitoring(object):
         @wraps(func)
         def newfunc(*args, **kwargs):
             name = func.__class__.__name__
-            logger = logging.getLogger(name)
+            logger = logging.getLogger(__name__ + "." + name)
             start_time = time.time()
             result = func(*args, **kwargs)
             elapsed_time = time.time() - start_time
@@ -140,7 +138,7 @@ class UtilsMonitoring(object):
         @wraps(func)
         def newfunc(*args, **kwargs):
             name = func.__name__
-            logger = logging.getLogger(name)
+            logger = logging.getLogger(__name__ + "." + name)
             filename = os.path.basename(args[1])
             logger.log(level, "Loading file '%s'", filename)
             result = func(*args, **kwargs)
@@ -161,8 +159,7 @@ class UtilsMonitoring(object):
                 )
             else:
                 logger.warning(
-                    "Unable to load the number of records in file '%s' - "
-                    "type: %s",
+                    "Unable to load the number of records in file '%s' - " "type: %s",
                     args[1],
                     type_result,
                 )
@@ -187,7 +184,7 @@ class UtilsMonitoring(object):
         @wraps(func)
         def newfunc(*args, **kwargs):
             name = func.__class__.__name__
-            logger = logging.getLogger(name)
+            logger = logging.getLogger(__name__ + "." + name)
             tracemalloc.start()
             result = func(*args, **kwargs)
             current, peak = tracemalloc.get_traced_memory()

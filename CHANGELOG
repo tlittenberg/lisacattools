@@ -1,4 +1,14 @@
-### Update .gitignore (HEAD -> refactoring)
+### Do not use root logger but the module one (HEAD -> main)
+>Mon, 15 Mar 2021 10:51:46 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Update .gitignore (origin/refactoring, origin/main, origin/HEAD)
 >Wed, 10 Mar 2021 01:07:10 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -8,7 +18,7 @@
 
 
 
-### Clean up (origin/refactoring)
+### Clean up
 >Wed, 10 Mar 2021 01:00:51 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -188,7 +198,7 @@
 
 
 
-### adding chirp mass function (origin/main, origin/HEAD, main)
+### adding chirp mass function
 >Thu, 7 Jan 2021 10:19:24 -0600
 
 >Author: Tyson Littenberg (tyson.littenberg@ligo.org)

@@ -133,16 +133,16 @@ class CustomColorFormatter(logging.Formatter):
         # attached to the logger
         my_formatter = logging.Formatter
         my_handler = None
-        handlers = logging.getLogger().handlers
+        handlers = logging.getLogger(__name__).handlers
         for handler in handlers:
             handler_level = handler.level
-            if handler_level == logging.getLogger().getEffectiveLevel():
+            if handler_level == logging.getLogger(__name__).getEffectiveLevel():
                 my_formatter._fmt = handler.formatter._fmt
                 my_handler = handler
                 break
         if my_handler is not None:
             [
-                logging.getLogger().removeHandler(handler)
+                logging.getLogger(__name__).removeHandler(handler)
                 for handler in handlers
                 if handler != my_handler
             ]

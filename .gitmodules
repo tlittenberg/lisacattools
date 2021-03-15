@@ -1,0 +1,4 @@
+[submodule "docs/site/lisacattools"]
+	path = docs/site/lisacattools
+	url = https://github.com/tlittenberg/lisacattools.git
+	branch = gh-pages

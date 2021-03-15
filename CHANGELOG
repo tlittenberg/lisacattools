@@ -1,4 +1,14 @@
-### Update .gitignore (HEAD -> refactoring)
+### adding time-evolving posteriors to ucb example (HEAD -> main)
+>Mon, 15 Mar 2021 15:37:40 -0500
+
+>Author: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+>Commiter: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+
+
+
+### Update .gitignore
 >Wed, 10 Mar 2021 01:07:10 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -8,7 +18,7 @@
 
 
 
-### Clean up (origin/refactoring)
+### Clean up
 >Wed, 10 Mar 2021 01:00:51 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -188,7 +198,7 @@
 
 
 
-### adding chirp mass function (origin/main, origin/HEAD, main)
+### adding chirp mass function
 >Thu, 7 Jan 2021 10:19:24 -0600
 
 >Author: Tyson Littenberg (tyson.littenberg@ligo.org)

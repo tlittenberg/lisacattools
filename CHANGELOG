@@ -1,4 +1,14 @@
-### Remove old script (HEAD -> main)
+### Add tutorial/data in .gitignore (HEAD -> main)
+>Tue, 16 Mar 2021 16:48:37 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Remove old script (origin/main, origin/HEAD)
 >Tue, 16 Mar 2021 02:44:32 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

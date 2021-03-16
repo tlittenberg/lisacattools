@@ -28,7 +28,7 @@ Create inferred map of the galaxy from chirping binaries
 This example demonstrates using chirping binaries to map the galaxy.
 Samples from the high SNR chirping binaries are reparameterized into galactic cartesian coordinates and plotted.
 
-.. GENERATED FROM PYTHON SOURCE LINES 11-106
+.. GENERATED FROM PYTHON SOURCE LINES 11-105
 
 .. code-block:: default
 
@@ -92,8 +92,7 @@ Samples from the high SNR chirping binaries are reparameterized into galactic ca
     for source in sources:
 
         # get chain samples
-        attr_sample = final_catalog.get_attr_source_sample(source)
-        samples = final_catalog.get_source_sample(source, attr_sample)
+        samples = final_catalog.get_source_sample(source)
 
         # convert from ecliptic to galactic coordinates
         convert_ecliptic_to_galactic(samples)
@@ -141,7 +140,7 @@ Samples from the high SNR chirping binaries are reparameterized into galactic ca
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  40.161 seconds)
+   **Total running time of the script:** ( 0 minutes  23.753 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_galactic_coordinates.py:

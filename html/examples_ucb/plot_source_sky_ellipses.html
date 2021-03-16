@@ -100,9 +100,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">UCB Use Case Gallery</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="plot_source_table.html">Parameter table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_source_Mc_DL.html">Resampling posteriors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_source_joint_sky_pdf.html">Joint PDF of sky location</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_freq_amp.html">Scatter plots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_source_parameters.html">Corner plots</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_source_joint_sky_pdf.html">Joint PDF of sky location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_time_evolving_parameters.html">Connecting catalogs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_galactic_coordinates.html">3D map of the galaxy</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Sky Localization Ellipses</a></li>
 </ul>
@@ -200,7 +201,7 @@ to download the full example code</p>
 <span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Ellipse</span>
 <span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">colors</span>
 <span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="k">as</span> <span class="nn">cm</span>
-<span class="kn">from</span> <span class="nn">lisacattools.catalog</span> <span class="kn">import</span> <span class="n">GWCatalog</span><span class="p">,</span> <span class="n">GWCatalogs</span><span class="p">,</span> <span class="n">GWCatalogType</span>
+<span class="kn">from</span> <span class="nn">lisacattools</span> <span class="kn">import</span> <span class="n">GWCatalog</span><span class="p">,</span> <span class="n">GWCatalogs</span><span class="p">,</span> <span class="n">GWCatalogType</span>
 <span class="kn">from</span> <span class="nn">lisacattools</span> <span class="kn">import</span> <span class="n">convert_ecliptic_to_galactic</span><span class="p">,</span> <span class="n">ellipse_area</span><span class="p">,</span> <span class="n">confidence_ellipse</span>
 
 <span class="c1"># Start by loading the main catalog file processed from GBMCMC outputs</span>
@@ -218,8 +219,7 @@ to download the full example code</p>
 <span class="k">for</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">idx</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">source</span></a> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sources</span></a><span class="p">):</span>
 
     <span class="c1"># load source chain</span>
-    <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">attr_sample</span></a> <span class="o">=</span> <span class="n">final_catalog</span><span class="o">.</span><span class="n">get_attr_source_sample</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">source</span></a><span class="p">)</span>
-    <span class="n">samples</span> <span class="o">=</span> <span class="n">final_catalog</span><span class="o">.</span><span class="n">get_source_sample</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">source</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">attr_sample</span></a><span class="p">)</span>
+    <span class="n">samples</span> <span class="o">=</span> <span class="n">final_catalog</span><span class="o">.</span><span class="n">get_source_sample</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">source</span></a><span class="p">)</span>
 
     <span class="c1"># convert from ecliptic to galactic coordinates</span>
     <span class="n">convert_ecliptic_to_galactic</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
@@ -333,8 +333,7 @@ less interesting figure</p>
 <span class="k">for</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">source</span></a> <span class="ow">in</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sources</span></a><span class="p">:</span>
 
     <span class="c1"># get chain samples</span>
-    <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">attr_sample</span></a> <span class="o">=</span> <span class="n">final_catalog</span><span class="o">.</span><span class="n">get_attr_source_sample</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">source</span></a><span class="p">)</span>
-    <span class="n">samples</span> <span class="o">=</span> <span class="n">final_catalog</span><span class="o">.</span><span class="n">get_source_sample</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">source</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">attr_sample</span></a><span class="p">)</span>
+    <span class="n">samples</span> <span class="o">=</span> <span class="n">final_catalog</span><span class="o">.</span><span class="n">get_source_sample</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">source</span></a><span class="p">)</span>
 
     <span class="c1"># convert from ecliptic to galactic coordinates</span>
     <span class="n">convert_ecliptic_to_galactic</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
@@ -353,7 +352,7 @@ less interesting figure</p>
 </pre></div>
 </div>
 <img alt="plot source sky ellipses" class="sphx-glr-single-img" src="../_images/sphx_glr_plot_source_sky_ellipses_001.png" />
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 18 minutes  58.279 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 10 minutes  52.888 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-ucb-plot-source-sky-ellipses-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/d5c35c501d5fcac5fa3a9a72d05103a7/plot_source_sky_ellipses.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_source_sky_ellipses.py</span></code></a></p>

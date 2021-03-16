@@ -100,7 +100,7 @@ Load catalog and select individual source
 
 Corner plot of select source parameters using `corner` module
 
-.. GENERATED FROM PYTHON SOURCE LINES 29-42
+.. GENERATED FROM PYTHON SOURCE LINES 29-41
 
 .. code-block:: default
 
@@ -108,8 +108,7 @@ Corner plot of select source parameters using `corner` module
     import corner
 
     # read in the chain samples for this source
-    attr_sample = final_catalog.get_attr_source_sample(sourceId)
-    samples = final_catalog.get_source_sample(sourceId, attr_sample)
+    samples = final_catalog.get_source_sample(sourceId)
 
     # list of subset of paramters that are particularly interesting
     parameters = ["Frequency", "Frequency Derivative", "Amplitude", "Inclination"]
@@ -128,11 +127,11 @@ Corner plot of select source parameters using `corner` module
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 43-44
+.. GENERATED FROM PYTHON SOURCE LINES 42-43
 
 Can also be done with ChainConsumer for prettier plots
 
-.. GENERATED FROM PYTHON SOURCE LINES 44-67
+.. GENERATED FROM PYTHON SOURCE LINES 43-66
 
 .. code-block:: default
 
@@ -173,7 +172,7 @@ Can also be done with ChainConsumer for prettier plots
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  14.786 seconds)
+   **Total running time of the script:** ( 0 minutes  3.875 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_source_parameters.py:

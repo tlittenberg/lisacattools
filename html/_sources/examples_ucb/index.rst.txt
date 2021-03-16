@@ -58,6 +58,27 @@ In addition, posterior samples for each candidate are stored as separate data fr
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot joint posterior of all catalog sources in galactic coordinates.">
+
+.. only:: html
+
+ .. figure:: /examples_ucb/images/thumb/sphx_glr_plot_source_joint_sky_pdf_thumb.png
+     :alt: Joint PDF of sky location
+
+     :ref:`sphx_glr_examples_ucb_plot_source_joint_sky_pdf.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples_ucb/plot_source_joint_sky_pdf
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Scatter plot of detections&#x27; point estimates and LISA sensitivity curve.">
 
 .. only:: html
@@ -100,14 +121,14 @@ In addition, posterior samples for each candidate are stored as separate data fr
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Plot joint posterior of all catalog sources in galactic coordinates.">
+    <div class="sphx-glr-thumbcontainer" tooltip="Locate a source in an updated catalog and compare parameters.">
 
 .. only:: html
 
- .. figure:: /examples_ucb/images/thumb/sphx_glr_plot_source_joint_sky_pdf_thumb.png
-     :alt: Joint PDF of sky location
+ .. figure:: /examples_ucb/images/thumb/sphx_glr_plot_time_evolving_parameters_thumb.png
+     :alt: Connecting catalogs
 
-     :ref:`sphx_glr_examples_ucb_plot_source_joint_sky_pdf.py`
+     :ref:`sphx_glr_examples_ucb_plot_time_evolving_parameters.py`
 
 .. raw:: html
 
@@ -117,7 +138,7 @@ In addition, posterior samples for each candidate are stored as separate data fr
 .. toctree::
    :hidden:
 
-   /examples_ucb/plot_source_joint_sky_pdf
+   /examples_ucb/plot_time_evolving_parameters
 
 .. raw:: html
 

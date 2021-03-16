@@ -27,7 +27,7 @@ Plot 1-sigma contours of well-localized sources' sky location in galactic coordi
 
 Load catalog and compute sky areas
 
-.. GENERATED FROM PYTHON SOURCE LINES 10-49
+.. GENERATED FROM PYTHON SOURCE LINES 10-48
 
 .. code-block:: default
 
@@ -37,7 +37,7 @@ Load catalog and compute sky areas
     from matplotlib.patches import Ellipse
     import matplotlib.colors as colors
     import matplotlib.cm as cm
-    from lisacattools.catalog import GWCatalog, GWCatalogs, GWCatalogType
+    from lisacattools import GWCatalog, GWCatalogs, GWCatalogType
     from lisacattools import convert_ecliptic_to_galactic, ellipse_area, confidence_ellipse
 
     # Start by loading the main catalog file processed from GBMCMC outputs
@@ -55,8 +55,7 @@ Load catalog and compute sky areas
     for idx, source in enumerate(sources):
 
         # load source chain
-        attr_sample = final_catalog.get_attr_source_sample(source)
-        samples = final_catalog.get_source_sample(source, attr_sample)
+        samples = final_catalog.get_source_sample(source)
 
         # convert from ecliptic to galactic coordinates
         convert_ecliptic_to_galactic(samples)
@@ -145,14 +144,14 @@ Load catalog and compute sky areas
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 50-54
+.. GENERATED FROM PYTHON SOURCE LINES 49-53
 
 Cut source catalog on localization, and plot skymap of selected sources.
 In this example we use 100 sq deg as the localization threshold.
 *NOTE:* 10 sq deg is more appropriate for EM follow-up, but makes for a
 less interesting figure
 
-.. GENERATED FROM PYTHON SOURCE LINES 54-101
+.. GENERATED FROM PYTHON SOURCE LINES 53-99
 
 .. code-block:: default
 
@@ -186,8 +185,7 @@ less interesting figure
     for source in sources:
 
         # get chain samples
-        attr_sample = final_catalog.get_attr_source_sample(source)
-        samples = final_catalog.get_source_sample(source, attr_sample)
+        samples = final_catalog.get_source_sample(source)
 
         # convert from ecliptic to galactic coordinates
         convert_ecliptic_to_galactic(samples)
@@ -217,7 +215,7 @@ less interesting figure
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 18 minutes  58.279 seconds)
+   **Total running time of the script:** ( 10 minutes  52.888 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_source_sky_ellipses.py:

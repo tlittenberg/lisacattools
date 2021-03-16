@@ -32,22 +32,8 @@ Scatter plot of detections' point estimates and LISA sensitivity curve.
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    /Users/tlittenb/lisacattools/docs/examples_ucb/plot_freq_amp.py:60: DeprecationWarning: `np.float` is a deprecated alias for the builtin `float`. To silence this warning, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
-    Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
-      ax.plot(f, getSciRD(f, np.float(meta.iloc[0]["Observation Time"])), color="k")
 
 
-
-
-
-
-|
 
 .. code-block:: default
 
@@ -104,7 +90,7 @@ Scatter plot of detections' point estimates and LISA sensitivity curve.
 
     # add sensitivity curve
     f = np.logspace(-4, 0, 512)
-    ax.plot(f, getSciRD(f, np.float(meta.iloc[0]["Observation Time"])), color="k")
+    ax.plot(f, getSciRD(f, meta.iloc[0]["Observation Time"]), color="k")
     ax.legend(["Instrument Sensitivity", "resolved GBs"], fontsize=14)
     ax.grid()
 
@@ -113,7 +99,7 @@ Scatter plot of detections' point estimates and LISA sensitivity curve.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.091 seconds)
+   **Total running time of the script:** ( 0 minutes  1.220 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_freq_amp.py:

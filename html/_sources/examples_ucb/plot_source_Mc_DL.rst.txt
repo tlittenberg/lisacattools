@@ -30,7 +30,7 @@ The GBMCMC sampler uses frequency, frequency derivative, and GW amplitude in its
 For systems whose dynamics are driven by GR, those parameters can be converted to chirp mass and luminosity distance.
 Here is a demonstration of how to do that by producing a chirpmass-distance corner plot.
 
-.. GENERATED FROM PYTHON SOURCE LINES 13-49
+.. GENERATED FROM PYTHON SOURCE LINES 13-48
 
 .. code-block:: default
 
@@ -51,8 +51,7 @@ Here is a demonstration of how to do that by producing a chirpmass-distance corn
     # Sort table by SNR and select highest SNR source
     detections.sort_values(by="SNR", ascending=False, inplace=True)
     sourceId = detections.index[0]
-    attr_sample = final_catalog.get_attr_source_sample(sourceId)
-    samples = final_catalog.get_source_sample(sourceId, attr_sample)
+    samples = final_catalog.get_source_sample(sourceId)
 
     # Reject chain samples with negative fdot (enforce GR-driven prior)
     samples_GR = samples[(samples["Frequency Derivative"] > 0)]
@@ -84,7 +83,7 @@ Here is a demonstration of how to do that by producing a chirpmass-distance corn
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  7.198 seconds)
+   **Total running time of the script:** ( 0 minutes  6.177 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_source_Mc_DL.py:

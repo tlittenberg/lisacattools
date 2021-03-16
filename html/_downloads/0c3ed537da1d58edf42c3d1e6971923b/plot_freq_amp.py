@@ -57,7 +57,7 @@ detections.plot(
 
 # add sensitivity curve
 f = np.logspace(-4, 0, 512)
-ax.plot(f, getSciRD(f, np.float(meta.iloc[0]["Observation Time"])), color="k")
+ax.plot(f, getSciRD(f, meta.iloc[0]["Observation Time"]), color="k")
 ax.legend(["Instrument Sensitivity", "resolved GBs"], fontsize=14)
 ax.grid()
 

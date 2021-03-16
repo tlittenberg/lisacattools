@@ -30,17 +30,13 @@ samples_list = list()
 for source in sources:
 
     # get chain samples
-    attr_sample = final_catalog.get_attr_source_sample(source)
-    samples = final_catalog.get_source_sample(source, attr_sample)
-
-    # convert from ecliptic to galactic coordinates
-    convert_ecliptic_to_galactic(samples)
+    samples = final_catalog.get_source_sample(source)
 
     # store name and chain size (proportional to evidence)
     samples.insert(len(samples.columns), "Source", source, True)
     samples.insert(len(samples.columns), "Chain Length", len(samples), True)
     samples_list.append(
-        samples[["Source", "Galactic Latitude", "Galactic Longitude", "Chain Length"]]
+        samples[["Source", "Ecliptic Latitude", "Ecliptic Longitude", "Chain Length"]]
     )
 
 # combine all source samples into one dataframe

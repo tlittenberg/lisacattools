@@ -1,4 +1,14 @@
-### Fix problem with logger (HEAD)
+### Avoid to access multiple time to the same file => improve IO performances (HEAD)
+>Tue, 16 Mar 2021 01:34:05 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Fix problem with logger
 >Tue, 16 Mar 2021 01:32:08 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

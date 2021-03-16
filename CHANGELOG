@@ -1,4 +1,14 @@
-### Add tutorial/data in .gitignore (origin/main, origin/HEAD)
+### trying workflow after clean clone (HEAD -> main)
+>Tue, 16 Mar 2021 13:35:54 -0500
+
+>Author: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+>Commiter: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+
+
+
+### Add tutorial/data in .gitignore
 >Tue, 16 Mar 2021 16:48:37 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -8,7 +18,7 @@
 
 
 
-### trying to fix webpage (upstream/main)
+### trying to fix webpage
 >Tue, 16 Mar 2021 10:22:51 -0500
 
 >Author: Tyson Littenberg (tyson.littenberg@ligo.org)
@@ -98,7 +108,7 @@
 
 
 
-### Update .gitignore (origin/refactoring)
+### Update .gitignore
 >Wed, 10 Mar 2021 01:07:10 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

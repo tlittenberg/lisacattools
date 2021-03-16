@@ -1,4 +1,4 @@
-### Add tutorial/data in .gitignore (HEAD -> main)
+### Add tutorial/data in .gitignore (origin/main, origin/HEAD)
 >Tue, 16 Mar 2021 16:48:37 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -8,7 +8,17 @@
 
 
 
-### Remove old script (origin/main, origin/HEAD)
+### trying to fix webpage (upstream/main)
+>Tue, 16 Mar 2021 10:22:51 -0500
+
+>Author: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+>Commiter: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+
+
+
+### Remove old script
 >Tue, 16 Mar 2021 02:44:32 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -58,7 +68,17 @@
 
 
 
-### adding time-evolving posteriors to ucb example (upstream/main)
+### learning to use the makefile :)
+>Mon, 15 Mar 2021 15:45:41 -0500
+
+>Author: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+>Commiter: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+
+
+
+### adding time-evolving posteriors to ucb example
 >Mon, 15 Mar 2021 15:37:40 -0500
 
 >Author: Tyson Littenberg (tyson.littenberg@ligo.org)

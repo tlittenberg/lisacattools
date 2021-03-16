@@ -67,22 +67,26 @@ class UcbCatalogs(GWCatalogs):
 
     @property
     @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def metadata(self) -> pd.DataFrame:
         __doc__ = GWCatalogs.metadata.__doc__
         return self.__metadata
 
     @property
     @UtilsMonitoring.io(level=logging.TRACE)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def count(self) -> int:
         __doc__ = GWCatalogs.count.__doc__
         return len(self.metadata.index)
 
     @UtilsMonitoring.io(level=logging.TRACE)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def get_catalogs_name(self) -> List[str]:
         __doc__ = GWCatalogs.get_catalogs_name.__doc__
         return list(self.metadata.index)
 
     @UtilsMonitoring.io(level=logging.TRACE)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def get_first_catalog(self) -> GWCatalog:
         __doc__ = GWCatalogs.get_first_catalog.__doc__
         location = self.metadata.iloc[0]["location"]
@@ -90,6 +94,7 @@ class UcbCatalogs(GWCatalogs):
         return UcbCatalog(name, location)
 
     @UtilsMonitoring.io(level=logging.TRACE)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def get_last_catalog(self) -> GWCatalog:
         __doc__ = GWCatalogs.get_last_catalog.__doc__
         location = self.metadata.iloc[self.count - 1]["location"]
@@ -97,6 +102,7 @@ class UcbCatalogs(GWCatalogs):
         return UcbCatalog(name, location)
 
     @UtilsMonitoring.io(level=logging.TRACE)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def get_catalog(self, idx: int) -> GWCatalog:
         __doc__ = GWCatalogs.get_catalog.__doc__
         location = self.metadata.iloc[idx]["location"]
@@ -104,6 +110,7 @@ class UcbCatalogs(GWCatalogs):
         return UcbCatalog(name, location)
 
     @UtilsMonitoring.io(level=logging.TRACE)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def get_catalog_by(self, name: str) -> GWCatalog:
         __doc__ = GWCatalogs.get_catalog_by.__doc__
         cat_idx = self.metadata.index.get_loc(name)
@@ -153,6 +160,7 @@ class UcbCatalog(GWCatalog):
         return self.__datasets
 
     @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def get_dataset(self, name: str) -> pd.DataFrame:
         """Returns a dataset based on its name.
 
@@ -177,6 +185,7 @@ class UcbCatalog(GWCatalog):
         return self.__location
 
     @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=100)
     def get_detections(
         self, attr: List[str] = None
     ) -> Union[List[str], pd.DataFrame]:
@@ -187,11 +196,13 @@ class UcbCatalog(GWCatalog):
         )
 
     @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=100)
     def get_attr_detections(self) -> List[str]:
         __doc__ = GWCatalog.get_attr_detections.__doc__
         return list(self.get_dataset("detections").columns)
 
     @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=100)
     def get_median_source(self, attr: str) -> pd.DataFrame:
         __doc__ = GWCatalog.get_median_source.__doc__
         val = self.get_detections(attr)
@@ -203,6 +214,7 @@ class UcbCatalog(GWCatalog):
         ]
 
     @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=100)
     def get_source_sample(
         self, source_name: str, attr: List[str] = None
     ) -> pd.DataFrame:
@@ -217,11 +229,13 @@ class UcbCatalog(GWCatalog):
         return source_sample if attr is None else source_sample[attr].copy()
 
     @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG)
     def get_attr_source_sample(self, source_name: str) -> List[str]:
         __doc__ = GWCatalog.get_attr_source_sample.__doc__
         return list(self.get_source_sample(source_name).columns)
 
     @UtilsMonitoring.io(level=logging.TRACE)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG)
     def describe_source_sample(self, source_name: str) -> pd.DataFrame:
         __doc__ = GWCatalog.describe_source_sample.__doc__
         return self.get_source_sample(source_name).describe()

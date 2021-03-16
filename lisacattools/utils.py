@@ -25,6 +25,8 @@ from astropy.coordinates import SkyCoord
 import numpy as np
 import healpy as hp
 from enum import Enum
+from .monitoring import UtilsMonitoring
+import logging
 
 
 class DocEnum(Enum):
@@ -75,6 +77,7 @@ def HPbin(df, nside, system: FrameEnum = FrameEnum.GALACTIC):
     return
 
 
+@UtilsMonitoring.time_spend(level=logging.DEBUG)
 def HPhist(source, nside, system: FrameEnum = FrameEnum.GALACTIC):
 
     HPbin(source, nside, system)
@@ -89,6 +92,7 @@ def HPhist(source, nside, system: FrameEnum = FrameEnum.GALACTIC):
     return hp_map
 
 
+@UtilsMonitoring.time_spend(level=logging.DEBUG)
 def convert_galactic_to_cartesian(
     data: pd.DataFrame, long_name, lat_name, distance_name
 ):
@@ -107,6 +111,7 @@ def convert_galactic_to_cartesian(
     data["Z"] = cartesian.z
 
 
+@UtilsMonitoring.time_spend(level=logging.DEBUG)
 def convert_ecliptic_to_galactic(data: pd.DataFrame):
     lamb = None
     try:
@@ -216,6 +221,7 @@ def ellipse_area(df):
 
 
 # confidence_ellipse
+@UtilsMonitoring.time_spend(level=logging.DEBUG)
 def confidence_ellipse(df, ax, n_std=1.0, facecolor="none", **kwargs):
     # Plot an error ellipse on some axes. It takes a 2D data frame of parameters as its input
     mean = np.array(df.mean())

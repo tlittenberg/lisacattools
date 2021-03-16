@@ -52,7 +52,9 @@ class UtilsMonitoring(object):
         object : the result of the function
         """
         if func is None:
-            return partial(UtilsMonitoring.io, entry=entry, exit=exit, level=level)
+            return partial(
+                UtilsMonitoring.io, entry=entry, exit=exit, level=level
+            )
 
         @wraps(func)
         def wrapped(*args, **kwargs):
@@ -159,7 +161,8 @@ class UtilsMonitoring(object):
                 )
             else:
                 logger.warning(
-                    "Unable to load the number of records in file '%s' - " "type: %s",
+                    "Unable to load the number of records in file '%s' - "
+                    "type: %s",
                     args[1],
                     type_result,
                 )

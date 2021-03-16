@@ -1,4 +1,14 @@
-### Do not use root logger but the module one (HEAD -> main)
+### Fix problem with logger (HEAD)
+>Tue, 16 Mar 2021 01:32:08 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Do not use root logger but the module one (origin/main, origin/HEAD, main)
 >Mon, 15 Mar 2021 10:51:46 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -8,7 +18,7 @@
 
 
 
-### Update .gitignore (origin/refactoring, origin/main, origin/HEAD)
+### Update .gitignore (origin/refactoring)
 >Wed, 10 Mar 2021 01:07:10 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

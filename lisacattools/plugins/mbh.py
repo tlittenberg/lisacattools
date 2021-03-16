@@ -67,22 +67,26 @@ class LisaCatalogs(GWCatalogs):
 
     @property
     @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def metadata(self) -> pd.DataFrame:
         __doc__ = GWCatalogs.metadata.__doc__
         return self.__metadata
 
     @property
     @UtilsMonitoring.io(level=logging.TRACE)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def count(self) -> int:
         __doc__ = GWCatalogs.count.__doc__
         return len(self.metadata.index)
 
     @UtilsMonitoring.io(level=logging.TRACE)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def get_catalogs_name(self) -> List[str]:
         __doc__ = GWCatalogs.get_catalogs_name.__doc__
         return list(self.metadata.index)
 
     @UtilsMonitoring.io(level=logging.TRACE)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def get_first_catalog(self) -> GWCatalog:
         __doc__ = GWCatalogs.get_first_catalog.__doc__
         location = self.metadata.iloc[0]["location"]
@@ -90,6 +94,7 @@ class LisaCatalogs(GWCatalogs):
         return LisaCatalog(name, location)
 
     @UtilsMonitoring.io(level=logging.TRACE)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def get_last_catalog(self) -> GWCatalog:
         __doc__ = GWCatalogs.get_last_catalog.__doc__
         location = self.metadata.iloc[self.count - 1]["location"]
@@ -97,6 +102,7 @@ class LisaCatalogs(GWCatalogs):
         return LisaCatalog(name, location)
 
     @UtilsMonitoring.io(level=logging.TRACE)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def get_catalog(self, idx: int) -> GWCatalog:
         __doc__ = GWCatalogs.get_catalog.__doc__
         location = self.metadata.iloc[idx]["location"]
@@ -104,12 +110,14 @@ class LisaCatalogs(GWCatalogs):
         return LisaCatalog(name, location)
 
     @UtilsMonitoring.io(level=logging.TRACE)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def get_catalog_by(self, name: str) -> GWCatalog:
         __doc__ = GWCatalogs.get_catalog_by.__doc__
         cat_idx = self.metadata.index.get_loc(name)
         return self.get_catalog(cat_idx)
 
     @UtilsMonitoring.io(level=logging.TRACE)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=100)
     def get_lineage(self, cat_name: str, src_name: str) -> pd.DataFrame:
         __doc__ = GWCatalogs.get_lineage.__doc__
 
@@ -143,6 +151,7 @@ class LisaCatalogs(GWCatalogs):
         return histDF
 
     @UtilsMonitoring.io(level=logging.TRACE)
+    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=100)
     def get_lineage_data(self, lineage: pd.DataFrame) -> pd.DataFrame:
         __doc__ = GWCatalogs.get_lineage_data.__doc__
 

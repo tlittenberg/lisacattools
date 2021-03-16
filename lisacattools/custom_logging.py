@@ -136,7 +136,10 @@ class CustomColorFormatter(logging.Formatter):
         handlers = logging.getLogger(__name__).handlers
         for handler in handlers:
             handler_level = handler.level
-            if handler_level == logging.getLogger(__name__).getEffectiveLevel():
+            if (
+                handler_level
+                == logging.getLogger(__name__).getEffectiveLevel()
+            ):
                 my_formatter._fmt = handler.formatter._fmt
                 my_handler = handler
                 break

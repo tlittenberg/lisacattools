@@ -1,4 +1,14 @@
-### Add reference to gh-pages (origin/main, origin/HEAD)
+### Remove old script (HEAD -> main)
+>Tue, 16 Mar 2021 02:44:32 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Add reference to gh-pages
 >Tue, 16 Mar 2021 02:32:34 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

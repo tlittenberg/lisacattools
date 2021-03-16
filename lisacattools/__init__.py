@@ -53,7 +53,10 @@ logging.getLogger(__name__).addHandler(NullHandler())
 UtilsLogs.addLoggingLevel("TRACE", 15)
 try:
     PATH_TO_CONF = os.path.dirname(os.path.realpath(__file__))
-    logging.config.fileConfig(os.path.join(PATH_TO_CONF, "logging.conf"))
+    logging.config.fileConfig(
+        os.path.join(PATH_TO_CONF, "logging.conf"),
+        disable_existing_loggers=False,
+    )
     logging.debug(
         "file %s loaded" % os.path.join(PATH_TO_CONF, "logging.conf")
     )

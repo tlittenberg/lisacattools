@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Ellipse
 import matplotlib.colors as colors
 import matplotlib.cm as cm
-from lisacattools.catalog import GWCatalog, GWCatalogs, GWCatalogType
+from lisacattools import GWCatalog, GWCatalogs, GWCatalogType
 from lisacattools import convert_ecliptic_to_galactic, ellipse_area, confidence_ellipse
 
 # Start by loading the main catalog file processed from GBMCMC outputs
@@ -31,8 +31,7 @@ sources = list(detections.index)
 for idx, source in enumerate(sources):
 
     # load source chain
-    attr_sample = final_catalog.get_attr_source_sample(source)
-    samples = final_catalog.get_source_sample(source, attr_sample)
+    samples = final_catalog.get_source_sample(source)
 
     # convert from ecliptic to galactic coordinates
     convert_ecliptic_to_galactic(samples)
@@ -81,8 +80,7 @@ sources = list(cat_loc.index)
 for source in sources:
 
     # get chain samples
-    attr_sample = final_catalog.get_attr_source_sample(source)
-    samples = final_catalog.get_source_sample(source, attr_sample)
+    samples = final_catalog.get_source_sample(source)
 
     # convert from ecliptic to galactic coordinates
     convert_ecliptic_to_galactic(samples)

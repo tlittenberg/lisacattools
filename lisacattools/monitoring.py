@@ -59,7 +59,7 @@ class UtilsMonitoring(object):
         @wraps(func)
         def wrapped(*args, **kwargs):
             name = func.__qualname__
-            logger = logging.getLogger(name)
+            logger = logging.getLogger(__name__ + "." + name)
 
             if entry and logger.getEffectiveLevel() >= level:
                 msg = f"Entering '{name}' (args={args}, kwargs={kwargs})"
@@ -99,7 +99,7 @@ class UtilsMonitoring(object):
         @wraps(func)
         def newfunc(*args, **kwargs):
             name = func.__class__.__name__
-            logger = logging.getLogger(name)
+            logger = logging.getLogger(__name__ + "." + name)
             start_time = time.time()
             result = func(*args, **kwargs)
             elapsed_time = time.time() - start_time
@@ -140,7 +140,7 @@ class UtilsMonitoring(object):
         @wraps(func)
         def newfunc(*args, **kwargs):
             name = func.__name__
-            logger = logging.getLogger(name)
+            logger = logging.getLogger(__name__ + "." + name)
             filename = os.path.basename(args[1])
             logger.log(level, "Loading file '%s'", filename)
             result = func(*args, **kwargs)
@@ -187,7 +187,7 @@ class UtilsMonitoring(object):
         @wraps(func)
         def newfunc(*args, **kwargs):
             name = func.__class__.__name__
-            logger = logging.getLogger(name)
+            logger = logging.getLogger(__name__ + "." + name)
             tracemalloc.start()
             result = func(*args, **kwargs)
             current, peak = tracemalloc.get_traced_memory()

@@ -1,4 +1,14 @@
-### Clean up (HEAD)
+### Add reference to gh-pages (HEAD -> main)
+>Tue, 16 Mar 2021 02:32:34 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Clean up (origin/main, origin/HEAD)
 >Tue, 16 Mar 2021 01:42:54 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -8,7 +18,7 @@
 
 
 
-### Avoid to access multiple time to the same file => improve IO performances (origin/main, origin/HEAD)
+### Avoid to access multiple time to the same file => improve IO performances
 >Tue, 16 Mar 2021 01:34:05 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -28,7 +38,7 @@
 
 
 
-### Do not use root logger but the module one (main)
+### Do not use root logger but the module one
 >Mon, 15 Mar 2021 10:51:46 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

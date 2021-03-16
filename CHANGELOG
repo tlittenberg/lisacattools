@@ -1,4 +1,4 @@
-### Add reference to gh-pages (HEAD -> main)
+### Add reference to gh-pages (origin/main, origin/HEAD)
 >Tue, 16 Mar 2021 02:32:34 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -8,7 +8,7 @@
 
 
 
-### Clean up (origin/main, origin/HEAD)
+### Clean up
 >Tue, 16 Mar 2021 01:42:54 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -34,6 +34,16 @@
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
 
 >Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### adding time-evolving posteriors to ucb example (upstream/main)
+>Mon, 15 Mar 2021 15:37:40 -0500
+
+>Author: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+>Commiter: Tyson Littenberg (tyson.littenberg@ligo.org)
 
 
 

@@ -153,7 +153,7 @@ def convert_ecliptic_to_galactic(data: pd.DataFrame):
     galactic_coord = ecliptic_coord.galactic
     l = galactic_coord.l
     b = galactic_coord.b
-
+    l.wrap_angle = 180*u.deg
     if not ("Galactic Latitude" in data.columns):
         data.insert(len(data.columns), "Galactic Longitude", l, True)
         data.insert(len(data.columns), "Galactic Latitude", b, True)

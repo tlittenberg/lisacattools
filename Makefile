@@ -35,7 +35,10 @@ Usage:\n
 	make visu-doc-pdf\t\t 		View the generated PDF\n
 	make visu-doc\t\t\t			View the generated documentation\n
 	\n
-	make release\t\t\t 			Release the package\n
+	make release\t\t\t 			Release the package as tar.gz\n
+	make release-pypi\t\t   	Release the package for pypi\n
+	make upload-test-pypi\t\t   Upload the pypi package on the test plateform\n
+	make upload-prod-pypi\t\t   Upload the pypi package on the prod plateform\n
 	\n
 	-------------------------------------------------------------------------\n
 	\t\tOthers\n
@@ -120,13 +123,22 @@ test:
 # ----------------------------------
 #
 changelog:
-	gitchangelog > CHANGELOG
+	pip install -r requirements-release.txt && gitchangelog > CHANGELOG
 
 clean:
 	rm -rf dist/ build/ lisacattools.egg-info/ docs/source/examples_* && make clean -C docs && find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
 
 release:
-	make clean && make changelog && python3 setup.py sdist && make doc
+	make clean && make changelog && python3 setup.py sdist
+
+release-pypi:
+	make clean && make changelog && python3 setup.py sdist bdist_wheel && lisacattools-env/bin/twine check dist/*
+
+upload-test-pypi:
+	lisacattools-env/bin/twine check dist/* && lisacattools-env/bin/twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+
+upload-prod-pypi:
+	lisacattools-env/bin/twine check dist/* && lisacattools-env/bin/twine upload --repository-url https://pypi.org/legacy/ dist/*
 
 demo:
 	make data && pip install -r requirements-demo.txt && ./lisacattools-env/bin/jupyter-notebook tutorial/MBHdemo.ipynb
@@ -134,4 +146,4 @@ demo:
 licences:
 	pip-licenses
 
-.PHONY: help user prepare-dev install-dev doc visu-doc test changelog clean release demo licences
+.PHONY: help user prepare-dev install-dev doc visu-doc test changelog clean release release-pypi upload-test-pypi upload-prod-pypi demo licences

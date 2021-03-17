@@ -1,4 +1,14 @@
-### Add cache system on the UCB plugin to reduce the IO. (HEAD -> main)
+### Add tasks to release the pypi package on both test and prod plateform (HEAD -> main)
+>Wed, 17 Mar 2021 16:17:19 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Add cache system on the UCB plugin to reduce the IO.
 >Wed, 17 Mar 2021 16:15:32 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

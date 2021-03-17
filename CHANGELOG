@@ -1,4 +1,4 @@
-### Add tasks to release the pypi package on both test and prod plateform (HEAD -> main)
+### Add tasks to release the pypi package on both test and prod plateform (origin/main, origin/HEAD)
 >Wed, 17 Mar 2021 16:17:19 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -14,6 +14,26 @@
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
 
 >Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### update to webpage? (upstream/main)
+>Tue, 16 Mar 2021 16:04:11 -0500
+
+>Author: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+>Commiter: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+
+
+
+### trying workflow after clean clone
+>Tue, 16 Mar 2021 13:35:54 -0500
+
+>Author: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+>Commiter: Tyson Littenberg (tyson.littenberg@ligo.org)
 
 
 

@@ -1,4 +1,14 @@
-### Add tasks to release the pypi package on both test and prod plateform (origin/main, origin/HEAD)
+### Fix typo (HEAD -> main)
+>Wed, 17 Mar 2021 16:27:14 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Add tasks to release the pypi package on both test and prod plateform
 >Wed, 17 Mar 2021 16:17:19 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

@@ -37,8 +37,8 @@ Usage:\n
 	\n
 	make release\t\t\t 			Release the package as tar.gz\n
 	make release-pypi\t\t   	Release the package for pypi\n
-	make upload-test-pypi\t\t   Upload the pypi package on the test plateform\n
-	make upload-prod-pypi\t\t   Upload the pypi package on the prod plateform\n
+	make upload-test-pypi\t\t   Upload the pypi package on the test platform\n
+	make upload-prod-pypi\t\t   Upload the pypi package on the prod platform\n
 	\n
 	-------------------------------------------------------------------------\n
 	\t\tOthers\n

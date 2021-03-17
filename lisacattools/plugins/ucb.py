@@ -26,6 +26,7 @@ import numpy as np
 import pandas as pd
 
 from ..catalog import GWCatalog, GWCatalogs, UtilsMonitoring, UtilsLogs
+from ..utils import CacheManager
 
 UtilsLogs.addLoggingLevel("TRACE", 15)
 
@@ -149,6 +150,26 @@ class UcbCatalog(GWCatalog):
         self.__datasets = store.keys()
         store.close()
 
+    @CacheManager.get_cache_pandas(keycache_argument=2, level=logging.DEBUG)
+    def _read_chain_file(
+        self, source_name: str, chain_file: str
+    ) -> pd.DataFrame:
+        """Read a source in a chain_file
+
+        Args:
+            source_name (str): Name of the source to extract from the chain_file
+            chain_file (str): file to load
+
+        Returns:
+            pd.DataFrame: [description]
+        """
+        dirname = os.path.dirname(self.location)
+        source_sample_file = os.path.join(dirname, chain_file)
+        source_sample = pd.read_hdf(
+            source_sample_file, key=f"{source_name}_chain"
+        )
+        return source_sample
+
     @property
     @UtilsMonitoring.io(level=logging.DEBUG)
     def datasets(self):
@@ -221,11 +242,7 @@ class UcbCatalog(GWCatalog):
         __doc__ = GWCatalog.get_source_sample.__doc__
         samples = self.get_detections(["chain file"])
         chain_file = samples.loc[source_name]["chain file"]
-        dirname = os.path.dirname(self.location)
-        source_sample_file = os.path.join(dirname, chain_file)
-        source_sample = pd.read_hdf(
-            source_sample_file, key=f"{source_name}_chain"
-        )
+        source_sample = self._read_chain_file(source_name, chain_file)
         return source_sample if attr is None else source_sample[attr].copy()
 
     @UtilsMonitoring.io(level=logging.DEBUG)

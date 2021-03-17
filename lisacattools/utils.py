@@ -16,17 +16,20 @@
 # You should have received a copy of the GNU General Public License
 # along with lisacattools.  If not, see <https://www.gnu.org/licenses/>.
 
-from astropy.coordinates.builtin_frames import ecliptic
-import pandas as pd
+import logging
+from enum import Enum
+from functools import partial, wraps
+
+import healpy as hp
 import matplotlib.transforms as transforms
-from matplotlib.patches import Ellipse
+import numpy as np
+import pandas as pd
 from astropy import units as u
 from astropy.coordinates import SkyCoord
-import numpy as np
-import healpy as hp
-from enum import Enum
+from astropy.coordinates.builtin_frames import ecliptic
+from matplotlib.patches import Ellipse
+
 from .monitoring import UtilsMonitoring
-import logging
 
 
 class DocEnum(Enum):
@@ -46,6 +49,67 @@ class FrameEnum(DocEnum):
 
     GALACTIC = "Galactic", "Galactic frame"
     ECLIPTIC = "Ecliptic", "Ecliptic frame"
+
+
+class CacheManager(object):
+    memory_cache = dict()
+
+    @staticmethod
+    def get_cache_pandas(func=None, keycache_argument=0, level=logging.INFO):
+        """Cache a pandas DataFrame.
+
+        Parameters
+        ----------
+        func: func
+            Function to cache (default: {None})
+        keycache_argument: int
+            Argument number that is used for the cache (default: 0)
+        level: int
+            Level from which the log is displayed (default: {logging.INFO})
+
+        Returns
+        -------
+        object : the result of the function
+        """
+        if func is None:
+            return partial(
+                CacheManager.get_cache_pandas,
+                keycache_argument=keycache_argument,
+                level=level,
+            )
+
+        @wraps(func)
+        def newfunc(*args, **kwargs):
+            name = func.__name__
+            logger = logging.getLogger(__name__ + "." + name)
+            if keycache_argument > len(args) - 1:
+                logger.warning(
+                    f"Error during the configuration of keycache_argument, the value should be in [0, {len(args)-1}]"
+                )
+                result = func(*args, **kwargs)
+                return result
+
+            if args[keycache_argument] in CacheManager.memory_cache:
+                if logger.getEffectiveLevel() >= level:
+                    logger.log(
+                        level, f"Retrieve {args[keycache_argument]} from cache"
+                    )
+                result = CacheManager.memory_cache[
+                    args[keycache_argument]
+                ].copy()
+            else:
+                result = func(*args, **kwargs)
+                if logger.getEffectiveLevel() >= level:
+                    logger.log(level, f"Init the memory cache")
+                CacheManager.memory_cache.clear()
+                if logger.getEffectiveLevel() >= level:
+                    logger.log(level, f"Cache {args[keycache_argument]}")
+                CacheManager.memory_cache[
+                    args[keycache_argument]
+                ] = result.copy()
+            return result
+
+        return newfunc
 
 
 def HPbin(df, nside, system: FrameEnum = FrameEnum.GALACTIC):

@@ -1,3 +1,10 @@
+### Fix typo (HEAD -> main)
+>Wed, 17 Mar 2021 16:27:14 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
 ### fix galactic coordinate examples (HEAD -> main)
 >Wed, 17 Mar 2021 12:33:06 -0500
 
@@ -8,7 +15,27 @@
 
 
 
-### update to webpage? (origin/main, origin/HEAD)
+### Add tasks to release the pypi package on both test and prod plateform
+>Wed, 17 Mar 2021 16:17:19 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Add cache system on the UCB plugin to reduce the IO.
+>Wed, 17 Mar 2021 16:15:32 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### update to webpage? (upstream/main)
 >Tue, 16 Mar 2021 16:04:11 -0500
 
 >Author: Tyson Littenberg (tyson.littenberg@ligo.org)
@@ -128,7 +155,7 @@
 
 
 
-### Update .gitignore
+### Update .gitignore (origin/refactoring)
 >Wed, 10 Mar 2021 01:07:10 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

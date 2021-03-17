@@ -33,6 +33,9 @@ for idx, source in enumerate(sources):
     # load source chain
     samples = final_catalog.get_source_sample(source)
 
+    # correct sign error in catalog production
+    samples['Ecliptic Latitude'] = np.pi/2 - np.arccos(samples['coslat'])
+
     # convert from ecliptic to galactic coordinates
     convert_ecliptic_to_galactic(samples)
 
@@ -43,7 +46,7 @@ for idx, source in enumerate(sources):
 detections.insert(len(detections.columns), "Sky Area", area, True)
 
 # show that, indeed, Sky Area is now a column in the dataframe
-detections[["SNR", "Frequency", "Sky Area"]].head()
+detections[["Frequency", "SNR", "Sky Area"]].head()
 
 #%%
 # Cut source catalog on localization, and plot skymap of selected sources.
@@ -58,7 +61,7 @@ cat_loc = detections[
 ]  # cut sources based on max_sky_area
 
 # set up the figure
-fig = plt.figure(figsize=(12, 6), dpi=100)
+fig = plt.figure(figsize=(12, 6), dpi=110)
 ax = plt.axes()
 
 ax.grid()
@@ -82,11 +85,12 @@ for source in sources:
     # get chain samples
     samples = final_catalog.get_source_sample(source)
 
+    samples['Ecliptic Latitude'] = np.pi/2 - np.arccos(samples['coslat'])
+    
     # convert from ecliptic to galactic coordinates
     convert_ecliptic_to_galactic(samples)
 
     # get centroid and 1-sigma contours in galactic coordinates, add to plot
-    m = np.array(samples[["Galactic Longitude", "Galactic Latitude"]].mean())
     confidence_ellipse(
         samples[["Galactic Longitude", "Galactic Latitude"]],
         ax,

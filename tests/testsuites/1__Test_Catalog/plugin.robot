@@ -33,18 +33,18 @@ Test MBHcatalog_week001 Catalog With LISA Plugin
 *** Keywords ***
 Check LISA Plugin Exists
     ${lib}=                         Get Library Instance            GWCatalogType
-    ${lisa} =                       Set Variable                    ${lib.LISA}
+    ${lisa} =                       Set Variable                    ${lib.MBH}
 
 The Module Of The LISA Plugin Should Be
     [Arguments]                     ${name}
     ${lib}=                         Get Library Instance            GWCatalogType
-    ${lisa} =                       Set Variable                    ${lib.LISA}
+    ${lisa} =                       Set Variable                    ${lib.MBH}
     Should Be Equal                 ${lisa.module_name}             ${name}
 
 The Class Of The LISA Plugin Should Be
     [Arguments]                     ${name}
     ${lib}=                         Get Library Instance            GWCatalogType
-    ${lisa} =                       Set Variable                    ${lib.LISA}
+    ${lisa} =                       Set Variable                    ${lib.MBH}
     Should Be Equal                 ${lisa.class_name}             ${name}
 
 Metadata Should Exist

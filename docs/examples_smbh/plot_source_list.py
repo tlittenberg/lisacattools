@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 # get list catalog files
 catPath = "../../tutorial/data/mbh"
-catalogs = GWCatalogs.create(GWCatalogType.LISA, catPath, "*.h5")
+catalogs = GWCatalogs.create(GWCatalogType.MBH, catPath, "*.h5")
 last_cat = catalogs.get_last_catalog()
 
 #%%

@@ -12,7 +12,7 @@ from chainconsumer import ChainConsumer
 #%%
 # Load the catalog files
 catPath = "../../tutorial/data/mbh"
-catalogs = GWCatalogs.create(GWCatalogType.LISA, catPath, "*.h5")
+catalogs = GWCatalogs.create(GWCatalogType.MBH, catPath, "*.h5")
 
 #%%
 # Read individual DataFrames'

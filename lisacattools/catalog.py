@@ -56,7 +56,7 @@ class GWCatalogType:
     method of the GWCatalogs class.
     """
 
-    LISA = GWCatalogPlugin("lisacattools.plugins.mbh", "LisaCatalogs")
+    MBH = GWCatalogPlugin("lisacattools.plugins.mbh", "LisaCatalogs")
     UCB = GWCatalogPlugin("lisacattools.plugins.ucb", "UcbCatalogs")
 
 

@@ -3,7 +3,7 @@ from tarfile import open as opentar
 import os
 import os.path
 
-# download MBHB
+# download MBH
 if not os.path.exists("tutorial/data/mbh"):
     gdd.download_file_from_google_drive(
         file_id="1iL071Fi5MxHle0CLOqg3JkZIgjQF8EwF",
@@ -36,4 +36,3 @@ if not os.path.exists("tutorial/data/ucb"):
     with opentar("tutorial/data/UCBDemo_03.tar", "r") as tar:
         tar.extractall("tutorial/data/ucb")  # specify which folder to extract to
     os.remove("tutorial/data/UCBDemo_03.tar")
-

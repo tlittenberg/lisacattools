@@ -1,16 +1,39 @@
-### Fix typo (HEAD -> main)
->Wed, 17 Mar 2021 16:27:14 +0100
+### Cleaning (HEAD -> main)
+>Thu, 18 Mar 2021 12:57:59 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
 
 >Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
 
-### fix galactic coordinate examples (HEAD -> main)
+
+
+
+### Rename the enumerate LISA to MBH
+>Thu, 18 Mar 2021 12:54:15 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### fix galactic coordinate examples
 >Wed, 17 Mar 2021 12:33:06 -0500
 
 >Author: Tyson Littenberg (tyson.littenberg@ligo.org)
 
 >Commiter: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+
+
+
+### Fix typo
+>Wed, 17 Mar 2021 16:27:14 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
 
 
 

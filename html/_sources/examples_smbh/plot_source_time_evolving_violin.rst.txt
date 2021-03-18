@@ -36,7 +36,7 @@ parameter estimation changes with observing time over all observing epochs
 
     # get list catalog files
     catPath = "../../tutorial/data/mbh"
-    catalogs = GWCatalogs.create(GWCatalogType.LISA, catPath, "*.h5")
+    catalogs = GWCatalogs.create(GWCatalogType.MBH, catPath, "*.h5")
 
     last_cat = catalogs.get_last_catalog()
     detections_attr = last_cat.get_attr_detections()
@@ -240,7 +240,7 @@ Choose a source from the list of detections and get its history through the diff
 Create the violin plot
 select the parameters to plot and scaling (linear or log) for each
 
-.. GENERATED FROM PYTHON SOURCE LINES 60-92
+.. GENERATED FROM PYTHON SOURCE LINES 60-93
 
 .. code-block:: default
 
@@ -279,6 +279,7 @@ select the parameters to plot and scaling (linear or log) for each
     plt.show()
 
 
+
 .. image:: /examples_smbh/images/sphx_glr_plot_source_time_evolving_violin_001.png
     :alt: Parameter Evolution for MBH005546845
     :class: sphx-glr-single-img
@@ -290,7 +291,7 @@ select the parameters to plot and scaling (linear or log) for each
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  19.851 seconds)
+   **Total running time of the script:** ( 0 minutes  17.313 seconds)
 
 
 .. _sphx_glr_download_examples_smbh_plot_source_time_evolving_violin.py:

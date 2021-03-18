@@ -34,7 +34,7 @@ Display a table of catalog files, detection list, and timeline of mergers..
 
     # get list catalog files
     catPath = "../../tutorial/data/mbh"
-    catalogs = GWCatalogs.create(GWCatalogType.LISA, catPath, "*.h5")
+    catalogs = GWCatalogs.create(GWCatalogType.MBH, catPath, "*.h5")
     last_cat = catalogs.get_last_catalog()
 
 
@@ -94,7 +94,7 @@ Because catalogs are cummulative, this will include all sources
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.640 seconds)
+   **Total running time of the script:** ( 0 minutes  0.563 seconds)
 
 
 .. _sphx_glr_download_examples_smbh_plot_source_list.py:

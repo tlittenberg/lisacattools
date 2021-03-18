@@ -12,7 +12,7 @@ from chainconsumer import ChainConsumer
 
 # Find the list of catalogs
 catPath = "../../tutorial/data/mbh"
-catalogs = GWCatalogs.create(GWCatalogType.LISA, catPath, "*.h5")
+catalogs = GWCatalogs.create(GWCatalogType.MBH, catPath, "*.h5")
 
 last_cat = catalogs.get_last_catalog()
 detections_attr = last_cat.get_attr_detections()

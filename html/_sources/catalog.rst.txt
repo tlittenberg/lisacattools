@@ -13,11 +13,6 @@ Catalog
 ---------------
 
 .. module:: lisacattools.plugins.mbh
-.. autoclass:: LisaCatalogs
-   :members:
-   :private-members:
-
-.. module:: lisacattools.plugins.mbh
 .. autoclass:: LisaCatalog
    :members:
    :private-members:
@@ -27,10 +22,5 @@ Catalog
 
 .. module:: lisacattools.plugins.ucb
 .. autoclass:: UcbCatalogs
-   :members:
-   :private-members:
-
-.. module:: lisacattools.plugins.ucb
-.. autoclass:: UcbCatalog
    :members:
    :private-members:

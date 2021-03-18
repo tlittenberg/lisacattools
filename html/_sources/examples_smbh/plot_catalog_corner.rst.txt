@@ -48,11 +48,19 @@ Load the catalog files
 .. code-block:: default
 
     catPath = "../../tutorial/data/mbh"
-    catalogs = GWCatalogs.create(GWCatalogType.LISA, catPath, "*.h5")
+    catalogs = GWCatalogs.create(GWCatalogType.MBH, catPath, "*.h5")
 
 
 
 
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    INFO:numexpr.utils:NumExpr defaulting to 4 threads.
 
 
 
@@ -114,7 +122,7 @@ load the detections of the most recent catalog
 
 Create the corner plot with ChainConsumer
 
-.. GENERATED FROM PYTHON SOURCE LINES 33-61
+.. GENERATED FROM PYTHON SOURCE LINES 33-62
 
 .. code-block:: default
 
@@ -149,6 +157,7 @@ Create the corner plot with ChainConsumer
     plt.show()
 
 
+
 .. image:: /examples_smbh/images/sphx_glr_plot_catalog_corner_001.png
     :alt: plot catalog corner
     :class: sphx-glr-single-img
@@ -160,7 +169,7 @@ Create the corner plot with ChainConsumer
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.450 seconds)
+   **Total running time of the script:** ( 0 minutes  12.487 seconds)
 
 
 .. _sphx_glr_download_examples_smbh_plot_catalog_corner.py:

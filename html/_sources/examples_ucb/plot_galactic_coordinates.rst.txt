@@ -28,7 +28,7 @@ Create inferred map of the galaxy from chirping binaries
 This example demonstrates using chirping binaries to map the galaxy.
 Samples from the high SNR chirping binaries are reparameterized into galactic cartesian coordinates and plotted.
 
-.. GENERATED FROM PYTHON SOURCE LINES 11-105
+.. GENERATED FROM PYTHON SOURCE LINES 11-43
 
 .. code-block:: default
 
@@ -49,15 +49,45 @@ Samples from the high SNR chirping binaries are reparameterized into galactic ca
 
     # Start by loading the main catalog file processed from GBMCMC outputs
     catPath = "../../tutorial/data/ucb"
-    catalogs = GWCatalogs.create(GWCatalogType.UCB, catPath, "cat15728640_v2.h5")
-    final_catalog = catalogs.get_last_catalog()
-    detections_attr = final_catalog.get_attr_detections()
-    detections = final_catalog.get_detections(detections_attr)
+    catName = "cat15728640_v2.h5"
+    catalogs = GWCatalogs.create(GWCatalogType.UCB, catPath, catName)
+    catalog = catalogs.get_last_catalog()
+
+    # Get SNRs and fdots for all detections to use for event selection
+    detections = catalog.get_detections(["SNR","Frequency Derivative"])
 
     # Get dataframe of only high SNR chirping events
     selected_detections = detections[
         (detections["Frequency Derivative"] > 0) & (detections["SNR"] > 100)
     ]
+
+    # Sort them so the highest chirp rates are plotted last
+    selected_detections=selected_detections.sort_values(by='Frequency Derivative')
+
+
+
+
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    INFO:numexpr.utils:NumExpr defaulting to 4 threads.
+
+
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 44-46
+
+plot 1-sigma ellipses of 3D localization for each source
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 46-120
+
+.. code-block:: default
+
 
     # set up the figure
     fig, axs = plt.subplots(1, 2, figsize=(12, 6), dpi=100)
@@ -66,14 +96,14 @@ Samples from the high SNR chirping binaries are reparameterized into galactic ca
     axs[1].grid()
 
     axs[0].set(
-        xlim=(-10, 10),
-        ylim=(-10, 10),
+        xlim=(-20, 20),
+        ylim=(-20, 20),
         xlabel=r"$x_{\rm GC}\ [{\rm kpc}]$",
         ylabel=r"$y_{\rm GC}\ [{\rm kpc}]$",
     )
     axs[1].set(
-        xlim=(-10, 10),
-        ylim=(-10, 10),
+        xlim=(-20, 20),
+        ylim=(-20, 20),
         xlabel=r"$x_{\rm GC}\ [{\rm kpc}]$",
         ylabel=r"$z_{\rm GC}\ [{\rm kpc}]$",
     )
@@ -87,17 +117,26 @@ Samples from the high SNR chirping binaries are reparameterized into galactic ca
     cbar = fig.colorbar(scalarMap)
     cbar.set_label("SNR")
 
-    # plot 1-sigma ellipses of 3D localization for each source
+    # get list of all sources in catalog
     sources = list(selected_detections.index)
+
+    # git list of all chain parameters (we need most of them)
+    parameters = catalog.get_attr_source_sample(sources[0])
+
     for source in sources:
 
         # get chain samples
-        samples = final_catalog.get_source_sample(source)
+        samples = catalog.get_source_sample(source,parameters)
+
+        # fix Ecliptic Latitude bug in HDF5 files
+        samples["Ecliptic Latitude"] = np.pi/2 - np.arccos(samples["coslat"])
 
         # convert from ecliptic to galactic coordinates
         convert_ecliptic_to_galactic(samples)
+    
         # enforce GR prior
         samples = samples[(samples["Frequency Derivative"] > 0)]
+    
         # add distance parameter
         get_DL(samples)
 
@@ -125,9 +164,6 @@ Samples from the high SNR chirping binaries are reparameterized into galactic ca
         )
 
 
-    plt.show()
-
-
 
 .. image:: /examples_ucb/images/sphx_glr_plot_galactic_coordinates_001.png
     :alt: plot galactic coordinates
@@ -140,7 +176,7 @@ Samples from the high SNR chirping binaries are reparameterized into galactic ca
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  23.753 seconds)
+   **Total running time of the script:** ( 0 minutes  24.625 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_galactic_coordinates.py:

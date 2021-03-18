@@ -27,7 +27,7 @@ Plot 1-sigma contours of well-localized sources' sky location in galactic coordi
 
 Load catalog and compute sky areas
 
-.. GENERATED FROM PYTHON SOURCE LINES 10-51
+.. GENERATED FROM PYTHON SOURCE LINES 10-53
 
 .. code-block:: default
 
@@ -42,20 +42,22 @@ Load catalog and compute sky areas
 
     # Start by loading the main catalog file processed from GBMCMC outputs
     catPath = "../../tutorial/data/ucb"
-    catalogs = GWCatalogs.create(GWCatalogType.UCB, catPath, "cat15728640_v2.h5")
-    final_catalog = catalogs.get_last_catalog()
-    detections_attr = final_catalog.get_attr_detections()
-    detections = final_catalog.get_detections(detections_attr)
+    catName = "cat15728640_v2.h5"
+    catalogs = GWCatalogs.create(GWCatalogType.UCB, catPath, catName)
+    catalog = catalogs.get_last_catalog()
 
+    #load all detection attributes
+    detections_attr = catalog.get_attr_detections()
+    detections = catalog.get_detections(detections_attr)
 
     # loop through all of the sources, compute sky area, and add as a column to the catalog
     area = np.empty(len(detections.index))
-
     sources = list(detections.index)
+
     for idx, source in enumerate(sources):
 
         # load source chain
-        samples = final_catalog.get_source_sample(source)
+        samples = catalog.get_source_sample(source,['SNR','Frequency','Ecliptic Longitude','coslat'])
 
         # correct sign error in catalog production
         samples['Ecliptic Latitude'] = np.pi/2 - np.arccos(samples['coslat'])
@@ -64,13 +66,13 @@ Load catalog and compute sky areas
         convert_ecliptic_to_galactic(samples)
 
         # create numpy arrays of the derived parameters
-        area[idx] = ellipse_area(samples[["Galactic Longitude", "Galactic Latitude"]])
+        area[idx] = ellipse_area(samples[['Galactic Longitude', 'Galactic Latitude']])
 
     # insert new numpy arrays into main catalog dataframe
-    detections.insert(len(detections.columns), "Sky Area", area, True)
+    detections.insert(len(detections.columns), 'Sky Area', area, True)
 
     # show that, indeed, Sky Area is now a column in the dataframe
-    detections[["Frequency", "SNR", "Sky Area"]].head()
+    detections[['Frequency', 'SNR', 'Sky Area']].head()
 
 
 
@@ -155,14 +157,14 @@ Load catalog and compute sky areas
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 52-56
+.. GENERATED FROM PYTHON SOURCE LINES 54-58
 
 Cut source catalog on localization, and plot skymap of selected sources.
 In this example we use 100 sq deg as the localization threshold.
 *NOTE:* 10 sq deg is more appropriate for EM follow-up, but makes for a
 less interesting figure
 
-.. GENERATED FROM PYTHON SOURCE LINES 56-103
+.. GENERATED FROM PYTHON SOURCE LINES 58-104
 
 .. code-block:: default
 
@@ -170,7 +172,7 @@ less interesting figure
     # Make new dataframe containing only "well-localized" events
     max_sky_area = 100  # localization threshold (square degrees)
     cat_loc = detections[
-        (detections["Sky Area"] < max_sky_area)
+        (detections['Sky Area'] < max_sky_area)
     ]  # cut sources based on max_sky_area
 
     # set up the figure
@@ -186,8 +188,8 @@ less interesting figure
     )
 
     # color ellipses by log frequency
-    cNorm = colors.LogNorm(vmin=cat_loc["Frequency"].min(), vmax=cat_loc["Frequency"].max())
-    scalarMap = cm.ScalarMappable(norm=cNorm, cmap=plt.cm.get_cmap("viridis_r"))
+    cNorm = colors.LogNorm(vmin=cat_loc['Frequency'].min(), vmax=cat_loc['Frequency'].max())
+    scalarMap = cm.ScalarMappable(norm=cNorm, cmap=plt.cm.get_cmap('viridis_r'))
     cbar = fig.colorbar(scalarMap)
     cbar.set_label("Frequency [Hz]")
 
@@ -195,24 +197,23 @@ less interesting figure
     sources = list(cat_loc.index)
     for source in sources:
 
-        # get chain samples
-        samples = final_catalog.get_source_sample(source)
+        # load source chain
+        samples = catalog.get_source_sample(source,['Frequency','Ecliptic Longitude','coslat'])
 
+        # correct sign error in catalog production
         samples['Ecliptic Latitude'] = np.pi/2 - np.arccos(samples['coslat'])
-    
+
         # convert from ecliptic to galactic coordinates
         convert_ecliptic_to_galactic(samples)
 
         # get centroid and 1-sigma contours in galactic coordinates, add to plot
         confidence_ellipse(
-            samples[["Galactic Longitude", "Galactic Latitude"]],
+            samples[['Galactic Longitude', 'Galactic Latitude']],
             ax,
             n_std=1.0,
             edgecolor=scalarMap.to_rgba(np.array(cat_loc.loc[source].Frequency)),
             linewidth=1.0,
         )
-
-    plt.show()
 
 
 
@@ -227,7 +228,7 @@ less interesting figure
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 12 minutes  6.305 seconds)
+   **Total running time of the script:** ( 10 minutes  13.002 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_source_sky_ellipses.py:

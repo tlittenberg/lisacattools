@@ -11,7 +11,7 @@ from lisacattools.catalog import GWCatalogs, GWCatalogType
 
 # get list catalog files
 catPath = "../../tutorial/data/mbh"
-catalogs = GWCatalogs.create(GWCatalogType.LISA, catPath, "*.h5")
+catalogs = GWCatalogs.create(GWCatalogType.MBH, catPath, "*.h5")
 last_cat = catalogs.get_last_catalog()
 detections_attr = last_cat.get_attr_detections()
 detections = last_cat.get_detections(detections_attr)
@@ -26,7 +26,7 @@ ax.set_ylabel("Mass 2 [MSun]")
 ax.legend(loc="lower right")
 srcs = list(detections.index)
 for idx, src in enumerate(srcs):
-    sample = last_cat.get_source_sample(src)
+    sample = last_cat.get_source_sample(src,["Mass 1","Mass 2"])
     l1, m1, h1 = np.quantile(np.array(sample["Mass 1"]), [0.05, 0.5, 0.95])
     l2, m2, h2 = np.quantile(np.array(sample["Mass 2"]), [0.05, 0.5, 0.95])
     if idx < 10:

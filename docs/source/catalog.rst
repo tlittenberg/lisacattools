@@ -9,16 +9,16 @@ Catalog
    :private-members:
 
 
-2 - LISA plugin
+2 - MBH plugin
 ---------------
 
 .. module:: lisacattools.plugins.mbh
-.. autoclass:: LisaCatalogs
+.. autoclass:: MbhCatalogs
    :members:
    :private-members:
 
 .. module:: lisacattools.plugins.mbh
-.. autoclass:: LisaCatalog
+.. autoclass:: MbhCatalog
    :members:
    :private-members:
 

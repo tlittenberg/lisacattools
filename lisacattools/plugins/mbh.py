@@ -19,7 +19,8 @@
 import glob
 import logging
 import os
-from typing import List, Union
+from itertools import chain
+from typing import List, Optional, Union
 
 import numpy as np
 import pandas as pd
@@ -29,26 +30,104 @@ from ..catalog import GWCatalog, GWCatalogs, UtilsLogs, UtilsMonitoring
 UtilsLogs.addLoggingLevel("TRACE", 15)
 
 
-class LisaCatalogs(GWCatalogs):
-    """Implementation of the LISA catalogs."""
+class MbhCatalogs(GWCatalogs):
+    """Implementation of the MBH catalogs."""
 
-    def __init__(self, path: str, pattern: str = "MBH_wk*C.h5"):
-        """Init the LisaCatalogs by reading all catalogs with a specific
-        pattern in a given directory.
+    EXTRA_DIR = "extra_directories"
+
+    def __init__(
+        self,
+        path: str,
+        accepted_pattern: Optional[str] = "MBH_wk*C.h5",
+        rejected_pattern: Optional[str] = None,
+        *args,
+        **kwargs,
+    ):
+        """Init the MbhCatalogs by reading all catalogs with a specific
+        pattern in a given directory and rejecting files by another pattern.
 
         The list of catalogs is sorted by "observation week"
 
         Args:
             path (str): directory
-            pattern (str, optional): pattern. Defaults to "MBH_wk*C.h5".
+            accepted_pattern (str, optional): pattern to accept files. Defaults to "MBH_wk*C.h5".
+            rejected_pattern (str, optional): pattern to reject files. Defaults to None.
+
+        Raises:
+            ValueError: no files found matching the accepted and rejected patterns.
         """
         self.path = path
-        self.pattern = pattern
-        cat_files = glob.glob(path + os.path.sep + pattern)
+        self.accepted_pattern = accepted_pattern
+        self.rejected_pattern = rejected_pattern
+        self.extra_directories = (
+            kwargs[MbhCatalogs.EXTRA_DIR]
+            if MbhCatalogs.EXTRA_DIR in kwargs
+            else list()
+        )
+        directories = self._search_directories(
+            self.path, self.extra_directories
+        )
+        self.cat_files = self._search_files(
+            directories, accepted_pattern, rejected_pattern
+        )
+        if len(self.cat_files) == 0:
+            raise ValueError(
+                f"no files found matching the accepted ({self.accepted_pattern}) and rejected ({self.rejected_pattern}) patterns in {directories}"
+            )
         self.__metadata = pd.concat(
-            [self._read_cats(cat_file) for cat_file in cat_files]
+            [self._read_cats(cat_file) for cat_file in self.cat_files]
         )
         self.__metadata = self.__metadata.sort_values(by="observation week")
+
+    @UtilsMonitoring.io(level=logging.DEBUG)
+    def _search_directories(
+        self, path: str, extra_directories: List[str]
+    ) -> List[str]:
+        """Compute the list of directories on which the pattern will be applied.
+
+        Args:
+            path (str) : main path
+            extra_directories (List[str]) : others directories
+
+        Returns:
+            List[str]: list of directories on which the pattern will be applied
+        """
+        directories: List[str] = extra_directories[:]
+        directories.append(path)
+        return directories
+
+    @UtilsMonitoring.io(level=logging.DEBUG)
+    def _search_files(
+        self, directories: List[str], accepted_pattern, rejected_pattern
+    ) -> List[str]:
+        """Search files in directories according to a set of constraints :
+        accepted and rejected patterns
+
+        Args:
+            directories (List[str]): List of directories to scan
+            accepted_pattern ([type]): pattern to get files
+            rejected_pattern ([type]): pattern to reject files
+
+        Returns:
+            List[str]: List of files
+        """
+        accepted_files = [
+            glob.glob(path + os.path.sep + accepted_pattern)
+            for path in directories
+        ]
+        accepted_files = list(chain(*accepted_files))
+        if rejected_pattern is None:
+            rejected_files = list()
+        else:
+            rejected_files = [
+                list()
+                if rejected_pattern is None
+                else glob.glob(path + os.path.sep + rejected_pattern)
+                for path in directories
+            ]
+        rejected_files = list(chain(*rejected_files))
+        cat_files = list(set(accepted_files) - set(rejected_files))
+        return cat_files
 
     @UtilsMonitoring.io(level=logging.DEBUG)
     def _read_cats(self, cat_file: str) -> pd.DataFrame:
@@ -56,7 +135,6 @@ class LisaCatalogs(GWCatalogs):
 
         Args:
             cat_file (str): catalog to load
-            pattern (str) : pattern to be used when the catalog is a tar
 
         Returns:
             pd.DataFrame: pandas data frame
@@ -67,20 +145,23 @@ class LisaCatalogs(GWCatalogs):
 
     @property
     @UtilsMonitoring.io(level=logging.DEBUG)
-    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def metadata(self) -> pd.DataFrame:
         __doc__ = GWCatalogs.metadata.__doc__
         return self.__metadata
 
     @property
     @UtilsMonitoring.io(level=logging.TRACE)
-    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def count(self) -> int:
         __doc__ = GWCatalogs.count.__doc__
         return len(self.metadata.index)
 
+    @property
     @UtilsMonitoring.io(level=logging.TRACE)
-    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
+    def files(self) -> List[str]:
+        __doc__ = GWCatalogs.files.__doc__
+        return self.cat_files
+
+    @UtilsMonitoring.io(level=logging.TRACE)
     def get_catalogs_name(self) -> List[str]:
         __doc__ = GWCatalogs.get_catalogs_name.__doc__
         return list(self.metadata.index)
@@ -91,7 +172,7 @@ class LisaCatalogs(GWCatalogs):
         __doc__ = GWCatalogs.get_first_catalog.__doc__
         location = self.metadata.iloc[0]["location"]
         name = self.metadata.index[0]
-        return LisaCatalog(name, location)
+        return MbhCatalog(name, location)
 
     @UtilsMonitoring.io(level=logging.TRACE)
     @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
@@ -99,7 +180,7 @@ class LisaCatalogs(GWCatalogs):
         __doc__ = GWCatalogs.get_last_catalog.__doc__
         location = self.metadata.iloc[self.count - 1]["location"]
         name = self.metadata.index[self.count - 1]
-        return LisaCatalog(name, location)
+        return MbhCatalog(name, location)
 
     @UtilsMonitoring.io(level=logging.TRACE)
     @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
@@ -107,7 +188,7 @@ class LisaCatalogs(GWCatalogs):
         __doc__ = GWCatalogs.get_catalog.__doc__
         location = self.metadata.iloc[idx]["location"]
         name = self.metadata.index[idx]
-        return LisaCatalog(name, location)
+        return MbhCatalog(name, location)
 
     @UtilsMonitoring.io(level=logging.TRACE)
     @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
@@ -198,17 +279,17 @@ class LisaCatalogs(GWCatalogs):
         return merge_source_epochs
 
     def __repr__(self):
-        return f"LisaCatalogs({self.path!r}, {self.pattern!r})"
+        return f"MbhCatalogs({self.path!r}, {self.accepted_pattern!r}, {self.rejected_pattern!r}, {self.extra_directories!r})"
 
     def __str__(self):
-        return f"LisaCatalogs: {self.path} {self.pattern}"
+        return f"MbhCatalogs: {self.path} {self.accepted_pattern!r} {self.rejected_pattern!r} {self.extra_directories!r}"
 
 
-class LisaCatalog(GWCatalog):
-    """Implementation of the LISA catalog."""
+class MbhCatalog(GWCatalog):
+    """Implementation of the Mbh catalog."""
 
     def __init__(self, name: str, location: str):
-        """Init the LISA catalog with a name and a location
+        """Init the MBH catalog with a name and a location
 
         Args:
             name (str): name of the catalog
@@ -299,7 +380,7 @@ class LisaCatalog(GWCatalog):
         return self.get_source_sample(source_name).describe()
 
     def __repr__(self):
-        return f"LisaCatalog({self.__name!r}, {self.__location!r})"
+        return f"MbhCatalog({self.__name!r}, {self.__location!r})"
 
     def __str__(self):
-        return f"LisaCatalog: {self.__name} {self.__location}"
+        return f"MbhCatalog: {self.__name} {self.__location}"

@@ -1,8 +1,10 @@
 *** Settings ***
 Documentation           A test suite for testing the import of plugin
-Library                 lisacattools.plugins.mbh.LisaCatalogs   ${dir_data}                         WITH NAME   lisaCat
-Library                 lisacattools.plugins.mbh.LisaCatalog    ${cat_name}     ${cat_location}     WITH NAME   cat_mbh
+Library                 lisacattools.plugins.mbh.MbhCatalogs   ${dir_data}                          WITH NAME   mbhCat
+Library                 lisacattools.plugins.mbh.MbhCatalog    ${cat_name}     ${cat_location}      WITH NAME   cat_mbh
 Library                 lisacattools.GWCatalogType                                                  WITH NAME   GWCatalogType
+Library                 TestPluginMbh.py                                                            WITH NAME   test_create_mbh
+Library                 TestPluginUcb.py                                                            WITH NAME   test_create_ucb
 
 *** Variables ***
 ${dir_data}             tutorial/data/mbh
@@ -15,7 +17,7 @@ Test LISA Plugin Exists
 
 Test Catalogs Object With LISA Plugin
     The Module Of The LISA Plugin Should Be             lisacattools.plugins.mbh
-    The Class Of The LISA Plugin Should Be              LisaCatalogs
+    The Class Of The LISA Plugin Should Be              MbhCatalogs
     Metadata Should Exist
     The Number Of Catalogs Should Be                    14
     The First Catalog Should Be                         MBHcatalog_week001
@@ -29,6 +31,9 @@ Test MBHcatalog_week001 Catalog With LISA Plugin
     ${detections_attr}=                                 Create List     Parent    Log Likelihood    Mass 1    Mass 2    Spin 1    Spin 2    Merger Phase    Barycenter Merge Time     Luminosity Distance   cos ecliptic colatitude     Ecliptic Longitude    Polarization      cos inclination   Detector Merger Time      Ecliptic Latitude     chain file
     The Attributes in Detections Should Be              ${detections_attr}
 
+Test creation of Plugins
+    The List Of Files With MBH Should Be                14
+    The List Of Files With UCB Should Be                2
 
 *** Keywords ***
 Check LISA Plugin Exists
@@ -48,12 +53,12 @@ The Class Of The LISA Plugin Should Be
     Should Be Equal                 ${lisa.class_name}             ${name}
 
 Metadata Should Exist
-    ${lib}=                         Get Library Instance            lisaCat
+    ${lib}=                         Get Library Instance            mbhCat
     Set Test Variable               ${lib.metadata}
 
 The Number Of Catalogs Should Be
     [Arguments]                     ${nb_cat}
-    ${lib}=                         Get Library Instance            lisaCat
+    ${lib}=                         Get Library Instance            mbhCat
     Should Be Equal As Numbers      ${lib.count}                    ${nb_cat}
 
 The First Catalog Should Be
@@ -91,3 +96,15 @@ The Attributes in Detections Should Be
     [Arguments]                     ${attributes}
     ${cnt}=                         Get attr detections
     Should Be Equal                 ${cnt}                          ${attributes}
+
+The List Of Files With MBH Should Be
+    [Arguments]                     ${nb}
+    ${result}=	                    Convert To Integer	            ${nb}
+    ${cnt}                          test_create_mbh.Get Number
+    Should Be Equal                 ${cnt}                          ${result}
+
+The List Of Files With UCB Should Be
+    [Arguments]                     ${nb}
+    ${result}=	                    Convert To Integer	            ${nb}
+    ${cnt}                          test_create_ucb.Get Number
+    Should Be Equal                 ${cnt}                          ${result}

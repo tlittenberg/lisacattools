@@ -24,7 +24,7 @@ responsible for :
 
 from abc import ABC, abstractmethod
 
-from typing import List, Union
+from typing import List, Union, Optional
 import importlib
 
 import pandas as pd
@@ -56,7 +56,7 @@ class GWCatalogType:
     method of the GWCatalogs class.
     """
 
-    MBH = GWCatalogPlugin("lisacattools.plugins.mbh", "LisaCatalogs")
+    MBH = GWCatalogPlugin("lisacattools.plugins.mbh", "MbhCatalogs")
     UCB = GWCatalogPlugin("lisacattools.plugins.ucb", "UcbCatalogs")
 
 
@@ -217,6 +217,8 @@ class GWCatalogs(ABC):
             and callable(subclass.metadata)
             and hasattr(subclass, "count")
             and callable(subclass.count)
+            and hasattr(subclass, "files")
+            and callable(subclass.files)
             and hasattr(subclass, "get_catalogs_name")
             and callable(subclass.get_catalogs_name)
             and hasattr(subclass, "get_first_catalog")
@@ -249,16 +251,51 @@ class GWCatalogs(ABC):
 
     @staticmethod
     def create(
-        type: GWCatalogPlugin, directory: str, pattern: str
+        type: GWCatalogType,
+        directory: str,
+        accepted_pattern: Optional[str] = None,
+        rejected_pattern: Optional[str] = None,
+        *args,
+        **kwargs
     ) -> "GWCatalogs":
         """Create a new object for handling a set of specific catalogs.
+
+        Catalogs are loaded according a set of filters : the accepted and rejected
+        pattern.
+
+        Note:
+        -----
+        The `extra_directories` parameter can be given as input in order to
+        load catalogs in other directories. a list of directories is expected
+        for `extra_directories` parameter. For example:
+
+        ```
+        GWCatalogs.create(
+            GWCatalogType.UCB,
+            "/tmp",
+            "*.h5",
+            "*chain*",
+            extra_direcories=[".", "./tutorial"]
+        )
+        ```
+
+        Args:
+            type (GWCatalogType): Type of catalog
+            directory (str) : Directory where the data are located
+            accepted_pattern (str, optional) : pattern to select files in the directory (pattern can be expressed in this way '*.h5'). Default None
+            rejected_pattern (str, optional) : pattern to reject from the list has been built with the pattern. Default None
 
         Returns:
             GWCatalogs: the object implementing a set of specific catalogs
         """
         module = importlib.import_module(type.module_name)
         my_class = getattr(module, type.class_name)
-        return my_class(directory, pattern)
+        arguments = [directory]
+        if accepted_pattern is not None:
+            arguments.append(accepted_pattern)
+        if rejected_pattern is not None:
+            arguments.append(rejected_pattern)
+        return my_class(*arguments, *args, **kwargs)
 
     @property
     @abstractmethod
@@ -277,6 +314,16 @@ class GWCatalogs(ABC):
 
         :getter: Returns the number of catalogs in the catalog set
         :type: int
+        """
+        raise NotImplementedError("Not implemented")
+
+    @property
+    @abstractmethod
+    def files(self) -> List[str]:
+        """Returns the list of files matching the accepted and rejected pattern.
+
+        :getter: Returns the number of catalogs in the catalog set
+        :type: List[str]
         """
         raise NotImplementedError("Not implemented")
 

@@ -52,14 +52,6 @@ Load catalog and select individual source
 
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    INFO:numexpr.utils:NumExpr defaulting to 4 threads.
-
 
 .. raw:: html
 
@@ -115,11 +107,11 @@ Corner plot of select source parameters using `corner` module
 
     import corner
 
+    # read in the chain samples for this source
+    samples = final_catalog.get_source_sample(sourceId)
+
     # list of subset of paramters that are particularly interesting
     parameters = ["Frequency", "Frequency Derivative", "Amplitude", "Inclination"]
-
-    # read in the chain samples for this source
-    samples = final_catalog.get_source_sample(sourceId,parameters)
 
     # corner plot of source.
     fig = corner.corner(samples[parameters])
@@ -180,7 +172,7 @@ Can also be done with ChainConsumer for prettier plots
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  9.235 seconds)
+   **Total running time of the script:** ( 0 minutes  3.434 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_source_parameters.py:

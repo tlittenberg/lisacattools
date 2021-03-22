@@ -14,13 +14,12 @@ from lisacattools import getSciRD
 
 # load catalog
 catPath = "../../tutorial/data/ucb"
-catName = "cat15728640_v2.h5"
-catalogs = GWCatalogs.create(GWCatalogType.UCB, catPath, catName)
+catalogs = GWCatalogs.create(GWCatalogType.UCB, catPath, "cat15728640_v2.h5")
 meta = catalogs.metadata
 
-catalog = catalogs.get_last_catalog()
-detections_attr = catalog.get_attr_detections()
-detections = catalog.get_detections(detections_attr)
+final_catalog = catalogs.get_last_catalog()
+detections_attr = final_catalog.get_attr_detections()
+detections = final_catalog.get_detections(detections_attr)
 
 
 # set up matplotlib figure
@@ -39,9 +38,9 @@ plt.title(
 
 # color points in scatter plot by SNR
 cNorm = colors.LogNorm(
-    vmin=detections['SNR'].min(), vmax=detections['SNR'].max()
+    vmin=detections["SNR"].min(), vmax=detections["SNR"].max()
 )  # re-wrapping normalization
-scalarMap = cm.ScalarMappable(norm=cNorm, cmap=plt.cm.get_cmap('cool'))
+scalarMap = cm.ScalarMappable(norm=cNorm, cmap=plt.cm.get_cmap("cool"))
 cbar = fig.colorbar(scalarMap)
 cbar.set_label("SNR", fontsize=14)
 
@@ -49,10 +48,10 @@ cbar.set_label("SNR", fontsize=14)
 # the scatter plot
 detections.plot(
     kind="scatter",
-    x='Frequency',
-    y='Amplitude',
+    x="Frequency",
+    y="Amplitude",
     marker=".",
-    c=scalarMap.to_rgba(np.array(detections['SNR'])),
+    c=scalarMap.to_rgba(np.array(detections["SNR"])),
     ax=ax,
 )
 
@@ -61,3 +60,5 @@ f = np.logspace(-4, 0, 512)
 ax.plot(f, getSciRD(f, meta.iloc[0]["Observation Time"]), color="k")
 ax.legend(["Instrument Sensitivity", "resolved GBs"], fontsize=14)
 ax.grid()
+
+plt.show()

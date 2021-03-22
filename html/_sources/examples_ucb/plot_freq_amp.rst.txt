@@ -23,7 +23,7 @@ Scatter plots
 
 Scatter plot of detections' point estimates and LISA sensitivity curve.
 
-.. GENERATED FROM PYTHON SOURCE LINES 7-64
+.. GENERATED FROM PYTHON SOURCE LINES 7-65
 
 
 
@@ -32,20 +32,8 @@ Scatter plot of detections' point estimates and LISA sensitivity curve.
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    INFO:numexpr.utils:NumExpr defaulting to 4 threads.
 
 
-
-
-
-
-|
 
 .. code-block:: default
 
@@ -59,13 +47,12 @@ Scatter plot of detections' point estimates and LISA sensitivity curve.
 
     # load catalog
     catPath = "../../tutorial/data/ucb"
-    catName = "cat15728640_v2.h5"
-    catalogs = GWCatalogs.create(GWCatalogType.UCB, catPath, catName)
+    catalogs = GWCatalogs.create(GWCatalogType.UCB, catPath, "cat15728640_v2.h5")
     meta = catalogs.metadata
 
-    catalog = catalogs.get_last_catalog()
-    detections_attr = catalog.get_attr_detections()
-    detections = catalog.get_detections(detections_attr)
+    final_catalog = catalogs.get_last_catalog()
+    detections_attr = final_catalog.get_attr_detections()
+    detections = final_catalog.get_detections(detections_attr)
 
 
     # set up matplotlib figure
@@ -84,9 +71,9 @@ Scatter plot of detections' point estimates and LISA sensitivity curve.
 
     # color points in scatter plot by SNR
     cNorm = colors.LogNorm(
-        vmin=detections['SNR'].min(), vmax=detections['SNR'].max()
+        vmin=detections["SNR"].min(), vmax=detections["SNR"].max()
     )  # re-wrapping normalization
-    scalarMap = cm.ScalarMappable(norm=cNorm, cmap=plt.cm.get_cmap('cool'))
+    scalarMap = cm.ScalarMappable(norm=cNorm, cmap=plt.cm.get_cmap("cool"))
     cbar = fig.colorbar(scalarMap)
     cbar.set_label("SNR", fontsize=14)
 
@@ -94,10 +81,10 @@ Scatter plot of detections' point estimates and LISA sensitivity curve.
     # the scatter plot
     detections.plot(
         kind="scatter",
-        x='Frequency',
-        y='Amplitude',
+        x="Frequency",
+        y="Amplitude",
         marker=".",
-        c=scalarMap.to_rgba(np.array(detections['SNR'])),
+        c=scalarMap.to_rgba(np.array(detections["SNR"])),
         ax=ax,
     )
 
@@ -107,10 +94,12 @@ Scatter plot of detections' point estimates and LISA sensitivity curve.
     ax.legend(["Instrument Sensitivity", "resolved GBs"], fontsize=14)
     ax.grid()
 
+    plt.show()
+
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.194 seconds)
+   **Total running time of the script:** ( 0 minutes  1.186 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_freq_amp.py:

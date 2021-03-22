@@ -29,11 +29,11 @@ detections.loc[[sourceId], ["SNR", "Frequency"]]
 
 import corner
 
+# read in the chain samples for this source
+samples = final_catalog.get_source_sample(sourceId)
+
 # list of subset of paramters that are particularly interesting
 parameters = ["Frequency", "Frequency Derivative", "Amplitude", "Inclination"]
-
-# read in the chain samples for this source
-samples = final_catalog.get_source_sample(sourceId,parameters)
 
 # corner plot of source.
 fig = corner.corner(samples[parameters])

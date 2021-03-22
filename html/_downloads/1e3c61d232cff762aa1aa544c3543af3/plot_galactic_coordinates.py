@@ -25,24 +25,15 @@ from lisacattools import (
 
 # Start by loading the main catalog file processed from GBMCMC outputs
 catPath = "../../tutorial/data/ucb"
-catName = "cat15728640_v2.h5"
-catalogs = GWCatalogs.create(GWCatalogType.UCB, catPath, catName)
-catalog = catalogs.get_last_catalog()
-
-# Get SNRs and fdots for all detections to use for event selection
-detections = catalog.get_detections(["SNR","Frequency Derivative"])
+catalogs = GWCatalogs.create(GWCatalogType.UCB, catPath, "cat15728640_v2.h5")
+final_catalog = catalogs.get_last_catalog()
+detections_attr = final_catalog.get_attr_detections()
+detections = final_catalog.get_detections(detections_attr)
 
 # Get dataframe of only high SNR chirping events
 selected_detections = detections[
     (detections["Frequency Derivative"] > 0) & (detections["SNR"] > 100)
 ]
-
-# Sort them so the highest chirp rates are plotted last
-selected_detections=selected_detections.sort_values(by='Frequency Derivative')
-
-#%%
-# plot 1-sigma ellipses of 3D localization for each source
-#
 
 # set up the figure
 fig, axs = plt.subplots(1, 2, figsize=(12, 6), dpi=100)
@@ -51,14 +42,14 @@ axs[0].grid()
 axs[1].grid()
 
 axs[0].set(
-    xlim=(-20, 20),
-    ylim=(-20, 20),
+    xlim=(-10, 10),
+    ylim=(-10, 10),
     xlabel=r"$x_{\rm GC}\ [{\rm kpc}]$",
     ylabel=r"$y_{\rm GC}\ [{\rm kpc}]$",
 )
 axs[1].set(
-    xlim=(-20, 20),
-    ylim=(-20, 20),
+    xlim=(-10, 10),
+    ylim=(-10, 10),
     xlabel=r"$x_{\rm GC}\ [{\rm kpc}]$",
     ylabel=r"$z_{\rm GC}\ [{\rm kpc}]$",
 )
@@ -72,26 +63,17 @@ scalarMap = cm.ScalarMappable(norm=cNorm, cmap=plt.cm.get_cmap("plasma_r"))
 cbar = fig.colorbar(scalarMap)
 cbar.set_label("SNR")
 
-# get list of all sources in catalog
+# plot 1-sigma ellipses of 3D localization for each source
 sources = list(selected_detections.index)
-
-# git list of all chain parameters (we need most of them)
-parameters = catalog.get_attr_source_sample(sources[0])
-
 for source in sources:
 
     # get chain samples
-    samples = catalog.get_source_sample(source,parameters)
-
-    # fix Ecliptic Latitude bug in HDF5 files
-    samples["Ecliptic Latitude"] = np.pi/2 - np.arccos(samples["coslat"])
+    samples = final_catalog.get_source_sample(source)
 
     # convert from ecliptic to galactic coordinates
     convert_ecliptic_to_galactic(samples)
-    
     # enforce GR prior
     samples = samples[(samples["Frequency Derivative"] > 0)]
-    
     # add distance parameter
     get_DL(samples)
 
@@ -117,3 +99,6 @@ for source in sources:
         edgecolor=scalarMap.to_rgba(np.array(detections.loc[source].SNR)),
         linewidth=1.0,
     )
+
+
+plt.show()

@@ -9,6 +9,7 @@ Plot joint posterior of all catalog sources in galactic coordinates.
 # Load catalogs and combine chain samples
 import pandas as pd
 import numpy as np
+import ligo.skymap.plot
 import matplotlib.pyplot as plt
 from lisacattools.catalog import GWCatalogs, GWCatalogType
 from lisacattools import convert_ecliptic_to_galactic, HPhist
@@ -47,3 +48,4 @@ ax.grid()
 
 # use logarithmic scaling for density
 ax.imshow_hpx(np.log10(hpmap + 1), cmap="plasma")
+plt.show()

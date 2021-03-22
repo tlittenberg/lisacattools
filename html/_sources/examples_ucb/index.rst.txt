@@ -16,14 +16,14 @@ In addition, posterior samples for each candidate are stored as separate data fr
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Display a table of detections and point estimates for their parameters.">
+    <div class="sphx-glr-thumbcontainer" tooltip="Convert sampling parameters to derived parameters">
 
 .. only:: html
 
- .. figure:: /examples_ucb/images/thumb/sphx_glr_plot_source_table_thumb.png
-     :alt: Parameter table
+ .. figure:: /examples_ucb/images/thumb/sphx_glr_plot_source_Mc_DL_thumb.png
+     :alt: Resampling posteriors
 
-     :ref:`sphx_glr_examples_ucb_plot_source_table.py`
+     :ref:`sphx_glr_examples_ucb_plot_source_Mc_DL.py`
 
 .. raw:: html
 
@@ -33,7 +33,7 @@ In addition, posterior samples for each candidate are stored as separate data fr
 .. toctree::
    :hidden:
 
-   /examples_ucb/plot_source_table
+   /examples_ucb/plot_source_Mc_DL
 
 .. raw:: html
 
@@ -55,27 +55,6 @@ In addition, posterior samples for each candidate are stored as separate data fr
    :hidden:
 
    /examples_ucb/plot_source_joint_sky_pdf
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="Convert sampling parameters to derived parameters">
-
-.. only:: html
-
- .. figure:: /examples_ucb/images/thumb/sphx_glr_plot_source_Mc_DL_thumb.png
-     :alt: Resampling posteriors
-
-     :ref:`sphx_glr_examples_ucb_plot_source_Mc_DL.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /examples_ucb/plot_source_Mc_DL
 
 .. raw:: html
 
@@ -160,6 +139,27 @@ In addition, posterior samples for each candidate are stored as separate data fr
    :hidden:
 
    /examples_ucb/plot_galactic_coordinates
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Display pandas tables of catalog meta data, detections, point estimates for their parameters, a...">
+
+.. only:: html
+
+ .. figure:: /examples_ucb/images/thumb/sphx_glr_plot_source_table_thumb.png
+     :alt: Parameter table
+
+     :ref:`sphx_glr_examples_ucb_plot_source_table.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples_ucb/plot_source_table
 
 .. raw:: html
 

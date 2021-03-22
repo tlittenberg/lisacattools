@@ -191,14 +191,15 @@
 <span class="sd">&quot;&quot;&quot;Module implemented the UCB catalog.&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">glob</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
-
 <span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="kn">from</span> <span class="nn">..catalog</span> <span class="kn">import</span> <span class="n">GWCatalog</span><span class="p">,</span> <span class="n">GWCatalogs</span><span class="p">,</span> <span class="n">UtilsMonitoring</span><span class="p">,</span> <span class="n">UtilsLogs</span>
+<span class="kn">from</span> <span class="nn">..catalog</span> <span class="kn">import</span> <span class="n">GWCatalog</span><span class="p">,</span> <span class="n">GWCatalogs</span><span class="p">,</span> <span class="n">UtilsLogs</span><span class="p">,</span> <span class="n">UtilsMonitoring</span>
 <span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="n">CacheManager</span>
 
 <span class="n">UtilsLogs</span><span class="o">.</span><span class="n">addLoggingLevel</span><span class="p">(</span><span class="s2">&quot;TRACE&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
@@ -207,23 +208,101 @@
 <div class="viewcode-block" id="UcbCatalogs"><a class="viewcode-back" href="../../../catalog.html#lisacattools.plugins.ucb.UcbCatalogs">[docs]</a><span class="k">class</span> <span class="nc">UcbCatalogs</span><span class="p">(</span><span class="n">GWCatalogs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Implementation of the UCB catalogs.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">pattern</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;*.h5&quot;</span><span class="p">):</span>
+    <span class="n">EXTRA_DIR</span> <span class="o">=</span> <span class="s2">&quot;extra_directories&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">accepted_pattern</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;*.h5&quot;</span><span class="p">,</span>
+        <span class="n">rejected_pattern</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;*chain*&quot;</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Init the UcbCatalogs by reading all catalogs with a specific</span>
-<span class="sd">        pattern in a given directory.</span>
+<span class="sd">        pattern in a given directory and rejecting files by another pattern.</span>
 
 <span class="sd">        The list of catalogs is sorted by &quot;observation week&quot;</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            path (str): directory</span>
-<span class="sd">            pattern (str, optional): pattern. Defaults to &quot;MBH_wk*C.h5&quot;.</span>
+<span class="sd">            accepted_pattern (str, optional): pattern to accept files. Defaults to &quot;*.h5&quot;.</span>
+<span class="sd">            rejected_pattern (str, optional): pattern to reject files. Defaults to &quot;*chain*&quot;.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: no files found matching the accepted and rejected patterns.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span> <span class="o">=</span> <span class="n">pattern</span>
-        <span class="n">cat_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="n">pattern</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accepted_pattern</span> <span class="o">=</span> <span class="n">accepted_pattern</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rejected_pattern</span> <span class="o">=</span> <span class="n">rejected_pattern</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extra_directories</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="n">UcbCatalogs</span><span class="o">.</span><span class="n">EXTRA_DIR</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">UcbCatalogs</span><span class="o">.</span><span class="n">EXTRA_DIR</span> <span class="ow">in</span> <span class="n">kwargs</span>
+            <span class="k">else</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="n">directories</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_search_directories</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">extra_directories</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cat_files</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_search_files</span><span class="p">(</span>
+            <span class="n">directories</span><span class="p">,</span> <span class="n">accepted_pattern</span><span class="p">,</span> <span class="n">rejected_pattern</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cat_files</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;no files found matching the accepted (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">accepted_pattern</span><span class="si">}</span><span class="s2">) and rejected (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">rejected_pattern</span><span class="si">}</span><span class="s2">) patterns in </span><span class="si">{</span><span class="n">directories</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__metadata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
-            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_read_cats</span><span class="p">(</span><span class="n">cat_file</span><span class="p">)</span> <span class="k">for</span> <span class="n">cat_file</span> <span class="ow">in</span> <span class="n">cat_files</span><span class="p">]</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_read_cats</span><span class="p">(</span><span class="n">cat_file</span><span class="p">)</span> <span class="k">for</span> <span class="n">cat_file</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cat_files</span><span class="p">]</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__metadata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__metadata</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Observation Time&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="UcbCatalogs._search_directories"><a class="viewcode-back" href="../../../catalog.html#lisacattools.plugins.ucb.UcbCatalogs._search_directories">[docs]</a>    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_search_directories</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">extra_directories</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Compute the list of directories on which the pattern will be applied.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            path (str) : main path</span>
+<span class="sd">            extra_directories (List[str]) : others directories</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[str]: list of directories on which the pattern will be applied</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">directories</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">extra_directories</span><span class="p">[:]</span>
+        <span class="n">directories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">directories</span></div>
+
+<div class="viewcode-block" id="UcbCatalogs._search_files"><a class="viewcode-back" href="../../../catalog.html#lisacattools.plugins.ucb.UcbCatalogs._search_files">[docs]</a>    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_search_files</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">directories</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">accepted_pattern</span><span class="p">,</span> <span class="n">rejected_pattern</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Search files in directories according to a set of constraints :</span>
+<span class="sd">        accepted and rejected patterns</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            directories (List[str]): List of directories to scan</span>
+<span class="sd">            accepted_pattern ([type]): pattern to get files</span>
+<span class="sd">            rejected_pattern ([type]): pattern to reject files</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[str]: List of files</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">accepted_files</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="n">accepted_pattern</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">directories</span>
+        <span class="p">]</span>
+        <span class="n">accepted_files</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">accepted_files</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">rejected_pattern</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">rejected_files</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rejected_files</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="nb">list</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">rejected_pattern</span> <span class="ow">is</span> <span class="kc">None</span>
+                <span class="k">else</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="n">rejected_pattern</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">directories</span>
+            <span class="p">]</span>
+        <span class="n">rejected_files</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">rejected_files</span><span class="p">))</span>
+        <span class="n">cat_files</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">accepted_files</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">rejected_files</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">cat_files</span></div>
 
 <div class="viewcode-block" id="UcbCatalogs._read_cats"><a class="viewcode-back" href="../../../catalog.html#lisacattools.plugins.ucb.UcbCatalogs._read_cats">[docs]</a>    <span class="k">def</span> <span class="nf">_read_cats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cat_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Reads the metadata of a given catalog and the location of the file.</span>
@@ -241,20 +320,23 @@
 
     <span class="nd">@property</span>
     <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
-    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">time_spend</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">threshold_in_ms</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
         <span class="vm">__doc__</span> <span class="o">=</span> <span class="n">GWCatalogs</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="vm">__doc__</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__metadata</span>
 
     <span class="nd">@property</span>
     <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">TRACE</span><span class="p">)</span>
-    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">time_spend</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">threshold_in_ms</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="vm">__doc__</span> <span class="o">=</span> <span class="n">GWCatalogs</span><span class="o">.</span><span class="n">count</span><span class="o">.</span><span class="vm">__doc__</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 
+    <span class="nd">@property</span>
+    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">TRACE</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">files</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="vm">__doc__</span> <span class="o">=</span> <span class="n">GWCatalogs</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="vm">__doc__</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cat_files</span>
+
 <div class="viewcode-block" id="UcbCatalogs.get_catalogs_name"><a class="viewcode-back" href="../../../catalog.html#lisacattools.plugins.ucb.UcbCatalogs.get_catalogs_name">[docs]</a>    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">TRACE</span><span class="p">)</span>
-    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">time_spend</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">threshold_in_ms</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_catalogs_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="vm">__doc__</span> <span class="o">=</span> <span class="n">GWCatalogs</span><span class="o">.</span><span class="n">get_catalogs_name</span><span class="o">.</span><span class="vm">__doc__</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">index</span><span class="p">)</span></div>
@@ -301,13 +383,13 @@
         <span class="p">)</span></div>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;UcbCatalogs(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="si">!r}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="si">!r}</span><span class="s2">)&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;UcbCatalogs(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="si">!r}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">accepted_pattern</span><span class="si">!r}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">rejected_pattern</span><span class="si">!r}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">extra_directories</span><span class="si">!r}</span><span class="s2">)&quot;</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;UcbCatalogs: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="si">}</span><span class="s2">&quot;</span></div>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;UcbCatalogs: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">accepted_pattern</span><span class="si">!r}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">rejected_pattern</span><span class="si">!r}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">extra_directories</span><span class="si">!r}</span><span class="s2">&quot;</span></div>
 
 
-<span class="k">class</span> <span class="nc">UcbCatalog</span><span class="p">(</span><span class="n">GWCatalog</span><span class="p">):</span>
+<div class="viewcode-block" id="UcbCatalog"><a class="viewcode-back" href="../../../catalog.html#lisacattools.plugins.ucb.UcbCatalog">[docs]</a><span class="k">class</span> <span class="nc">UcbCatalog</span><span class="p">(</span><span class="n">GWCatalog</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Implementation of the Ucb catalog.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">catalog_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
@@ -323,7 +405,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__datasets</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
         <span class="n">store</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-    <span class="nd">@CacheManager</span><span class="o">.</span><span class="n">get_cache_pandas</span><span class="p">(</span><span class="n">keycache_argument</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<div class="viewcode-block" id="UcbCatalog._read_chain_file"><a class="viewcode-back" href="../../../catalog.html#lisacattools.plugins.ucb.UcbCatalog._read_chain_file">[docs]</a>    <span class="nd">@CacheManager</span><span class="o">.</span><span class="n">get_cache_pandas</span><span class="p">(</span><span class="n">keycache_argument</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">_read_chain_file</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">source_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">chain_file</span><span class="p">:</span> <span class="nb">str</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
@@ -341,7 +423,7 @@
         <span class="n">source_sample</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span>
             <span class="n">source_sample_file</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">source_name</span><span class="si">}</span><span class="s2">_chain&quot;</span>
         <span class="p">)</span>
-        <span class="k">return</span> <span class="n">source_sample</span>
+        <span class="k">return</span> <span class="n">source_sample</span></div>
 
     <span class="nd">@property</span>
     <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
@@ -353,7 +435,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__datasets</span>
 
-    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<div class="viewcode-block" id="UcbCatalog.get_dataset"><a class="viewcode-back" href="../../../catalog.html#lisacattools.plugins.ucb.UcbCatalog.get_dataset">[docs]</a>    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
     <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">time_spend</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">threshold_in_ms</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Returns a dataset based on its name.</span>
@@ -364,7 +446,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            pd.DataFrame: the dataset</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">name</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
     <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
@@ -378,7 +460,7 @@
         <span class="vm">__doc__</span> <span class="o">=</span> <span class="n">GWCatalog</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="vm">__doc__</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__location</span>
 
-    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<div class="viewcode-block" id="UcbCatalog.get_detections"><a class="viewcode-back" href="../../../catalog.html#lisacattools.plugins.ucb.UcbCatalog.get_detections">[docs]</a>    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
     <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">time_spend</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">threshold_in_ms</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_detections</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -387,15 +469,15 @@
         <span class="n">detections</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">(</span><span class="s2">&quot;detections&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="nb">list</span><span class="p">(</span><span class="n">detections</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="k">if</span> <span class="n">attr</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">detections</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="p">)</span>
+        <span class="p">)</span></div>
 
-    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<div class="viewcode-block" id="UcbCatalog.get_attr_detections"><a class="viewcode-back" href="../../../catalog.html#lisacattools.plugins.ucb.UcbCatalog.get_attr_detections">[docs]</a>    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
     <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">time_spend</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">threshold_in_ms</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_attr_detections</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="vm">__doc__</span> <span class="o">=</span> <span class="n">GWCatalog</span><span class="o">.</span><span class="n">get_attr_detections</span><span class="o">.</span><span class="vm">__doc__</span>
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">(</span><span class="s2">&quot;detections&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_dataset</span><span class="p">(</span><span class="s2">&quot;detections&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span></div>
 
-    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<div class="viewcode-block" id="UcbCatalog.get_median_source"><a class="viewcode-back" href="../../../catalog.html#lisacattools.plugins.ucb.UcbCatalog.get_median_source">[docs]</a>    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
     <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">time_spend</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">threshold_in_ms</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_median_source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
         <span class="vm">__doc__</span> <span class="o">=</span> <span class="n">GWCatalog</span><span class="o">.</span><span class="n">get_median_source</span><span class="o">.</span><span class="vm">__doc__</span>
@@ -405,9 +487,9 @@
         <span class="p">]</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_detections</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_attr_detections</span><span class="p">())</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
             <span class="p">[</span><span class="n">source_idx</span><span class="p">]</span>
-        <span class="p">]</span>
+        <span class="p">]</span></div>
 
-    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<div class="viewcode-block" id="UcbCatalog.get_source_sample"><a class="viewcode-back" href="../../../catalog.html#lisacattools.plugins.ucb.UcbCatalog.get_source_sample">[docs]</a>    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
     <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">time_spend</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="n">threshold_in_ms</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_source_sample</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">source_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">attr</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -416,25 +498,25 @@
         <span class="n">samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_detections</span><span class="p">([</span><span class="s2">&quot;chain file&quot;</span><span class="p">])</span>
         <span class="n">chain_file</span> <span class="o">=</span> <span class="n">samples</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">source_name</span><span class="p">][</span><span class="s2">&quot;chain file&quot;</span><span class="p">]</span>
         <span class="n">source_sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_chain_file</span><span class="p">(</span><span class="n">source_name</span><span class="p">,</span> <span class="n">chain_file</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">source_sample</span> <span class="k">if</span> <span class="n">attr</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">source_sample</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">source_sample</span> <span class="k">if</span> <span class="n">attr</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">source_sample</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div>
 
-    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<div class="viewcode-block" id="UcbCatalog.get_attr_source_sample"><a class="viewcode-back" href="../../../catalog.html#lisacattools.plugins.ucb.UcbCatalog.get_attr_source_sample">[docs]</a>    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
     <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">time_spend</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">get_attr_source_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="vm">__doc__</span> <span class="o">=</span> <span class="n">GWCatalog</span><span class="o">.</span><span class="n">get_attr_source_sample</span><span class="o">.</span><span class="vm">__doc__</span>
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_source_sample</span><span class="p">(</span><span class="n">source_name</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_source_sample</span><span class="p">(</span><span class="n">source_name</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span></div>
 
-    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">TRACE</span><span class="p">)</span>
+<div class="viewcode-block" id="UcbCatalog.describe_source_sample"><a class="viewcode-back" href="../../../catalog.html#lisacattools.plugins.ucb.UcbCatalog.describe_source_sample">[docs]</a>    <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">io</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">TRACE</span><span class="p">)</span>
     <span class="nd">@UtilsMonitoring</span><span class="o">.</span><span class="n">time_spend</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">describe_source_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
         <span class="vm">__doc__</span> <span class="o">=</span> <span class="n">GWCatalog</span><span class="o">.</span><span class="n">describe_source_sample</span><span class="o">.</span><span class="vm">__doc__</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_source_sample</span><span class="p">(</span><span class="n">source_name</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_source_sample</span><span class="p">(</span><span class="n">source_name</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;UcbCatalog(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__name</span><span class="si">!r}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__location</span><span class="si">!r}</span><span class="s2">)&quot;</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;UcbCatalog: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__location</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;UcbCatalog: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__location</span><span class="si">}</span><span class="s2">&quot;</span></div>
 </pre></div>
 
            </div>

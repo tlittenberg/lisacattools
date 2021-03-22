@@ -30,7 +30,7 @@ The GBMCMC sampler uses frequency, frequency derivative, and GW amplitude in its
 For systems whose dynamics are driven by GR, those parameters can be converted to chirp mass and luminosity distance.
 Here is a demonstration of how to do that by producing a chirpmass-distance corner plot.
 
-.. GENERATED FROM PYTHON SOURCE LINES 13-51
+.. GENERATED FROM PYTHON SOURCE LINES 13-48
 
 .. code-block:: default
 
@@ -39,23 +39,21 @@ Here is a demonstration of how to do that by producing a chirpmass-distance corn
     from chainconsumer import ChainConsumer
     from lisacattools.catalog import GWCatalog, GWCatalogs, GWCatalogType
     from lisacattools import get_DL, get_Mchirp
+    import matplotlib.pyplot as plt
 
     # Start by loading the main catalog file processed from GBMCMC outputs
     catPath = "../../tutorial/data/ucb"
-    catFile = "cat15728640_v2.h5"
-    catalogs = GWCatalogs.create(GWCatalogType.UCB,catPath,catFile)
-    catalog = catalogs.get_last_catalog()
+    catalogs = GWCatalogs.create(GWCatalogType.UCB, catPath, "cat15728640_v2.h5")
+    final_catalog = catalogs.get_last_catalog()
+    detections_attr = final_catalog.get_attr_detections()
+    detections = final_catalog.get_detections(detections_attr)
 
-    # Get SNR attribute for all detections
-    # Full list of attributes returned by catalog.get_attr_detections()
-    detections = catalog.get_detections(['SNR'])
+    # Sort table by SNR and select highest SNR source
+    detections.sort_values(by="SNR", ascending=False, inplace=True)
+    sourceId = detections.index[0]
+    samples = final_catalog.get_source_sample(sourceId)
 
-    # Sort list of detections by SNR and select loudest source
-    detections.sort_values(by="SNR",ascending=False, inplace=True)
-    sourceID = detections.index[0]
-    samples = catalog.get_source_sample(sourceID,['Frequency','Frequency Derivative','Amplitude'])
-
-    # Filter chain samples to reject negative fdot (enforce GR-only prior)
+    # Reject chain samples with negative fdot (enforce GR-driven prior)
     samples_GR = samples[(samples["Frequency Derivative"] > 0)]
 
     # Add distance and chirpmass to samples
@@ -71,8 +69,7 @@ Here is a demonstration of how to do that by producing a chirpmass-distance corn
     c = ChainConsumer().add_chain(df, parameters=parameter_symbols, cloud=True)
     c.configure(flip=False)
     fig = c.plotter.plot(figsize=1.5)
-
-
+    plt.show()
 
 
 .. image:: /examples_ucb/images/sphx_glr_plot_source_Mc_DL_001.png
@@ -94,7 +91,7 @@ Here is a demonstration of how to do that by producing a chirpmass-distance corn
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.848 seconds)
+   **Total running time of the script:** ( 0 minutes  18.087 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_source_Mc_DL.py:

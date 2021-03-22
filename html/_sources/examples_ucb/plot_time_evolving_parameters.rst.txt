@@ -29,11 +29,12 @@ This example shows how to find a particular source after the catalog has been up
 based on the `parent` meta data, and produces a corner plot showing how the parameter
 estimation evolves with time.
 
-.. GENERATED FROM PYTHON SOURCE LINES 12-18
+.. GENERATED FROM PYTHON SOURCE LINES 12-19
 
 .. code-block:: default
 
 
+    import os
     import pandas as pd
     import numpy as np
     from chainconsumer import ChainConsumer
@@ -46,46 +47,32 @@ estimation evolves with time.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 19-20
+.. GENERATED FROM PYTHON SOURCE LINES 20-21
 
 Start by loading the 03 month catalog and selecting a source to follow
 
-.. GENERATED FROM PYTHON SOURCE LINES 20-41
+.. GENERATED FROM PYTHON SOURCE LINES 21-36
 
 .. code-block:: default
 
     catPath = "../../tutorial/data/ucb"
-    catName = "cat7864320_v3.h5"
 
-    meta_catalog = GWCatalogs.create(GWCatalogType.UCB, catPath, catName)
-    parent_catalog = meta_catalog.get_last_catalog()
+    meta_catalog = GWCatalogs.create(GWCatalogType.UCB, catPath, "cat7864320_v3.h5")
+    old_catalog = meta_catalog.get_last_catalog()
 
-    detections_attr = parent_catalog.get_attr_detections()
-    parent_detections = parent_catalog.get_detections(detections_attr)
+    detections_attr = old_catalog.get_attr_detections()
+    old_cat = old_catalog.get_detections(detections_attr)
 
     # pick a source, any source
-    parent_source = "LDC0027827268"
+    old_source = "LDC0027827268"
+    sample_attr = old_catalog.get_attr_source_sample(old_source)
+    old_samples = old_catalog.get_source_sample(old_source, sample_attr)
 
-    # use get_attr_source_sample() to return list
-    # of all parameters in samples dataframe
-    sample_attr = parent_catalog.get_attr_source_sample(parent_source)
-
-    #load full set of parameters
-    parent_samples = parent_catalog.get_source_sample(parent_source, sample_attr)
-
-    parent_detections.loc[[parent_source], ["SNR", "Frequency", "Amplitude"]]
+    old_cat.loc[[old_source], ["SNR", "Frequency", "Amplitude"]]
 
 
 
 
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    INFO:numexpr.utils:NumExpr defaulting to 4 threads.
 
 
 .. raw:: html
@@ -134,29 +121,28 @@ Start by loading the 03 month catalog and selecting a source to follow
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 42-43
+.. GENERATED FROM PYTHON SOURCE LINES 37-38
 
-Load the 06 month catalog and find the current name for `parent_source`
+Load the 06 month catalog and find the current name for `old_source`
 
-.. GENERATED FROM PYTHON SOURCE LINES 43-59
+.. GENERATED FROM PYTHON SOURCE LINES 38-53
 
 .. code-block:: default
 
-    catName = "cat15728640_v2.h5"
+    meta_catalog = GWCatalogs.create(GWCatalogType.UCB, catPath, "cat15728640_v2.h5")
+    new_catalog = meta_catalog.get_last_catalog()
 
-    meta_catalog = GWCatalogs.create(GWCatalogType.UCB, catPath, catName)
-    child_catalog = meta_catalog.get_last_catalog()
+    detections_attr = new_catalog.get_attr_detections()
+    new_cat = new_catalog.get_detections(detections_attr)
 
-    child_detections = child_catalog.get_detections(detections_attr)
+    # select source that lists old_source as parent
+    new_cat = new_cat[(new_cat["parent"] == old_source)]
+    new_source = new_cat.index.values[0]
 
-    # select source that lists parent_source as parent
-    child_detections = child_detections[(child_detections["parent"] == parent_source)]
-    child_source = child_detections.index.values[0]
+    sample_attr = new_catalog.get_attr_source_sample(new_source)
+    new_samples = new_catalog.get_source_sample(new_source, sample_attr)
 
-    # load parameters of child source in new catalog
-    child_samples = child_catalog.get_source_sample(child_source, sample_attr)
-
-    child_detections.loc[[child_source], ["parent", "SNR", "Frequency", "Amplitude"]]
+    new_cat.loc[[new_source], ["parent", "SNR", "Frequency", "Amplitude"]]
 
 
 
@@ -212,11 +198,11 @@ Load the 06 month catalog and find the current name for `parent_source`
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 60-61
+.. GENERATED FROM PYTHON SOURCE LINES 54-55
 
 Plot the posteriors for the 03 and 06 months inferences for the source
 
-.. GENERATED FROM PYTHON SOURCE LINES 61-103
+.. GENERATED FROM PYTHON SOURCE LINES 55-97
 
 .. code-block:: default
 
@@ -242,16 +228,16 @@ Plot the posteriors for the 03 and 06 months inferences for the source
 
     # add chains
     c.add_chain(
-        parent_samples[parameters].values,
+        old_samples[parameters].values,
         parameters=parameter_labels,
         cloud=True,
-        name=parent_source,
+        name=old_source,
     )
     c.add_chain(
-        child_samples[parameters].values,
+        new_samples[parameters].values,
         parameters=parameter_labels,
         cloud=True,
-        name=child_source,
+        name=new_source,
     )
 
     # plot!
@@ -276,7 +262,7 @@ Plot the posteriors for the 03 and 06 months inferences for the source
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  7.514 seconds)
+   **Total running time of the script:** ( 0 minutes  3.558 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_time_evolving_parameters.py:

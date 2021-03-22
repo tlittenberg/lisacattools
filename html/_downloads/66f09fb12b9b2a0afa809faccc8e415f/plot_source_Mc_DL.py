@@ -15,23 +15,21 @@ Convert sampling parameters to derived parameters
 from chainconsumer import ChainConsumer
 from lisacattools.catalog import GWCatalog, GWCatalogs, GWCatalogType
 from lisacattools import get_DL, get_Mchirp
+import matplotlib.pyplot as plt
 
 # Start by loading the main catalog file processed from GBMCMC outputs
 catPath = "../../tutorial/data/ucb"
-catFile = "cat15728640_v2.h5"
-catalogs = GWCatalogs.create(GWCatalogType.UCB,catPath,catFile)
-catalog = catalogs.get_last_catalog()
+catalogs = GWCatalogs.create(GWCatalogType.UCB, catPath, "cat15728640_v2.h5")
+final_catalog = catalogs.get_last_catalog()
+detections_attr = final_catalog.get_attr_detections()
+detections = final_catalog.get_detections(detections_attr)
 
-# Get SNR attribute for all detections
-# Full list of attributes returned by catalog.get_attr_detections()
-detections = catalog.get_detections(['SNR'])
+# Sort table by SNR and select highest SNR source
+detections.sort_values(by="SNR", ascending=False, inplace=True)
+sourceId = detections.index[0]
+samples = final_catalog.get_source_sample(sourceId)
 
-# Sort list of detections by SNR and select loudest source
-detections.sort_values(by="SNR",ascending=False, inplace=True)
-sourceID = detections.index[0]
-samples = catalog.get_source_sample(sourceID,['Frequency','Frequency Derivative','Amplitude'])
-
-# Filter chain samples to reject negative fdot (enforce GR-only prior)
+# Reject chain samples with negative fdot (enforce GR-driven prior)
 samples_GR = samples[(samples["Frequency Derivative"] > 0)]
 
 # Add distance and chirpmass to samples
@@ -47,4 +45,4 @@ df = samples_GR[parameters].values
 c = ChainConsumer().add_chain(df, parameters=parameter_symbols, cloud=True)
 c.configure(flip=False)
 fig = c.plotter.plot(figsize=1.5)
-
+plt.show()

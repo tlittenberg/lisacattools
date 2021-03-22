@@ -1,4 +1,14 @@
-### Add extra_directories option to load catalogs Add tests for plugin creation Add documentation (HEAD -> main)
+### expanding source table example to demo GWCatalogs (HEAD -> main)
+>Mon, 22 Mar 2021 12:23:59 -0500
+
+>Author: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+>Commiter: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+
+
+
+### Add extra_directories option to load catalogs Add tests for plugin creation Add documentation
 >Sun, 21 Mar 2021 08:13:02 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -8,7 +18,7 @@
 
 
 
-### Cleaning (origin/main, origin/HEAD)
+### Cleaning
 >Thu, 18 Mar 2021 12:57:59 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -188,7 +198,7 @@
 
 
 
-### Update .gitignore (origin/refactoring)
+### Update .gitignore
 >Wed, 10 Mar 2021 01:07:10 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

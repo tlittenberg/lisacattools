@@ -405,7 +405,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__datasets</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
         <span class="n">store</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<div class="viewcode-block" id="UcbCatalog._read_chain_file"><a class="viewcode-back" href="../../../catalog.html#lisacattools.plugins.ucb.UcbCatalog._read_chain_file">[docs]</a>    <span class="nd">@CacheManager</span><span class="o">.</span><span class="n">get_cache_pandas</span><span class="p">(</span><span class="n">keycache_argument</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<div class="viewcode-block" id="UcbCatalog._read_chain_file"><a class="viewcode-back" href="../../../catalog.html#lisacattools.plugins.ucb.UcbCatalog._read_chain_file">[docs]</a>    <span class="nd">@CacheManager</span><span class="o">.</span><span class="n">get_cache_pandas</span><span class="p">(</span>
+        <span class="n">keycache_argument</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span>
+    <span class="p">)</span>
     <span class="k">def</span> <span class="nf">_read_chain_file</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">source_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">chain_file</span><span class="p">:</span> <span class="nb">str</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>

@@ -262,7 +262,7 @@ Plot the posteriors for the 03 and 06 months inferences for the source
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.558 seconds)
+   **Total running time of the script:** ( 0 minutes  3.643 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_time_evolving_parameters.py:

@@ -120,25 +120,25 @@ Load catalog and compute sky areas
           <th>LDC0081535331</th>
           <td>0.008154</td>
           <td>19.2096</td>
-          <td>326.231661</td>
+          <td>541.571806</td>
         </tr>
         <tr>
           <th>LDC0081547837</th>
           <td>0.008155</td>
           <td>148.8680</td>
-          <td>326.231661</td>
+          <td>11.854226</td>
         </tr>
         <tr>
           <th>LDC0081595365</th>
           <td>0.008160</td>
           <td>88.8300</td>
-          <td>326.231661</td>
+          <td>69.814925</td>
         </tr>
         <tr>
           <th>LDC0081697901</th>
           <td>0.008170</td>
           <td>19.8016</td>
-          <td>326.231661</td>
+          <td>854.075802</td>
         </tr>
       </tbody>
     </table>
@@ -219,7 +219,7 @@ less interesting figure
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 11 minutes  3.834 seconds)
+   **Total running time of the script:** ( 11 minutes  6.115 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_source_sky_ellipses.py:

@@ -147,7 +147,7 @@ In addition, posterior samples for each candidate are stored as separate data fr
 .. only:: html
 
  .. figure:: /examples_ucb/images/thumb/sphx_glr_plot_source_table_thumb.png
-     :alt: Parameter table
+     :alt: Parameter tables
 
      :ref:`sphx_glr_examples_ucb_plot_source_table.py`
 

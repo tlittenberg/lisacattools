@@ -1,4 +1,14 @@
-### Fix the bug related to cache (origin/main, origin/HEAD)
+### update to ucb parameter tables example (HEAD -> main)
+>Tue, 23 Mar 2021 15:33:29 -0500
+
+>Author: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+>Commiter: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+
+
+
+### Fix the bug related to cache
 >Tue, 23 Mar 2021 18:48:49 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -8,7 +18,7 @@
 
 
 
-### update gallery (upstream/main)
+### update gallery
 >Mon, 22 Mar 2021 12:28:50 -0500
 
 >Author: Tyson Littenberg (tyson.littenberg@ligo.org)
@@ -218,7 +228,7 @@
 
 
 
-### Update .gitignore (origin/refactoring)
+### Update .gitignore
 >Wed, 10 Mar 2021 01:07:10 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

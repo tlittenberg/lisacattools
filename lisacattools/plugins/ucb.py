@@ -232,7 +232,9 @@ class UcbCatalog(GWCatalog):
         self.__datasets = store.keys()
         store.close()
 
-    @CacheManager.get_cache_pandas(keycache_argument=2, level=logging.DEBUG)
+    @CacheManager.get_cache_pandas(
+        keycache_argument=[1, 2], level=logging.INFO
+    )
     def _read_chain_file(
         self, source_name: str, chain_file: str
     ) -> pd.DataFrame:

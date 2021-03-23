@@ -5,6 +5,7 @@ Library                 lisacattools.plugins.mbh.MbhCatalog    ${cat_name}     $
 Library                 lisacattools.GWCatalogType                                                  WITH NAME   GWCatalogType
 Library                 TestPluginMbh.py                                                            WITH NAME   test_create_mbh
 Library                 TestPluginUcb.py                                                            WITH NAME   test_create_ucb
+Library                 TestCacheDoesNotCacheWrongElt.py                                            WITH NAME   cache
 
 *** Variables ***
 ${dir_data}             tutorial/data/mbh
@@ -34,6 +35,9 @@ Test MBHcatalog_week001 Catalog With LISA Plugin
 Test creation of Plugins
     The List Of Files With MBH Should Be                14
     The List Of Files With UCB Should Be                2
+
+Test cache does not cache wrong elts
+    The Elts Should Be Cached                           False
 
 *** Keywords ***
 Check LISA Plugin Exists
@@ -107,4 +111,10 @@ The List Of Files With UCB Should Be
     [Arguments]                     ${nb}
     ${result}=	                    Convert To Integer	            ${nb}
     ${cnt}                          test_create_ucb.Get Number
+    Should Be Equal                 ${cnt}                          ${result}
+
+The Elts Should Be Cached
+    [Arguments]                     ${expected_result}
+    ${result}=                      Convert To Boolean              ${expected_result}
+    ${cnt}                          cache.Get Equal
     Should Be Equal                 ${cnt}                          ${result}

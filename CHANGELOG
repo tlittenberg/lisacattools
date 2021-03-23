@@ -1,4 +1,14 @@
-### Add extra_directories option to load catalogs Add tests for plugin creation Add documentation (HEAD -> main)
+### Fix the bug related to cache (HEAD -> main)
+>Tue, 23 Mar 2021 18:48:49 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Add extra_directories option to load catalogs Add tests for plugin creation Add documentation (origin/main, origin/HEAD)
 >Sun, 21 Mar 2021 08:13:02 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -8,7 +18,7 @@
 
 
 
-### Cleaning (origin/main, origin/HEAD)
+### Cleaning
 >Thu, 18 Mar 2021 12:57:59 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

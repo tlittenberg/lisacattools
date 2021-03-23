@@ -1,4 +1,4 @@
-### Fix the bug related to cache (HEAD -> main)
+### Fix the bug related to cache (origin/main, origin/HEAD)
 >Tue, 23 Mar 2021 18:48:49 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -8,7 +8,27 @@
 
 
 
-### Add extra_directories option to load catalogs Add tests for plugin creation Add documentation (origin/main, origin/HEAD)
+### update gallery (upstream/main)
+>Mon, 22 Mar 2021 12:28:50 -0500
+
+>Author: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+>Commiter: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+
+
+
+### expanding source table example to demo GWCatalogs
+>Mon, 22 Mar 2021 12:23:59 -0500
+
+>Author: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+>Commiter: Tyson Littenberg (tyson.littenberg@ligo.org)
+
+
+
+
+### Add extra_directories option to load catalogs Add tests for plugin creation Add documentation
 >Sun, 21 Mar 2021 08:13:02 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

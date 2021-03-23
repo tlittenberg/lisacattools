@@ -1,4 +1,14 @@
-### update gallery (HEAD -> main)
+### Fix the bug related to cache (origin/main, origin/HEAD)
+>Tue, 23 Mar 2021 18:48:49 +0100
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### update gallery (upstream/main)
 >Mon, 22 Mar 2021 12:28:50 -0500
 
 >Author: Tyson Littenberg (tyson.littenberg@ligo.org)
@@ -208,7 +218,7 @@
 
 
 
-### Update .gitignore
+### Update .gitignore (origin/refactoring)
 >Wed, 10 Mar 2021 01:07:10 +0100
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

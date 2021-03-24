@@ -145,7 +145,7 @@ class GWCatalog:
 
     @abstractmethod
     def get_median_source(self, attr: str) -> pd.DataFrame:
-        """Returns the source corresponding to the median median of the specified attribute.
+        """Returns the source corresponding to the median of the specified attribute.
 
         Args:
             attr (str): attribute name

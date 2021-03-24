@@ -18,8 +18,8 @@
 
 """This module is the interface for gravitational wave source catalogs. It is
 responsible for :
-- registering new catalog implementations as plugins
-- loading detections and source posterior samples
+    - registering new catalog implementations as plugins
+    - loading detections and source posterior samples
 """
 
 from abc import ABC, abstractmethod
@@ -40,7 +40,7 @@ from .custom_logging import UtilsLogs
 class GWCatalogPlugin:
     """Store information to load a plugin implementing the GW catalog.
 
-    The different information are:
+    The stored information is:
     - the module name
     - the class name
     """
@@ -117,7 +117,7 @@ class GWCatalog:
     ) -> Union[List[str], pd.DataFrame]:
         """Returns the GW detections.
 
-        When no argument is provided, the name of each detection is returned
+        When no argument is provided, the name of each detection is returned.
         When arguments are provided, each detection is returned with the attributes.
 
         Args:
@@ -127,13 +127,13 @@ class GWCatalog:
             NotImplementedError: Not implemented
 
         Returns:
-            Union[List[str], pd.DataFrame]: the name of each detection or the asked attributed of each detection
+            Union[List[str], pd.DataFrame]: the name of each detection or the requested attributes of each detection
         """
         raise NotImplementedError("Not implemented")
 
     @abstractmethod
     def get_attr_detections(self) -> List[str]:
-        """Returns the attributes of the detections catalog.
+        """Returns the attributes of the catalog.
 
         Raises:
             NotImplementedError: Not implemented
@@ -193,7 +193,7 @@ class GWCatalog:
 
     @abstractmethod
     def describe_source_samples(self, source_name: str) -> pd.DataFrame:
-        """Statisctical summary of the source posterior samples
+        """Statistical summary of the source posterior samples
 
         Args:
             source_name (str): source name

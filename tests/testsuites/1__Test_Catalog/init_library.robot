@@ -4,7 +4,7 @@ Library                 lisacattools
 
 *** Variables ***
 ${name}                 lisacattools
-${version}              0.0.7
+${version}              1.0.0
 
 *** Test Cases ***
 Test library name

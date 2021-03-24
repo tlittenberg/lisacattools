@@ -17,7 +17,7 @@
 # along with lisacattools.  If not, see <https://www.gnu.org/licenses/>.
 
 __name__ = "lisacattools"
-__version_info__ = ("0", "0", "7")
+__version_info__ = ("1", "0", "0")
 __version__ = ".".join(__version_info__)
 __title__ = "Lisa Catalog Tools"
 __description__ = "A small example package for using LISA catalogs"

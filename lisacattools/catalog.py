@@ -76,12 +76,12 @@ class GWCatalog:
             and callable(subclass.get_attr_detections)
             and hasattr(subclass, "get_median_source")
             and callable(subclass.get_median_source)
-            and hasattr(subclass, "get_source_sample")
-            and callable(subclass.get_source_sample)
-            and hasattr(subclass, "get_attr_source_sample")
-            and callable(subclass.get_source_sample)
-            and hasattr(subclass, "describe_source_sample")
-            and callable(subclass.describe_source_sample)
+            and hasattr(subclass, "get_source_samples")
+            and callable(subclass.get_source_samples)
+            and hasattr(subclass, "get_attr_source_samples")
+            and callable(subclass.get_source_samples)
+            and hasattr(subclass, "describe_source_samples")
+            and callable(subclass.describe_source_samples)
             or NotImplemented
         )
 
@@ -159,7 +159,7 @@ class GWCatalog:
         raise NotImplementedError("Not implemented")
 
     @abstractmethod
-    def get_source_sample(
+    def get_source_samples(
         self, source_name: str, attr: List[str]
     ) -> pd.DataFrame:
         """Returns the posterior samples of the source
@@ -177,7 +177,7 @@ class GWCatalog:
         raise NotImplementedError("Not implemented")
 
     @abstractmethod
-    def get_attr_source_sample(self, source_name: str) -> List[str]:
+    def get_attr_source_samples(self, source_name: str) -> List[str]:
         """Returns the attributes of the source posterior samples
 
         Args:
@@ -192,7 +192,7 @@ class GWCatalog:
         raise NotImplementedError("Not implemented")
 
     @abstractmethod
-    def describe_source_sample(self, source_name: str) -> pd.DataFrame:
+    def describe_source_samples(self, source_name: str) -> pd.DataFrame:
         """Statisctical summary of the source posterior samples
 
         Args:

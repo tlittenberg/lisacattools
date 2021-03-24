@@ -28,8 +28,8 @@ old_cat = old_catalog.get_detections(detections_attr)
 
 # pick a source, any source
 old_source = "LDC0027827268"
-sample_attr = old_catalog.get_attr_source_sample(old_source)
-old_samples = old_catalog.get_source_sample(old_source, sample_attr)
+sample_attr = old_catalog.get_attr_source_samples(old_source)
+old_samples = old_catalog.get_source_samples(old_source, sample_attr)
 
 old_cat.loc[[old_source], ["SNR", "Frequency", "Amplitude"]]
 
@@ -45,8 +45,8 @@ new_cat = new_catalog.get_detections(detections_attr)
 new_cat = new_cat[(new_cat["parent"] == old_source)]
 new_source = new_cat.index.values[0]
 
-sample_attr = new_catalog.get_attr_source_sample(new_source)
-new_samples = new_catalog.get_source_sample(new_source, sample_attr)
+sample_attr = new_catalog.get_attr_source_samples(new_source)
+new_samples = new_catalog.get_source_samples(new_source, sample_attr)
 
 new_cat.loc[[new_source], ["parent", "SNR", "Frequency", "Amplitude"]]
 

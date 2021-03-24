@@ -26,7 +26,7 @@ ax.set_ylabel("Mass 2 [MSun]")
 ax.legend(loc="lower right")
 srcs = list(detections.index)
 for idx, src in enumerate(srcs):
-    sample = last_cat.get_source_sample(src)
+    sample = last_cat.get_source_samples(src)
     l1, m1, h1 = np.quantile(np.array(sample["Mass 1"]), [0.05, 0.5, 0.95])
     l2, m2, h2 = np.quantile(np.array(sample["Mass 2"]), [0.05, 0.5, 0.95])
     if idx < 10:

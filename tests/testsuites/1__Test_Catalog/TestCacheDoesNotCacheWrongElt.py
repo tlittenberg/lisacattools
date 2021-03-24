@@ -8,10 +8,10 @@ class TestCacheDoesNotCacheWrongElt:
             GWCatalogType.UCB, "tutorial/data/ucb", "cat15728640_v2.h5"
         )
         catalog = catalogs.get_last_catalog()
-        c1 = catalog.get_source_sample("LDC0081497609")[
+        c1 = catalog.get_source_samples("LDC0081497609")[
             ["Ecliptic Latitude", "Ecliptic Longitude"]
         ]
-        c2 = catalog.get_source_sample("LDC0081535331")[
+        c2 = catalog.get_source_samples("LDC0081535331")[
             ["Ecliptic Latitude", "Ecliptic Longitude"]
         ]
         min_c1_lat = c1.describe().min()[0]

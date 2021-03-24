@@ -46,8 +46,8 @@ sources = last_cat.get_detections()
 for source in sources:
 
     # get chain samples
-    samples_attr = last_cat.get_attr_source_sample(source)
-    samples = last_cat.get_source_sample(source, samples_attr)
+    samples_attr = last_cat.get_attr_source_samples(source)
+    samples = last_cat.get_source_samples(source, samples_attr)
 
     # get dataframe into numpy array
     df = samples[parameters].values

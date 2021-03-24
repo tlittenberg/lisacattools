@@ -176,7 +176,7 @@ class CatalogAnalysis(AbstractLisaAnalyze):
         detections = self.catalog.get_detections(["Mass 1", "Mass 2"])
         sources = list(detections.index)
         for idx, source in enumerate(sources):
-            chain = self.catalog.get_source_sample(
+            chain = self.catalog.get_source_samples(
                 source, ["Mass 1", "Mass 2"]
             )
             l1, m1, h1 = np.quantile(
@@ -219,7 +219,7 @@ class CatalogAnalysis(AbstractLisaAnalyze):
     @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
     def plot_corners(self, source_name, params, *args, **kwargs) -> NoReturn:
         """Some corners plots."""
-        sources = self.catalog.get_source_sample(source_name, params)
+        sources = self.catalog.get_source_samples(source_name, params)
         self.plot_corners_ds(source_name, sources, *args, **kwargs)
 
     @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)

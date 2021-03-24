@@ -111,14 +111,14 @@ pd.concat([median_snr_source,median_A_source,median_f0_source]).style
 sourceID = median_snr_source.index[0]
 
 # get list of samples attributes
-sample_attr = catalog.get_attr_source_sample(sourceID)
+sample_attr = catalog.get_attr_source_samples(sourceID)
 print("\nlist of posterior sample parameters for source {}:\n".format(sourceID))
 print(*sample_attr,sep="\n")
 
 #%%
 # Get all posterior samples in a pandas DataFrame,
 # dropping redundant columns
-samples = catalog.get_source_sample(sourceID).drop(['coslat','cosinc'],axis=1)
+samples = catalog.get_source_samples(sourceID).drop(['coslat','cosinc'],axis=1)
 samples.describe().loc[['mean','std','25%','50%','75%']]
 
 #%%
@@ -128,5 +128,5 @@ samples.describe().loc[['mean','std','25%','50%','75%']]
 
 # get subset (i.e. marginalized) of samples
 parameters = ['Frequency','Amplitude','Ecliptic Longitude','Ecliptic Latitude','Inclination']
-marginalized_samples = catalog.get_source_sample(sourceID,parameters)
+marginalized_samples = catalog.get_source_samples(sourceID,parameters)
 marginalized_samples.describe().loc[['mean','std','25%','50%','75%']]

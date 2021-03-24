@@ -26,7 +26,7 @@ samples_list = list()
 for source in sources:
     
     # get chain samples
-    samples = catalog.get_source_sample(source,['coslat','Ecliptic Longitude'])
+    samples = catalog.get_source_samples(source,['coslat','Ecliptic Longitude'])
     
     # recompute ecliptic latitude to correct error in HDF5 files
     samples['Ecliptic Latitude'] = np.pi/2 - np.arccos(samples['coslat'])

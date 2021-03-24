@@ -253,7 +253,7 @@ class MbhCatalogs(GWCatalogs):
                     source_epoch,
                     self.get_catalog_by(
                         lineage.loc[source_epoch]["Catalog"]
-                    ).get_source_sample(source_epoch),
+                    ).get_source_samples(source_epoch),
                     lineage.loc[source_epoch]["Observation Week"],
                 )
                 for source_epoch in source_epochs
@@ -362,22 +362,22 @@ class MbhCatalog(GWCatalog):
         ]
 
     @UtilsMonitoring.io(level=logging.DEBUG)
-    def get_source_sample(
+    def get_source_samples(
         self, source_name: str, attr: List[str] = None
     ) -> pd.DataFrame:
-        __doc__ = GWCatalog.get_source_sample.__doc__
+        __doc__ = GWCatalog.get_source_samples.__doc__
         samples = self.get_dataset(f"{source_name}_chain")
         return samples if attr is None else samples[attr].copy()
 
     @UtilsMonitoring.io(level=logging.DEBUG)
-    def get_attr_source_sample(self, source_name: str) -> List[str]:
-        __doc__ = GWCatalog.get_attr_source_sample.__doc__
+    def get_attr_source_samples(self, source_name: str) -> List[str]:
+        __doc__ = GWCatalog.get_attr_source_samples.__doc__
         return list(self.get_dataset(f"{source_name}_chain").columns)
 
     @UtilsMonitoring.io(level=logging.TRACE)
-    def describe_source_sample(self, source_name: str) -> pd.DataFrame:
-        __doc__ = GWCatalog.describe_source_sample.__doc__
-        return self.get_source_sample(source_name).describe()
+    def describe_source_samples(self, source_name: str) -> pd.DataFrame:
+        __doc__ = GWCatalog.describe_source_samples.__doc__
+        return self.get_source_samples(source_name).describe()
 
     def __repr__(self):
         return f"MbhCatalog({self.__name!r}, {self.__location!r})"

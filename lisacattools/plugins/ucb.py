@@ -248,11 +248,11 @@ class UcbCatalog(GWCatalog):
             pd.DataFrame: [description]
         """
         dirname = os.path.dirname(self.location)
-        source_sample_file = os.path.join(dirname, chain_file)
-        source_sample = pd.read_hdf(
-            source_sample_file, key=f"{source_name}_chain"
+        source_samples_file = os.path.join(dirname, chain_file)
+        source_samples = pd.read_hdf(
+            source_samples_file, key=f"{source_name}_chain"
         )
-        return source_sample
+        return source_samples
 
     @property
     @UtilsMonitoring.io(level=logging.DEBUG)
@@ -320,26 +320,26 @@ class UcbCatalog(GWCatalog):
 
     @UtilsMonitoring.io(level=logging.DEBUG)
     @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=100)
-    def get_source_sample(
+    def get_source_samples(
         self, source_name: str, attr: List[str] = None
     ) -> pd.DataFrame:
-        __doc__ = GWCatalog.get_source_sample.__doc__
+        __doc__ = GWCatalog.get_source_samples.__doc__
         samples = self.get_detections(["chain file"])
         chain_file = samples.loc[source_name]["chain file"]
-        source_sample = self._read_chain_file(source_name, chain_file)
-        return source_sample if attr is None else source_sample[attr].copy()
+        source_samples = self._read_chain_file(source_name, chain_file)
+        return source_samples if attr is None else source_samples[attr].copy()
 
     @UtilsMonitoring.io(level=logging.DEBUG)
     @UtilsMonitoring.time_spend(level=logging.DEBUG)
-    def get_attr_source_sample(self, source_name: str) -> List[str]:
-        __doc__ = GWCatalog.get_attr_source_sample.__doc__
-        return list(self.get_source_sample(source_name).columns)
+    def get_attr_source_samples(self, source_name: str) -> List[str]:
+        __doc__ = GWCatalog.get_attr_source_samples.__doc__
+        return list(self.get_source_samples(source_name).columns)
 
     @UtilsMonitoring.io(level=logging.TRACE)
     @UtilsMonitoring.time_spend(level=logging.DEBUG)
-    def describe_source_sample(self, source_name: str) -> pd.DataFrame:
-        __doc__ = GWCatalog.describe_source_sample.__doc__
-        return self.get_source_sample(source_name).describe()
+    def describe_source_samples(self, source_name: str) -> pd.DataFrame:
+        __doc__ = GWCatalog.describe_source_samples.__doc__
+        return self.get_source_samples(source_name).describe()
 
     def __repr__(self):
         return f"UcbCatalog({self.__name!r}, {self.__location!r})"

@@ -30,7 +30,7 @@ detections.loc[[sourceId], ["SNR", "Frequency"]]
 import corner
 
 # read in the chain samples for this source
-samples = final_catalog.get_source_sample(sourceId)
+samples = final_catalog.get_source_samples(sourceId)
 
 # list of subset of paramters that are particularly interesting
 parameters = ["Frequency", "Frequency Derivative", "Amplitude", "Inclination"]

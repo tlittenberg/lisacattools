@@ -189,10 +189,10 @@
 <span class="c1"># You should have received a copy of the GNU General Public License</span>
 <span class="c1"># along with lisacattools.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
 
-<span class="sd">&quot;&quot;&quot;This module is the interface for gravitational wavelength catalogs. It is</span>
+<span class="sd">&quot;&quot;&quot;This module is the interface for gravitational wave source catalogs. It is</span>
 <span class="sd">responsible for :</span>
-<span class="sd">- register new catalog implementations as plugins</span>
-<span class="sd">- loading detections and source sample</span>
+<span class="sd">    - registering new catalog implementations as plugins</span>
+<span class="sd">    - loading detections and source posterior samples</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
@@ -213,7 +213,7 @@
 <span class="k">class</span> <span class="nc">GWCatalogPlugin</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Store information to load a plugin implementing the GW catalog.</span>
 
-<span class="sd">    The different information are:</span>
+<span class="sd">    The stored information is:</span>
 <span class="sd">    - the module name</span>
 <span class="sd">    - the class name</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -225,7 +225,7 @@
 <div class="viewcode-block" id="GWCatalogType"><a class="viewcode-back" href="../../catalog.html#lisacattools.catalog.GWCatalogType">[docs]</a><span class="k">class</span> <span class="nc">GWCatalogType</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;GW catalog implementation.</span>
 
-<span class="sd">    New implementations can be added by adding an attribute using the register</span>
+<span class="sd">    New implementations can be added as an attribute using the register</span>
 <span class="sd">    method of the GWCatalogs class.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -249,12 +249,12 @@
             <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="n">subclass</span><span class="o">.</span><span class="n">get_attr_detections</span><span class="p">)</span>
             <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">subclass</span><span class="p">,</span> <span class="s2">&quot;get_median_source&quot;</span><span class="p">)</span>
             <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="n">subclass</span><span class="o">.</span><span class="n">get_median_source</span><span class="p">)</span>
-            <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">subclass</span><span class="p">,</span> <span class="s2">&quot;get_source_sample&quot;</span><span class="p">)</span>
-            <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="n">subclass</span><span class="o">.</span><span class="n">get_source_sample</span><span class="p">)</span>
-            <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">subclass</span><span class="p">,</span> <span class="s2">&quot;get_attr_source_sample&quot;</span><span class="p">)</span>
-            <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="n">subclass</span><span class="o">.</span><span class="n">get_source_sample</span><span class="p">)</span>
-            <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">subclass</span><span class="p">,</span> <span class="s2">&quot;describe_source_sample&quot;</span><span class="p">)</span>
-            <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="n">subclass</span><span class="o">.</span><span class="n">describe_source_sample</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">subclass</span><span class="p">,</span> <span class="s2">&quot;get_source_samples&quot;</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="n">subclass</span><span class="o">.</span><span class="n">get_source_samples</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">subclass</span><span class="p">,</span> <span class="s2">&quot;get_attr_source_samples&quot;</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="n">subclass</span><span class="o">.</span><span class="n">get_source_samples</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">subclass</span><span class="p">,</span> <span class="s2">&quot;describe_source_samples&quot;</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="n">callable</span><span class="p">(</span><span class="n">subclass</span><span class="o">.</span><span class="n">describe_source_samples</span><span class="p">)</span>
             <span class="ow">or</span> <span class="bp">NotImplemented</span>
         <span class="p">)</span>
 
@@ -290,7 +290,7 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Returns the GW detections.</span>
 
-<span class="sd">        When no argument is provided, the name of each detection is returned</span>
+<span class="sd">        When no argument is provided, the name of each detection is returned.</span>
 <span class="sd">        When arguments are provided, each detection is returned with the attributes.</span>
 
 <span class="sd">        Args:</span>
@@ -300,13 +300,13 @@
 <span class="sd">            NotImplementedError: Not implemented</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Union[List[str], pd.DataFrame]: the name of each detection or the asked attributed of each detection</span>
+<span class="sd">            Union[List[str], pd.DataFrame]: the name of each detection or the requested attributes of each detection</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Not implemented&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="GWCatalog.get_attr_detections"><a class="viewcode-back" href="../../catalog.html#lisacattools.catalog.GWCatalog.get_attr_detections">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">get_attr_detections</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Returns the attributes of the detections catalog.</span>
+        <span class="sd">&quot;&quot;&quot;Returns the attributes of the catalog.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            NotImplementedError: Not implemented</span>
@@ -318,7 +318,7 @@
 
 <div class="viewcode-block" id="GWCatalog.get_median_source"><a class="viewcode-back" href="../../catalog.html#lisacattools.catalog.GWCatalog.get_median_source">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">get_median_source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns the source for which the median is computed on the attribute.</span>
+        <span class="sd">&quot;&quot;&quot;Returns the source corresponding to the median of the specified attribute.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            attr (str): attribute name</span>
@@ -331,11 +331,11 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Not implemented&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="GWCatalog.get_source_sample"><a class="viewcode-back" href="../../catalog.html#lisacattools.catalog.GWCatalog.get_source_sample">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">get_source_sample</span><span class="p">(</span>
+<div class="viewcode-block" id="GWCatalog.get_source_samples"><a class="viewcode-back" href="../../catalog.html#lisacattools.catalog.GWCatalog.get_source_samples">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_source_samples</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">source_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">attr</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns the sample of the source</span>
+        <span class="sd">&quot;&quot;&quot;Returns the posterior samples of the source</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            source_name (str): source name</span>
@@ -345,13 +345,13 @@
 <span class="sd">            NotImplementedError: [description]</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            pd.DataFrame: the samples of the source</span>
+<span class="sd">            pd.DataFrame: the posterior samples of the source</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Not implemented&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="GWCatalog.get_attr_source_sample"><a class="viewcode-back" href="../../catalog.html#lisacattools.catalog.GWCatalog.get_attr_source_sample">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">get_attr_source_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Returns the attributes of the source sample catalog</span>
+<div class="viewcode-block" id="GWCatalog.get_attr_source_samples"><a class="viewcode-back" href="../../catalog.html#lisacattools.catalog.GWCatalog.get_attr_source_samples">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_attr_source_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the attributes of the source posterior samples</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            source_name (str): source name</span>
@@ -364,9 +364,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Not implemented&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="GWCatalog.describe_source_sample"><a class="viewcode-back" href="../../catalog.html#lisacattools.catalog.GWCatalog.describe_source_sample">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">describe_source_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Give some statisctics about the source sample</span>
+<div class="viewcode-block" id="GWCatalog.describe_source_samples"><a class="viewcode-back" href="../../catalog.html#lisacattools.catalog.GWCatalog.describe_source_samples">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">describe_source_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Statistical summary of the source posterior samples</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            source_name (str): source name</span>
@@ -381,7 +381,7 @@
 
 
 <div class="viewcode-block" id="GWCatalogs"><a class="viewcode-back" href="../../catalog.html#lisacattools.catalog.GWCatalogs">[docs]</a><span class="k">class</span> <span class="nc">GWCatalogs</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Interface fo handling GW catalogs over the time&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Interface fo handling time-evolving GW catalogs&quot;&quot;&quot;</span>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">__subclasshook__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">subclass</span><span class="p">):</span>
@@ -455,8 +455,8 @@
 <span class="sd">        Args:</span>
 <span class="sd">            type (GWCatalogType): Type of catalog</span>
 <span class="sd">            directory (str) : Directory where the data are located</span>
-<span class="sd">            accepted_pattern (str, optional) : pattern to select files in the directory (pattern can be expressed in this way &#39;*.h5&#39;). Default None</span>
-<span class="sd">            rejected_pattern (str, optional) : pattern to reject from the list has been built with the pattern. Default None</span>
+<span class="sd">            accepted_pattern (str, optional) : pattern to select files in the directory (e.g. &#39;*.h5&#39;). Default None</span>
+<span class="sd">            rejected_pattern (str, optional) : pattern to reject from the list built using accepted_pattern. Default None</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            GWCatalogs: the object implementing a set of specific catalogs</span>
@@ -514,7 +514,7 @@
 
 <div class="viewcode-block" id="GWCatalogs.get_first_catalog"><a class="viewcode-back" href="../../catalog.html#lisacattools.catalog.GWCatalogs.get_first_catalog">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">get_first_catalog</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GWCatalog</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns the first catalog from catalog set</span>
+        <span class="sd">&quot;&quot;&quot;Returns the first catalog from the catalog set</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            NotImplementedError: When the method is not implemented</span>
@@ -568,8 +568,7 @@
 
 <div class="viewcode-block" id="GWCatalogs.get_lineage"><a class="viewcode-back" href="../../catalog.html#lisacattools.catalog.GWCatalogs.get_lineage">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">get_lineage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cat_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">src_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns a time-dependent catalog for the evolution of a particular</span>
-<span class="sd">        source in a series of catalogs.</span>
+        <span class="sd">&quot;&quot;&quot;Returns the history of a source (src_name: str) including metadata and point estimates through a series of preceeding catalogs. Series starts at current catalog (cat_name: str) and traces a source&#39;s history back.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            cat_name (str): catalog from which the lineage starts</span>
@@ -579,22 +578,22 @@
 <span class="sd">            NotImplementedError: When the method is not implemented</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            pd.DataFrame: a time-dependent catalog for the evolution of a particular source in a series of catalogs</span>
+<span class="sd">            pd.DataFrame: history of a parituclar source including metadata and point estimates through a series of preceeding catalogs.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Not implemented&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="GWCatalogs.get_lineage_data"><a class="viewcode-back" href="../../catalog.html#lisacattools.catalog.GWCatalogs.get_lineage_data">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">get_lineage_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lineage</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns the merge of all of the different epochs of obervation for the evolution of a particular source in a series of catalogs</span>
+        <span class="sd">&quot;&quot;&quot;Returns the posterior samples of a particular source at all different epochs of obervation in the DataFrame returned by get_lineage(). The samples are concatenated into a single DataFrame.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            lineage (pd.DataFrame): a time-dependent catalog for the evolution of a particular source in a series of catalogs</span>
+<span class="sd">            lineage (pd.DataFrame): time-dependent catalog for the evolution of a particular source in a series of catalogs returned by get_lineage()</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            NotImplementedError: When the method is not implemented</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            pd.DataFrame: a time-dependent catalog for the evolution of a particular source in a series of catalogs seen at different epochs</span>
+<span class="sd">            pd.DataFrame: posterior samples of a particular source at all different epochs of obervation in the DataFrame returned by get_lineage().</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Not implemented&quot;</span><span class="p">)</span></div></div>
 </pre></div>

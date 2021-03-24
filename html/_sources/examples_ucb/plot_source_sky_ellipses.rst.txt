@@ -55,7 +55,7 @@ Load catalog and compute sky areas
     for idx, source in enumerate(sources):
 
         # load source chain
-        samples = final_catalog.get_source_sample(source)
+        samples = final_catalog.get_source_samples(source)
 
         # correct sign error in catalog production
         samples['Ecliptic Latitude'] = np.pi/2 - np.arccos(samples['coslat'])
@@ -188,7 +188,7 @@ less interesting figure
     for source in sources:
 
         # get chain samples
-        samples = final_catalog.get_source_sample(source)
+        samples = final_catalog.get_source_samples(source)
 
         samples['Ecliptic Latitude'] = np.pi/2 - np.arccos(samples['coslat'])
     
@@ -219,7 +219,7 @@ less interesting figure
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 11 minutes  6.115 seconds)
+   **Total running time of the script:** ( 15 minutes  31.308 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_source_sky_ellipses.py:

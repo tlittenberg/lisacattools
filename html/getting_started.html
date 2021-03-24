@@ -95,8 +95,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#getting-started">1 - Getting Started</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#prerequisites">1.1 - Prerequisites</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#installing-by-cloning-the-repository">1.2 - Installing by cloning the repository</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#by-pip-for-users">1.2.1 - By pip (for users)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#by-pip-for-developpers">1.2.2 - By pip (for developpers)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#for-users">1.2.1 - For users</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#for-developers">1.2.2 - For developers</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#installing-by-pip">1.3 - Installing by pip</a></li>
@@ -216,7 +216,8 @@
 <p>Python module for interacting with example LISA catalogs</p>
 <div class="section" id="getting-started">
 <h2>1 - Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
-<p>These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.</p>
+<p>These instructions will get you a copy of the project up and running on your local machine,
+either for development and testing purposes or as an installed package.</p>
 <div class="section" id="prerequisites">
 <h3>1.1 - Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
 <p>You will need python3 to run this program.</p>
@@ -227,8 +228,8 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">...</span>
 </pre></div>
 </div>
-<div class="section" id="by-pip-for-users">
-<h4>1.2.1 - By pip (for users)<a class="headerlink" href="#by-pip-for-users" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="for-users">
+<h4>1.2.1 - For users<a class="headerlink" href="#for-users" title="Permalink to this headline">¶</a></h4>
 <p>To install the package for non-root users:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">user</span>
 </pre></div>
@@ -238,8 +239,8 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="by-pip-for-developpers">
-<h4>1.2.2 - By pip (for developpers)<a class="headerlink" href="#by-pip-for-developpers" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="for-developers">
+<h4>1.2.2 - For developers<a class="headerlink" href="#for-developers" title="Permalink to this headline">¶</a></h4>
 <p>Create a virtualenv</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">prepare</span><span class="o">-</span><span class="n">dev</span>
 <span class="n">source</span> <span class="o">.</span><span class="n">lisacattools</span><span class="o">-</span><span class="n">env</span>
@@ -260,12 +261,12 @@
 </div>
 <div class="section" id="development-only-if-the-repository-has-be-cloned">
 <h2>2 - Development (only if the repository has be cloned)<a class="headerlink" href="#development-only-if-the-repository-has-be-cloned" title="Permalink to this headline">¶</a></h2>
-<p>Install the software by PIP (developpers version)</p>
+<p>Install the software by PIP (developers version)</p>
 <p>Then, develop your code and commit</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span>
 </pre></div>
 </div>
-<p>The tests and code style formater will be run automatically. To ignore the
+<p>The tests and code style formatter will be run automatically. To ignore the
 checks, do</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">verify</span>
 </pre></div>
@@ -273,7 +274,11 @@ checks, do</p>
 </div>
 <div class="section" id="running-the-tutorial">
 <h2>3 - Running the tutorial<a class="headerlink" href="#running-the-tutorial" title="Permalink to this headline">¶</a></h2>
-<p>Once the software is installed, data must be downloaded for the tutorial</p>
+<p>Once the software is installed, data must be downloaded for the tutorial.
+The data are downloaded from a google drive and are large files – ~10GB in total – and will be installed
+in <code class="docutils literal notranslate"><span class="pre">tutorial/data</span></code>.
+Datasets include a catalog of simulated MBH detections with parameters updated on a weekly cadence,
+and two UCB catalogs, using 3 and 6 months of simulated LISA data.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">data</span>
 </pre></div>
 </div>

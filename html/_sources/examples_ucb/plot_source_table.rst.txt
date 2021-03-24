@@ -68,14 +68,6 @@ Start by loading the main catalog files processed from GBMCMC outputs
 
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    INFO:numexpr.utils:NumExpr defaulting to 4 threads.
-
 
 
 
@@ -683,60 +675,60 @@ Select sources based on their observed properties
 
     <div class="output_subarea output_html rendered_html output_result">
     <style  type="text/css" >
-    </style><table id="T_d58bb_" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >SNR</th>        <th class="col_heading level0 col1" >evidence</th>        <th class="col_heading level0 col2" >segment</th>        <th class="col_heading level0 col3" >chain file</th>        <th class="col_heading level0 col4" >parent</th>        <th class="col_heading level0 col5" >Frequency</th>        <th class="col_heading level0 col6" >Frequency Derivative</th>        <th class="col_heading level0 col7" >Amplitude</th>        <th class="col_heading level0 col8" >Ecliptic Longitude</th>        <th class="col_heading level0 col9" >coslat</th>        <th class="col_heading level0 col10" >cosinc</th>        <th class="col_heading level0 col11" >Initial Phase</th>        <th class="col_heading level0 col12" >Polarization</th>        <th class="col_heading level0 col13" >Ecliptic Latitude</th>        <th class="col_heading level0 col14" >Inclination</th>    </tr>    <tr>        <th class="index_name level0" >name</th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>    </tr></thead><tbody>
+    </style><table id="T_c4a30_" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >SNR</th>        <th class="col_heading level0 col1" >evidence</th>        <th class="col_heading level0 col2" >segment</th>        <th class="col_heading level0 col3" >chain file</th>        <th class="col_heading level0 col4" >parent</th>        <th class="col_heading level0 col5" >Frequency</th>        <th class="col_heading level0 col6" >Frequency Derivative</th>        <th class="col_heading level0 col7" >Amplitude</th>        <th class="col_heading level0 col8" >Ecliptic Longitude</th>        <th class="col_heading level0 col9" >coslat</th>        <th class="col_heading level0 col10" >cosinc</th>        <th class="col_heading level0 col11" >Initial Phase</th>        <th class="col_heading level0 col12" >Polarization</th>        <th class="col_heading level0 col13" >Ecliptic Latitude</th>        <th class="col_heading level0 col14" >Inclination</th>    </tr>    <tr>        <th class="index_name level0" >name</th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>        <th class="blank" ></th>    </tr></thead><tbody>
                     <tr>
-                            <th id="T_d58bb_level0_row0" class="row_heading level0 row0" >LDC0032278111</th>
-                            <td id="T_d58bb_row0_col0" class="data row0 col0" >22.607400</td>
-                            <td id="T_d58bb_row0_col1" class="data row0 col1" >1.000000</td>
-                            <td id="T_d58bb_row0_col2" class="data row0 col2" >395</td>
-                            <td id="T_d58bb_row0_col3" class="data row0 col3" >cat15728640_v2_chains_300s.h5</td>
-                            <td id="T_d58bb_row0_col4" class="data row0 col4" ></td>
-                            <td id="T_d58bb_row0_col5" class="data row0 col5" >0.003228</td>
-                            <td id="T_d58bb_row0_col6" class="data row0 col6" >-0.000000</td>
-                            <td id="T_d58bb_row0_col7" class="data row0 col7" >0.000000</td>
-                            <td id="T_d58bb_row0_col8" class="data row0 col8" >4.847894</td>
-                            <td id="T_d58bb_row0_col9" class="data row0 col9" >0.273976</td>
-                            <td id="T_d58bb_row0_col10" class="data row0 col10" >0.869589</td>
-                            <td id="T_d58bb_row0_col11" class="data row0 col11" >2.712843</td>
-                            <td id="T_d58bb_row0_col12" class="data row0 col12" >4.439019</td>
-                            <td id="T_d58bb_row0_col13" class="data row0 col13" >-0.277525</td>
-                            <td id="T_d58bb_row0_col14" class="data row0 col14" >-1.054370</td>
+                            <th id="T_c4a30_level0_row0" class="row_heading level0 row0" >LDC0032278111</th>
+                            <td id="T_c4a30_row0_col0" class="data row0 col0" >22.607400</td>
+                            <td id="T_c4a30_row0_col1" class="data row0 col1" >1.000000</td>
+                            <td id="T_c4a30_row0_col2" class="data row0 col2" >395</td>
+                            <td id="T_c4a30_row0_col3" class="data row0 col3" >cat15728640_v2_chains_300s.h5</td>
+                            <td id="T_c4a30_row0_col4" class="data row0 col4" ></td>
+                            <td id="T_c4a30_row0_col5" class="data row0 col5" >0.003228</td>
+                            <td id="T_c4a30_row0_col6" class="data row0 col6" >-0.000000</td>
+                            <td id="T_c4a30_row0_col7" class="data row0 col7" >0.000000</td>
+                            <td id="T_c4a30_row0_col8" class="data row0 col8" >4.847894</td>
+                            <td id="T_c4a30_row0_col9" class="data row0 col9" >0.273976</td>
+                            <td id="T_c4a30_row0_col10" class="data row0 col10" >0.869589</td>
+                            <td id="T_c4a30_row0_col11" class="data row0 col11" >2.712843</td>
+                            <td id="T_c4a30_row0_col12" class="data row0 col12" >4.439019</td>
+                            <td id="T_c4a30_row0_col13" class="data row0 col13" >-0.277525</td>
+                            <td id="T_c4a30_row0_col14" class="data row0 col14" >-1.054370</td>
                 </tr>
                 <tr>
-                            <th id="T_d58bb_level0_row1" class="row_heading level0 row1" >LDC0031947065</th>
-                            <td id="T_d58bb_row1_col0" class="data row1 col0" >29.374100</td>
-                            <td id="T_d58bb_row1_col1" class="data row1 col1" >1.000000</td>
-                            <td id="T_d58bb_row1_col2" class="data row1 col2" >391</td>
-                            <td id="T_d58bb_row1_col3" class="data row1 col3" >cat15728640_v2_chains_300s.h5</td>
-                            <td id="T_d58bb_row1_col4" class="data row1 col4" ></td>
-                            <td id="T_d58bb_row1_col5" class="data row1 col5" >0.003195</td>
-                            <td id="T_d58bb_row1_col6" class="data row1 col6" >-0.000000</td>
-                            <td id="T_d58bb_row1_col7" class="data row1 col7" >0.000000</td>
-                            <td id="T_d58bb_row1_col8" class="data row1 col8" >1.717829</td>
-                            <td id="T_d58bb_row1_col9" class="data row1 col9" >-0.271190</td>
-                            <td id="T_d58bb_row1_col10" class="data row1 col10" >-0.682377</td>
-                            <td id="T_d58bb_row1_col11" class="data row1 col11" >0.167233</td>
-                            <td id="T_d58bb_row1_col12" class="data row1 col12" >3.289386</td>
-                            <td id="T_d58bb_row1_col13" class="data row1 col13" >0.274630</td>
-                            <td id="T_d58bb_row1_col14" class="data row1 col14" >0.751009</td>
+                            <th id="T_c4a30_level0_row1" class="row_heading level0 row1" >LDC0031947065</th>
+                            <td id="T_c4a30_row1_col0" class="data row1 col0" >29.374100</td>
+                            <td id="T_c4a30_row1_col1" class="data row1 col1" >1.000000</td>
+                            <td id="T_c4a30_row1_col2" class="data row1 col2" >391</td>
+                            <td id="T_c4a30_row1_col3" class="data row1 col3" >cat15728640_v2_chains_300s.h5</td>
+                            <td id="T_c4a30_row1_col4" class="data row1 col4" ></td>
+                            <td id="T_c4a30_row1_col5" class="data row1 col5" >0.003195</td>
+                            <td id="T_c4a30_row1_col6" class="data row1 col6" >-0.000000</td>
+                            <td id="T_c4a30_row1_col7" class="data row1 col7" >0.000000</td>
+                            <td id="T_c4a30_row1_col8" class="data row1 col8" >1.717829</td>
+                            <td id="T_c4a30_row1_col9" class="data row1 col9" >-0.271190</td>
+                            <td id="T_c4a30_row1_col10" class="data row1 col10" >-0.682377</td>
+                            <td id="T_c4a30_row1_col11" class="data row1 col11" >0.167233</td>
+                            <td id="T_c4a30_row1_col12" class="data row1 col12" >3.289386</td>
+                            <td id="T_c4a30_row1_col13" class="data row1 col13" >0.274630</td>
+                            <td id="T_c4a30_row1_col14" class="data row1 col14" >0.751009</td>
                 </tr>
                 <tr>
-                            <th id="T_d58bb_level0_row2" class="row_heading level0 row2" >LDC0042502600</th>
-                            <td id="T_d58bb_row2_col0" class="data row2 col0" >14.741000</td>
-                            <td id="T_d58bb_row2_col1" class="data row2 col1" >1.000000</td>
-                            <td id="T_d58bb_row2_col2" class="data row2 col2" >521</td>
-                            <td id="T_d58bb_row2_col3" class="data row2 col3" >cat15728640_v2_chains_500s.h5</td>
-                            <td id="T_d58bb_row2_col4" class="data row2 col4" ></td>
-                            <td id="T_d58bb_row2_col5" class="data row2 col5" >0.004250</td>
-                            <td id="T_d58bb_row2_col6" class="data row2 col6" >0.000000</td>
-                            <td id="T_d58bb_row2_col7" class="data row2 col7" >0.000000</td>
-                            <td id="T_d58bb_row2_col8" class="data row2 col8" >4.674222</td>
-                            <td id="T_d58bb_row2_col9" class="data row2 col9" >-0.231138</td>
-                            <td id="T_d58bb_row2_col10" class="data row2 col10" >-0.308204</td>
-                            <td id="T_d58bb_row2_col11" class="data row2 col11" >2.205522</td>
-                            <td id="T_d58bb_row2_col12" class="data row2 col12" >0.071716</td>
-                            <td id="T_d58bb_row2_col13" class="data row2 col13" >0.233247</td>
-                            <td id="T_d58bb_row2_col14" class="data row2 col14" >0.313304</td>
+                            <th id="T_c4a30_level0_row2" class="row_heading level0 row2" >LDC0042502600</th>
+                            <td id="T_c4a30_row2_col0" class="data row2 col0" >14.741000</td>
+                            <td id="T_c4a30_row2_col1" class="data row2 col1" >1.000000</td>
+                            <td id="T_c4a30_row2_col2" class="data row2 col2" >521</td>
+                            <td id="T_c4a30_row2_col3" class="data row2 col3" >cat15728640_v2_chains_500s.h5</td>
+                            <td id="T_c4a30_row2_col4" class="data row2 col4" ></td>
+                            <td id="T_c4a30_row2_col5" class="data row2 col5" >0.004250</td>
+                            <td id="T_c4a30_row2_col6" class="data row2 col6" >0.000000</td>
+                            <td id="T_c4a30_row2_col7" class="data row2 col7" >0.000000</td>
+                            <td id="T_c4a30_row2_col8" class="data row2 col8" >4.674222</td>
+                            <td id="T_c4a30_row2_col9" class="data row2 col9" >-0.231138</td>
+                            <td id="T_c4a30_row2_col10" class="data row2 col10" >-0.308204</td>
+                            <td id="T_c4a30_row2_col11" class="data row2 col11" >2.205522</td>
+                            <td id="T_c4a30_row2_col12" class="data row2 col12" >0.071716</td>
+                            <td id="T_c4a30_row2_col13" class="data row2 col13" >0.233247</td>
+                            <td id="T_c4a30_row2_col14" class="data row2 col14" >0.313304</td>
                 </tr>
         </tbody></table>
     </div>
@@ -757,7 +749,7 @@ Now pick a single source and investigate it's parameters
     sourceID = median_snr_source.index[0]
 
     # get list of samples attributes
-    sample_attr = catalog.get_attr_source_sample(sourceID)
+    sample_attr = catalog.get_attr_source_samples(sourceID)
     print("\nlist of posterior sample parameters for source {}:\n".format(sourceID))
     print(*sample_attr,sep="\n")
 
@@ -771,12 +763,6 @@ Now pick a single source and investigate it's parameters
 
  .. code-block:: none
 
-    [0;32mInit the memory cache[0m
-    (lisacattools.utils._read_chain_file:127) 2021-03-23 15:29:46,786 [0;32m[0;32mINFO[0m[0m utils newfunc [0;32m[0;32mInit the memory cache[0m[0m
-    [0;32m[0;32mINFO[0m[0m:lisacattools.utils._read_chain_file:[0;32m[0;32mInit the memory cache[0m[0m
-    [0;32mCache LDC0032278111-cat15728640_v2_chains_300s.h5[0m
-    (lisacattools.utils._read_chain_file:130) 2021-03-23 15:29:46,786 [0;32m[0;32mINFO[0m[0m utils newfunc [0;32m[0;32mCache LDC0032278111-cat15728640_v2_chains_300s.h5[0m[0m
-    [0;32m[0;32mINFO[0m[0m:lisacattools.utils._read_chain_file:[0;32m[0;32mCache LDC0032278111-cat15728640_v2_chains_300s.h5[0m[0m
 
     list of posterior sample parameters for source LDC0032278111:
 
@@ -806,22 +792,12 @@ dropping redundant columns
 
 .. code-block:: default
 
-    samples = catalog.get_source_sample(sourceID).drop(['coslat','cosinc'],axis=1)
+    samples = catalog.get_source_samples(sourceID).drop(['coslat','cosinc'],axis=1)
     samples.describe().loc[['mean','std','25%','50%','75%']]
 
 
 
 
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    [0;32mRetrieve LDC0032278111-cat15728640_v2_chains_300s.h5 from cache[0m
-    (lisacattools.utils._read_chain_file:122) 2021-03-23 15:29:46,853 [0;32m[0;32mINFO[0m[0m utils newfunc [0;32m[0;32mRetrieve LDC0032278111-cat15728640_v2_chains_300s.h5 from cache[0m[0m
-    [0;32m[0;32mINFO[0m[0m:lisacattools.utils._read_chain_file:[0;32m[0;32mRetrieve LDC0032278111-cat15728640_v2_chains_300s.h5 from cache[0m[0m
 
 
 .. raw:: html
@@ -949,21 +925,11 @@ It is easy to pick out a subset of parameters
 
     # get subset (i.e. marginalized) of samples
     parameters = ['Frequency','Amplitude','Ecliptic Longitude','Ecliptic Latitude','Inclination']
-    marginalized_samples = catalog.get_source_sample(sourceID,parameters)
+    marginalized_samples = catalog.get_source_samples(sourceID,parameters)
     marginalized_samples.describe().loc[['mean','std','25%','50%','75%']]
 
 
 
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    [0;32mRetrieve LDC0032278111-cat15728640_v2_chains_300s.h5 from cache[0m
-    (lisacattools.utils._read_chain_file:122) 2021-03-23 15:29:46,944 [0;32m[0;32mINFO[0m[0m utils newfunc [0;32m[0;32mRetrieve LDC0032278111-cat15728640_v2_chains_300s.h5 from cache[0m[0m
-    [0;32m[0;32mINFO[0m[0m:lisacattools.utils._read_chain_file:[0;32m[0;32mRetrieve LDC0032278111-cat15728640_v2_chains_300s.h5 from cache[0m[0m
 
 
 .. raw:: html
@@ -1045,7 +1011,7 @@ It is easy to pick out a subset of parameters
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.662 seconds)
+   **Total running time of the script:** ( 0 minutes  1.960 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_source_table.py:

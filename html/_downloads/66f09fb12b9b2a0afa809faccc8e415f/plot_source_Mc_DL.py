@@ -27,7 +27,7 @@ detections = final_catalog.get_detections(detections_attr)
 # Sort table by SNR and select highest SNR source
 detections.sort_values(by="SNR", ascending=False, inplace=True)
 sourceId = detections.index[0]
-samples = final_catalog.get_source_sample(sourceId)
+samples = final_catalog.get_source_samples(sourceId)
 
 # Reject chain samples with negative fdot (enforce GR-driven prior)
 samples_GR = samples[(samples["Frequency Derivative"] > 0)]

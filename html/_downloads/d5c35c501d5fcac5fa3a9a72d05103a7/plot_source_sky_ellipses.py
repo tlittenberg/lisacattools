@@ -31,7 +31,7 @@ sources = list(detections.index)
 for idx, source in enumerate(sources):
 
     # load source chain
-    samples = final_catalog.get_source_sample(source)
+    samples = final_catalog.get_source_samples(source)
 
     # correct sign error in catalog production
     samples['Ecliptic Latitude'] = np.pi/2 - np.arccos(samples['coslat'])
@@ -83,7 +83,7 @@ sources = list(cat_loc.index)
 for source in sources:
 
     # get chain samples
-    samples = final_catalog.get_source_sample(source)
+    samples = final_catalog.get_source_samples(source)
 
     samples['Ecliptic Latitude'] = np.pi/2 - np.arccos(samples['coslat'])
     

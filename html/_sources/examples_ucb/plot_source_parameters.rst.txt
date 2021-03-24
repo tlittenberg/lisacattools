@@ -108,7 +108,7 @@ Corner plot of select source parameters using `corner` module
     import corner
 
     # read in the chain samples for this source
-    samples = final_catalog.get_source_sample(sourceId)
+    samples = final_catalog.get_source_samples(sourceId)
 
     # list of subset of paramters that are particularly interesting
     parameters = ["Frequency", "Frequency Derivative", "Amplitude", "Inclination"]
@@ -172,7 +172,7 @@ Can also be done with ChainConsumer for prettier plots
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.209 seconds)
+   **Total running time of the script:** ( 0 minutes  4.830 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_source_parameters.py:

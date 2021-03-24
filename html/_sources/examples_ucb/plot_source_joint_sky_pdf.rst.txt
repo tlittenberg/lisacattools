@@ -50,7 +50,7 @@ Load catalogs and combine chain samples
     for source in sources:
     
         # get chain samples
-        samples = catalog.get_source_sample(source,['coslat','Ecliptic Longitude'])
+        samples = catalog.get_source_samples(source,['coslat','Ecliptic Longitude'])
     
         # recompute ecliptic latitude to correct error in HDF5 files
         samples['Ecliptic Latitude'] = np.pi/2 - np.arccos(samples['coslat'])
@@ -100,7 +100,7 @@ Produce healpix map of joint posterior
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 8 minutes  36.438 seconds)
+   **Total running time of the script:** ( 12 minutes  16.762 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_source_joint_sky_pdf.py:

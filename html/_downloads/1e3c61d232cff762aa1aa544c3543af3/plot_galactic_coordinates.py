@@ -68,7 +68,7 @@ sources = list(selected_detections.index)
 for source in sources:
 
     # get chain samples
-    samples = final_catalog.get_source_sample(source)
+    samples = final_catalog.get_source_samples(source)
 
     # convert from ecliptic to galactic coordinates
     convert_ecliptic_to_galactic(samples)

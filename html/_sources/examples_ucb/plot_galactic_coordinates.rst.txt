@@ -92,7 +92,7 @@ Samples from the high SNR chirping binaries are reparameterized into galactic ca
     for source in sources:
 
         # get chain samples
-        samples = final_catalog.get_source_sample(source)
+        samples = final_catalog.get_source_samples(source)
 
         # convert from ecliptic to galactic coordinates
         convert_ecliptic_to_galactic(samples)
@@ -140,7 +140,7 @@ Samples from the high SNR chirping binaries are reparameterized into galactic ca
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  24.540 seconds)
+   **Total running time of the script:** ( 0 minutes  35.139 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_galactic_coordinates.py:

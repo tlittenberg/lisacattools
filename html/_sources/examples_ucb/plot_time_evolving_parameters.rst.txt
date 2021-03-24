@@ -65,8 +65,8 @@ Start by loading the 03 month catalog and selecting a source to follow
 
     # pick a source, any source
     old_source = "LDC0027827268"
-    sample_attr = old_catalog.get_attr_source_sample(old_source)
-    old_samples = old_catalog.get_source_sample(old_source, sample_attr)
+    sample_attr = old_catalog.get_attr_source_samples(old_source)
+    old_samples = old_catalog.get_source_samples(old_source, sample_attr)
 
     old_cat.loc[[old_source], ["SNR", "Frequency", "Amplitude"]]
 
@@ -139,8 +139,8 @@ Load the 06 month catalog and find the current name for `old_source`
     new_cat = new_cat[(new_cat["parent"] == old_source)]
     new_source = new_cat.index.values[0]
 
-    sample_attr = new_catalog.get_attr_source_sample(new_source)
-    new_samples = new_catalog.get_source_sample(new_source, sample_attr)
+    sample_attr = new_catalog.get_attr_source_samples(new_source)
+    new_samples = new_catalog.get_source_samples(new_source, sample_attr)
 
     new_cat.loc[[new_source], ["parent", "SNR", "Frequency", "Amplitude"]]
 
@@ -262,7 +262,7 @@ Plot the posteriors for the 03 and 06 months inferences for the source
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.643 seconds)
+   **Total running time of the script:** ( 0 minutes  5.148 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_time_evolving_parameters.py:

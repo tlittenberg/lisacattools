@@ -16,10 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with lisacattools.  If not, see <https://www.gnu.org/licenses/>.
 
-"""This module is the interface for gravitational wavelength catalogs. It is
+"""This module is the interface for gravitational wave source catalogs. It is
 responsible for :
-- register new catalog implementations as plugins
-- loading detections and source sample
+- registering new catalog implementations as plugins
+- loading detections and source posterior samples
 """
 
 from abc import ABC, abstractmethod
@@ -52,7 +52,7 @@ class GWCatalogPlugin:
 class GWCatalogType:
     """GW catalog implementation.
 
-    New implementations can be added by adding an attribute using the register
+    New implementations can be added as an attribute using the register
     method of the GWCatalogs class.
     """
 
@@ -145,7 +145,7 @@ class GWCatalog:
 
     @abstractmethod
     def get_median_source(self, attr: str) -> pd.DataFrame:
-        """Returns the source for which the median is computed on the attribute.
+        """Returns the source corresponding to the median median of the specified attribute.
 
         Args:
             attr (str): attribute name
@@ -162,7 +162,7 @@ class GWCatalog:
     def get_source_sample(
         self, source_name: str, attr: List[str]
     ) -> pd.DataFrame:
-        """Returns the sample of the source
+        """Returns the posterior samples of the source
 
         Args:
             source_name (str): source name
@@ -172,13 +172,13 @@ class GWCatalog:
             NotImplementedError: [description]
 
         Returns:
-            pd.DataFrame: the samples of the source
+            pd.DataFrame: the posterior samples of the source
         """
         raise NotImplementedError("Not implemented")
 
     @abstractmethod
     def get_attr_source_sample(self, source_name: str) -> List[str]:
-        """Returns the attributes of the source sample catalog
+        """Returns the attributes of the source posterior samples
 
         Args:
             source_name (str): source name
@@ -193,7 +193,7 @@ class GWCatalog:
 
     @abstractmethod
     def describe_source_sample(self, source_name: str) -> pd.DataFrame:
-        """Give some statisctics about the source sample
+        """Statisctical summary of the source posterior samples
 
         Args:
             source_name (str): source name
@@ -208,7 +208,7 @@ class GWCatalog:
 
 
 class GWCatalogs(ABC):
-    """Interface fo handling GW catalogs over the time"""
+    """Interface fo handling time-evolving GW catalogs"""
 
     @classmethod
     def __subclasshook__(cls, subclass):
@@ -282,8 +282,8 @@ class GWCatalogs(ABC):
         Args:
             type (GWCatalogType): Type of catalog
             directory (str) : Directory where the data are located
-            accepted_pattern (str, optional) : pattern to select files in the directory (pattern can be expressed in this way '*.h5'). Default None
-            rejected_pattern (str, optional) : pattern to reject from the list has been built with the pattern. Default None
+            accepted_pattern (str, optional) : pattern to select files in the directory (e.g. '*.h5'). Default None
+            rejected_pattern (str, optional) : pattern to reject from the list built using accepted_pattern. Default None
 
         Returns:
             GWCatalogs: the object implementing a set of specific catalogs
@@ -341,7 +341,7 @@ class GWCatalogs(ABC):
 
     @abstractmethod
     def get_first_catalog(self) -> GWCatalog:
-        """Returns the first catalog from catalog set
+        """Returns the first catalog from the catalog set
 
         Raises:
             NotImplementedError: When the method is not implemented
@@ -395,8 +395,7 @@ class GWCatalogs(ABC):
 
     @abstractmethod
     def get_lineage(self, cat_name: str, src_name: str) -> pd.DataFrame:
-        """Returns a time-dependent catalog for the evolution of a particular
-        source in a series of catalogs.
+        """Returns the history of a source (src_name: str) including metadata and point estimates through a series of preceeding catalogs. Series starts at current catalog (cat_name: str) and traces a source's history back.
 
         Args:
             cat_name (str): catalog from which the lineage starts
@@ -406,21 +405,21 @@ class GWCatalogs(ABC):
             NotImplementedError: When the method is not implemented
 
         Returns:
-            pd.DataFrame: a time-dependent catalog for the evolution of a particular source in a series of catalogs
+            pd.DataFrame: history of a parituclar source including metadata and point estimates through a series of preceeding catalogs.
         """
         raise NotImplementedError("Not implemented")
 
     @abstractmethod
     def get_lineage_data(self, lineage: pd.DataFrame) -> pd.DataFrame:
-        """Returns the merge of all of the different epochs of obervation for the evolution of a particular source in a series of catalogs
+        """Returns the posterior samples of a particular source at all different epochs of obervation in the DataFrame returned by get_lineage(). The samples are concatenated into a single DataFrame.
 
         Args:
-            lineage (pd.DataFrame): a time-dependent catalog for the evolution of a particular source in a series of catalogs
+            lineage (pd.DataFrame): time-dependent catalog for the evolution of a particular source in a series of catalogs returned by get_lineage()
 
         Raises:
             NotImplementedError: When the method is not implemented
 
         Returns:
-            pd.DataFrame: a time-dependent catalog for the evolution of a particular source in a series of catalogs seen at different epochs
+            pd.DataFrame: posterior samples of a particular source at all different epochs of obervation in the DataFrame returned by get_lineage().
         """
         raise NotImplementedError("Not implemented")

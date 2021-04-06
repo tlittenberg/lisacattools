@@ -291,7 +291,7 @@ select the parameters to plot and scaling (linear or log) for each
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  24.867 seconds)
+   **Total running time of the script:** ( 0 minutes  18.103 seconds)
 
 
 .. _sphx_glr_download_examples_smbh_plot_source_time_evolving_violin.py:

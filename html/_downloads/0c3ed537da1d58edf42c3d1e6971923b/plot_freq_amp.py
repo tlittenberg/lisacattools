@@ -28,7 +28,7 @@ ax = plt.axes()
 
 plt.yscale("log")
 plt.xscale("log")
-plt.xlabel("Frequency [Hz]", fontsize=14)
+plt.xlabel("Frequency (Hz)", fontsize=14)
 plt.ylabel("Strain Amplitude", fontsize=14)
 plt.title(
     "Point estimates for %i sources found in catalog %s"

@@ -32,8 +32,20 @@ Scatter plot of detections' point estimates and LISA sensitivity curve.
     :class: sphx-glr-single-img
 
 
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+    INFO:numexpr.utils:NumExpr defaulting to 4 threads.
 
 
+
+
+
+
+|
 
 .. code-block:: default
 
@@ -61,7 +73,7 @@ Scatter plot of detections' point estimates and LISA sensitivity curve.
 
     plt.yscale("log")
     plt.xscale("log")
-    plt.xlabel("Frequency [Hz]", fontsize=14)
+    plt.xlabel("Frequency (Hz)", fontsize=14)
     plt.ylabel("Strain Amplitude", fontsize=14)
     plt.title(
         "Point estimates for %i sources found in catalog %s"
@@ -99,7 +111,7 @@ Scatter plot of detections' point estimates and LISA sensitivity curve.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.304 seconds)
+   **Total running time of the script:** ( 0 minutes  5.556 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_freq_amp.py:

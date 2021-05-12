@@ -4,8 +4,8 @@ Python module for interacting with example LISA catalogs
 
 ## 1 - Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine, 
-either for development and testing purposes or as an installed package.
+These instructions will get you a copy of the project up and running on your local machine,
+either for development and testing purposes or as an installed package.  For more information, see the documentation at https://tlittenberg.github.io/lisacattools/html/index.html.
 
 ### 1.1 - Prerequisites
 
@@ -67,10 +67,10 @@ git commit --no-verify
 
 ## 3 - Running the tutorial
 
-Once the software is installed, data must be downloaded for the tutorial. 
-The data are downloaded from a google drive and are large files -- ~10GB in total -- and will be installed 
-in `tutorial/data`. 
-Datasets include a catalog of simulated MBH detections with parameters updated on a weekly cadence, 
+Once the software is installed, data must be downloaded for the tutorial.
+The data are downloaded from a google drive and are large files -- ~10GB in total -- and will be installed
+in `tutorial/data`.
+Datasets include a catalog of simulated MBH detections with parameters updated on a weekly cadence,
 and two UCB catalogs, using 3 and 6 months of simulated LISA data.
 ```
 make data

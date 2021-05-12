@@ -1,5 +1,7 @@
 # lisacattools
 
+[![Doc badge](https://img.shields.io/badge/Docs-master-brightgreen)](https://tlittenberg.github.io/lisacattools/html/index.html)
+
 Python module for interacting with example LISA catalogs
 
 ## 1 - Getting Started

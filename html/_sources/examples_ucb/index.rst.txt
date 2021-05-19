@@ -181,6 +181,27 @@ In addition, posterior samples for each candidate are stored as separate data fr
    :hidden:
 
    /examples_ucb/plot_source_sky_ellipses
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Plot 2-sigma contours of all sources consistent with input error circle on the sky in galactic ...">
+
+.. only:: html
+
+ .. figure:: /examples_ucb/images/thumb/sphx_glr_plot_sources_in_sky_circle_thumb.png
+     :alt: Select Sources in Sky Region
+
+     :ref:`sphx_glr_examples_ucb_plot_sources_in_sky_circle.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples_ucb/plot_sources_in_sky_circle
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

@@ -202,6 +202,27 @@ In addition, posterior samples for each candidate are stored as separate data fr
    :hidden:
 
    /examples_ucb/plot_sources_in_sky_circle
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Select candidates for EM follow-up based on localization, galactic latitude, and inclination.">
+
+.. only:: html
+
+ .. figure:: /examples_ucb/images/thumb/sphx_glr_plot_followup_candidates_thumb.png
+     :alt: Select EM Candidates
+
+     :ref:`sphx_glr_examples_ucb_plot_followup_candidates.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples_ucb/plot_followup_candidates
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

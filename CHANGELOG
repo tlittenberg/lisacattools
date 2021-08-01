@@ -1,4 +1,14 @@
-### updating MBHdemo and adding ucb sky circle example (HEAD -> main)
+### Fix the log verbose (HEAD -> main)
+>Mon, 2 Aug 2021 01:35:35 +0200
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### updating MBHdemo and adding ucb sky circle example
 >Wed, 19 May 2021 16:02:26 -0500
 
 >Author: Tyson Littenberg (tyson.littenberg@ligo.org)
@@ -8,7 +18,27 @@
 
 
 
-### bumped version number to 1.0.0! (origin/main, origin/HEAD)
+### Add shields.io badge for master branch docs.
+>Wed, 12 May 2021 17:30:47 -0400
+
+>Author: Will M. Farr (will.farr@ligo.org)
+
+>Commiter: Will M. Farr (will.farr@ligo.org)
+
+
+
+
+### Adding bare link to documentation.
+>Wed, 12 May 2021 17:27:18 -0400
+
+>Author: Will M. Farr (will.farr@ligo.org)
+
+>Commiter: Will M. Farr (will.farr@ligo.org)
+
+
+
+
+### bumped version number to 1.0.0!
 >Wed, 24 Mar 2021 13:22:28 -0500
 
 >Author: Tyson Littenberg (tyson.littenberg@ligo.org)

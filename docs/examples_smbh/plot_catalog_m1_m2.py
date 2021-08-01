@@ -1,13 +1,15 @@
+# -*- coding: utf-8 -*-
 """
 Catalog mass plot
 =================
 
 Plot component masses of all detections
 """
-
-import numpy as np
 import matplotlib.pyplot as plt
-from lisacattools.catalog import GWCatalogs, GWCatalogType
+import numpy as np
+
+from lisacattools.catalog import GWCatalogs
+from lisacattools.catalog import GWCatalogType
 
 # get list catalog files
 catPath = "../../tutorial/data/mbh"

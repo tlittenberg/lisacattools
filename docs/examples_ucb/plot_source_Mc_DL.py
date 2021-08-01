@@ -1,21 +1,24 @@
+# -*- coding: utf-8 -*-
 """
 Resampling posteriors
 =====================
 
 Convert sampling parameters to derived parameters
 """
-
 #%%
 # This example shows how to change parameterization of the posterior samples.
 # The GBMCMC sampler uses frequency, frequency derivative, and GW amplitude in its waveform model.
 # For systems whose dynamics are driven by GR, those parameters can be converted to chirp mass and luminosity distance.
 # Here is a demonstration of how to do that by producing a chirpmass-distance corner plot.
-
 # Import modules
-from chainconsumer import ChainConsumer
-from lisacattools.catalog import GWCatalog, GWCatalogs, GWCatalogType
-from lisacattools import get_DL, get_Mchirp
 import matplotlib.pyplot as plt
+from chainconsumer import ChainConsumer
+
+from lisacattools import get_DL
+from lisacattools import get_Mchirp
+from lisacattools.catalog import GWCatalog
+from lisacattools.catalog import GWCatalogs
+from lisacattools.catalog import GWCatalogType
 
 # Start by loading the main catalog file processed from GBMCMC outputs
 catPath = "../../tutorial/data/ucb"

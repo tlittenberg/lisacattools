@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Time-evolving violin plot
 =================================
@@ -8,8 +9,9 @@ parameter estimation changes with observing time over all observing epochs
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-import matplotlib.pyplot as plt
-from lisacattools.catalog import GWCatalogs, GWCatalogType
+
+from lisacattools.catalog import GWCatalogs
+from lisacattools.catalog import GWCatalogType
 
 # get list catalog files
 catPath = "../../tutorial/data/mbh"
@@ -20,7 +22,9 @@ detections_attr = last_cat.get_attr_detections()
 detections = last_cat.get_detections(detections_attr)
 
 detections = detections.sort_values(by="Mass 1")
-detections[["Parent", "Log Likelihood", "Mass 1", "Mass 2", "Luminosity Distance"]]
+detections[
+    ["Parent", "Log Likelihood", "Mass 1", "Mass 2", "Luminosity Distance"]
+]
 
 #%%
 # Choose a source from the list of detections and get its history through the different catalogs
@@ -50,7 +54,9 @@ latestWeek = np.max(allEpochs["Observation Week"])
 allEpochs["Merge Time Error"] = (
     allEpochs["Barycenter Merge Time"]
     - np.median(
-        allEpochs[allEpochs["Observation Week"] == latestWeek]["Barycenter Merge Time"]
+        allEpochs[allEpochs["Observation Week"] == latestWeek][
+            "Barycenter Merge Time"
+        ]
     )
 ) / 3600
 

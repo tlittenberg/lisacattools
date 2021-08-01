@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Source list
 ====================
@@ -5,10 +6,12 @@ Source list
 Display a table of catalog files, detection list, and timeline of mergers..
 """
 #%%
-from lisacattools.catalog import GWCatalogs, GWCatalogType
-from chainconsumer import ChainConsumer
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+from chainconsumer import ChainConsumer
+
+from lisacattools.catalog import GWCatalogs
+from lisacattools.catalog import GWCatalogType
 
 # get list catalog files
 catPath = "../../tutorial/data/mbh"
@@ -22,7 +25,9 @@ detections_attr = last_cat.get_attr_detections()
 detections = last_cat.get_detections(detections_attr)
 detections[["Log Likelihood", "Mass 1", "Mass 2", "Luminosity Distance"]]
 
-detections.sort_values(by="Barycenter Merge Time", ascending=True, inplace=True)
+detections.sort_values(
+    by="Barycenter Merge Time", ascending=True, inplace=True
+)
 mergeTimes = detections["Barycenter Merge Time"]
 mergeT = np.insert(np.array(mergeTimes) / 86400, 0, 0)
 mergeCount = np.arange(0, len(mergeTimes) + 1)

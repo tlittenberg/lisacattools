@@ -1,4 +1,14 @@
-### Use read-only mode when opening a file (HEAD -> main)
+### Improve code quality : use pre-commit package to configure/run the code quality (HEAD -> main)
+>Mon, 2 Aug 2021 01:38:46 +0200
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Use read-only mode when opening a file
 >Mon, 2 Aug 2021 01:37:18 +0200
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright (C) 2021 - James I. Thorpe, Tyson B. Littenberg, Jean-Christophe
 # Malapert
 #
@@ -15,38 +16,23 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with lisacattools.  If not, see <https://www.gnu.org/licenses/>.
-
 """This module is the interface for gravitational wave source catalogs. It is
 responsible for :
     - registering new catalog implementations as plugins
     - loading detections and source posterior samples
 """
-
-from abc import ABC, abstractmethod
-
-from typing import List, Union, Optional
 import importlib
+from abc import ABC
+from abc import abstractmethod
+from dataclasses import dataclass
+from typing import List
+from typing import Optional
+from typing import Union
 
 import pandas as pd
 
-from dataclasses import dataclass
-
-from .monitoring import UtilsMonitoring
-
-from .custom_logging import UtilsLogs
-
-
-@dataclass
-class GWCatalogPlugin:
-    """Store information to load a plugin implementing the GW catalog.
-
-    The stored information is:
-    - the module name
-    - the class name
-    """
-
-    module_name: str
-    class_name: str
+from .custom_logging import UtilsLogs  # noqa: F401
+from .monitoring import UtilsMonitoring  # noqa: F401
 
 
 class GWCatalogType:
@@ -55,6 +41,18 @@ class GWCatalogType:
     New implementations can be added as an attribute using the register
     method of the GWCatalogs class.
     """
+
+    @dataclass
+    class GWCatalogPlugin:
+        """Store information to load a plugin implementing the GW catalog.
+
+        The stored information is:
+        - the module name
+        - the class name
+        """
+
+        module_name: str
+        class_name: str
 
     MBH = GWCatalogPlugin("lisacattools.plugins.mbh", "MbhCatalogs")
     UCB = GWCatalogPlugin("lisacattools.plugins.ucb", "UcbCatalogs")
@@ -113,21 +111,24 @@ class GWCatalog:
 
     @abstractmethod
     def get_detections(
-        self, attr: List[str] = None
-    ) -> Union[List[str], pd.DataFrame]:
+        self, attr: Union[List[str], str] = None
+    ) -> Union[List[str], pd.DataFrame, pd.Series]:
         """Returns the GW detections.
 
         When no argument is provided, the name of each detection is returned.
-        When arguments are provided, each detection is returned with the attributes.
+        When arguments are provided, each detection is returned with the
+        attributes.
 
         Args:
-            attr (List[str], optional): List of attributes. Defaults to None.
+            attr (Union[List[str], str], optional): List of attributes or
+            single attribute. Defaults to None.
 
         Raises:
             NotImplementedError: Not implemented
 
         Returns:
-            Union[List[str], pd.DataFrame]: the name of each detection or the requested attributes of each detection
+            Union[List[str], pd.DataFrame, pd.Series]: the name of each
+            detection or the requested attributes of each detection
         """
         raise NotImplementedError("Not implemented")
 
@@ -145,7 +146,8 @@ class GWCatalog:
 
     @abstractmethod
     def get_median_source(self, attr: str) -> pd.DataFrame:
-        """Returns the source corresponding to the median of the specified attribute.
+        """Returns the source corresponding to the median of the specified
+        attribute.
 
         Args:
             attr (str): attribute name
@@ -154,7 +156,8 @@ class GWCatalog:
             NotImplementedError: Not implemented
 
         Returns:
-            pd.DataFrame: the source for which the median is computed on the attribute
+            pd.DataFrame: the source for which the median is computed on the
+            attribute
         """
         raise NotImplementedError("Not implemented")
 
@@ -246,12 +249,14 @@ class GWCatalogs(ABC):
             class_name (str): class name of the implementation
         """
         setattr(
-            GWCatalogType, str(type), GWCatalogPlugin(nodule_name, class_name)
+            GWCatalogType,
+            str(type),
+            GWCatalogType.GWCatalogPlugin(nodule_name, class_name),
         )
 
     @staticmethod
     def create(
-        type: GWCatalogType,
+        type: GWCatalogType.GWCatalogPlugin,
         directory: str,
         accepted_pattern: Optional[str] = None,
         rejected_pattern: Optional[str] = None,
@@ -260,8 +265,8 @@ class GWCatalogs(ABC):
     ) -> "GWCatalogs":
         """Create a new object for handling a set of specific catalogs.
 
-        Catalogs are loaded according a set of filters : the accepted and rejected
-        pattern.
+        Catalogs are loaded according a set of filters : the accepted and
+        rejected pattern.
 
         Note:
         -----
@@ -280,10 +285,12 @@ class GWCatalogs(ABC):
         ```
 
         Args:
-            type (GWCatalogType): Type of catalog
+            type (GWCatalogType.GWCatalogPlugin): Type of catalog
             directory (str) : Directory where the data are located
-            accepted_pattern (str, optional) : pattern to select files in the directory (e.g. '*.h5'). Default None
-            rejected_pattern (str, optional) : pattern to reject from the list built using accepted_pattern. Default None
+            accepted_pattern (str, optional) : pattern to select files in the
+            directory (e.g. '*.h5'). Default None
+            rejected_pattern (str, optional) : pattern to reject from the list
+            built using accepted_pattern. Default None
 
         Returns:
             GWCatalogs: the object implementing a set of specific catalogs
@@ -320,7 +327,8 @@ class GWCatalogs(ABC):
     @property
     @abstractmethod
     def files(self) -> List[str]:
-        """Returns the list of files matching the accepted and rejected pattern.
+        """Returns the list of files matching the accepted and rejected
+        pattern.
 
         :getter: Returns the number of catalogs in the catalog set
         :type: List[str]
@@ -395,7 +403,10 @@ class GWCatalogs(ABC):
 
     @abstractmethod
     def get_lineage(self, cat_name: str, src_name: str) -> pd.DataFrame:
-        """Returns the history of a source (src_name: str) including metadata and point estimates through a series of preceeding catalogs. Series starts at current catalog (cat_name: str) and traces a source's history back.
+        """Returns the history of a source (src_name: str) including metadata
+        and point estimates through a series of preceeding catalogs. Series
+        starts at current catalog (cat_name: str) and traces a
+        source's history back.
 
         Args:
             cat_name (str): catalog from which the lineage starts
@@ -405,21 +416,28 @@ class GWCatalogs(ABC):
             NotImplementedError: When the method is not implemented
 
         Returns:
-            pd.DataFrame: history of a parituclar source including metadata and point estimates through a series of preceeding catalogs.
+            pd.DataFrame: history of a parituclar source including metadata
+            and point estimates through a series of preceeding catalogs.
         """
         raise NotImplementedError("Not implemented")
 
     @abstractmethod
     def get_lineage_data(self, lineage: pd.DataFrame) -> pd.DataFrame:
-        """Returns the posterior samples of a particular source at all different epochs of obervation in the DataFrame returned by get_lineage(). The samples are concatenated into a single DataFrame.
+        """Returns the posterior samples of a particular source at all
+        different epochs of obervation in the DataFrame returned by
+        get_lineage(). The samples are concatenated into a single DataFrame.
 
         Args:
-            lineage (pd.DataFrame): time-dependent catalog for the evolution of a particular source in a series of catalogs returned by get_lineage()
+            lineage (pd.DataFrame): time-dependent catalog for the evolution
+            of a particular source in a series of catalogs returned by
+            get_lineage()
 
         Raises:
             NotImplementedError: When the method is not implemented
 
         Returns:
-            pd.DataFrame: posterior samples of a particular source at all different epochs of obervation in the DataFrame returned by get_lineage().
+            pd.DataFrame: posterior samples of a particular source at all
+            different epochs of obervation in the DataFrame returned by
+            get_lineage().
         """
         raise NotImplementedError("Not implemented")

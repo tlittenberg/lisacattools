@@ -1,20 +1,25 @@
+# -*- coding: utf-8 -*-
 """
 Sky Localization Ellipses
 =========================
 
 Plot 1-sigma contours of well-localized sources' sky location in galactic coordinates.
 """
-
 #%%
 # Load catalog and compute sky areas
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.patches import Ellipse
-import matplotlib.colors as colors
 import matplotlib.cm as cm
-from lisacattools import GWCatalog, GWCatalogs, GWCatalogType
-from lisacattools import convert_ecliptic_to_galactic, ellipse_area, confidence_ellipse
+import matplotlib.colors as colors
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from matplotlib.patches import Ellipse
+
+from lisacattools import confidence_ellipse
+from lisacattools import convert_ecliptic_to_galactic
+from lisacattools import ellipse_area
+from lisacattools import GWCatalog
+from lisacattools import GWCatalogs
+from lisacattools import GWCatalogType
 
 # Start by loading the main catalog file processed from GBMCMC outputs
 catPath = "../../tutorial/data/ucb"
@@ -34,13 +39,15 @@ for idx, source in enumerate(sources):
     samples = final_catalog.get_source_samples(source)
 
     # correct sign error in catalog production
-    samples['Ecliptic Latitude'] = np.pi/2 - np.arccos(samples['coslat'])
+    samples["Ecliptic Latitude"] = np.pi / 2 - np.arccos(samples["coslat"])
 
     # convert from ecliptic to galactic coordinates
     convert_ecliptic_to_galactic(samples)
 
     # create numpy arrays of the derived parameters
-    area[idx] = ellipse_area(samples[["Galactic Longitude", "Galactic Latitude"]])
+    area[idx] = ellipse_area(
+        samples[["Galactic Longitude", "Galactic Latitude"]]
+    )
 
 # insert new numpy arrays into main catalog dataframe
 detections.insert(len(detections.columns), "Sky Area", area, True)
@@ -73,7 +80,9 @@ ax.set(
 )
 
 # color ellipses by log frequency
-cNorm = colors.LogNorm(vmin=cat_loc["Frequency"].min(), vmax=cat_loc["Frequency"].max())
+cNorm = colors.LogNorm(
+    vmin=cat_loc["Frequency"].min(), vmax=cat_loc["Frequency"].max()
+)
 scalarMap = cm.ScalarMappable(norm=cNorm, cmap=plt.cm.get_cmap("viridis_r"))
 cbar = fig.colorbar(scalarMap)
 cbar.set_label("Frequency [Hz]")
@@ -85,8 +94,8 @@ for source in sources:
     # get chain samples
     samples = final_catalog.get_source_samples(source)
 
-    samples['Ecliptic Latitude'] = np.pi/2 - np.arccos(samples['coslat'])
-    
+    samples["Ecliptic Latitude"] = np.pi / 2 - np.arccos(samples["coslat"])
+
     # convert from ecliptic to galactic coordinates
     convert_ecliptic_to_galactic(samples)
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Time-evolving parameter estimation
 =================================
@@ -6,8 +7,10 @@ Corner plot of select parameters for a single source showing how
 parameter estimation changes with observing time.
 """
 import matplotlib.pyplot as plt
-from lisacattools.catalog import GWCatalogs, GWCatalogType
 from chainconsumer import ChainConsumer
+
+from lisacattools.catalog import GWCatalogs
+from lisacattools.catalog import GWCatalogType
 
 
 # Find the list of catalogs

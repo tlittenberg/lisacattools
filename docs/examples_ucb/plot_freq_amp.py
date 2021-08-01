@@ -1,16 +1,18 @@
+# -*- coding: utf-8 -*-
 """
 Scatter plots
 ========================
 
 Scatter plot of detections' point estimates and LISA sensitivity curve.
 """
-
-import numpy as np
 import matplotlib.cm as cm
-import matplotlib.pyplot as plt
 import matplotlib.colors as colors
-from lisacattools.catalog import GWCatalogs, GWCatalogType
+import matplotlib.pyplot as plt
+import numpy as np
+
 from lisacattools import getSciRD
+from lisacattools.catalog import GWCatalogs
+from lisacattools.catalog import GWCatalogType
 
 # load catalog
 catPath = "../../tutorial/data/ucb"

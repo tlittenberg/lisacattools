@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright (C) 2021 - James I. Thorpe, Tyson B. Littenberg, Jean-Christophe
 # Malapert
 #
@@ -15,28 +16,32 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with lisacattools.  If not, see <https://www.gnu.org/licenses/>.
-
-from .monitoring import UtilsMonitoring
-from .utils import HPhist, FrameEnum
-from .catalog import GWCatalog, GWCatalogs
-from typing import Dict, List, NoReturn
+import logging
+import os
+from typing import Dict
+from typing import List
+from typing import NoReturn
 
 import corner
-import ligo.skymap.plot
+import ligo.skymap.plot  # noqa: F401
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
-from matplotlib.patches import Ellipse
-import os
-import logging
+
+from .catalog import GWCatalog
+from .catalog import GWCatalogs
 from .custom_logging import UtilsLogs
+from .monitoring import UtilsMonitoring
+from .utils import FrameEnum
+from .utils import HPhist
 
 UtilsLogs.addLoggingLevel("TRACE", 15)
 
 
 class LisaAnalyse:
-    """Factory to create an analysis for a catalog or a time-evolution of the catalog."""
+    """Factory to create an analysis for a catalog or a time-evolution of the
+    catalog."""
 
     @staticmethod
     def create(catalog, save_dir=None):
@@ -46,12 +51,13 @@ class LisaAnalyse:
         elif isinstance(catalog, GWCatalogs):
             obj = HistoryAnalysis(catalog, save_dir)
         else:
-            raise NotImplemented(f"type {type(catalog)} not implemented")
+            raise NotImplementedError(f"type {type(catalog)} not implemented")
         return obj
 
 
 class AbstractLisaAnalyze:
-    """Abstract Object to link the two implementation and to share some method."""
+    """Abstract Object to link the two implementation and to share some
+    method."""
 
     def __init__(self):
         pass
@@ -239,10 +245,12 @@ class CatalogAnalysis(AbstractLisaAnalyze):
 
 
 class HistoryAnalysis(AbstractLisaAnalyze):
-    """Analyse a particular source to see how it's parameter estimates improve over time"""
+    """Analyse a particular source to see how it's parameter estimates
+    improve over time"""
 
     def __init__(self, catalogs: GWCatalogs, save_img_dir=None):
-        """Init the HistoryAnalysis with all catalogs to load the parameter estimates over the time."""
+        """Init the HistoryAnalysis with all catalogs to load the parameter
+        estimates over the time."""
         self.catalogs = catalogs
         self.save_img_dir = save_img_dir
 
@@ -303,7 +311,7 @@ class HistoryAnalysis(AbstractLisaAnalyze):
         marker = self._get_variable(kwargs, "marker", "s")
         linestyle = self._get_variable(kwargs, "linestyle", "-")
         yscale = self._get_variable(kwargs, "yscale", "log")
-        title = self._get_variable(kwargs, "title", "Evolution")
+        title: str = self._get_variable(kwargs, "title", "Evolution")
 
         fig, ax = plt.subplots(figsize=[8, 6], dpi=100)
         df.plot(
@@ -334,7 +342,8 @@ class HistoryAnalysis(AbstractLisaAnalyze):
         *args,
         **kwargs,
     ) -> NoReturn:
-        """Plot the parameter that evolves over time for a given source starting from a catalog.
+        """Plot the parameter that evolves over time for a given source
+        starting from a catalog.
 
         Note: extra parameter can be configured:
         - plot_type, default : scatter
@@ -346,13 +355,14 @@ class HistoryAnalysis(AbstractLisaAnalyze):
 
         Args:
             df (pd.DataFrame): data
-            catalog_name (str) : Start the evolution from the oldest one until that one
+            catalog_name (str) : Start the evolution from the oldest one
+            until that one
             source_name (str) : source name to follow up
             time_parameter (str): time parameter in the data
             parameter (str): parameter to plot over the time
         """
         catalogs = self.catalogs
-        srcHist = catalogs.get_lineage(catalog_name, source_name)  ## TODO
+        srcHist = catalogs.get_lineage(catalog_name, source_name)
         self.plot_parameter_time_evolution(
             srcHist, time_parameter, parameter, *args, **kwargs
         )
@@ -369,14 +379,15 @@ class HistoryAnalysis(AbstractLisaAnalyze):
         """Show evolution over many different epochs.
 
         Args:
-            all_epochs (pd.DataFrame): observation of a source at different epochs
+            all_epochs (pd.DataFrame): observation of a source at
+            different epochs
             params (List): list of parameters to plot
             scales (List): Scale for each plot
         """
         title = self._get_variable(kwargs, "title", "Parameter Evolution")
         x_title = self._get_variable(kwargs, "x_title", "Observation Week")
         nrows = int(np.ceil(len(params) / 2))
-        fig = plt.figure(figsize=[10, 10], dpi=100)
+        fig = plt.figure(figsize=(10.0, 10.0), dpi=100)
 
         for idx, param in enumerate(params):
             ax = fig.add_subplot(nrows, 2, idx + 1)
@@ -410,10 +421,12 @@ class HistoryAnalysis(AbstractLisaAnalyze):
         *args,
         **kwargs,
     ) -> NoReturn:
-        """To dig into how parameter correlations might change over time, we can look at a time-evolving corner plot
+        """To dig into how parameter correlations might change over time, we
+        can look at a time-evolving corner plot
 
         Args:
-            allEpochs (pd.DataFrame): observation of a source at different epochs
+            allEpochs (pd.DataFrame): observation of a source at different
+            epochs
             wks (List): weeks to plot
             params (List): parameters to plot
             colors (List): color according the weeks
@@ -445,9 +458,11 @@ class HistoryAnalysis(AbstractLisaAnalyze):
 
         Args:
             nside (int): parameter for healpix related to the number of cells
-            allEpochs (pd.DataFrame): observation of a source at different epochs
+            allEpochs (pd.DataFrame): observation of a source at different
+            epochs
             wks (List): weeks to plot
-            system (FrameEnum, optional): coordinate reference frame. Defaults to 'FrameEnum.GALACTIC'.
+            system (FrameEnum, optional): coordinate reference frame. Defaults
+            to 'FrameEnum.GALACTIC'.
         """
         title = self._get_variable(
             kwargs, "title", "Sky Localization Evolution"

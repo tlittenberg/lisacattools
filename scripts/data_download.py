@@ -1,7 +1,8 @@
-from google_drive_downloader import GoogleDriveDownloader as gdd
-from tarfile import open as opentar
-import os
+# -*- coding: utf-8 -*-
 import os.path
+from tarfile import open as opentar
+
+from google_drive_downloader import GoogleDriveDownloader as gdd
 
 # download MBH
 if not os.path.exists("tutorial/data/mbh"):
@@ -11,7 +12,9 @@ if not os.path.exists("tutorial/data/mbh"):
         showsize=True,
     )
     with opentar("tutorial/data/MBHDemo.tar", "r") as tar:
-        tar.extractall("tutorial/data/mbh")  # specify which folder to extract to
+        tar.extractall(
+            "tutorial/data/mbh"
+        )  # specify which folder to extract to
     os.remove("tutorial/data/MBHDemo.tar")
 
 
@@ -24,7 +27,9 @@ if not os.path.exists("tutorial/data/ucb"):
         showsize=True,
     )
     with opentar("tutorial/data/UCBDemo_06.tar", "r") as tar:
-        tar.extractall("tutorial/data/ucb")  # specify which folder to extract to
+        tar.extractall(
+            "tutorial/data/ucb"
+        )  # specify which folder to extract to
     os.remove("tutorial/data/UCBDemo_06.tar")
 
     # 03 mo
@@ -34,5 +39,7 @@ if not os.path.exists("tutorial/data/ucb"):
         showsize=True,
     )
     with opentar("tutorial/data/UCBDemo_03.tar", "r") as tar:
-        tar.extractall("tutorial/data/ucb")  # specify which folder to extract to
+        tar.extractall(
+            "tutorial/data/ucb"
+        )  # specify which folder to extract to
     os.remove("tutorial/data/UCBDemo_03.tar")

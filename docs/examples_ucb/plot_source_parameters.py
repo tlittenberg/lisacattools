@@ -1,15 +1,18 @@
+# -*- coding: utf-8 -*-
 """
 Corner plots
 ============
 
 Produce corner plots for a single sources' parameters.
 """
-
 #%%
 # Load catalog and select individual source
-import numpy as np
 import matplotlib.pyplot as plt
-from lisacattools.catalog import GWCatalog, GWCatalogs, GWCatalogType
+import numpy as np
+
+from lisacattools.catalog import GWCatalog
+from lisacattools.catalog import GWCatalogs
+from lisacattools.catalog import GWCatalogType
 
 # load catalog
 catPath = "../../tutorial/data/ucb"

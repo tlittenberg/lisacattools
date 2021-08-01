@@ -24,6 +24,7 @@ Usage:\n
 	make install-dev\t\t 		Install COTS\n
 	make data\t\t\t				Download data\n
 	make test\t\t\t             Run units and integration tests\n
+	make quality\t\t\t 			Run quality tests\n
 	\n
 	make demo\t\t\t				Play the demo\n
 	make doc\t\t\t 				Generate the documentation\n
@@ -82,7 +83,7 @@ prepare-dev:
 	echo "python3 -m venv lisacattools-env && export PYTHONPATH=." > .lisacattools-env && echo "source \"`pwd`/lisacattools-env/bin/activate\"" >> .lisacattools-env && scripts/install-hooks.bash && echo "\nnow source this file: \033[31msource ${VENV}\033[0m"
 
 install-dev:
-	pip install -r requirements.txt && pip install -r requirements-dev.txt
+	pip install -r requirements.txt && pip install -r requirements-dev.txt && pre-commit install && pre-commit autoupdate
 
 data:
 	pip install -r requirements-data.txt && python scripts/data_download.py
@@ -117,6 +118,9 @@ github-site-commit:
 
 test:
 	make data && scripts/run-tests.bash
+
+quality:
+	pre-commit run --all-files
 
 #
 # Create distribution

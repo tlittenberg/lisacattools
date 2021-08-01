@@ -1,4 +1,14 @@
-### Fix the log verbose (HEAD -> main)
+### Use read-only mode when opening a file (HEAD -> main)
+>Mon, 2 Aug 2021 01:37:18 +0200
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Fix the log verbose
 >Mon, 2 Aug 2021 01:35:35 +0200
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

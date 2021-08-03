@@ -148,3 +148,6 @@ tutorial/data/ucb/
 # Test report
 tests/results/
 tutorial/data
+
+# Build conda
+build_conda_pkg/

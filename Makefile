@@ -37,6 +37,7 @@ Usage:\n
 	make visu-doc\t\t\t			View the generated documentation\n
 	\n
 	make release\t\t\t 			Release the package as tar.gz\n
+	make conda\t\t\t			Make conda package from Pypi\n
 	make release-pypi\t\t   	Release the package for pypi\n
 	make upload-test-pypi\t\t   Upload the pypi package on the test platform\n
 	make upload-prod-pypi\t\t   Upload the pypi package on the prod platform\n
@@ -44,7 +45,7 @@ Usage:\n
 	-------------------------------------------------------------------------\n
 	\t\tOthers\n
 	-------------------------------------------------------------------------\n
-	make licences\t\t	Display the list of licences
+	make licences\t\t\t	Display the list of licences
 
 
 
@@ -135,6 +136,9 @@ clean:
 release:
 	make clean && make changelog && python3 setup.py sdist
 
+conda:
+	bash scripts/to_conda.bash
+
 release-pypi:
 	make clean && make changelog && python3 setup.py sdist bdist_wheel && lisacattools-env/bin/twine check dist/*
 
@@ -150,4 +154,4 @@ demo:
 licences:
 	pip-licenses
 
-.PHONY: help user prepare-dev install-dev doc visu-doc test changelog clean release release-pypi upload-test-pypi upload-prod-pypi demo licences
+.PHONY: help user prepare-dev install-dev doc visu-doc test changelog clean release release-pypi upload-test-pypi upload-prod-pypi demo licences conda

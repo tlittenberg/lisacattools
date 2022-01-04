@@ -24,6 +24,7 @@ Usage:\n
 	make install-dev\t\t 		Install COTS\n
 	make data\t\t\t				Download data\n
 	make test\t\t\t             Run units and integration tests\n
+	make quality\t\t\t 			Run quality tests\n
 	\n
 	make demo\t\t\t				Play the demo\n
 	make doc\t\t\t 				Generate the documentation\n
@@ -36,6 +37,7 @@ Usage:\n
 	make visu-doc\t\t\t			View the generated documentation\n
 	\n
 	make release\t\t\t 			Release the package as tar.gz\n
+	make conda\t\t\t			Make conda package from Pypi\n
 	make release-pypi\t\t   	Release the package for pypi\n
 	make upload-test-pypi\t\t   Upload the pypi package on the test platform\n
 	make upload-prod-pypi\t\t   Upload the pypi package on the prod platform\n
@@ -43,7 +45,7 @@ Usage:\n
 	-------------------------------------------------------------------------\n
 	\t\tOthers\n
 	-------------------------------------------------------------------------\n
-	make licences\t\t	Display the list of licences
+	make licences\t\t\t	Display the list of licences
 
 
 
@@ -82,7 +84,7 @@ prepare-dev:
 	echo "python3 -m venv lisacattools-env && export PYTHONPATH=." > .lisacattools-env && echo "source \"`pwd`/lisacattools-env/bin/activate\"" >> .lisacattools-env && scripts/install-hooks.bash && echo "\nnow source this file: \033[31msource ${VENV}\033[0m"
 
 install-dev:
-	pip install -r requirements.txt && pip install -r requirements-dev.txt
+	pip install -r requirements.txt && pip install -r requirements-dev.txt && pre-commit install && pre-commit autoupdate
 
 data:
 	pip install -r requirements-data.txt && python scripts/data_download.py
@@ -118,6 +120,9 @@ github-site-commit:
 test:
 	make data && scripts/run-tests.bash
 
+quality:
+	pre-commit run --all-files
+
 #
 # Create distribution
 # ----------------------------------
@@ -130,6 +135,9 @@ clean:
 
 release:
 	make clean && make changelog && python3 setup.py sdist
+
+conda:
+	bash scripts/to_conda.bash
 
 release-pypi:
 	make clean && make changelog && python3 setup.py sdist bdist_wheel && lisacattools-env/bin/twine check dist/*
@@ -146,4 +154,4 @@ demo:
 licences:
 	pip-licenses
 
-.PHONY: help user prepare-dev install-dev doc visu-doc test changelog clean release release-pypi upload-test-pypi upload-prod-pypi demo licences
+.PHONY: help user prepare-dev install-dev doc visu-doc test changelog clean release release-pypi upload-test-pypi upload-prod-pypi demo licences conda

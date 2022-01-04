@@ -1,5 +1,7 @@
+# -*- coding: utf-8 -*-
+from os import path
+
 import setuptools
-from os import path, sep
 
 here = path.abspath(path.dirname(__file__))
 
@@ -11,7 +13,9 @@ with open("requirements.txt") as f:
     required = f.read().splitlines()
 
 about = {}
-with open(path.join(here, "lisacattools", "_version.py"), encoding="utf-8") as f:
+with open(
+    path.join(here, "lisacattools", "_version.py"), encoding="utf-8"
+) as f:
     exec(f.read(), about)
 
 setuptools.setup(

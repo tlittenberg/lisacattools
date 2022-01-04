@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright (C) 2021 - James I. Thorpe, Tyson B. Littenberg, Jean-Christophe
 # Malapert
 #
@@ -20,12 +21,17 @@ import glob
 import logging
 import os
 from itertools import chain
-from typing import List, Optional, Union
+from typing import List
+from typing import Optional
+from typing import Union
 
 import numpy as np
 import pandas as pd
 
-from ..catalog import GWCatalog, GWCatalogs, UtilsLogs, UtilsMonitoring
+from ..catalog import GWCatalog
+from ..catalog import GWCatalogs
+from ..catalog import UtilsLogs
+from ..catalog import UtilsMonitoring
 
 UtilsLogs.addLoggingLevel("TRACE", 15)
 
@@ -50,11 +56,14 @@ class MbhCatalogs(GWCatalogs):
 
         Args:
             path (str): directory
-            accepted_pattern (str, optional): pattern to accept files. Defaults to "MBH_wk*C.h5".
-            rejected_pattern (str, optional): pattern to reject files. Defaults to None.
+            accepted_pattern (str, optional): pattern to accept files.
+            Defaults to "MBH_wk*C.h5".
+            rejected_pattern (str, optional): pattern to reject files.
+            Defaults to None.
 
         Raises:
-            ValueError: no files found matching the accepted and rejected patterns.
+            ValueError: no files found matching the accepted and rejected
+            patterns.
         """
         self.path = path
         self.accepted_pattern = accepted_pattern
@@ -72,7 +81,9 @@ class MbhCatalogs(GWCatalogs):
         )
         if len(self.cat_files) == 0:
             raise ValueError(
-                f"no files found matching the accepted ({self.accepted_pattern}) and rejected ({self.rejected_pattern}) patterns in {directories}"
+                f"no files found matching the accepted \
+                    ({self.accepted_pattern}) and rejected \
+                    ({self.rejected_pattern}) patterns in {directories}"
             )
         self.__metadata = pd.concat(
             [self._read_cats(cat_file) for cat_file in self.cat_files]
@@ -146,30 +157,30 @@ class MbhCatalogs(GWCatalogs):
     @property
     @UtilsMonitoring.io(level=logging.DEBUG)
     def metadata(self) -> pd.DataFrame:
-        __doc__ = GWCatalogs.metadata.__doc__
+        __doc__ = GWCatalogs.metadata.__doc__  # noqa: F841
         return self.__metadata
 
     @property
     @UtilsMonitoring.io(level=logging.TRACE)
     def count(self) -> int:
-        __doc__ = GWCatalogs.count.__doc__
+        __doc__ = GWCatalogs.count.__doc__  # noqa: F841
         return len(self.metadata.index)
 
     @property
     @UtilsMonitoring.io(level=logging.TRACE)
     def files(self) -> List[str]:
-        __doc__ = GWCatalogs.files.__doc__
+        __doc__ = GWCatalogs.files.__doc__  # noqa: F841
         return self.cat_files
 
     @UtilsMonitoring.io(level=logging.TRACE)
     def get_catalogs_name(self) -> List[str]:
-        __doc__ = GWCatalogs.get_catalogs_name.__doc__
+        __doc__ = GWCatalogs.get_catalogs_name.__doc__  # noqa: F841
         return list(self.metadata.index)
 
     @UtilsMonitoring.io(level=logging.TRACE)
     @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def get_first_catalog(self) -> GWCatalog:
-        __doc__ = GWCatalogs.get_first_catalog.__doc__
+        __doc__ = GWCatalogs.get_first_catalog.__doc__  # noqa: F841
         location = self.metadata.iloc[0]["location"]
         name = self.metadata.index[0]
         return MbhCatalog(name, location)
@@ -177,7 +188,7 @@ class MbhCatalogs(GWCatalogs):
     @UtilsMonitoring.io(level=logging.TRACE)
     @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def get_last_catalog(self) -> GWCatalog:
-        __doc__ = GWCatalogs.get_last_catalog.__doc__
+        __doc__ = GWCatalogs.get_last_catalog.__doc__  # noqa: F841
         location = self.metadata.iloc[self.count - 1]["location"]
         name = self.metadata.index[self.count - 1]
         return MbhCatalog(name, location)
@@ -185,7 +196,7 @@ class MbhCatalogs(GWCatalogs):
     @UtilsMonitoring.io(level=logging.TRACE)
     @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def get_catalog(self, idx: int) -> GWCatalog:
-        __doc__ = GWCatalogs.get_catalog.__doc__
+        __doc__ = GWCatalogs.get_catalog.__doc__  # noqa: F841
         location = self.metadata.iloc[idx]["location"]
         name = self.metadata.index[idx]
         return MbhCatalog(name, location)
@@ -193,16 +204,16 @@ class MbhCatalogs(GWCatalogs):
     @UtilsMonitoring.io(level=logging.TRACE)
     @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def get_catalog_by(self, name: str) -> GWCatalog:
-        __doc__ = GWCatalogs.get_catalog_by.__doc__
+        __doc__ = GWCatalogs.get_catalog_by.__doc__  # noqa: F841
         cat_idx = self.metadata.index.get_loc(name)
         return self.get_catalog(cat_idx)
 
     @UtilsMonitoring.io(level=logging.TRACE)
     @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=100)
     def get_lineage(self, cat_name: str, src_name: str) -> pd.DataFrame:
-        __doc__ = GWCatalogs.get_lineage.__doc__
+        __doc__ = GWCatalogs.get_lineage.__doc__  # noqa: F841
 
-        dfs = list()
+        dfs: List[pd.Series] = list()
         while src_name != "" and cat_name not in [None, ""]:
             detections = self.get_catalog_by(cat_name).get_dataset(
                 "detections"
@@ -210,7 +221,7 @@ class MbhCatalogs(GWCatalogs):
             src = detections.loc[[src_name]]
             try:
                 wk = self.metadata.loc[cat_name]["observation week"]
-            except:
+            except:  # noqa: E722
                 wk = self.metadata.loc[cat_name]["Observation Week"]
 
             src.insert(0, "Observation Week", wk, True)
@@ -218,13 +229,13 @@ class MbhCatalogs(GWCatalogs):
             dfs.append(src)
             try:
                 prnt = self.metadata.loc[cat_name]["parent"]
-            except:
+            except:  # noqa: E722
                 prnt = self.metadata.loc[cat_name]["Parent"]
 
             cat_name = prnt
             src_name = src.iloc[0]["Parent"]
 
-        histDF = pd.concat(dfs, axis=0)
+        histDF: pd.DataFrame = pd.concat(dfs, axis=0)
         histDF.drop_duplicates(
             subset="Log Likelihood", keep="last", inplace=True
         )
@@ -234,7 +245,7 @@ class MbhCatalogs(GWCatalogs):
     @UtilsMonitoring.io(level=logging.TRACE)
     @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=100)
     def get_lineage_data(self, lineage: pd.DataFrame) -> pd.DataFrame:
-        __doc__ = GWCatalogs.get_lineage_data.__doc__
+        __doc__ = GWCatalogs.get_lineage_data.__doc__  # noqa: F841
 
         def _process_lineage(source_epoch, source_data, obs_week):
             source_data.insert(
@@ -247,7 +258,7 @@ class MbhCatalogs(GWCatalogs):
 
         source_epochs = list(lineage.index)
 
-        merge_source_epochs = pd.concat(
+        merge_source_epochs: pd.DataFrame = pd.concat(
             [
                 _process_lineage(
                     source_epoch,
@@ -279,10 +290,12 @@ class MbhCatalogs(GWCatalogs):
         return merge_source_epochs
 
     def __repr__(self):
-        return f"MbhCatalogs({self.path!r}, {self.accepted_pattern!r}, {self.rejected_pattern!r}, {self.extra_directories!r})"
+        return f"MbhCatalogs({self.path!r}, {self.accepted_pattern!r}, \
+            {self.rejected_pattern!r}, {self.extra_directories!r})"
 
     def __str__(self):
-        return f"MbhCatalogs: {self.path} {self.accepted_pattern!r} {self.rejected_pattern!r} {self.extra_directories!r}"
+        return f"MbhCatalogs: {self.path} {self.accepted_pattern!r} \
+            {self.rejected_pattern!r} {self.extra_directories!r}"
 
 
 class MbhCatalog(GWCatalog):
@@ -297,7 +310,7 @@ class MbhCatalog(GWCatalog):
         """
         self.__name = name
         self.__location = location
-        store = pd.HDFStore(location)
+        store = pd.HDFStore(location, "r")
         self.__datasets = store.keys()
         store.close()
 
@@ -326,20 +339,20 @@ class MbhCatalog(GWCatalog):
     @property
     @UtilsMonitoring.io(level=logging.DEBUG)
     def name(self) -> str:
-        __doc__ = GWCatalog.name.__doc__
+        __doc__ = GWCatalog.name.__doc__  # noqa: F841
         return self.__name
 
     @property
     @UtilsMonitoring.io(level=logging.DEBUG)
     def location(self) -> str:
-        __doc__ = GWCatalog.location.__doc__
+        __doc__ = GWCatalog.location.__doc__  # noqa: F841
         return self.__location
 
     @UtilsMonitoring.io(level=logging.DEBUG)
     def get_detections(
-        self, attr: List[str] = None
-    ) -> Union[List[str], pd.DataFrame]:
-        __doc__ = GWCatalog.get_detections.__doc__
+        self, attr: Union[List[str], str] = None
+    ) -> Union[List[str], pd.DataFrame, pd.Series]:
+        __doc__ = GWCatalog.get_detections.__doc__  # noqa: F841
         detections = self.get_dataset("detections")
         return (
             list(detections.index) if attr is None else detections[attr].copy()
@@ -347,15 +360,15 @@ class MbhCatalog(GWCatalog):
 
     @UtilsMonitoring.io(level=logging.DEBUG)
     def get_attr_detections(self) -> List[str]:
-        __doc__ = GWCatalog.get_attr_detections.__doc__
+        __doc__ = GWCatalog.get_attr_detections.__doc__  # noqa: F841
         return list(self.get_dataset("detections").columns)
 
     @UtilsMonitoring.io(level=logging.DEBUG)
     def get_median_source(self, attr: str) -> pd.DataFrame:
-        __doc__ = GWCatalog.get_median_source.__doc__
-        val = self.get_detections(attr)
+        __doc__ = GWCatalog.get_median_source.__doc__  # noqa: F841
+        detections: pd.Series = self.get_detections(attr)
         source_idx = self.get_detections()[
-            np.argmin(np.abs(np.array(val) - val.median()))
+            np.argmin(np.abs(np.array(detections) - detections.median()))
         ]
         return self.get_detections(self.get_attr_detections()).loc[
             [source_idx]
@@ -365,18 +378,18 @@ class MbhCatalog(GWCatalog):
     def get_source_samples(
         self, source_name: str, attr: List[str] = None
     ) -> pd.DataFrame:
-        __doc__ = GWCatalog.get_source_samples.__doc__
+        __doc__ = GWCatalog.get_source_samples.__doc__  # noqa: F841
         samples = self.get_dataset(f"{source_name}_chain")
         return samples if attr is None else samples[attr].copy()
 
     @UtilsMonitoring.io(level=logging.DEBUG)
     def get_attr_source_samples(self, source_name: str) -> List[str]:
-        __doc__ = GWCatalog.get_attr_source_samples.__doc__
+        __doc__ = GWCatalog.get_attr_source_samples.__doc__  # noqa: F841
         return list(self.get_dataset(f"{source_name}_chain").columns)
 
     @UtilsMonitoring.io(level=logging.TRACE)
     def describe_source_samples(self, source_name: str) -> pd.DataFrame:
-        __doc__ = GWCatalog.describe_source_samples.__doc__
+        __doc__ = GWCatalog.describe_source_samples.__doc__  # noqa: F841
         return self.get_source_samples(source_name).describe()
 
     def __repr__(self):

@@ -1,13 +1,15 @@
+# -*- coding: utf-8 -*-
 """
 Full catalog corner plots
 =========================
 
 Corner plot of select parameters for the full catalog.
 """
-
 import matplotlib.pyplot as plt
-from lisacattools.catalog import GWCatalogs, GWCatalogType
 from chainconsumer import ChainConsumer
+
+from lisacattools.catalog import GWCatalogs
+from lisacattools.catalog import GWCatalogType
 
 #%%
 # Load the catalog files

@@ -1,11 +1,10 @@
+# -*- coding: utf-8 -*-
 # Configuration file for the Sphinx documentation builder.
 #
 # This file only contains a selection of the most common options. For a full
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
-
 # -- Path setup --------------------------------------------------------------
-
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -81,7 +80,10 @@ sphinx_gallery_conf = {
 
 # configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
-    "python": ("https://docs.python.org/{.major}".format(sys.version_info), None),
+    "python": (
+        "https://docs.python.org/{.major}".format(sys.version_info),
+        None,
+    ),
     "matplotlib": ("https://matplotlib.org/", None),
     "pandas": ("https://pandas.pydata.org/", None),
 }

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright (C) 2020-2021 - Centre National d'Etudes Spatiales
 # jean-christophe.malapert@cnes.fr
 #
@@ -18,12 +19,12 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301  USA
 """Some Utilities."""
-
 import logging
 import os
 import time
 import tracemalloc
-from functools import partial, wraps
+from functools import partial
+from functools import wraps
 
 
 class UtilsMonitoring(object):

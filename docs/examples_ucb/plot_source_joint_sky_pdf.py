@@ -1,18 +1,29 @@
+# -*- coding: utf-8 -*-
 """
 Joint PDF of sky location
 =========================
 
 Plot joint posterior of all catalog sources in galactic coordinates.
 """
-
 #%%
 # Load catalogs and combine chain samples
-import pandas as pd
-import numpy as np
+import logging
+
 import ligo.skymap.plot
 import matplotlib.pyplot as plt
-from lisacattools.catalog import GWCatalogs, GWCatalogType
-from lisacattools import convert_ecliptic_to_galactic, HPhist
+import numpy as np
+import pandas as pd
+
+from lisacattools import convert_ecliptic_to_galactic
+from lisacattools import HPhist
+from lisacattools import OFF
+from lisacattools.catalog import GWCatalogs
+from lisacattools.catalog import GWCatalogType
+
+logger = logging.getLogger("lisacattools")
+logger.setLevel(
+    OFF
+)  # Set the logger to OFF. By default, the logger is set to INFO
 
 # Start by loading the main catalog file processed from GBMCMC outputs
 catPath = "../../tutorial/data/ucb"
@@ -24,15 +35,17 @@ sources = list(catalog.get_detections())
 
 samples_list = list()
 for source in sources:
-    
+
     # get chain samples
-    samples = catalog.get_source_samples(source,['coslat','Ecliptic Longitude'])
-    
+    samples = catalog.get_source_samples(
+        source, ["coslat", "Ecliptic Longitude"]
+    )
+
     # recompute ecliptic latitude to correct error in HDF5 files
-    samples['Ecliptic Latitude'] = np.pi/2 - np.arccos(samples['coslat'])
-    
+    samples["Ecliptic Latitude"] = np.pi / 2 - np.arccos(samples["coslat"])
+
     # append sky location parameters to joint posterior list
-    samples_list.append(samples[['Ecliptic Latitude','Ecliptic Longitude']])
+    samples_list.append(samples[["Ecliptic Latitude", "Ecliptic Longitude"]])
 
 # combine all source samples into one dataframe
 all_sources = pd.concat(samples_list)

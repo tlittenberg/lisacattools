@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-from lisacattools import GWCatalog, GWCatalogs, GWCatalogType
+# -*- coding: utf-8 -*-
+from lisacattools import GWCatalogs
+from lisacattools import GWCatalogType
 
 
 class TestCacheDoesNotCacheWrongElt:
@@ -18,7 +20,7 @@ class TestCacheDoesNotCacheWrongElt:
         min_c1_long = c1.describe().min()[1]
         min_c2_lat = c2.describe().min()[0]
         min_c2_long = c2.describe().min()[1]
-        self.compare = min_c1_lat == min_c2_lat and min_c1_long == min_c1_long
+        self.compare = min_c1_lat == min_c2_lat and min_c1_long == min_c2_long
 
     def get_equal(self):
         return self.compare

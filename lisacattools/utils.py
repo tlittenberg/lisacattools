@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright (C) 2021 - James I. Thorpe, Tyson B. Littenberg, Jean-Christophe
 # Malapert
 #
@@ -15,11 +16,12 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with lisacattools.  If not, see <https://www.gnu.org/licenses/>.
-
 import logging
 from enum import Enum
-from functools import partial, wraps
-from typing import List, Union
+from functools import partial
+from functools import wraps
+from typing import List
+from typing import Union
 
 import healpy as hp
 import matplotlib.transforms as transforms
@@ -27,7 +29,6 @@ import numpy as np
 import pandas as pd
 from astropy import units as u
 from astropy.coordinates import SkyCoord
-from astropy.coordinates.builtin_frames import ecliptic
 from matplotlib.patches import Ellipse
 
 from .monitoring import UtilsMonitoring
@@ -92,7 +93,8 @@ class CacheManager(object):
                 and keycache_argument > len(args) - 1
             ):
                 logger.warning(
-                    f"Error during the configuration of keycache_argument, the value should be in [0, {len(args)-1}]"
+                    f"Error during the configuration of keycache_argument, \
+                        the value should be in [0, {len(args)-1}]"
                 )
                 result = func(*args, **kwargs)
                 return result
@@ -104,7 +106,8 @@ class CacheManager(object):
                 > 0
             ):
                 logger.warning(
-                    f"Error during the configuration of keycache_argument, each value of the list should be in [0, {len(args)-1}]"
+                    f"Error during the configuration of keycache_argument, \
+                        each value of the list should be in [0, {len(args)-1}]"
                 )
                 result = func(*args, **kwargs)
                 return result
@@ -124,7 +127,7 @@ class CacheManager(object):
             else:
                 result = func(*args, **kwargs)
                 if logger.getEffectiveLevel() >= level:
-                    logger.log(level, f"Init the memory cache")
+                    logger.log(level, "Init the memory cache")
                 CacheManager.memory_cache.clear()
                 if logger.getEffectiveLevel() >= level:
                     logger.log(level, f"Cache {key_cache}")
@@ -135,7 +138,8 @@ class CacheManager(object):
 
 
 def HPbin(df, nside, system: FrameEnum = FrameEnum.GALACTIC):
-    # Assigns each lat/lon coordinate to a HEALPPIX Bin. Optional argument 'system' can be 'FrameEnum.GALACTIC' [default] or 'Ecliptic'
+    # Assigns each lat/lon coordinate to a HEALPPIX Bin. Optional argument
+    # 'system' can be 'FrameEnum.GALACTIC' [default] or 'Ecliptic'
 
     # load in the coordinates in radians
     if system == FrameEnum.GALACTIC:
@@ -149,7 +153,8 @@ def HPbin(df, nside, system: FrameEnum = FrameEnum.GALACTIC):
         lon = np.array(df["Ecliptic Longitude"])
     else:
         raise Exception(
-            f"{system} ({type(system)}) is not a valid coordinate system, please choose FrameEnum.GALACTIC or FrameEnum.ECLIPTIC"
+            f"{system} ({type(system)}) is not a valid coordinate system, \
+                please choose FrameEnum.GALACTIC or FrameEnum.ECLIPTIC"
         )
         return
 
@@ -206,7 +211,7 @@ def convert_ecliptic_to_galactic(data: pd.DataFrame):
             if "Ecliptic Longitude" in data.columns
             else data["ecliptic longitude"]
         )
-    except:
+    except:  # noqa: E722
         raise Exception(
             "ERROR: Unable to find ecliptic longitude in data frame"
         )
@@ -219,7 +224,7 @@ def convert_ecliptic_to_galactic(data: pd.DataFrame):
             else data["ecliptic latitude"]
         )
         beta = beta.to_list()
-    except:
+    except:  # noqa: E722
         try:
             beta = (
                 np.pi / 2 - np.arccos(np.array(data["coslat"]))
@@ -228,7 +233,7 @@ def convert_ecliptic_to_galactic(data: pd.DataFrame):
                 else np.pi / 2
                 - np.arccos(np.array(data["cos ecliptic colatitude"]))
             )
-        except:
+        except:  # noqa: E722
             raise Exception(
                 "ERROR: Unable to find ecliptic latitude in data frame"
             )
@@ -237,21 +242,25 @@ def convert_ecliptic_to_galactic(data: pd.DataFrame):
         lamb * u.rad, beta * u.rad, frame="barycentrictrueecliptic"
     )
     galactic_coord = ecliptic_coord.galactic
-    l = galactic_coord.l
-    b = galactic_coord.b
-    l.wrap_angle = 180 * u.deg
+    gal_longitude = galactic_coord.l
+    gal_latitude = galactic_coord.b
+    gal_latitude.wrap_angle = 180 * u.deg
     if not ("Galactic Latitude" in data.columns):
-        data.insert(len(data.columns), "Galactic Longitude", l, True)
-        data.insert(len(data.columns), "Galactic Latitude", b, True)
+        data.insert(
+            len(data.columns), "Galactic Longitude", gal_longitude, True
+        )
+        data.insert(len(data.columns), "Galactic Latitude", gal_latitude, True)
     else:
-        data["Galactic Longitude"] = l
-        data["Galactic Latitude"] = b
+        data["Galactic Longitude"] = gal_longitude
+        data["Galactic Latitude"] = gal_latitude
     return
 
 
 def getSciRD(f, Tobs):
-    # Compute the LISA Sensitivity curve given a set of Fourier frequencies and an observation time
-    # Curve is in units of strain amplitude and is defined by SciRD available at: https://www.cosmos.esa.int/documents/678316/1700384/SciRD.pdf
+    # Compute the LISA Sensitivity curve given a set of Fourier frequencies
+    # and an observation time
+    # Curve is in units of strain amplitude and is defined by SciRD available
+    # at: https://www.cosmos.esa.int/documents/678316/1700384/SciRD.pdf
 
     f1 = np.array(0.4 * 1e-3)
     f2 = np.array(25 * 1e-3)
@@ -264,7 +273,8 @@ def getSciRD(f, Tobs):
 
 
 def get_DL(df):
-    # Estimate luminosity distance (in kpc) from GW amplitude, frequency, and frequency derivative
+    # Estimate luminosity distance (in kpc) from GW amplitude, frequency, and
+    # frequency derivative
     c = 2.99e8  # speed of light in m/s
     kpc2m = 3.086e19  # 1 kiloparsec in meters
     r = (
@@ -278,7 +288,6 @@ def get_DL(df):
     return
 
 
-# get_Mchirp
 def get_Mchirp(df):
     TSUN = 4.9169e-6  # Mass of the Sun \f$M_\odot G c^{-3}\f$ [s]
     Mc = (
@@ -309,7 +318,8 @@ def ellipse_area(df):
 # confidence_ellipse
 @UtilsMonitoring.time_spend(level=logging.DEBUG)
 def confidence_ellipse(df, ax, n_std=1.0, facecolor="none", **kwargs):
-    # Plot an error ellipse on some axes. It takes a 2D data frame of parameters as its input
+    # Plot an error ellipse on some axes. It takes a 2D data frame of
+    # parameters as its input
     mean = np.array(df.mean())
 
     cov = np.array(df.cov())

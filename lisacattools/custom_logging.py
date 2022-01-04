@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright (C) 2020-2021 - Centre National d'Etudes Spatiales
 # jean-christophe.malapert@cnes.fr
 #
@@ -17,9 +18,7 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301  USA
-
 """Module for customizing ths logs."""
-
 import logging
 from typing import Optional
 
@@ -86,7 +85,7 @@ class LogRecord(logging.LogRecord):
         msg = str(self.msg)
         if isinstance(self.args, dict):
             return msg.format(self.args)
-        return msg.format(*self.args) if self.args else msg
+        return msg % self.args if self.args else msg
 
 
 class CustomColorFormatter(logging.Formatter):

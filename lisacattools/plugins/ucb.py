@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright (C) 2021 - James I. Thorpe, Tyson B. Littenberg, Jean-Christophe
 # Malapert
 #
@@ -16,17 +17,21 @@
 # You should have received a copy of the GNU General Public License
 # along with lisacattools.  If not, see <https://www.gnu.org/licenses/>.
 """Module implemented the UCB catalog."""
-
 import glob
 import logging
 import os
 from itertools import chain
-from typing import List, Optional, Union
+from typing import List
+from typing import Optional
+from typing import Union
 
 import numpy as np
 import pandas as pd
 
-from ..catalog import GWCatalog, GWCatalogs, UtilsLogs, UtilsMonitoring
+from ..catalog import GWCatalog
+from ..catalog import GWCatalogs
+from ..catalog import UtilsLogs
+from ..catalog import UtilsMonitoring
 from ..utils import CacheManager
 
 UtilsLogs.addLoggingLevel("TRACE", 15)
@@ -52,11 +57,14 @@ class UcbCatalogs(GWCatalogs):
 
         Args:
             path (str): directory
-            accepted_pattern (str, optional): pattern to accept files. Defaults to "*.h5".
-            rejected_pattern (str, optional): pattern to reject files. Defaults to "*chain*".
+            accepted_pattern (str, optional): pattern to accept files.
+            Defaults to "*.h5".
+            rejected_pattern (str, optional): pattern to reject files.
+            Defaults to "*chain*".
 
         Raises:
-            ValueError: no files found matching the accepted and rejected patterns.
+            ValueError: no files found matching the accepted and rejected
+            patterns.
         """
         self.path = path
         self.accepted_pattern = accepted_pattern
@@ -74,7 +82,9 @@ class UcbCatalogs(GWCatalogs):
         )
         if len(self.cat_files) == 0:
             raise ValueError(
-                f"no files found matching the accepted ({self.accepted_pattern}) and rejected ({self.rejected_pattern}) patterns in {directories}"
+                f"no files found matching the accepted \
+                    ({self.accepted_pattern}) and rejected \
+                    ({self.rejected_pattern}) patterns in {directories}"
             )
         self.__metadata = pd.concat(
             [self._read_cats(cat_file) for cat_file in self.cat_files]
@@ -148,30 +158,30 @@ class UcbCatalogs(GWCatalogs):
     @property
     @UtilsMonitoring.io(level=logging.DEBUG)
     def metadata(self) -> pd.DataFrame:
-        __doc__ = GWCatalogs.metadata.__doc__
+        __doc__ = GWCatalogs.metadata.__doc__  # noqa: F841
         return self.__metadata
 
     @property
     @UtilsMonitoring.io(level=logging.TRACE)
     def count(self) -> int:
-        __doc__ = GWCatalogs.count.__doc__
+        __doc__ = GWCatalogs.count.__doc__  # noqa: F841
         return len(self.metadata.index)
 
     @property
     @UtilsMonitoring.io(level=logging.TRACE)
     def files(self) -> List[str]:
-        __doc__ = GWCatalogs.files.__doc__
+        __doc__ = GWCatalogs.files.__doc__  # noqa: F841
         return self.cat_files
 
     @UtilsMonitoring.io(level=logging.TRACE)
     def get_catalogs_name(self) -> List[str]:
-        __doc__ = GWCatalogs.get_catalogs_name.__doc__
+        __doc__ = GWCatalogs.get_catalogs_name.__doc__  # noqa: F841
         return list(self.metadata.index)
 
     @UtilsMonitoring.io(level=logging.TRACE)
     @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def get_first_catalog(self) -> GWCatalog:
-        __doc__ = GWCatalogs.get_first_catalog.__doc__
+        __doc__ = GWCatalogs.get_first_catalog.__doc__  # noqa: F841
         location = self.metadata.iloc[0]["location"]
         name = self.metadata.index[0]
         return UcbCatalog(name, location)
@@ -179,7 +189,7 @@ class UcbCatalogs(GWCatalogs):
     @UtilsMonitoring.io(level=logging.TRACE)
     @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def get_last_catalog(self) -> GWCatalog:
-        __doc__ = GWCatalogs.get_last_catalog.__doc__
+        __doc__ = GWCatalogs.get_last_catalog.__doc__  # noqa: F841
         location = self.metadata.iloc[self.count - 1]["location"]
         name = self.metadata.index[self.count - 1]
         return UcbCatalog(name, location)
@@ -187,7 +197,7 @@ class UcbCatalogs(GWCatalogs):
     @UtilsMonitoring.io(level=logging.TRACE)
     @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def get_catalog(self, idx: int) -> GWCatalog:
-        __doc__ = GWCatalogs.get_catalog.__doc__
+        __doc__ = GWCatalogs.get_catalog.__doc__  # noqa: F841
         location = self.metadata.iloc[idx]["location"]
         name = self.metadata.index[idx]
         return UcbCatalog(name, location)
@@ -195,7 +205,7 @@ class UcbCatalogs(GWCatalogs):
     @UtilsMonitoring.io(level=logging.TRACE)
     @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
     def get_catalog_by(self, name: str) -> GWCatalog:
-        __doc__ = GWCatalogs.get_catalog_by.__doc__
+        __doc__ = GWCatalogs.get_catalog_by.__doc__  # noqa: F841
         cat_idx = self.metadata.index.get_loc(name)
         return self.get_catalog(cat_idx)
 
@@ -210,10 +220,12 @@ class UcbCatalogs(GWCatalogs):
         )
 
     def __repr__(self):
-        return f"UcbCatalogs({self.path!r}, {self.accepted_pattern!r}, {self.rejected_pattern!r}, {self.extra_directories!r})"
+        return f"UcbCatalogs({self.path!r}, {self.accepted_pattern!r}, \
+            {self.rejected_pattern!r}, {self.extra_directories!r})"
 
     def __str__(self):
-        return f"UcbCatalogs: {self.path} {self.accepted_pattern!r} {self.rejected_pattern!r} {self.extra_directories!r}"
+        return f"UcbCatalogs: {self.path} {self.accepted_pattern!r} \
+            {self.rejected_pattern!r} {self.extra_directories!r}"
 
 
 class UcbCatalog(GWCatalog):
@@ -228,7 +240,7 @@ class UcbCatalog(GWCatalog):
         """
         self.__name = catalog_name
         self.__location = location
-        store = pd.HDFStore(location)
+        store = pd.HDFStore(location, "r")
         self.__datasets = store.keys()
         store.close()
 
@@ -241,7 +253,8 @@ class UcbCatalog(GWCatalog):
         """Read a source in a chain_file
 
         Args:
-            source_name (str): Name of the source to extract from the chain_file
+            source_name (str): Name of the source to extract from the
+            chain_file
             chain_file (str): file to load
 
         Returns:
@@ -280,21 +293,21 @@ class UcbCatalog(GWCatalog):
     @property
     @UtilsMonitoring.io(level=logging.DEBUG)
     def name(self) -> str:
-        __doc__ = GWCatalog.name.__doc__
+        __doc__ = GWCatalog.name.__doc__  # noqa: F841
         return self.__name
 
     @property
     @UtilsMonitoring.io(level=logging.DEBUG)
     def location(self) -> str:
-        __doc__ = GWCatalog.location.__doc__
+        __doc__ = GWCatalog.location.__doc__  # noqa: F841
         return self.__location
 
     @UtilsMonitoring.io(level=logging.DEBUG)
     @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=100)
     def get_detections(
-        self, attr: List[str] = None
-    ) -> Union[List[str], pd.DataFrame]:
-        __doc__ = GWCatalog.get_detections.__doc__
+        self, attr: Union[List[str], str] = None
+    ) -> Union[List[str], pd.DataFrame, pd.Series]:
+        __doc__ = GWCatalog.get_detections.__doc__  # noqa: F841
         detections = self.get_dataset("detections")
         return (
             list(detections.index) if attr is None else detections[attr].copy()
@@ -303,13 +316,13 @@ class UcbCatalog(GWCatalog):
     @UtilsMonitoring.io(level=logging.DEBUG)
     @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=100)
     def get_attr_detections(self) -> List[str]:
-        __doc__ = GWCatalog.get_attr_detections.__doc__
+        __doc__ = GWCatalog.get_attr_detections.__doc__  # noqa: F841
         return list(self.get_dataset("detections").columns)
 
     @UtilsMonitoring.io(level=logging.DEBUG)
     @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=100)
     def get_median_source(self, attr: str) -> pd.DataFrame:
-        __doc__ = GWCatalog.get_median_source.__doc__
+        __doc__ = GWCatalog.get_median_source.__doc__  # noqa: F841
         val = self.get_detections(attr)
         source_idx = self.get_detections()[
             np.argmin(np.abs(np.array(val) - val.median()))
@@ -323,22 +336,22 @@ class UcbCatalog(GWCatalog):
     def get_source_samples(
         self, source_name: str, attr: List[str] = None
     ) -> pd.DataFrame:
-        __doc__ = GWCatalog.get_source_samples.__doc__
-        samples = self.get_detections(["chain file"])
-        chain_file = samples.loc[source_name]["chain file"]
+        __doc__ = GWCatalog.get_source_samples.__doc__  # noqa: F841
+        samples: pd.DataFrame = self.get_detections(["chain file"])
+        chain_file: str = samples.loc[source_name]["chain file"]
         source_samples = self._read_chain_file(source_name, chain_file)
         return source_samples if attr is None else source_samples[attr].copy()
 
     @UtilsMonitoring.io(level=logging.DEBUG)
     @UtilsMonitoring.time_spend(level=logging.DEBUG)
     def get_attr_source_samples(self, source_name: str) -> List[str]:
-        __doc__ = GWCatalog.get_attr_source_samples.__doc__
+        __doc__ = GWCatalog.get_attr_source_samples.__doc__  # noqa: F841
         return list(self.get_source_samples(source_name).columns)
 
     @UtilsMonitoring.io(level=logging.TRACE)
     @UtilsMonitoring.time_spend(level=logging.DEBUG)
     def describe_source_samples(self, source_name: str) -> pd.DataFrame:
-        __doc__ = GWCatalog.describe_source_samples.__doc__
+        __doc__ = GWCatalog.describe_source_samples.__doc__  # noqa: F841
         return self.get_source_samples(source_name).describe()
 
     def __repr__(self):

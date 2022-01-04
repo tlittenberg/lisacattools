@@ -8,19 +8,8 @@ set -e
 # thanks to it we can just enter `./scripts/run-tests.bash`
 cd "${0%/*}/.."
 
-echo "1 - Reformatting the code"
-echo "-------------------------"
-black --line-length 79 lisacattools
-if [ $? -ne 0 ]
-then
-    echo "Failed!" && exit 1
-else
-    echo "OK!"
-fi
-
 echo " "
-echo " "
-echo "2 - Quality code : Cyclomatic Complexity"
+echo "1 - Quality code : Cyclomatic Complexity"
 echo "----------------------------------------"
 nb=`radon cc -n C -e "lisacattools/catalog.py" lisacattools | wc -l`
 if [ $nb -ne "0" ]
@@ -32,7 +21,7 @@ fi
 
 echo " "
 echo " "
-echo "3 - Quality code : Maintenability"
+echo "2 - Quality code : Maintenability"
 echo "----------------------------------"
 nb=`radon mi -n C lisacattools | wc -l`
 if [ $nb -ne "0" ]
@@ -44,7 +33,7 @@ fi
 
 echo " "
 echo " "
-echo "4 - Tests"
+echo "3 - Tests"
 echo "----------------------------------"
 coverage run -m robot --variable TMP_DIR:tests/results --outputdir tests/results/ tests/testsuites/
 

@@ -1,26 +1,31 @@
+# -*- coding: utf-8 -*-
 """
 Connecting catalogs
 ===================
 
 Locate a source in an updated catalog and compare parameters.
 """
-
 #%%
 # This example shows how to find a particular source after the catalog has been updated
 # based on the `parent` meta data, and produces a corner plot showing how the parameter
 # estimation evolves with time.
-
 import os
-import pandas as pd
+
 import numpy as np
+import pandas as pd
 from chainconsumer import ChainConsumer
-from lisacattools.catalog import GWCatalog, GWCatalogs, GWCatalogType
+
+from lisacattools.catalog import GWCatalog
+from lisacattools.catalog import GWCatalogs
+from lisacattools.catalog import GWCatalogType
 
 #%%
 # Start by loading the 03 month catalog and selecting a source to follow
 catPath = "../../tutorial/data/ucb"
 
-meta_catalog = GWCatalogs.create(GWCatalogType.UCB, catPath, "cat7864320_v3.h5")
+meta_catalog = GWCatalogs.create(
+    GWCatalogType.UCB, catPath, "cat7864320_v3.h5"
+)
 old_catalog = meta_catalog.get_last_catalog()
 
 detections_attr = old_catalog.get_attr_detections()
@@ -35,7 +40,9 @@ old_cat.loc[[old_source], ["SNR", "Frequency", "Amplitude"]]
 
 #%%
 # Load the 06 month catalog and find the current name for `old_source`
-meta_catalog = GWCatalogs.create(GWCatalogType.UCB, catPath, "cat15728640_v2.h5")
+meta_catalog = GWCatalogs.create(
+    GWCatalogType.UCB, catPath, "cat15728640_v2.h5"
+)
 new_catalog = meta_catalog.get_last_catalog()
 
 detections_attr = new_catalog.get_attr_detections()

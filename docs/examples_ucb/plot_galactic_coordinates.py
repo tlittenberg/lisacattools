@@ -1,27 +1,26 @@
+# -*- coding: utf-8 -*-
 """
 3D map of the galaxy
 =====================
 
 Create inferred map of the galaxy from chirping binaries
 """
-
 #%%
 # This example demonstrates using chirping binaries to map the galaxy.
 # Samples from the high SNR chirping binaries are reparameterized into galactic cartesian coordinates and plotted.
-
 # Import modules
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.patches import Ellipse
-import matplotlib.colors as colors
 import matplotlib.cm as cm
-from lisacattools.catalog import GWCatalogs, GWCatalogType
-from lisacattools import (
-    get_DL,
-    confidence_ellipse,
-    convert_ecliptic_to_galactic,
-    convert_galactic_to_cartesian,
-)
+import matplotlib.colors as colors
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.patches import Ellipse
+
+from lisacattools import confidence_ellipse
+from lisacattools import convert_ecliptic_to_galactic
+from lisacattools import convert_galactic_to_cartesian
+from lisacattools import get_DL
+from lisacattools.catalog import GWCatalogs
+from lisacattools.catalog import GWCatalogType
 
 # Start by loading the main catalog file processed from GBMCMC outputs
 catPath = "../../tutorial/data/ucb"
@@ -57,7 +56,8 @@ axs[1].set(
 
 # color ellipses by log SNR
 cNorm = colors.LogNorm(
-    vmin=selected_detections["SNR"].min(), vmax=selected_detections["SNR"].max()
+    vmin=selected_detections["SNR"].min(),
+    vmax=selected_detections["SNR"].max(),
 )
 scalarMap = cm.ScalarMappable(norm=cNorm, cmap=plt.cm.get_cmap("plasma_r"))
 cbar = fig.colorbar(scalarMap)
@@ -79,7 +79,10 @@ for source in sources:
 
     # add galactic cartesian coordinates
     convert_galactic_to_cartesian(
-        samples, "Galactic Longitude", "Galactic Latitude", "Luminosity Distance"
+        samples,
+        "Galactic Longitude",
+        "Galactic Latitude",
+        "Luminosity Distance",
     )
 
     # plot galactic X-Y plane

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright (C) 2021 - James I. Thorpe, Tyson B. Littenberg, Jean-Christophe
 # Malapert
 #

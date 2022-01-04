@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-from lisacattools import GWCatalogs, GWCatalogType
+# -*- coding: utf-8 -*-
+from lisacattools import GWCatalogs
+from lisacattools import GWCatalogType
 
 
 class TestPluginMbh:

@@ -1,4 +1,14 @@
-### Add Support for conda (HEAD -> conda)
+### Fix the python version for black and wrong flake8 URL in precommit (HEAD -> main)
+>Thu, 12 Jan 2023 22:01:14 +0100
+
+>Author: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Add Support for conda (origin/conda)
 >Wed, 4 Aug 2021 00:12:58 +0200
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
@@ -8,7 +18,7 @@
 
 
 
-### Improve code quality : use pre-commit package to configure/run the code quality (origin/main, origin/HEAD, main)
+### Improve code quality : use pre-commit package to configure/run the code quality
 >Mon, 2 Aug 2021 01:38:46 +0200
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

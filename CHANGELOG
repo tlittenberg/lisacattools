@@ -1,4 +1,14 @@
-### Fixes https://github.com/tlittenberg/lisacattools/issues/14 (HEAD -> main)
+### Closes https://github.com/tlittenberg/lisacattools/issues/13 (HEAD -> main)
+>Thu, 12 Jan 2023 23:48:50 +0100
+
+>Author: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Fixes https://github.com/tlittenberg/lisacattools/issues/14
 >Thu, 12 Jan 2023 22:07:26 +0100
 
 >Author: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)

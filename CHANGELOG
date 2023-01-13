@@ -1,4 +1,14 @@
-### Closes https://github.com/tlittenberg/lisacattools/issues/13 (HEAD -> main)
+### Change code for new astropy version : https://github.com/tlittenberg/lisacattools/issues/13 (HEAD -> main)
+>Fri, 13 Jan 2023 04:21:03 +0100
+
+>Author: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Closes https://github.com/tlittenberg/lisacattools/issues/13
 >Thu, 12 Jan 2023 23:48:50 +0100
 
 >Author: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)

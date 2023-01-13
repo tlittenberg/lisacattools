@@ -17,13 +17,13 @@ repos:
         pass_filenames: false
       - id: tests
         name: tests
-        entry: bash -c 'nb=$(coverage run -m robot --variable TMP_DIR:tests/results --outputdir tests/results/ tests/testsuites/) && (($?<1)) && exit 0'
+        entry: bash -c 'make test'
         language: system
         types: [python]
         pass_filenames: false
       - id: generate_coverage
         name: generate_coverage
-        entry: bash -c 'coverage html --include=lisacattools/* --directory=tests/results/coverage && exit 0'
+        entry: bash -c 'coverage run -m robot --variable TMP_DIR:tests/results --outputdir tests/results/ tests/testsuites/ && coverage html --include=lisacattools/* --directory=tests/results/coverage && exit 0'
         language: system
         types: [python]
         pass_filenames: false

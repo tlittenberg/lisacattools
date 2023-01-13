@@ -69,11 +69,10 @@ for source in sources:
 
     # get chain samples
     samples = final_catalog.get_source_samples(source)
-
     # convert from ecliptic to galactic coordinates
     convert_ecliptic_to_galactic(samples)
     # enforce GR prior
-    samples = samples[(samples["Frequency Derivative"] > 0)]
+    samples = samples[samples["Frequency Derivative"] > 0]
     # add distance parameter
     get_DL(samples)
 

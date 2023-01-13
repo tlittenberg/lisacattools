@@ -1,4 +1,14 @@
-### Create data directory if not exists (HEAD -> main)
+### Fix path of the doc in github ci (HEAD -> main)
+>Fri, 13 Jan 2023 09:14:21 +0100
+
+>Author: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Create data directory if not exists (origin/main, origin/HEAD)
 >Fri, 13 Jan 2023 08:49:18 +0100
 
 >Author: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)
@@ -8,7 +18,7 @@
 
 
 
-### Update workflow (origin/main, origin/HEAD)
+### Update workflow
 >Fri, 13 Jan 2023 05:46:52 +0100
 
 >Author: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)

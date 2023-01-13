@@ -1,4 +1,14 @@
-### Update gihub ci workflow (HEAD -> main)
+### Test new github action to deploy on GH pages (HEAD -> main)
+>Fri, 13 Jan 2023 12:43:36 +0100
+
+>Author: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Update gihub ci workflow (origin/main, origin/HEAD)
 >Fri, 13 Jan 2023 09:41:03 +0100
 
 >Author: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)
@@ -8,7 +18,7 @@
 
 
 
-### Fix path of the doc in github ci (origin/main, origin/HEAD)
+### Fix path of the doc in github ci
 >Fri, 13 Jan 2023 09:14:21 +0100
 
 >Author: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)

@@ -29,10 +29,6 @@ Usage:\n
 	make demo\t\t\t				Play the demo\n
 	make doc\t\t\t 				Generate the documentation\n
 	make doc-pdf\t\t\t 			Generate the documentation as PDF\n
-	make github-site-prepare\t	Prepare the gh-pages submodule\n
-	make github-site-init\t\t	Configure the submodule for gh-pages\n
-	make github-site\t\t 		Generate the website for github\n
-	make github-site-commit\t 	Commit the changes to the website\n
 	make visu-doc-pdf\t\t 		View the generated PDF\n
 	make visu-doc\t\t\t			View the generated documentation\n
 	\n
@@ -104,18 +100,6 @@ visu-doc-pdf:
 
 visu-doc:
 	firefox docs/build/html/index.html
-
-github-site-prepare:
-	git submodule add -b gh-pages -f https://github.com/tlittenberg/lisacattools.git docs/site/lisacattools
-
-github-site-init:
-	git submodule init && git submodule update && cp docs/index.html docs/site/lisacattools/ && cp docs/.nojekyll docs/site/lisacattools/
-
-github-site:
-	make github-site-init && make github -C docs
-
-github-site-commit:
-	make github-site && cd docs/site/lisacattools && git add . && git commit -m "Rebuild docs"
 
 test:
 	make data && scripts/run-tests.bash

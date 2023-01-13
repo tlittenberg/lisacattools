@@ -4,6 +4,8 @@ from tarfile import open as opentar
 
 import gdown as gdd
 
+os.makedirs("tutorial/data/", exist_ok=True)
+
 # download MBH
 if not os.path.exists("tutorial/data/mbh"):
     url = "https://drive.google.com/file/d/1Rr3pEF2BA2oRfs23FDIgMgoutxTq1qOR/view?usp=share_link"  # noqa: E501

@@ -12,6 +12,7 @@ jobs:
         path: main
     - name: Generate static files
       run: |
+        ls
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
         make doc

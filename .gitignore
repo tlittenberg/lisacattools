@@ -151,3 +151,6 @@ tutorial/data
 
 # Build conda
 build_conda_pkg/
+
+# web site
+docs/site/lisacattools/

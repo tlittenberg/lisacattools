@@ -12,8 +12,6 @@ BUILDDIR      = build
 github:
 	@make html
 	@cp -r build/html site/lisacattools/
-	@touch site/lisacattools/.nojekyll
-	@echo "<meta http-equiv=\"refresh\" content=\"0; url=./html/index.html\" />" > site/lisacattools/index.html
 
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)

@@ -5,6 +5,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, 3.10]
     steps:
     - uses: actions/checkout@v2
 
@@ -21,12 +24,9 @@ jobs:
     - name: Generate static files
       run: |
         make doc
-    - name: Test on python 3.8.16, 3.9.16, 3.10.9
-      uses: "gabrielfalcao/pyenv-action@v9"
-      with:
-        versions: 3.8.16, 3.9.16, 3.10.9
-        command: |
-          make tox
+    - name: Test on python 3.8, 3.9, 3.10
+      run: |
+        make tox
     - name: Deploy to GH Pages 🚀
       uses: peaceiris/actions-gh-pages@v3
       with:

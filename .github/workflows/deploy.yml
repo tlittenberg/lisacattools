@@ -6,12 +6,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Setup pyenv
-      uses: "gabrielfalcao/pyenv-action@v9"
-      with:
-          versions: 3.8.16, 3.9.16, 3.10.9
-    - name: chechout package
+    - name: Install pyenv
+      run: |
+        apt-get update; sudo apt-get install make build-essential libssl-dev zlib1g-dev \
+        libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
+        libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+        curl https://pyenv.run | bash
+        echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
+        echo 'eval "$(pyenv init --path)"' >> ~/.bashrc
+        echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+        source ~/.bashrc
+    - name: Checkout the package
       uses: actions/checkout@v2
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip

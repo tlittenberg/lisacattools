@@ -17,7 +17,7 @@ You will need python3 to run this program.
 
 First, we need to clone the repository
 ```
-git clone ...
+git clone https://github.com/tlittenberg/lisacattools.git
 ```
 
 #### 1.2.1 - For users

@@ -25,6 +25,8 @@ Usage:\n
 	make data\t\t\t				Download data\n
 	make test\t\t\t             Run units and integration tests\n
 	make quality\t\t\t 			Run quality tests\n
+	make tox\t\t\t 			Tests in several environments\n
+
 	\n
 	make demo\t\t\t				Play the demo\n
 	make doc\t\t\t 				Generate the documentation\n
@@ -107,6 +109,9 @@ test:
 quality:
 	pre-commit run --all-files
 
+tox:
+	pyenv local 3.8 3.9 3.10 && tox
+
 #
 # Create distribution
 # ----------------------------------
@@ -138,4 +143,4 @@ demo:
 licences:
 	pip-licenses
 
-.PHONY: help user prepare-dev install-dev doc visu-doc test changelog clean release release-pypi upload-test-pypi upload-prod-pypi demo licences conda
+.PHONY: help user prepare-dev install-dev doc visu-doc test tox changelog clean release release-pypi upload-test-pypi upload-prod-pypi demo licences conda

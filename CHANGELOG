@@ -1,4 +1,14 @@
-### Remove github tasks since github ci does it (HEAD -> main)
+### Add support to python 3.8, 3.9, 3.10 (HEAD -> main)
+>Mon, 16 Jan 2023 01:27:32 +0100
+
+>Author: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Remove github tasks since github ci does it (origin/main, origin/HEAD)
 >Fri, 13 Jan 2023 13:07:54 +0100
 
 >Author: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)
@@ -8,7 +18,7 @@
 
 
 
-### Test new github action to deploy on GH pages (origin/main, origin/HEAD)
+### Test new github action to deploy on GH pages
 >Fri, 13 Jan 2023 12:43:36 +0100
 
 >Author: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)

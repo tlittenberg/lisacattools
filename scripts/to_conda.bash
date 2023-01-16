@@ -7,8 +7,7 @@ set -e
 # no matter from which directory we'll run script
 # thanks to it we can just enter `./scripts/to_conda.bash`
 cd "${0%/*}/.."
-
-export PATH=$PATH:/home/malapert/anaconda3/bin
+export PATH=$PATH:$HOME/anaconda3/bin
 export CONDA=build_conda_pkg
 version=`python setup.py --version`
 name=`python setup.py --name`
@@ -27,6 +26,6 @@ sed -i 's/ table/ pytable/g; s/your-github-id-here/tlittenberg/g; s/doc_url:/doc
 echo "Generate the conda package"
 conda build $CONDA/$name
 echo "Convert the conda package to other systems"
-conda convert $HOME/anaconda3/conda-bld/linux-64/$name-$version-py37_0.tar.bz2 -p all -o dist
+conda convert $HOME/anaconda3/conda-bld/linux-64/$name-$version-py39_0.tar.bz2 -p all -o dist
 echo "Deactivating conda environment"
 conda deactivate

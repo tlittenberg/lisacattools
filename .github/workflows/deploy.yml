@@ -21,10 +21,10 @@ jobs:
     - name: Generate static files
       run: |
         make doc
-    - name: Test on python 3.8,3.9,3.10
+    - name: Test on python 3.8.16, 3.9.16, 3.10.9
       uses: "gabrielfalcao/pyenv-action@v9"
       with:
-        versions: 3.8, 3.9, 3.10
+        versions: 3.8.16, 3.9.16, 3.10.9
         command: |
           make tox
     - name: Deploy to GH Pages 🚀

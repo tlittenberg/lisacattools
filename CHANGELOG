@@ -1,4 +1,14 @@
-### Add support to python 3.8, 3.9, 3.10 (HEAD -> main)
+### Fix tox (HEAD -> main)
+>Mon, 16 Jan 2023 01:51:35 +0100
+
+>Author: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Add support to python 3.8, 3.9, 3.10 (origin/main, origin/HEAD)
 >Mon, 16 Jan 2023 01:27:32 +0100
 
 >Author: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)
@@ -8,7 +18,7 @@
 
 
 
-### Remove github tasks since github ci does it (origin/main, origin/HEAD)
+### Remove github tasks since github ci does it
 >Fri, 13 Jan 2023 13:07:54 +0100
 
 >Author: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)

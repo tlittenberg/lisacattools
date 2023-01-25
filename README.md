@@ -17,7 +17,7 @@ You will need python3 to run this program.
 
 First, we need to clone the repository
 ```
-git clone ...
+git clone https://github.com/tlittenberg/lisacattools.git
 ```
 
 #### 1.2.1 - For users
@@ -55,6 +55,8 @@ pip install lisacattools
 
 ## 2 - Development (only if the repository has be cloned)
 
+### 2.1 - Writing the code
+
 Install the software by PIP (developers version)
 
 Then, develop your code and commit
@@ -65,6 +67,56 @@ The tests and code style formatter will be run automatically. To ignore the
 checks, do
 ```
 git commit --no-verify
+```
+
+### 2.2 - Running the tests
+
+```
+make test
+```
+
+### 2.3 - Testing on python 3.8,3.9,3.10
+
+Install all required prerequisite dependencies:
+
+```
+sudo apt-get update; sudo apt-get install make build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
+libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+
+```
+
+Download and execute installation script:
+￼
+```
+curl https://pyenv.run | bash
+```
+
+Add the following entries into your ~/.bashrc file:
+
+```
+# pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
+```
+
+Restart your shell:
+
+```
+exec $SHELL
+```
+
+Validate installation:
+
+```
+pyenv --version
+```
+
+Once the dependencies are installed, test on python 3.8, 3.8 and 3.10 :
+
+```
+make tox
 ```
 
 ## 3 - Running the tutorial

@@ -216,7 +216,6 @@ def convert_ecliptic_to_galactic(data: pd.DataFrame):
             "ERROR: Unable to find ecliptic longitude in data frame"
         )
     lamb = lamb.to_list()
-
     try:
         beta = (
             data["Ecliptic Latitude"]
@@ -237,19 +236,27 @@ def convert_ecliptic_to_galactic(data: pd.DataFrame):
             raise Exception(
                 "ERROR: Unable to find ecliptic latitude in data frame"
             )
-
     ecliptic_coord = SkyCoord(
         lamb * u.rad, beta * u.rad, frame="barycentrictrueecliptic"
     )
     galactic_coord = ecliptic_coord.galactic
     gal_longitude = galactic_coord.l
     gal_latitude = galactic_coord.b
-    gal_latitude.wrap_angle = 180 * u.deg
+    # gal_latitude.wrap_angle = 180 * u.deg
+    gal_longitude.wrap_angle = 180 * u.deg
     if not ("Galactic Latitude" in data.columns):
         data.insert(
-            len(data.columns), "Galactic Longitude", gal_longitude, True
+            len(data.columns),
+            "Galactic Longitude",
+            gal_longitude.to_value(),
+            True,
         )
-        data.insert(len(data.columns), "Galactic Latitude", gal_latitude, True)
+        data.insert(
+            len(data.columns),
+            "Galactic Latitude",
+            gal_latitude.to_value(),
+            True,
+        )
     else:
         data["Galactic Longitude"] = gal_longitude
         data["Galactic Latitude"] = gal_latitude
@@ -278,7 +285,7 @@ def get_DL(df):
     c = 2.99e8  # speed of light in m/s
     kpc2m = 3.086e19  # 1 kiloparsec in meters
     r = (
-        (5 / (96 * (np.pi ** 2)))
+        (5 / (96 * (np.pi**2)))
         * (c / df["Amplitude"])
         * (df["Frequency Derivative"])
         / np.power(df["Frequency"], 3)

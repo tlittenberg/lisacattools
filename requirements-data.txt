@@ -1,2 +1,2 @@
-googledrivedownloader==0.4
-requests==2.25.1
+gdown==4.6.0
+requests==2.28.2

@@ -58,7 +58,7 @@ The Class Of The LISA Plugin Should Be
 
 Metadata Should Exist
     ${lib}=                         Get Library Instance            mbhCat
-    Set Test Variable               ${lib.metadata}
+    Variable Should Exist               ${lib.metadata}
 
 The Number Of Catalogs Should Be
     [Arguments]                     ${nb_cat}

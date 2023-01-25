@@ -1,0 +1,474 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Analyze &mdash; lisacattools 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="UCB Use Case Gallery" href="examples_ucb/index.html" />
+    <link rel="prev" title="Catalog" href="catalog.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> lisacattools
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html#lisacattools">lisacattools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="catalog.html">Catalog</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Analyze</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#lisacattools.analyze.AbstractLisaAnalyze"><code class="docutils literal notranslate"><span class="pre">AbstractLisaAnalyze</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lisacattools.analyze.CatalogAnalysis"><code class="docutils literal notranslate"><span class="pre">CatalogAnalysis</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lisacattools.analyze.CatalogAnalysis.catalog"><code class="docutils literal notranslate"><span class="pre">CatalogAnalysis.catalog</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lisacattools.analyze.CatalogAnalysis.plot_corners"><code class="docutils literal notranslate"><span class="pre">CatalogAnalysis.plot_corners()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lisacattools.analyze.CatalogAnalysis.plot_individual_sources"><code class="docutils literal notranslate"><span class="pre">CatalogAnalysis.plot_individual_sources()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lisacattools.analyze.CatalogAnalysis.plot_mbh_mergers_history"><code class="docutils literal notranslate"><span class="pre">CatalogAnalysis.plot_mbh_mergers_history()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lisacattools.analyze.CatalogAnalysis.plot_skymap"><code class="docutils literal notranslate"><span class="pre">CatalogAnalysis.plot_skymap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lisacattools.analyze.CatalogAnalysis.save_img_dir"><code class="docutils literal notranslate"><span class="pre">CatalogAnalysis.save_img_dir</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#lisacattools.analyze.HistoryAnalysis"><code class="docutils literal notranslate"><span class="pre">HistoryAnalysis</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lisacattools.analyze.HistoryAnalysis.catalogs"><code class="docutils literal notranslate"><span class="pre">HistoryAnalysis.catalogs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lisacattools.analyze.HistoryAnalysis.plot_parameter_time_evolution"><code class="docutils literal notranslate"><span class="pre">HistoryAnalysis.plot_parameter_time_evolution()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lisacattools.analyze.HistoryAnalysis.plot_parameter_time_evolution_from_source"><code class="docutils literal notranslate"><span class="pre">HistoryAnalysis.plot_parameter_time_evolution_from_source()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lisacattools.analyze.HistoryAnalysis.plot_parameters_correlation_evolution"><code class="docutils literal notranslate"><span class="pre">HistoryAnalysis.plot_parameters_correlation_evolution()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lisacattools.analyze.HistoryAnalysis.plot_parameters_evolution"><code class="docutils literal notranslate"><span class="pre">HistoryAnalysis.plot_parameters_evolution()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lisacattools.analyze.HistoryAnalysis.plot_skymap_evolution"><code class="docutils literal notranslate"><span class="pre">HistoryAnalysis.plot_skymap_evolution()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lisacattools.analyze.HistoryAnalysis.save_img_dir"><code class="docutils literal notranslate"><span class="pre">HistoryAnalysis.save_img_dir</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#lisacattools.analyze.LisaAnalyse"><code class="docutils literal notranslate"><span class="pre">LisaAnalyse</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples_ucb/index.html">UCB Use Case Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_smbh/index.html">SMBH Use Case Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests Report</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Coverage:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="coverage.html">Coverage Report</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">lisacattools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Analyze</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/analyze.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="module-lisacattools.analyze">
+<span id="analyze"></span><h1>Analyze<a class="headerlink" href="#module-lisacattools.analyze" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="lisacattools.analyze.AbstractLisaAnalyze">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lisacattools.analyze.</span></span><span class="sig-name descname"><span class="pre">AbstractLisaAnalyze</span></span><a class="reference internal" href="_modules/lisacattools/analyze.html#AbstractLisaAnalyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.analyze.AbstractLisaAnalyze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract Object to link the two implementation and to share some
+method.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lisacattools.analyze.CatalogAnalysis">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lisacattools.analyze.</span></span><span class="sig-name descname"><span class="pre">CatalogAnalysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">catalog</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="catalog.html#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog"><span class="pre">GWCatalog</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_img_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lisacattools/analyze.html#CatalogAnalysis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.analyze.CatalogAnalysis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle the analysis of one catalog.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.analyze.CatalogAnalysis.catalog">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">catalog</span></span><a class="headerlink" href="#lisacattools.analyze.CatalogAnalysis.catalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Catalog.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns the catalog of this analysis</p>
+</dd>
+<dt class="field-even">Setter<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sets the catalog.</p>
+</dd>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="catalog.html#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog">GWCatalog</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.analyze.CatalogAnalysis.plot_corners">
+<span class="sig-name descname"><span class="pre">plot_corners</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.NoReturn" title="(in Python v3.11)"><span class="pre">NoReturn</span></a></span></span><a class="reference internal" href="_modules/lisacattools/analyze.html#CatalogAnalysis.plot_corners"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.analyze.CatalogAnalysis.plot_corners" title="Permalink to this definition">¶</a></dt>
+<dd><p>Some corners plots.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.analyze.CatalogAnalysis.plot_individual_sources">
+<span class="sig-name descname"><span class="pre">plot_individual_sources</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.NoReturn" title="(in Python v3.11)"><span class="pre">NoReturn</span></a></span></span><a class="reference internal" href="_modules/lisacattools/analyze.html#CatalogAnalysis.plot_individual_sources"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.analyze.CatalogAnalysis.plot_individual_sources" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the indivual sources.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.analyze.CatalogAnalysis.plot_mbh_mergers_history">
+<span class="sig-name descname"><span class="pre">plot_mbh_mergers_history</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.NoReturn" title="(in Python v3.11)"><span class="pre">NoReturn</span></a></span></span><a class="reference internal" href="_modules/lisacattools/analyze.html#CatalogAnalysis.plot_mbh_mergers_history"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.analyze.CatalogAnalysis.plot_mbh_mergers_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the history of observed mergers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.analyze.CatalogAnalysis.plot_skymap">
+<span class="sig-name descname"><span class="pre">plot_skymap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nside</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FrameEnum</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">FrameEnum.ECLIPTIC</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.NoReturn" title="(in Python v3.11)"><span class="pre">NoReturn</span></a></span></span><a class="reference internal" href="_modules/lisacattools/analyze.html#CatalogAnalysis.plot_skymap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.analyze.CatalogAnalysis.plot_skymap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot skymap.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.analyze.CatalogAnalysis.save_img_dir">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">save_img_dir</span></span><a class="headerlink" href="#lisacattools.analyze.CatalogAnalysis.save_img_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save image directory for plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns the directory where plots are saved</p>
+</dd>
+<dt class="field-even">Setter<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sets the directory where plots are saved.</p>
+</dd>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lisacattools.analyze.HistoryAnalysis">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lisacattools.analyze.</span></span><span class="sig-name descname"><span class="pre">HistoryAnalysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">catalogs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="catalog.html#lisacattools.catalog.GWCatalogs" title="lisacattools.catalog.GWCatalogs"><span class="pre">GWCatalogs</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_img_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lisacattools/analyze.html#HistoryAnalysis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.analyze.HistoryAnalysis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Analyse a particular source to see how it’s parameter estimates
+improve over time</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.analyze.HistoryAnalysis.catalogs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">catalogs</span></span><a class="headerlink" href="#lisacattools.analyze.HistoryAnalysis.catalogs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Catalogs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns the catalogs of this analysis</p>
+</dd>
+<dt class="field-even">Setter<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sets the catalogs.</p>
+</dd>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="catalog.html#lisacattools.catalog.GWCatalogs" title="lisacattools.catalog.GWCatalogs">GWCatalogs</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.analyze.HistoryAnalysis.plot_parameter_time_evolution">
+<span class="sig-name descname"><span class="pre">plot_parameter_time_evolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_parameter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.NoReturn" title="(in Python v3.11)"><span class="pre">NoReturn</span></a></span></span><a class="reference internal" href="_modules/lisacattools/analyze.html#HistoryAnalysis.plot_parameter_time_evolution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.analyze.HistoryAnalysis.plot_parameter_time_evolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the parameter that evolves over time.</p>
+<p>Note: extra parameter can be configured:
+- plot_type, default : scatter
+- grid, default : True
+- marker, default : ‘s’
+- linestyle, default : ‘-’
+- yscale, default : log
+- title, default : Evolution</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – data</p></li>
+<li><p><strong>time_parameter</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – time parameter in the data</p></li>
+<li><p><strong>parameter</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – parameter to plot over the time</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.analyze.HistoryAnalysis.plot_parameter_time_evolution_from_source">
+<span class="sig-name descname"><span class="pre">plot_parameter_time_evolution_from_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">catalog_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_parameter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.NoReturn" title="(in Python v3.11)"><span class="pre">NoReturn</span></a></span></span><a class="reference internal" href="_modules/lisacattools/analyze.html#HistoryAnalysis.plot_parameter_time_evolution_from_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.analyze.HistoryAnalysis.plot_parameter_time_evolution_from_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the parameter that evolves over time for a given source
+starting from a catalog.</p>
+<p>Note: extra parameter can be configured:
+- plot_type, default : scatter
+- grid, default : True
+- marker, default : ‘s’
+- linestyle, default : ‘-’
+- yscale, default : log
+- title, default : Evolution</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – data</p></li>
+<li><p><strong>catalog_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Start the evolution from the oldest one</p></li>
+<li><p><strong>one</strong> (<em>until that</em>) – </p></li>
+<li><p><strong>source_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – source name to follow up</p></li>
+<li><p><strong>time_parameter</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – time parameter in the data</p></li>
+<li><p><strong>parameter</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – parameter to plot over the time</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.analyze.HistoryAnalysis.plot_parameters_correlation_evolution">
+<span class="sig-name descname"><span class="pre">plot_parameters_correlation_evolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">allEpochs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.NoReturn" title="(in Python v3.11)"><span class="pre">NoReturn</span></a></span></span><a class="reference internal" href="_modules/lisacattools/analyze.html#HistoryAnalysis.plot_parameters_correlation_evolution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.analyze.HistoryAnalysis.plot_parameters_correlation_evolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>To dig into how parameter correlations might change over time, we
+can look at a time-evolving corner plot</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>allEpochs</strong> (<em>pd.DataFrame</em>) – observation of a source at different</p></li>
+<li><p><strong>epochs</strong> – </p></li>
+<li><p><strong>wks</strong> (<em>List</em>) – weeks to plot</p></li>
+<li><p><strong>params</strong> (<em>List</em>) – parameters to plot</p></li>
+<li><p><strong>colors</strong> (<em>List</em>) – color according the weeks</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.analyze.HistoryAnalysis.plot_parameters_evolution">
+<span class="sig-name descname"><span class="pre">plot_parameters_evolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_epochs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">scales</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.NoReturn" title="(in Python v3.11)"><span class="pre">NoReturn</span></a></span></span><a class="reference internal" href="_modules/lisacattools/analyze.html#HistoryAnalysis.plot_parameters_evolution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.analyze.HistoryAnalysis.plot_parameters_evolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show evolution over many different epochs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_epochs</strong> (<em>pd.DataFrame</em>) – observation of a source at</p></li>
+<li><p><strong>epochs</strong> (<em>different</em>) – </p></li>
+<li><p><strong>params</strong> (<em>List</em>) – list of parameters to plot</p></li>
+<li><p><strong>scales</strong> (<em>List</em>) – Scale for each plot</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.analyze.HistoryAnalysis.plot_skymap_evolution">
+<span class="sig-name descname"><span class="pre">plot_skymap_evolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nside</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">allEpochs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">system</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FrameEnum</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">FrameEnum.GALACTIC</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.NoReturn" title="(in Python v3.11)"><span class="pre">NoReturn</span></a></span></span><a class="reference internal" href="_modules/lisacattools/analyze.html#HistoryAnalysis.plot_skymap_evolution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.analyze.HistoryAnalysis.plot_skymap_evolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the skymap evolution</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nside</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – parameter for healpix related to the number of cells</p></li>
+<li><p><strong>allEpochs</strong> (<em>pd.DataFrame</em>) – observation of a source at different</p></li>
+<li><p><strong>epochs</strong> – </p></li>
+<li><p><strong>wks</strong> (<em>List</em>) – weeks to plot</p></li>
+<li><p><strong>system</strong> (<em>FrameEnum</em><em>, </em><em>optional</em>) – coordinate reference frame. Defaults</p></li>
+<li><p><strong>'FrameEnum.GALACTIC'.</strong> (<em>to</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.analyze.HistoryAnalysis.save_img_dir">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">save_img_dir</span></span><a class="headerlink" href="#lisacattools.analyze.HistoryAnalysis.save_img_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save image directory for plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns the directory where plots are saved</p>
+</dd>
+<dt class="field-even">Setter<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sets the directory where plots are saved.</p>
+</dd>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lisacattools.analyze.LisaAnalyse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lisacattools.analyze.</span></span><span class="sig-name descname"><span class="pre">LisaAnalyse</span></span><a class="reference internal" href="_modules/lisacattools/analyze.html#LisaAnalyse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.analyze.LisaAnalyse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory to create an analysis for a catalog or a time-evolution of the
+catalog.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="examples_ucb/index.html" class="btn btn-neutral float-right" title="UCB Use Case Gallery" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="catalog.html" class="btn btn-neutral float-left" title="Catalog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, James I. Thorpe, Tyson B. Littenberg, Jean-Christophe Malapert.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

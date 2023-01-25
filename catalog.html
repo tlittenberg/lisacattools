@@ -1,0 +1,1742 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Catalog &mdash; lisacattools 1.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-rendered-html.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Analyze" href="analyze.html" />
+    <link rel="prev" title="Installation" href="getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> lisacattools
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html#lisacattools">lisacattools</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Catalog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-lisacattools.catalog">1 - Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lisacattools.catalog.GWCatalog"><code class="docutils literal notranslate"><span class="pre">GWCatalog</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalog.describe_source_samples"><code class="docutils literal notranslate"><span class="pre">GWCatalog.describe_source_samples()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalog.get_attr_detections"><code class="docutils literal notranslate"><span class="pre">GWCatalog.get_attr_detections()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalog.get_attr_source_samples"><code class="docutils literal notranslate"><span class="pre">GWCatalog.get_attr_source_samples()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalog.get_detections"><code class="docutils literal notranslate"><span class="pre">GWCatalog.get_detections()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalog.get_median_source"><code class="docutils literal notranslate"><span class="pre">GWCatalog.get_median_source()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalog.get_source_samples"><code class="docutils literal notranslate"><span class="pre">GWCatalog.get_source_samples()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalog.location"><code class="docutils literal notranslate"><span class="pre">GWCatalog.location</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalog.name"><code class="docutils literal notranslate"><span class="pre">GWCatalog.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lisacattools.catalog.GWCatalogType"><code class="docutils literal notranslate"><span class="pre">GWCatalogType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalogType.GWCatalogPlugin"><code class="docutils literal notranslate"><span class="pre">GWCatalogType.GWCatalogPlugin</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lisacattools.catalog.GWCatalogs"><code class="docutils literal notranslate"><span class="pre">GWCatalogs</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalogs.count"><code class="docutils literal notranslate"><span class="pre">GWCatalogs.count</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalogs.create"><code class="docutils literal notranslate"><span class="pre">GWCatalogs.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalogs.files"><code class="docutils literal notranslate"><span class="pre">GWCatalogs.files</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalogs.get_catalog"><code class="docutils literal notranslate"><span class="pre">GWCatalogs.get_catalog()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalogs.get_catalog_by"><code class="docutils literal notranslate"><span class="pre">GWCatalogs.get_catalog_by()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalogs.get_catalogs_name"><code class="docutils literal notranslate"><span class="pre">GWCatalogs.get_catalogs_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalogs.get_first_catalog"><code class="docutils literal notranslate"><span class="pre">GWCatalogs.get_first_catalog()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalogs.get_last_catalog"><code class="docutils literal notranslate"><span class="pre">GWCatalogs.get_last_catalog()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalogs.get_lineage"><code class="docutils literal notranslate"><span class="pre">GWCatalogs.get_lineage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalogs.get_lineage_data"><code class="docutils literal notranslate"><span class="pre">GWCatalogs.get_lineage_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalogs.metadata"><code class="docutils literal notranslate"><span class="pre">GWCatalogs.metadata</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.catalog.GWCatalogs.register"><code class="docutils literal notranslate"><span class="pre">GWCatalogs.register()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-lisacattools.plugins.mbh">2 - MBH plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalogs"><code class="docutils literal notranslate"><span class="pre">MbhCatalogs</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalogs._read_cats"><code class="docutils literal notranslate"><span class="pre">MbhCatalogs._read_cats()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalogs._search_directories"><code class="docutils literal notranslate"><span class="pre">MbhCatalogs._search_directories()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalogs._search_files"><code class="docutils literal notranslate"><span class="pre">MbhCatalogs._search_files()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalogs.count"><code class="docutils literal notranslate"><span class="pre">MbhCatalogs.count</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalogs.files"><code class="docutils literal notranslate"><span class="pre">MbhCatalogs.files</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalogs.get_catalog"><code class="docutils literal notranslate"><span class="pre">MbhCatalogs.get_catalog()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalogs.get_catalog_by"><code class="docutils literal notranslate"><span class="pre">MbhCatalogs.get_catalog_by()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalogs.get_catalogs_name"><code class="docutils literal notranslate"><span class="pre">MbhCatalogs.get_catalogs_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalogs.get_first_catalog"><code class="docutils literal notranslate"><span class="pre">MbhCatalogs.get_first_catalog()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalogs.get_last_catalog"><code class="docutils literal notranslate"><span class="pre">MbhCatalogs.get_last_catalog()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalogs.get_lineage"><code class="docutils literal notranslate"><span class="pre">MbhCatalogs.get_lineage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalogs.get_lineage_data"><code class="docutils literal notranslate"><span class="pre">MbhCatalogs.get_lineage_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalogs.metadata"><code class="docutils literal notranslate"><span class="pre">MbhCatalogs.metadata</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalog"><code class="docutils literal notranslate"><span class="pre">MbhCatalog</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalog.datasets"><code class="docutils literal notranslate"><span class="pre">MbhCatalog.datasets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalog.describe_source_samples"><code class="docutils literal notranslate"><span class="pre">MbhCatalog.describe_source_samples()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalog.get_attr_detections"><code class="docutils literal notranslate"><span class="pre">MbhCatalog.get_attr_detections()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalog.get_attr_source_samples"><code class="docutils literal notranslate"><span class="pre">MbhCatalog.get_attr_source_samples()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalog.get_dataset"><code class="docutils literal notranslate"><span class="pre">MbhCatalog.get_dataset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalog.get_detections"><code class="docutils literal notranslate"><span class="pre">MbhCatalog.get_detections()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalog.get_median_source"><code class="docutils literal notranslate"><span class="pre">MbhCatalog.get_median_source()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalog.get_source_samples"><code class="docutils literal notranslate"><span class="pre">MbhCatalog.get_source_samples()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalog.location"><code class="docutils literal notranslate"><span class="pre">MbhCatalog.location</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.mbh.MbhCatalog.name"><code class="docutils literal notranslate"><span class="pre">MbhCatalog.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-lisacattools.plugins.ucb">3 - UCB plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalogs"><code class="docutils literal notranslate"><span class="pre">UcbCatalogs</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalogs._read_cats"><code class="docutils literal notranslate"><span class="pre">UcbCatalogs._read_cats()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalogs._search_directories"><code class="docutils literal notranslate"><span class="pre">UcbCatalogs._search_directories()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalogs._search_files"><code class="docutils literal notranslate"><span class="pre">UcbCatalogs._search_files()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalogs.count"><code class="docutils literal notranslate"><span class="pre">UcbCatalogs.count</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalogs.files"><code class="docutils literal notranslate"><span class="pre">UcbCatalogs.files</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalogs.get_catalog"><code class="docutils literal notranslate"><span class="pre">UcbCatalogs.get_catalog()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalogs.get_catalog_by"><code class="docutils literal notranslate"><span class="pre">UcbCatalogs.get_catalog_by()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalogs.get_catalogs_name"><code class="docutils literal notranslate"><span class="pre">UcbCatalogs.get_catalogs_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalogs.get_first_catalog"><code class="docutils literal notranslate"><span class="pre">UcbCatalogs.get_first_catalog()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalogs.get_last_catalog"><code class="docutils literal notranslate"><span class="pre">UcbCatalogs.get_last_catalog()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalogs.get_lineage"><code class="docutils literal notranslate"><span class="pre">UcbCatalogs.get_lineage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalogs.get_lineage_data"><code class="docutils literal notranslate"><span class="pre">UcbCatalogs.get_lineage_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalogs.metadata"><code class="docutils literal notranslate"><span class="pre">UcbCatalogs.metadata</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalog"><code class="docutils literal notranslate"><span class="pre">UcbCatalog</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalog._read_chain_file"><code class="docutils literal notranslate"><span class="pre">UcbCatalog._read_chain_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalog.datasets"><code class="docutils literal notranslate"><span class="pre">UcbCatalog.datasets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalog.describe_source_samples"><code class="docutils literal notranslate"><span class="pre">UcbCatalog.describe_source_samples()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalog.get_attr_detections"><code class="docutils literal notranslate"><span class="pre">UcbCatalog.get_attr_detections()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalog.get_attr_source_samples"><code class="docutils literal notranslate"><span class="pre">UcbCatalog.get_attr_source_samples()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalog.get_dataset"><code class="docutils literal notranslate"><span class="pre">UcbCatalog.get_dataset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalog.get_detections"><code class="docutils literal notranslate"><span class="pre">UcbCatalog.get_detections()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalog.get_median_source"><code class="docutils literal notranslate"><span class="pre">UcbCatalog.get_median_source()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalog.get_source_samples"><code class="docutils literal notranslate"><span class="pre">UcbCatalog.get_source_samples()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalog.location"><code class="docutils literal notranslate"><span class="pre">UcbCatalog.location</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lisacattools.plugins.ucb.UcbCatalog.name"><code class="docutils literal notranslate"><span class="pre">UcbCatalog.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="analyze.html">Analyze</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples_ucb/index.html">UCB Use Case Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_smbh/index.html">SMBH Use Case Gallery</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests Report</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Coverage:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="coverage.html">Coverage Report</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">lisacattools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Catalog</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/catalog.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="catalog">
+<h1>Catalog<a class="headerlink" href="#catalog" title="Permalink to this heading">¶</a></h1>
+<section id="module-lisacattools.catalog">
+<span id="interface"></span><h2>1 - Interface<a class="headerlink" href="#module-lisacattools.catalog" title="Permalink to this heading">¶</a></h2>
+<p>This module is the interface for gravitational wave source catalogs. It is
+responsible for :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>registering new catalog implementations as plugins</p></li>
+<li><p>loading detections and source posterior samples</p></li>
+</ul>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalog">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lisacattools.catalog.</span></span><span class="sig-name descname"><span class="pre">GWCatalog</span></span><a class="reference internal" href="_modules/lisacattools/catalog.html#GWCatalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.catalog.GWCatalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interface for handling a GW catalog.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalog.describe_source_samples">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">describe_source_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/lisacattools/catalog.html#GWCatalog.describe_source_samples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.catalog.GWCatalog.describe_source_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Statistical summary of the source posterior samples</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>source_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – source name</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>statistics</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalog.get_attr_detections">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_attr_detections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/lisacattools/catalog.html#GWCatalog.get_attr_detections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.catalog.GWCatalog.get_attr_detections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the attributes of the catalog.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the list of attributes</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalog.get_attr_source_samples">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_attr_source_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/lisacattools/catalog.html#GWCatalog.get_attr_source_samples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.catalog.GWCatalog.get_attr_source_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the attributes of the source posterior samples</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>source_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – source name</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the attributes</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalog.get_detections">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_detections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Series</span></span></span><a class="reference internal" href="_modules/lisacattools/catalog.html#GWCatalog.get_detections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.catalog.GWCatalog.get_detections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the GW detections.</p>
+<p>When no argument is provided, the name of each detection is returned.
+When arguments are provided, each detection is returned with the
+attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attr</strong> (<em>Union</em><em>[</em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em><em>, </em><em>optional</em>) – List of attributes or</p></li>
+<li><p><strong>None.</strong> (<em>single attribute. Defaults to</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the name of each
+detection or the requested attributes of each detection</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Union[List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>], pd.DataFrame, pd.Series]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalog.get_median_source">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_median_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/lisacattools/catalog.html#GWCatalog.get_median_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.catalog.GWCatalog.get_median_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the source corresponding to the median of the specified
+attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – attribute name</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the source for which the median is computed on the
+attribute</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalog.get_source_samples">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_source_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/lisacattools/catalog.html#GWCatalog.get_source_samples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.catalog.GWCatalog.get_source_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the posterior samples of the source</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – source name</p></li>
+<li><p><strong>attr</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em>) – the list of attributes to return in the result</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – [description]</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the posterior samples of the source</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalog.location">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">location</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#lisacattools.catalog.GWCatalog.location" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the location of the GW catalog.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the location of the GW catalog</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalog.name">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#lisacattools.catalog.GWCatalog.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of the GW catalog.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>name of the GW catalog</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalogType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lisacattools.catalog.</span></span><span class="sig-name descname"><span class="pre">GWCatalogType</span></span><a class="reference internal" href="_modules/lisacattools/catalog.html#GWCatalogType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.catalog.GWCatalogType" title="Permalink to this definition">¶</a></dt>
+<dd><p>GW catalog implementation.</p>
+<p>New implementations can be added as an attribute using the register
+method of the GWCatalogs class.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalogType.GWCatalogPlugin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GWCatalogPlugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lisacattools/catalog.html#GWCatalogType.GWCatalogPlugin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.catalog.GWCatalogType.GWCatalogPlugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Store information to load a plugin implementing the GW catalog.</p>
+<p>The stored information is:
+- the module name
+- the class name</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalogs">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lisacattools.catalog.</span></span><span class="sig-name descname"><span class="pre">GWCatalogs</span></span><a class="reference internal" href="_modules/lisacattools/catalog.html#GWCatalogs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.catalog.GWCatalogs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interface fo handling time-evolving GW catalogs</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalogs.count">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#lisacattools.catalog.GWCatalogs.count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Count the number of catalogs in the catalog set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns the number of catalogs in the catalog set</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalogs.create">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#lisacattools.catalog.GWCatalogType.GWCatalogPlugin" title="lisacattools.catalog.GWCatalogType.GWCatalogPlugin"><span class="pre">GWCatalogPlugin</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">accepted_pattern</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rejected_pattern</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#lisacattools.catalog.GWCatalogs" title="lisacattools.catalog.GWCatalogs"><span class="pre">GWCatalogs</span></a></span></span><a class="reference internal" href="_modules/lisacattools/catalog.html#GWCatalogs.create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.catalog.GWCatalogs.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new object for handling a set of specific catalogs.</p>
+<p>Catalogs are loaded according a set of filters : the accepted and
+rejected pattern.</p>
+<section id="note">
+<h3>Note:<a class="headerlink" href="#note" title="Permalink to this heading">¶</a></h3>
+<p>The <cite>extra_directories</cite> parameter can be given as input in order to
+load catalogs in other directories. a list of directories is expected
+for <cite>extra_directories</cite> parameter. For example:</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a>`
+GWCatalogs.create(</p>
+<blockquote>
+<div><p>GWCatalogType.UCB,
+“/tmp”,
+“<em>.h5”,
+“*chain</em>”,
+extra_direcories=[“.”, “./tutorial”]</p>
+</div></blockquote>
+<section id="id3">
+<h4>)<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
+<dl class="field-list simple">
+<dt class="field-odd">param type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Type of catalog</p>
+</dd>
+<dt class="field-even">type type<span class="colon">:</span></dt>
+<dd class="field-even"><p>GWCatalogType.GWCatalogPlugin</p>
+</dd>
+<dt class="field-odd">param directory<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Directory where the data are located</p>
+</dd>
+<dt class="field-even">type directory<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">param accepted_pattern<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pattern to select files in the</p>
+</dd>
+<dt class="field-even">type accepted_pattern<span class="colon">:</span></dt>
+<dd class="field-even"><p>str, optional</p>
+</dd>
+<dt class="field-odd">param directory<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+<dt class="field-even">type directory<span class="colon">:</span></dt>
+<dd class="field-even"><p>e.g. ‘<a href="#id4"><span class="problematic" id="id5">*</span></a>.h5’</p>
+</dd>
+<dt class="field-odd">param rejected_pattern<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pattern to reject from the list</p>
+</dd>
+<dt class="field-even">type rejected_pattern<span class="colon">:</span></dt>
+<dd class="field-even"><p>str, optional</p>
+</dd>
+<dt class="field-odd">param built using accepted_pattern. Default None<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+<dt class="field-even">returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the object implementing a set of specific catalogs</p>
+</dd>
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p>GWCatalogs</p>
+</dd>
+</dl>
+</section>
+</section>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalogs.files">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">files</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#lisacattools.catalog.GWCatalogs.files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of files matching the accepted and rejected
+pattern.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns the number of catalogs in the catalog set</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalogs.get_catalog">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_catalog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog"><span class="pre">GWCatalog</span></a></span></span><a class="reference internal" href="_modules/lisacattools/catalog.html#GWCatalogs.get_catalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.catalog.GWCatalogs.get_catalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a catalog based on its position in the catalog set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>idx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – position of the catalog (first idx: 0)</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>catalog</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog">GWCatalog</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalogs.get_catalog_by">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_catalog_by</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog"><span class="pre">GWCatalog</span></a></span></span><a class="reference internal" href="_modules/lisacattools/catalog.html#GWCatalogs.get_catalog_by"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.catalog.GWCatalogs.get_catalog_by" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a catalog based on its name in the catalog set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – name of the catalog</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the catalog</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog">GWCatalog</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalogs.get_catalogs_name">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_catalogs_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/lisacattools/catalog.html#GWCatalogs.get_catalogs_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.catalog.GWCatalogs.get_catalogs_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of each catalog included in the catalog set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>name of each catalog</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalogs.get_first_catalog">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_first_catalog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog"><span class="pre">GWCatalog</span></a></span></span><a class="reference internal" href="_modules/lisacattools/catalog.html#GWCatalogs.get_first_catalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.catalog.GWCatalogs.get_first_catalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the first catalog from the catalog set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the fist catalog</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog">GWCatalog</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalogs.get_last_catalog">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_last_catalog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog"><span class="pre">GWCatalog</span></a></span></span><a class="reference internal" href="_modules/lisacattools/catalog.html#GWCatalogs.get_last_catalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.catalog.GWCatalogs.get_last_catalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the last catalog from the catalog set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the last catalog</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog">GWCatalog</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalogs.get_lineage">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_lineage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cat_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/lisacattools/catalog.html#GWCatalogs.get_lineage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.catalog.GWCatalogs.get_lineage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the history of a source (src_name: str) including metadata
+and point estimates through a series of preceeding catalogs. Series
+starts at current catalog (cat_name: str) and traces a
+source’s history back.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cat_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – catalog from which the lineage starts</p></li>
+<li><p><strong>src_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – particular source</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>history of a parituclar source including metadata
+and point estimates through a series of preceeding catalogs.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalogs.get_lineage_data">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_lineage_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lineage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/lisacattools/catalog.html#GWCatalogs.get_lineage_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.catalog.GWCatalogs.get_lineage_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the posterior samples of a particular source at all
+different epochs of obervation in the DataFrame returned by
+get_lineage(). The samples are concatenated into a single DataFrame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lineage</strong> (<em>pd.DataFrame</em>) – time-dependent catalog for the evolution</p></li>
+<li><p><strong>by</strong> (<em>of a particular source in a series</em><em> of </em><em>catalogs returned</em>) – </p></li>
+<li><p><strong>get_lineage</strong><strong>(</strong><strong>)</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>posterior samples of a particular source at all
+different epochs of obervation in the DataFrame returned by
+get_lineage().</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalogs.metadata">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataFrame</span></em><a class="headerlink" href="#lisacattools.catalog.GWCatalogs.metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>metadata.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns the metadata of the catalog set</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.catalog.GWCatalogs.register">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodule_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lisacattools/catalog.html#GWCatalogs.register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.catalog.GWCatalogs.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a new implementation of GWCatalogs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – name of the implementation</p></li>
+<li><p><strong>nodule_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – nodule name where the implementation is done</p></li>
+<li><p><strong>class_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – class name of the implementation</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-lisacattools.plugins.mbh">
+<span id="mbh-plugin"></span><h2>2 - MBH plugin<a class="headerlink" href="#module-lisacattools.plugins.mbh" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalogs">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lisacattools.plugins.mbh.</span></span><span class="sig-name descname"><span class="pre">MbhCatalogs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">accepted_pattern</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'MBH_wk*C.h5'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rejected_pattern</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lisacattools/plugins/mbh.html#MbhCatalogs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalogs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implementation of the MBH catalogs.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalogs._read_cats">
+<span class="sig-name descname"><span class="pre">_read_cats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cat_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/mbh.html#MbhCatalogs._read_cats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalogs._read_cats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads the metadata of a given catalog and the location of the file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cat_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – catalog to load</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas data frame</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalogs._search_directories">
+<span class="sig-name descname"><span class="pre">_search_directories</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_directories</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/mbh.html#MbhCatalogs._search_directories"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalogs._search_directories" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the list of directories on which the pattern will be applied.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – main path</p></li>
+<li><p><strong>extra_directories</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em>) – others directories</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of directories on which the pattern will be applied</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalogs._search_files">
+<span class="sig-name descname"><span class="pre">_search_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directories</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accepted_pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rejected_pattern</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/mbh.html#MbhCatalogs._search_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalogs._search_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search files in directories according to a set of constraints :
+accepted and rejected patterns</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>directories</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em>) – List of directories to scan</p></li>
+<li><p><strong>accepted_pattern</strong> (<em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.11)"><em>type</em></a><em>]</em>) – pattern to get files</p></li>
+<li><p><strong>rejected_pattern</strong> (<em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.11)"><em>type</em></a><em>]</em>) – pattern to reject files</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of files</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalogs.count">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalogs.count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Count the number of catalogs in the catalog set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns the number of catalogs in the catalog set</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalogs.files">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">files</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalogs.files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of files matching the accepted and rejected
+pattern.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns the number of catalogs in the catalog set</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalogs.get_catalog">
+<span class="sig-name descname"><span class="pre">get_catalog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog"><span class="pre">GWCatalog</span></a></span></span><a class="reference internal" href="_modules/lisacattools/plugins/mbh.html#MbhCatalogs.get_catalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalogs.get_catalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a catalog based on its position in the catalog set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>idx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – position of the catalog (first idx: 0)</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>catalog</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog">GWCatalog</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalogs.get_catalog_by">
+<span class="sig-name descname"><span class="pre">get_catalog_by</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog"><span class="pre">GWCatalog</span></a></span></span><a class="reference internal" href="_modules/lisacattools/plugins/mbh.html#MbhCatalogs.get_catalog_by"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalogs.get_catalog_by" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a catalog based on its name in the catalog set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – name of the catalog</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the catalog</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog">GWCatalog</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalogs.get_catalogs_name">
+<span class="sig-name descname"><span class="pre">get_catalogs_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/mbh.html#MbhCatalogs.get_catalogs_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalogs.get_catalogs_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of each catalog included in the catalog set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>name of each catalog</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalogs.get_first_catalog">
+<span class="sig-name descname"><span class="pre">get_first_catalog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog"><span class="pre">GWCatalog</span></a></span></span><a class="reference internal" href="_modules/lisacattools/plugins/mbh.html#MbhCatalogs.get_first_catalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalogs.get_first_catalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the first catalog from the catalog set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the fist catalog</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog">GWCatalog</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalogs.get_last_catalog">
+<span class="sig-name descname"><span class="pre">get_last_catalog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog"><span class="pre">GWCatalog</span></a></span></span><a class="reference internal" href="_modules/lisacattools/plugins/mbh.html#MbhCatalogs.get_last_catalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalogs.get_last_catalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the last catalog from the catalog set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the last catalog</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog">GWCatalog</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalogs.get_lineage">
+<span class="sig-name descname"><span class="pre">get_lineage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cat_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/mbh.html#MbhCatalogs.get_lineage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalogs.get_lineage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the history of a source (src_name: str) including metadata
+and point estimates through a series of preceeding catalogs. Series
+starts at current catalog (cat_name: str) and traces a
+source’s history back.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cat_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – catalog from which the lineage starts</p></li>
+<li><p><strong>src_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – particular source</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>history of a parituclar source including metadata
+and point estimates through a series of preceeding catalogs.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalogs.get_lineage_data">
+<span class="sig-name descname"><span class="pre">get_lineage_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lineage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/mbh.html#MbhCatalogs.get_lineage_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalogs.get_lineage_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the posterior samples of a particular source at all
+different epochs of obervation in the DataFrame returned by
+get_lineage(). The samples are concatenated into a single DataFrame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lineage</strong> (<em>pd.DataFrame</em>) – time-dependent catalog for the evolution</p></li>
+<li><p><strong>by</strong> (<em>of a particular source in a series</em><em> of </em><em>catalogs returned</em>) – </p></li>
+<li><p><strong>get_lineage</strong><strong>(</strong><strong>)</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>posterior samples of a particular source at all
+different epochs of obervation in the DataFrame returned by
+get_lineage().</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalogs.metadata">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataFrame</span></em><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalogs.metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>metadata.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns the metadata of the catalog set</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-0"></span><dl class="py class">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalog">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lisacattools.plugins.mbh.</span></span><span class="sig-name descname"><span class="pre">MbhCatalog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lisacattools/plugins/mbh.html#MbhCatalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implementation of the Mbh catalog.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalog.datasets">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">datasets</span></span><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalog.datasets" title="Permalink to this definition">¶</a></dt>
+<dd><p>dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns the list of datasets</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalog.describe_source_samples">
+<span class="sig-name descname"><span class="pre">describe_source_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/mbh.html#MbhCatalog.describe_source_samples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalog.describe_source_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Statistical summary of the source posterior samples</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>source_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – source name</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>statistics</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalog.get_attr_detections">
+<span class="sig-name descname"><span class="pre">get_attr_detections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/mbh.html#MbhCatalog.get_attr_detections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalog.get_attr_detections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the attributes of the catalog.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the list of attributes</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalog.get_attr_source_samples">
+<span class="sig-name descname"><span class="pre">get_attr_source_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/mbh.html#MbhCatalog.get_attr_source_samples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalog.get_attr_source_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the attributes of the source posterior samples</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>source_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – source name</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the attributes</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalog.get_dataset">
+<span class="sig-name descname"><span class="pre">get_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/mbh.html#MbhCatalog.get_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalog.get_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dataset based on its name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – name of the dataset</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the dataset</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalog.get_detections">
+<span class="sig-name descname"><span class="pre">get_detections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Series</span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/mbh.html#MbhCatalog.get_detections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalog.get_detections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the GW detections.</p>
+<p>When no argument is provided, the name of each detection is returned.
+When arguments are provided, each detection is returned with the
+attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attr</strong> (<em>Union</em><em>[</em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em><em>, </em><em>optional</em>) – List of attributes or</p></li>
+<li><p><strong>None.</strong> (<em>single attribute. Defaults to</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the name of each
+detection or the requested attributes of each detection</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Union[List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>], pd.DataFrame, pd.Series]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalog.get_median_source">
+<span class="sig-name descname"><span class="pre">get_median_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/mbh.html#MbhCatalog.get_median_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalog.get_median_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the source corresponding to the median of the specified
+attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – attribute name</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the source for which the median is computed on the
+attribute</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalog.get_source_samples">
+<span class="sig-name descname"><span class="pre">get_source_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/mbh.html#MbhCatalog.get_source_samples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalog.get_source_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the posterior samples of the source</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – source name</p></li>
+<li><p><strong>attr</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em>) – the list of attributes to return in the result</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – [description]</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the posterior samples of the source</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalog.location">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">location</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalog.location" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the location of the GW catalog.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the location of the GW catalog</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.plugins.mbh.MbhCatalog.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#lisacattools.plugins.mbh.MbhCatalog.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of the GW catalog.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>name of the GW catalog</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-lisacattools.plugins.ucb">
+<span id="ucb-plugin"></span><h2>3 - UCB plugin<a class="headerlink" href="#module-lisacattools.plugins.ucb" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalogs">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lisacattools.plugins.ucb.</span></span><span class="sig-name descname"><span class="pre">UcbCatalogs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">accepted_pattern</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'*.h5'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rejected_pattern</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'*chain*'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lisacattools/plugins/ucb.html#UcbCatalogs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalogs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implementation of the UCB catalogs.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalogs._read_cats">
+<span class="sig-name descname"><span class="pre">_read_cats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cat_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/ucb.html#UcbCatalogs._read_cats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalogs._read_cats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads the metadata of a given catalog and the location of the file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cat_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – catalog to load</p></li>
+<li><p><strong>pattern</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – pattern to be used when the catalog is a tar</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>pandas data frame</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalogs._search_directories">
+<span class="sig-name descname"><span class="pre">_search_directories</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_directories</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/ucb.html#UcbCatalogs._search_directories"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalogs._search_directories" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the list of directories on which the pattern will be applied.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – main path</p></li>
+<li><p><strong>extra_directories</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em>) – others directories</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of directories on which the pattern will be applied</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalogs._search_files">
+<span class="sig-name descname"><span class="pre">_search_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directories</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accepted_pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rejected_pattern</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/ucb.html#UcbCatalogs._search_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalogs._search_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search files in directories according to a set of constraints :
+accepted and rejected patterns</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>directories</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em>) – List of directories to scan</p></li>
+<li><p><strong>accepted_pattern</strong> (<em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.11)"><em>type</em></a><em>]</em>) – pattern to get files</p></li>
+<li><p><strong>rejected_pattern</strong> (<em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.11)"><em>type</em></a><em>]</em>) – pattern to reject files</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of files</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalogs.count">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalogs.count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Count the number of catalogs in the catalog set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns the number of catalogs in the catalog set</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalogs.files">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">files</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalogs.files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of files matching the accepted and rejected
+pattern.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns the number of catalogs in the catalog set</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalogs.get_catalog">
+<span class="sig-name descname"><span class="pre">get_catalog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog"><span class="pre">GWCatalog</span></a></span></span><a class="reference internal" href="_modules/lisacattools/plugins/ucb.html#UcbCatalogs.get_catalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalogs.get_catalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a catalog based on its position in the catalog set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>idx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – position of the catalog (first idx: 0)</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>catalog</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog">GWCatalog</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalogs.get_catalog_by">
+<span class="sig-name descname"><span class="pre">get_catalog_by</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog"><span class="pre">GWCatalog</span></a></span></span><a class="reference internal" href="_modules/lisacattools/plugins/ucb.html#UcbCatalogs.get_catalog_by"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalogs.get_catalog_by" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a catalog based on its name in the catalog set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – name of the catalog</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the catalog</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog">GWCatalog</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalogs.get_catalogs_name">
+<span class="sig-name descname"><span class="pre">get_catalogs_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/ucb.html#UcbCatalogs.get_catalogs_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalogs.get_catalogs_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of each catalog included in the catalog set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>name of each catalog</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalogs.get_first_catalog">
+<span class="sig-name descname"><span class="pre">get_first_catalog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog"><span class="pre">GWCatalog</span></a></span></span><a class="reference internal" href="_modules/lisacattools/plugins/ucb.html#UcbCatalogs.get_first_catalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalogs.get_first_catalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the first catalog from the catalog set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the fist catalog</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog">GWCatalog</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalogs.get_last_catalog">
+<span class="sig-name descname"><span class="pre">get_last_catalog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog"><span class="pre">GWCatalog</span></a></span></span><a class="reference internal" href="_modules/lisacattools/plugins/ucb.html#UcbCatalogs.get_last_catalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalogs.get_last_catalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the last catalog from the catalog set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the last catalog</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lisacattools.catalog.GWCatalog" title="lisacattools.catalog.GWCatalog">GWCatalog</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalogs.get_lineage">
+<span class="sig-name descname"><span class="pre">get_lineage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cat_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/ucb.html#UcbCatalogs.get_lineage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalogs.get_lineage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the history of a source (src_name: str) including metadata
+and point estimates through a series of preceeding catalogs. Series
+starts at current catalog (cat_name: str) and traces a
+source’s history back.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cat_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – catalog from which the lineage starts</p></li>
+<li><p><strong>src_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – particular source</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>history of a parituclar source including metadata
+and point estimates through a series of preceeding catalogs.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalogs.get_lineage_data">
+<span class="sig-name descname"><span class="pre">get_lineage_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lineage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/ucb.html#UcbCatalogs.get_lineage_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalogs.get_lineage_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the posterior samples of a particular source at all
+different epochs of obervation in the DataFrame returned by
+get_lineage(). The samples are concatenated into a single DataFrame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lineage</strong> (<em>pd.DataFrame</em>) – time-dependent catalog for the evolution</p></li>
+<li><p><strong>by</strong> (<em>of a particular source in a series</em><em> of </em><em>catalogs returned</em>) – </p></li>
+<li><p><strong>get_lineage</strong><strong>(</strong><strong>)</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – When the method is not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>posterior samples of a particular source at all
+different epochs of obervation in the DataFrame returned by
+get_lineage().</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalogs.metadata">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataFrame</span></em><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalogs.metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>metadata.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns the metadata of the catalog set</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-1"></span><dl class="py class">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalog">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lisacattools.plugins.ucb.</span></span><span class="sig-name descname"><span class="pre">UcbCatalog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">catalog_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lisacattools/plugins/ucb.html#UcbCatalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implementation of the Ucb catalog.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalog._read_chain_file">
+<span class="sig-name descname"><span class="pre">_read_chain_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">chain_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/ucb.html#UcbCatalog._read_chain_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalog._read_chain_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a source in a chain_file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Name of the source to extract from the</p></li>
+<li><p><strong>chain_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – </p></li>
+<li><p><strong>chain_file</strong> – file to load</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalog.datasets">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">datasets</span></span><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalog.datasets" title="Permalink to this definition">¶</a></dt>
+<dd><p>dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Getter<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Returns the list of datasets</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalog.describe_source_samples">
+<span class="sig-name descname"><span class="pre">describe_source_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/ucb.html#UcbCatalog.describe_source_samples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalog.describe_source_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Statistical summary of the source posterior samples</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>source_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – source name</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>statistics</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalog.get_attr_detections">
+<span class="sig-name descname"><span class="pre">get_attr_detections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/ucb.html#UcbCatalog.get_attr_detections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalog.get_attr_detections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the attributes of the catalog.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the list of attributes</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalog.get_attr_source_samples">
+<span class="sig-name descname"><span class="pre">get_attr_source_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/ucb.html#UcbCatalog.get_attr_source_samples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalog.get_attr_source_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the attributes of the source posterior samples</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>source_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – source name</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the attributes</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalog.get_dataset">
+<span class="sig-name descname"><span class="pre">get_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/ucb.html#UcbCatalog.get_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalog.get_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dataset based on its name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – name of the dataset</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the dataset</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalog.get_detections">
+<span class="sig-name descname"><span class="pre">get_detections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Series</span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/ucb.html#UcbCatalog.get_detections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalog.get_detections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the GW detections.</p>
+<p>When no argument is provided, the name of each detection is returned.
+When arguments are provided, each detection is returned with the
+attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attr</strong> (<em>Union</em><em>[</em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em><em>, </em><em>optional</em>) – List of attributes or</p></li>
+<li><p><strong>None.</strong> (<em>single attribute. Defaults to</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the name of each
+detection or the requested attributes of each detection</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Union[List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>], pd.DataFrame, pd.Series]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalog.get_median_source">
+<span class="sig-name descname"><span class="pre">get_median_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/ucb.html#UcbCatalog.get_median_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalog.get_median_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the source corresponding to the median of the specified
+attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – attribute name</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the source for which the median is computed on the
+attribute</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalog.get_source_samples">
+<span class="sig-name descname"><span class="pre">get_source_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/lisacattools/plugins/ucb.html#UcbCatalog.get_source_samples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalog.get_source_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the posterior samples of the source</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – source name</p></li>
+<li><p><strong>attr</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>]</em>) – the list of attributes to return in the result</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – [description]</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the posterior samples of the source</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalog.location">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">location</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalog.location" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the location of the GW catalog.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the location of the GW catalog</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lisacattools.plugins.ucb.UcbCatalog.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#lisacattools.plugins.ucb.UcbCatalog.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of the GW catalog.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – Not implemented</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>name of the GW catalog</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="analyze.html" class="btn btn-neutral float-right" title="Analyze" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, James I. Thorpe, Tyson B. Littenberg, Jean-Christophe Malapert.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

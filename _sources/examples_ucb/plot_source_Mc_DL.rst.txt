@@ -88,9 +88,9 @@ Import modules
  .. code-block:: none
 
     [0;32mInit the memory cache[0m
-    (lisacattools.utils._read_chain_file:130) 2023-01-25 02:30:15,948 [0;32m[0;32mINFO[0m[0m utils newfunc [0;32m[0;32mInit the memory cache[0m[0m
+    (lisacattools.utils._read_chain_file:130) 2023-02-06 17:36:29,480 [0;32m[0;32mINFO[0m[0m utils newfunc [0;32m[0;32mInit the memory cache[0m[0m
     [0;32mCache LDC0092117281-cat15728640_v2_chains_1100s.h5[0m
-    (lisacattools.utils._read_chain_file:133) 2023-01-25 02:30:15,948 [0;32m[0;32mINFO[0m[0m utils newfunc [0;32m[0;32mCache LDC0092117281-cat15728640_v2_chains_1100s.h5[0m[0m
+    (lisacattools.utils._read_chain_file:133) 2023-02-06 17:36:29,480 [0;32m[0;32mINFO[0m[0m utils newfunc [0;32m[0;32mCache LDC0092117281-cat15728640_v2_chains_1100s.h5[0m[0m
     INFO:matplotlib.mathtext:Substituting symbol M from STIXNonUnicode
     INFO:matplotlib.mathtext:Substituting symbol M from STIXNonUnicode
     INFO:matplotlib.mathtext:Substituting symbol M from STIXNonUnicode
@@ -101,7 +101,7 @@ Import modules
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.637 seconds)
+   **Total running time of the script:** ( 0 minutes  1.576 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_source_Mc_DL.py:

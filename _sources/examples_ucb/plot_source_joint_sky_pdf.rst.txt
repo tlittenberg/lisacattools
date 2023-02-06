@@ -113,7 +113,7 @@ Produce healpix map of joint posterior
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 5 minutes  18.892 seconds)
+   **Total running time of the script:** ( 5 minutes  4.517 seconds)
 
 
 .. _sphx_glr_download_examples_ucb_plot_source_joint_sky_pdf.py:

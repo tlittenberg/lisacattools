@@ -5,24 +5,24 @@
 
 Computation times
 =================
-**13:04.517** total execution time for **examples_ucb** files:
+**12:25.988** total execution time for **examples_ucb** files:
 
 +------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_ucb_plot_source_sky_ellipses.py` (``plot_source_sky_ellipses.py``)           | 07:15.407 | 0.0 MB |
+| :ref:`sphx_glr_examples_ucb_plot_source_sky_ellipses.py` (``plot_source_sky_ellipses.py``)           | 06:52.451 | 0.0 MB |
 +------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_ucb_plot_source_joint_sky_pdf.py` (``plot_source_joint_sky_pdf.py``)         | 05:18.892 | 0.0 MB |
+| :ref:`sphx_glr_examples_ucb_plot_source_joint_sky_pdf.py` (``plot_source_joint_sky_pdf.py``)         | 05:04.517 | 0.0 MB |
 +------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_ucb_plot_galactic_coordinates.py` (``plot_galactic_coordinates.py``)         | 00:19.788 | 0.0 MB |
+| :ref:`sphx_glr_examples_ucb_plot_galactic_coordinates.py` (``plot_galactic_coordinates.py``)         | 00:18.880 | 0.0 MB |
 +------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_ucb_plot_time_evolving_parameters.py` (``plot_time_evolving_parameters.py``) | 00:02.784 | 0.0 MB |
+| :ref:`sphx_glr_examples_ucb_plot_time_evolving_parameters.py` (``plot_time_evolving_parameters.py``) | 00:02.785 | 0.0 MB |
 +------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_ucb_plot_sources_in_sky_circle.py` (``plot_sources_in_sky_circle.py``)       | 00:02.249 | 0.0 MB |
+| :ref:`sphx_glr_examples_ucb_plot_source_parameters.py` (``plot_source_parameters.py``)               | 00:02.186 | 0.0 MB |
 +------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_ucb_plot_source_parameters.py` (``plot_source_parameters.py``)               | 00:02.232 | 0.0 MB |
+| :ref:`sphx_glr_examples_ucb_plot_sources_in_sky_circle.py` (``plot_sources_in_sky_circle.py``)       | 00:02.121 | 0.0 MB |
 +------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_ucb_plot_source_Mc_DL.py` (``plot_source_Mc_DL.py``)                         | 00:01.637 | 0.0 MB |
+| :ref:`sphx_glr_examples_ucb_plot_source_Mc_DL.py` (``plot_source_Mc_DL.py``)                         | 00:01.576 | 0.0 MB |
 +------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_ucb_plot_source_table.py` (``plot_source_table.py``)                         | 00:00.909 | 0.0 MB |
+| :ref:`sphx_glr_examples_ucb_plot_source_table.py` (``plot_source_table.py``)                         | 00:00.867 | 0.0 MB |
 +------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_ucb_plot_freq_amp.py` (``plot_freq_amp.py``)                                 | 00:00.620 | 0.0 MB |
+| :ref:`sphx_glr_examples_ucb_plot_freq_amp.py` (``plot_freq_amp.py``)                                 | 00:00.605 | 0.0 MB |
 +------------------------------------------------------------------------------------------------------+-----------+--------+

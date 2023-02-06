@@ -1,13 +1,13 @@
 # lisacattools
 
-[![Doc badge](https://img.shields.io/badge/Docs-master-brightgreen)](https://tlittenberg.github.io/lisacattools/html/index.html)
+[![Doc badge](https://img.shields.io/badge/Docs-master-brightgreen)](https://tlittenberg.github.io/lisacattools)
 
 Python module for interacting with example LISA catalogs
 
 ## 1 - Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine,
-either for development and testing purposes or as an installed package.  For more information, see the documentation at https://tlittenberg.github.io/lisacattools/html/index.html.
+either for development and testing purposes or as an installed package.  For more information, see the documentation at https://tlittenberg.github.io/lisacattools.
 
 ### 1.1 - Prerequisites
 

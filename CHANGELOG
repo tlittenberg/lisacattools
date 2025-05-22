@@ -1,4 +1,15 @@
-### Enhance ChainConsumer usage and plotting configuration (HEAD -> refactoring)
+### Fix colorbar association with specific axes (HEAD -> refactoring)
+>Thu, 22 May 2025 05:52:25 +0200
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+- Update fig.colorbar to associate with the correct axes (ax)
+
+
+
+### Enhance ChainConsumer usage and plotting configuration
 >Thu, 22 May 2025 05:49:43 +0200
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

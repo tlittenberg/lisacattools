@@ -84,7 +84,7 @@ cNorm = colors.LogNorm(
     vmin=cat_loc["Frequency"].min(), vmax=cat_loc["Frequency"].max()
 )
 scalarMap = cm.ScalarMappable(norm=cNorm, cmap=plt.cm.get_cmap("viridis_r"))
-cbar = fig.colorbar(scalarMap)
+cbar = fig.colorbar(scalarMap, ax=ax)
 cbar.set_label("Frequency [Hz]")
 
 # loop over all sources adding ellipse to plot

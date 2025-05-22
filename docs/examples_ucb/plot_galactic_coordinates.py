@@ -60,7 +60,7 @@ cNorm = colors.LogNorm(
     vmax=selected_detections["SNR"].max(),
 )
 scalarMap = cm.ScalarMappable(norm=cNorm, cmap=plt.cm.get_cmap("plasma_r"))
-cbar = fig.colorbar(scalarMap)
+cbar = fig.colorbar(scalarMap, ax=axs)
 cbar.set_label("SNR")
 
 # plot 1-sigma ellipses of 3D localization for each source

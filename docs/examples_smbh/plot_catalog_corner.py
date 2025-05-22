@@ -6,7 +6,7 @@ Full catalog corner plots
 Corner plot of select parameters for the full catalog.
 """
 import matplotlib.pyplot as plt
-from chainconsumer import ChainConsumer
+from chainconsumer import ChainConsumer, Chain, PlotConfig
 
 from lisacattools.catalog import GWCatalogs
 from lisacattools.catalog import GWCatalogType
@@ -43,6 +43,11 @@ parameter_symbols = [
     r"$m_2\ [{\rm M}_\odot]$",
     r"$D_L\ [{\rm Gpc}]$",
 ]
+labels = {
+    parameters[0]:parameter_symbols[0],
+    parameters[1]:parameter_symbols[1],
+    parameters[2]:parameter_symbols[2],    
+}
 
 sources = last_cat.get_detections()
 for source in sources:
@@ -52,12 +57,18 @@ for source in sources:
     samples = last_cat.get_source_samples(source, samples_attr)
 
     # get dataframe into numpy array
-    df = samples[parameters].values
+    df = samples[parameters]
 
     # add samples to chainconsumer
-    c.add_chain(df, parameters=parameter_symbols, name=source)
+    c.add_chain(Chain(samples=df, name=source))
 
 # plot!
-c.configure(plot_hists=False)
-fig = c.plotter.plot(figsize=1.5, log_scales=True)
+c.set_plot_config(
+    PlotConfig(
+        plot_hists=False,
+        labels = labels,
+        log_scales=[parameters[0], parameters[1]]
+    )
+)
+fig = c.plotter.plot(figsize=1.5)
 plt.show()

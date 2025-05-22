@@ -1,4 +1,18 @@
-### Use .iloc for positional indexing in describe() method (HEAD -> refactoring)
+### Enhance ChainConsumer usage and plotting configuration (HEAD -> refactoring)
+>Thu, 22 May 2025 05:49:43 +0200
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+- Import additional ChainConsumer components (Chain, PlotConfig)
+- Add labels mapping for parameters to improve plot readability
+- Modify data handling to use Chain objects directly
+- Update plotting configuration with PlotConfig for better customization
+
+
+
+### Use .iloc for positional indexing in describe() method
 >Thu, 22 May 2025 05:44:10 +0200
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

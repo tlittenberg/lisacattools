@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 """
 Time-evolving parameter estimation
-=================================
+==================================
 
 Corner plot of select parameters for a single source showing how
 parameter estimation changes with observing time.
 """
 import matplotlib.pyplot as plt
-from chainconsumer import ChainConsumer
+from chainconsumer import ChainConsumer, Chain, PlotConfig
 
 from lisacattools.catalog import GWCatalogs
 from lisacattools.catalog import GWCatalogType
@@ -54,19 +54,31 @@ wks = [4, 8, 10]
 
 # select subset of parameters to plot
 parameters = ["Mass 1", "Mass 2", "Luminosity Distance"]
-parameter_labels = [
-    r"$m_1\ [{\rm M}_\odot]$",
-    r"$m_2\ [{\rm M}_\odot]$",
-    r"$D_L\ [{\rm Gpc}]$",
-]
-ranges = [(10000, 50000), (1000, 5000), (16, 40)]
+
+labels = {
+    parameters[0]: r"$m_1\ [{\rm M}_\odot]$",
+    parameters[1]:r"$m_2\ [{\rm M}_\odot]$",
+    parameters[2]:r"$D_L\ [{\rm Gpc}]$"
+}
 
 c = ChainConsumer()
 for idx, wk in enumerate(wks):
     epoch = allEpochs[allEpochs["Observation Week"] == wk]
-    samples = epoch[parameters].values
-    c.add_chain(samples, parameters=parameter_labels, name="Week " + str(wk))
+    samples = epoch[parameters]
+    samples
+    c.add_chain(Chain(samples=samples, name="Week " + str(wk), cmap="plasma"))
 
-c.configure(cmap="plasma")
-fig = c.plotter.plot(figsize=1.5, log_scales=False, extents=ranges)
+c.set_plot_config(
+    PlotConfig(
+        plot_hists=False,
+        labels = labels,
+        log_scales=[parameters[0], parameters[1]],
+        extents={
+            parameters[0]:(10000, 50000),
+            parameters[1]:(1000, 5000),
+            parameters[2]:(16, 40)
+        }
+    )
+)
+fig = c.plotter.plot(figsize=1.5)
 plt.show()

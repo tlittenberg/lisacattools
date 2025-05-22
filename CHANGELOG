@@ -1,4 +1,16 @@
-### Update license header and logging library (HEAD -> refactoring)
+### Use .iloc for positional indexing in describe() method (HEAD -> refactoring)
+>Thu, 22 May 2025 05:44:10 +0200
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+- Replace direct indexing with .iloc for more reliable positional indexing
+- Ensure consistent and explicit access to DataFrame columns
+
+
+
+### Update license header and logging library
 >Thu, 22 May 2025 05:40:27 +0200
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

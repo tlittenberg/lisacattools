@@ -1,22 +1,15 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 James I. Thorpe, Tyson B. Littenberg, Jean-Christophe Malapert
-#
-#    Licensed under the Apache License, Version 2.0 (the "License");
-#    you may not use this file except in compliance with the License.
-#    You may obtain a copy of the License at
-#
-#        http://www.apache.org/licenses/LICENSE-2.0
-#
-#    Unless required by applicable law or agreed to in writing, software
-#    distributed under the License is distributed on an "AS IS" BASIS,
-#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#    See the License for the specific language governing permissions and
-#    limitations under the License.
+# lisacattools - A small example package for using LISA catalogs
+# Copyright (C) 2020 - 2025 - James I. Thorpe, Tyson B. Littenberg, Jean-Christophe Malapert
+# This file is part of lisacattools <https://github.com/tlittenberg/lisacattools>
+# SPDX-License-Identifier: Apache-2.0
+
 """This module is the interface for gravitational wave source catalogs. It is
 responsible for :
-    - registering new catalog implementations as plugins
-    - loading detections and source posterior samples
+- registering new catalog implementations as plugins
+- loading detections and source posterior samples
 """
+
 import importlib
 from abc import ABC
 from abc import abstractmethod
@@ -24,12 +17,7 @@ from dataclasses import dataclass
 from typing import List
 from typing import Optional
 from typing import Union
-
 import pandas as pd
-
-from .custom_logging import UtilsLogs  # noqa: F401
-from .monitoring import UtilsMonitoring  # noqa: F401
-
 
 class GWCatalogType:
     """GW catalog implementation.
@@ -259,37 +247,35 @@ class GWCatalogs(ABC):
         *args,
         **kwargs
     ) -> "GWCatalogs":
-        """Create a new object for handling a set of specific catalogs.
+        """
+        Create a new object for handling a set of specific catalogs.
 
-        Catalogs are loaded according a set of filters : the accepted and
+        Catalogs are loaded according to a set of filters: the accepted and
         rejected pattern.
 
         Note:
-        -----
-        The `extra_directories` parameter can be given as input in order to
-        load catalogs in other directories. a list of directories is expected
-        for `extra_directories` parameter. For example:
+            The `extra_directories` parameter can be given as input in order to
+            load catalogs in other directories. A list of directories is expected
+            for `extra_directories`. For example::
 
-        ```
-        GWCatalogs.create(
-            GWCatalogType.UCB,
-            "/tmp",
-            "*.h5",
-            "*chain*",
-            extra_direcories=[".", "./tutorial"]
-        )
-        ```
+                GWCatalogs.create(
+                    GWCatalogType.UCB,
+                    "/tmp",
+                    "*.h5",
+                    "*chain*",
+                    extra_directories=[".", "./tutorial"]
+                )
 
         Args:
             type (GWCatalogType.GWCatalogPlugin): Type of catalog
-            directory (str) : Directory where the data are located
-            accepted_pattern (str, optional) : pattern to select files in the
-            directory (e.g. '*.h5'). Default None
-            rejected_pattern (str, optional) : pattern to reject from the list
-            built using accepted_pattern. Default None
+            directory (str): Directory where the data are located
+            accepted_pattern (str, optional): Pattern to select files in the
+                directory (e.g. '*.h5'). Default is None.
+            rejected_pattern (str, optional): Pattern to reject from the list
+                built using accepted_pattern. Default is None.
 
         Returns:
-            GWCatalogs: the object implementing a set of specific catalogs
+            GWCatalogs: The object implementing a set of specific catalogs.
         """
         module = importlib.import_module(type.module_name)
         my_class = getattr(module, type.class_name)

@@ -12,7 +12,7 @@ Convert sampling parameters to derived parameters
 # Here is a demonstration of how to do that by producing a chirpmass-distance corner plot.
 # Import modules
 import matplotlib.pyplot as plt
-from chainconsumer import ChainConsumer
+from chainconsumer import ChainConsumer, Chain, PlotConfig
 
 from lisacattools import get_DL
 from lisacattools import get_Mchirp
@@ -33,7 +33,7 @@ sourceId = detections.index[0]
 samples = final_catalog.get_source_samples(sourceId)
 
 # Reject chain samples with negative fdot (enforce GR-driven prior)
-samples_GR = samples[(samples["Frequency Derivative"] > 0)]
+samples_GR = samples[(samples["Frequency Derivative"] > 0)].copy()
 
 # Add distance and chirpmass to samples
 get_DL(samples_GR)
@@ -41,11 +41,21 @@ get_Mchirp(samples_GR)
 
 # Make corner plot
 parameters = ["Chirp Mass", "Luminosity Distance"]
-parameter_symbols = [r"$\mathcal{M}\ [{\rm M}_\odot]$", r"$D_L\ [{\rm kpc}]$"]
+parameter_labels = [r"$\mathcal{M}\ [{\rm M}_\odot]$", r"$D_L\ [{\rm kpc}]$"]
 
-df = samples_GR[parameters].values
+df = samples_GR[parameters]
+labels = {
+    parameters[0]:parameter_labels[0],
+    parameters[1]:parameter_labels[1]
+}
 
-c = ChainConsumer().add_chain(df, parameters=parameter_symbols, cloud=True)
-c.configure(flip=False)
+c = ChainConsumer()
+c.add_chain(Chain(samples=df, name="corner plot", plot_cloud=True))
+c.set_plot_config(
+    PlotConfig(
+        flip=True,
+        labels=labels
+    )
+)
 fig = c.plotter.plot(figsize=1.5)
 plt.show()

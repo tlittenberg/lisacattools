@@ -1,4 +1,213 @@
-### Fix github ci (HEAD -> main)
+### Update project documentation and ignore rules (HEAD -> refactoring)
+>Thu, 22 May 2025 05:55:26 +0200
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+- Modify .gitignore to refine ignored files and directories
+- Update README.md with latest project information
+- Add AUTHORS.rst to acknowledge contributors
+- Introduce CONTRIBUTING.rst with guidelines for contributions
+- Include scripts/license.py for license management
+- Add third_party.rst to document third-party dependencies
+
+
+
+### Update github workflow
+>Thu, 22 May 2025 05:53:43 +0200
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Disable the logger
+>Thu, 22 May 2025 05:53:08 +0200
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+
+
+
+### Fix colorbar association with specific axes
+>Thu, 22 May 2025 05:52:25 +0200
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+- Update fig.colorbar to associate with the correct axes (ax)
+
+
+
+### Enhance ChainConsumer usage and plotting configuration
+>Thu, 22 May 2025 05:49:43 +0200
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+- Import additional ChainConsumer components (Chain, PlotConfig)
+- Add labels mapping for parameters to improve plot readability
+- Modify data handling to use Chain objects directly
+- Update plotting configuration with PlotConfig for better customization
+
+
+
+### Use .iloc for positional indexing in describe() method
+>Thu, 22 May 2025 05:44:10 +0200
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+- Replace direct indexing with .iloc for more reliable positional indexing
+- Ensure consistent and explicit access to DataFrame columns
+
+
+
+### Update license header and logging library
+>Thu, 22 May 2025 05:40:27 +0200
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+- Change license header to use SPDX identifier for Apache 2.0 compatibility
+- Replace logging library with loguru for enhanced logging capabilities
+
+
+
+### Refactor project configuration and dependencies
+>Thu, 22 May 2025 05:37:33 +0200
+
+>Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+>Commiter: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)
+
+- Update Makefile and pyproject.toml to centralize configuration
+- Remove requirements files
+- Delete setup.py in favor of pyproject.toml for build configuration
+- Adjust tox.ini for updated project structure and support Python 3.10, 3.11, 3.12
+
+
+
+### Update README.md (origin/main, origin/HEAD, main)
+>Mon, 19 May 2025 20:05:31 -0500
+
+>Author: Tyson Littenberg (tyson.b.littenberg@gmail.com)
+
+>Commiter: GitHub (noreply@github.com)
+
+
+
+
+### Update utils.py
+>Mon, 19 May 2025 20:04:14 -0500
+
+>Author: Tyson Littenberg (tyson.b.littenberg@gmail.com)
+
+>Commiter: GitHub (noreply@github.com)
+
+
+
+
+### Update catalog.py
+>Mon, 19 May 2025 20:03:15 -0500
+
+>Author: Tyson Littenberg (tyson.b.littenberg@gmail.com)
+
+>Commiter: GitHub (noreply@github.com)
+
+
+
+
+### Update analyze.py
+>Mon, 19 May 2025 20:02:47 -0500
+
+>Author: Tyson Littenberg (tyson.b.littenberg@gmail.com)
+
+>Commiter: GitHub (noreply@github.com)
+
+
+
+
+### Update _version.py
+>Mon, 19 May 2025 20:02:01 -0500
+
+>Author: Tyson Littenberg (tyson.b.littenberg@gmail.com)
+
+>Commiter: GitHub (noreply@github.com)
+
+
+
+
+### Update __init__.py
+>Mon, 19 May 2025 20:01:31 -0500
+
+>Author: Tyson Littenberg (tyson.b.littenberg@gmail.com)
+
+>Commiter: GitHub (noreply@github.com)
+
+
+
+
+### Update ucb.py
+>Mon, 19 May 2025 20:01:16 -0500
+
+>Author: Tyson Littenberg (tyson.b.littenberg@gmail.com)
+
+>Commiter: GitHub (noreply@github.com)
+
+Change to Apache 2.0 License
+
+
+### Update mbh.py
+>Mon, 19 May 2025 20:00:50 -0500
+
+>Author: Tyson Littenberg (tyson.b.littenberg@gmail.com)
+
+>Commiter: GitHub (noreply@github.com)
+
+Change to Apache 2.0 License
+
+
+### Update __init__.py
+>Mon, 19 May 2025 20:00:19 -0500
+
+>Author: Tyson Littenberg (tyson.b.littenberg@gmail.com)
+
+>Commiter: GitHub (noreply@github.com)
+
+Change to Apache 2.0 License
+
+
+### Update LICENSE
+>Mon, 19 May 2025 19:58:04 -0500
+
+>Author: Tyson Littenberg (tyson.b.littenberg@gmail.com)
+
+>Commiter: GitHub (noreply@github.com)
+
+
+
+
+### correct hyperlinks to lisacattools docs
+>Mon, 6 Feb 2023 11:32:01 -0600
+
+>Author: Tyson Littenberg (tyson.b.littenberg@gmail.com)
+
+>Commiter: GitHub (noreply@github.com)
+
+
+
+
+### Fix github ci
 >Mon, 16 Jan 2023 02:56:53 +0100
 
 >Author: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)
@@ -8,7 +217,7 @@
 
 
 
-### Fix github ci (origin/main, origin/HEAD)
+### Fix github ci
 >Mon, 16 Jan 2023 02:52:50 +0100
 
 >Author: Jean-Christophe Malapert (Jean-christophe.malapert@cnes.fr)
@@ -248,7 +457,7 @@
 
 
 
-### Add Support for conda (origin/conda)
+### Add Support for conda
 >Wed, 4 Aug 2021 00:12:58 +0200
 
 >Author: Jean-Christophe Malapert (jean-christophe.malapert@cnes.fr)

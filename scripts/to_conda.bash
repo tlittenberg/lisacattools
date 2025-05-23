@@ -9,8 +9,8 @@ set -e
 cd "${0%/*}/.."
 export PATH=$PATH:$HOME/anaconda3/bin
 export CONDA=build_conda_pkg
-version=`python setup.py --version`
-name=`python setup.py --name`
+version=$(poetry version -s)
+name=$(poetry version | awk '{print $1}')
 
 echo "Script for generating conda package"
 echo "Remove the conda directory if it exists"

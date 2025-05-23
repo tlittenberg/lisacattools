@@ -1,25 +1,106 @@
+[tool.black]
+line-length = 79
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
 
-[build-system]
-requires = ["setuptools", "wheel"]
-build-backend = 'setuptools.build_meta'
+[project]
+name = "lisacattools"
+title = "Lisa Catalog Tools"
+readme = "README.md"
+description = "A small example package for using LISA catalogs"
+authors = [{name="James I. Thorpe"},{name="Tyson B. Littenberg", email="tyson.b.littenberg@nasa.gov"},{name="Jean-Christophe Malapert", email="jean-christophe.malapert@cnes.fr"},]
+license = "Apache 2.0"
+homepage = "https://github.com/tlittenberg/lisacattools"
+version = "1.1.1"
+requires-python = ">=3.10,<3.13"
+include = [
+    { path = "AUTHORS.rst", format = "sdist" },
+    { path = "CONTRIBUTING.rst", format = "sdist" },
+    { path = "CHANGELOG", format = "sdist" },
+    { path = "docs", format = "sdist" },
+    { path = "LICENSE", format = "sdist"},
+    { path = "Makefile", format = "sdist"},
+    { path = ".pre-commit-config.yaml", format = "sdist"},
+    { path = "pyproject.toml", format = "sdist"},
+    { path = "README.md", format = "sdist"},
+    { path = "scripts/*", format = "sdist"},
+    { path = "tests/*", format = "sdist"},
+    { path = "tox.ini", format = "sdist"},
+    { path = ".flake8", format = "sdist"},
+    { path = ".gitignore", format = "sdist"},
+]
+dynamic = ["dependencies"]
 
 [tool.poetry]
-name = "lisacattools"
-version = "1.1.1"
-description = "A small example package for using LISA catalogs"
-license = "GPLV3"
-classifiers = ["Programming Language :: Python :: 3", "License :: OSI Approved :: GNU General Public License v3 (GPLv3)", "Operating System :: OS Independent"]
-homepage = "https://github.com/tlittenberg/lisacattools"
-authors = ["James I. Thorpe, Tyson B. Littenberg, Jean-Christophe Malapert <tyson.b.littenberg@nasa.gov>"]
-readme = "README.md"
+packages = [{include = "lisacattools"}]
+
 
 [tool.poetry.dependencies]
-python = "*"
-astropy = "==5.2.1"
-corner = "==2.2.1"
-healpy = "==1.16.2"
-"ligo.skymap" = "==1.0.4"
-matplotlib = "==3.6.3"
-pandas = "==1.5.2"
-seaborn = "==0.12.2"
-tables = "==3.8.0"
+astropy = [
+  { version = "<7.0.0", python = "<3.11" },
+  { version = "^7.1.0", python = ">=3.11" }
+]
+corner = "^2.2.3"
+healpy = "^1.18.1"
+ligo-skymap = "^2.3.0"
+matplotlib = "^3.10.3"
+pandas = "^2.2.3"
+seaborn = "^0.13.2"
+tables = [
+  { version = "^3.8.0", markers = "python_version < '3.11'"},
+  { version = "^3.10.2", markers = "python_version >= '3.11'"},
+]
+toml = "^0.10.2"
+loguru = "^0.7.3"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^25.1.0"
+chainconsumer = "^1.2.2"
+corner = "^2.2.3"
+coverage = "^7.8.1"
+m2r2 = "^0.3.4"
+pip-licenses = "^5.0.0"
+pre-commit = "^4.2.0"
+pre-commit-hooks = "^5.0.0"
+pygount = "^2.0.0"
+radon = "^6.0.1"
+robotframework = "^7.2.2"
+sphinx = [
+  { version = "<8.0", markers = "python_version < '3.11'"},
+  { version = "^8.2.3", markers = "python_version >= '3.11'"}
+]
+sphinx-gallery = "^0.19.0"
+sphinx-rtd-theme = "^3.0.2"
+tox = "^4.26.0"
+
+[tool.poetry.group.data.dependencies]
+gdown = "^5.2.0"
+requests = "^2.32.3"
+
+
+
+[tool.poetry.group.demo.dependencies]
+jupyter = "^1.1.1"
+
+
+[tool.poetry.group.release.dependencies]
+gitchangelog = "^3.0.4"
+twine = "^6.1.0"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

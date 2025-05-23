@@ -1,18 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 James I. Thorpe, Tyson B. Littenberg, Jean-Christophe Malapert
-#
-#    Licensed under the Apache License, Version 2.0 (the "License");
-#    you may not use this file except in compliance with the License.
-#    You may obtain a copy of the License at
-#
-#        http://www.apache.org/licenses/LICENSE-2.0
-#
-#    Unless required by applicable law or agreed to in writing, software
-#    distributed under the License is distributed on an "AS IS" BASIS,
-#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#    See the License for the specific language governing permissions and
-#    limitations under the License.
-import logging
+# lisacattools - A small example package for using LISA catalogs
+# Copyright (C) 2020 - 2025 - James I. Thorpe, Tyson B. Littenberg, Jean-Christophe Malapert
+# This file is part of lisacattools <https://github.com/tlittenberg/lisacattools>
+# SPDX-License-Identifier: Apache-2.0
+
 import os
 from typing import Dict
 from typing import List
@@ -27,12 +18,9 @@ import seaborn as sns
 
 from .catalog import GWCatalog
 from .catalog import GWCatalogs
-from .custom_logging import UtilsLogs
-from .monitoring import UtilsMonitoring
+from .monitoring import UtilsMonitoring, LogLevel
 from .utils import FrameEnum
 from .utils import HPhist
-
-UtilsLogs.addLoggingLevel("TRACE", 15)
 
 
 class LisaAnalyse:
@@ -58,13 +46,13 @@ class AbstractLisaAnalyze:
     def __init__(self):
         pass
 
-    @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def _get_variable(
         self, dico: Dict, variable: str, default_val: object
     ) -> object:
         return default_val if variable not in dico else dico[variable]
 
-    @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def plot_corners_ds(self, sources, *args, **kwargs):
         color = self._get_variable(kwargs, "color", "red")
         plot_datapoints = self._get_variable(kwargs, "plot_datapoints", False)
@@ -137,7 +125,7 @@ class CatalogAnalysis(AbstractLisaAnalyze):
     def save_img_dir(self, value):
         self._save_img_dir = value
 
-    @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def plot_mbh_mergers_history(self) -> NoReturn:
         """Plot the history of observed mergers."""
 
@@ -170,7 +158,7 @@ class CatalogAnalysis(AbstractLisaAnalyze):
             )
         # plt.show()
 
-    @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def plot_individual_sources(self) -> NoReturn:
         """Plot the indivual sources."""
 
@@ -218,13 +206,13 @@ class CatalogAnalysis(AbstractLisaAnalyze):
             )
         # plt.show()
 
-    @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def plot_corners(self, source_name, params, *args, **kwargs) -> NoReturn:
         """Some corners plots."""
         sources = self.catalog.get_source_samples(source_name, params)
         self.plot_corners_ds(source_name, sources, *args, **kwargs)
 
-    @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def plot_skymap(
         self, source, nside, system: FrameEnum = FrameEnum.ECLIPTIC
     ) -> NoReturn:
@@ -278,7 +266,7 @@ class HistoryAnalysis(AbstractLisaAnalyze):
     def save_img_dir(self, value):
         self._save_img_dir = value
 
-    @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def plot_parameter_time_evolution(
         self,
         df: pd.DataFrame,
@@ -328,7 +316,7 @@ class HistoryAnalysis(AbstractLisaAnalyze):
                 )
             )
 
-    @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def plot_parameter_time_evolution_from_source(
         self,
         catalog_name: str,
@@ -363,7 +351,7 @@ class HistoryAnalysis(AbstractLisaAnalyze):
             srcHist, time_parameter, parameter, *args, **kwargs
         )
 
-    @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def plot_parameters_evolution(
         self,
         all_epochs: pd.DataFrame,
@@ -407,7 +395,7 @@ class HistoryAnalysis(AbstractLisaAnalyze):
                 )
             )
 
-    @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def plot_parameters_correlation_evolution(
         self,
         allEpochs: pd.DataFrame,
@@ -440,7 +428,7 @@ class HistoryAnalysis(AbstractLisaAnalyze):
                 )
             )
 
-    @UtilsMonitoring.io(entry=True, exit=False, level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def plot_skymap_evolution(
         self,
         nside: int,

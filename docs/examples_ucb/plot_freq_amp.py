@@ -43,7 +43,7 @@ cNorm = colors.LogNorm(
     vmin=detections["SNR"].min(), vmax=detections["SNR"].max()
 )  # re-wrapping normalization
 scalarMap = cm.ScalarMappable(norm=cNorm, cmap=plt.cm.get_cmap("cool"))
-cbar = fig.colorbar(scalarMap)
+cbar = fig.colorbar(scalarMap, ax=ax)
 cbar.set_label("SNR", fontsize=14)
 
 

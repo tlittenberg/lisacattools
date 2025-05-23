@@ -1,23 +1,16 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 James I. Thorpe, Tyson B. Littenberg, Jean-Christophe Malapert
-#
-#    Licensed under the Apache License, Version 2.0 (the "License");
-#    you may not use this file except in compliance with the License.
-#    You may obtain a copy of the License at
-#
-#        http://www.apache.org/licenses/LICENSE-2.0
-#
-#    Unless required by applicable law or agreed to in writing, software
-#    distributed under the License is distributed on an "AS IS" BASIS,
-#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#    See the License for the specific language governing permissions and
-#    limitations under the License.
-import logging
+# lisacattools - A small example package for using LISA catalogs
+# Copyright (C) 2020 - 2025 - James I. Thorpe, Tyson B. Littenberg, Jean-Christophe Malapert
+# This file is part of lisacattools <https://github.com/tlittenberg/lisacattools>
+# SPDX-License-Identifier: Apache-2.0
+
 from enum import Enum
 from functools import partial
 from functools import wraps
 from typing import List
 from typing import Union
+from typing import Callable
+from loguru import logger
 
 import healpy as hp
 import matplotlib.transforms as transforms
@@ -27,7 +20,7 @@ from astropy import units as u
 from astropy.coordinates import SkyCoord
 from matplotlib.patches import Ellipse
 
-from .monitoring import UtilsMonitoring
+from .monitoring import UtilsMonitoring, LogLevel
 
 
 class DocEnum(Enum):
@@ -49,29 +42,30 @@ class FrameEnum(DocEnum):
     ECLIPTIC = "Ecliptic", "Ecliptic frame"
 
 
-class CacheManager(object):
-    memory_cache = dict()
+class CacheManager:
+    memory_cache = {}
 
     @staticmethod
     def get_cache_pandas(
-        func=None,
+        func: Callable = None,
         keycache_argument: Union[int, List[int]] = 0,
-        level=logging.INFO,
+        level: str = "INFO",  # loguru accepts string levels like "DEBUG", "INFO", etc.
     ):
-        """Cache a pandas DataFrame.
+        """Cache a pandas DataFrame in memory.
 
         Parameters
         ----------
-        func: func
-            Function to cache (default: {None})
-        keycache_argument: Union[int, List[int]]
-            Argument number that is used for the cache (default: 0)
-        level: int
-            Level from which the log is displayed (default: {logging.INFO})
+        func : Callable, optional
+            Function to cache (default: None)
+        keycache_argument : int or list of int
+            Argument index(es) used as cache key (default: 0)
+        level : str
+            Log level for messages (default: "INFO")
 
         Returns
         -------
-        object : the result of the function
+        Callable
+            Wrapped function with caching
         """
         if func is None:
             return partial(
@@ -81,56 +75,43 @@ class CacheManager(object):
             )
 
         @wraps(func)
-        def newfunc(*args, **kwargs):
-            name = func.__name__
-            logger = logging.getLogger(__name__ + "." + name)
-            if (
-                type(keycache_argument) is not list
-                and keycache_argument > len(args) - 1
-            ):
-                logger.warning(
-                    f"Error during the configuration of keycache_argument, \
-                        the value should be in [0, {len(args)-1}]"
-                )
-                result = func(*args, **kwargs)
-                return result
-            elif (
-                type(keycache_argument) is list
-                and len(
-                    [key for key in keycache_argument if key > len(args) - 1]
-                )
-                > 0
-            ):
-                logger.warning(
-                    f"Error during the configuration of keycache_argument, \
-                        each value of the list should be in [0, {len(args)-1}]"
-                )
-                result = func(*args, **kwargs)
-                return result
-
-            key_cache = (
-                "-".join(
-                    [args[arg_number] for arg_number in keycache_argument]
-                )
-                if type(keycache_argument) is list
-                else args[keycache_argument]
-            )
-
-            if key_cache in CacheManager.memory_cache:
-                if logger.getEffectiveLevel() >= level:
-                    logger.log(level, f"Retrieve {key_cache} from cache")
-                result = CacheManager.memory_cache[key_cache].copy()
+        def wrapper(*args, **kwargs):
+            if isinstance(keycache_argument, int):
+                indices = [keycache_argument]
             else:
-                result = func(*args, **kwargs)
-                if logger.getEffectiveLevel() >= level:
-                    logger.log(level, "Init the memory cache")
-                CacheManager.memory_cache.clear()
-                if logger.getEffectiveLevel() >= level:
-                    logger.log(level, f"Cache {key_cache}")
-                CacheManager.memory_cache[key_cache] = result.copy()
+                indices = keycache_argument
+
+            # Check validity of indices
+            if any(i >= len(args) for i in indices):
+                logger.warning(
+                    f"[{func.__name__}] Invalid keycache_argument index: {indices}, args: {len(args)}"
+                )
+                return func(*args, **kwargs)
+
+            # Create cache key
+            try:
+                key = "-".join(str(args[i]) for i in indices)
+            except Exception as e:
+                logger.warning(f"[{func.__name__}] Failed to build cache key: {e}")
+                return func(*args, **kwargs)
+
+            # Return from cache if available
+            if key in CacheManager.memory_cache:
+                logger.log(level, f"[{func.__name__}] Retrieved result from cache for key: {key}")
+                return CacheManager.memory_cache[key].copy()
+
+            # Compute and cache the result
+            result = func(*args, **kwargs)
+            if isinstance(result, pd.DataFrame):
+                CacheManager.memory_cache.clear()  # Reset cache (only one key allowed)
+                CacheManager.memory_cache[key] = result.copy()
+                logger.log(level, f"[{func.__name__}] Cached result for key: {key}")
+            else:
+                logger.warning(f"[{func.__name__}] Result is not a DataFrame, not cached.")
+
             return result
 
-        return newfunc
+        return wrapper
 
 
 def HPbin(df, nside, system: FrameEnum = FrameEnum.GALACTIC):
@@ -164,7 +145,7 @@ def HPbin(df, nside, system: FrameEnum = FrameEnum.GALACTIC):
     return
 
 
-@UtilsMonitoring.time_spend(level=logging.DEBUG)
+@UtilsMonitoring.time_spent(level=LogLevel.DEBUG)
 def HPhist(source, nside, system: FrameEnum = FrameEnum.GALACTIC):
 
     HPbin(source, nside, system)
@@ -179,7 +160,7 @@ def HPhist(source, nside, system: FrameEnum = FrameEnum.GALACTIC):
     return hp_map
 
 
-@UtilsMonitoring.time_spend(level=logging.DEBUG)
+@UtilsMonitoring.time_spent(level=LogLevel.DEBUG)
 def convert_galactic_to_cartesian(
     data: pd.DataFrame, long_name, lat_name, distance_name
 ):
@@ -198,7 +179,7 @@ def convert_galactic_to_cartesian(
     data["Z"] = cartesian.z
 
 
-@UtilsMonitoring.time_spend(level=logging.DEBUG)
+@UtilsMonitoring.time_spent(level=LogLevel.DEBUG)
 def convert_ecliptic_to_galactic(data: pd.DataFrame):
     lamb = None
     try:
@@ -319,7 +300,7 @@ def ellipse_area(df):
 
 
 # confidence_ellipse
-@UtilsMonitoring.time_spend(level=logging.DEBUG)
+@UtilsMonitoring.time_spent(level=LogLevel.DEBUG)
 def confidence_ellipse(df, ax, n_std=1.0, facecolor="none", **kwargs):
     # Plot an error ellipse on some axes. It takes a 2D data frame of
     # parameters as its input

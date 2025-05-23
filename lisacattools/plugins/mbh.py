@@ -1,20 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 James I. Thorpe, Tyson B. Littenberg, Jean-Christophe Malapert
-#
-#    Licensed under the Apache License, Version 2.0 (the "License");
-#    you may not use this file except in compliance with the License.
-#    You may obtain a copy of the License at
-#
-#        http://www.apache.org/licenses/LICENSE-2.0
-#
-#    Unless required by applicable law or agreed to in writing, software
-#    distributed under the License is distributed on an "AS IS" BASIS,
-#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#    See the License for the specific language governing permissions and
-#    limitations under the License.
+# lisacattools - A small example package for using LISA catalogs
+# Copyright (C) 2020 - 2025 - James I. Thorpe, Tyson B. Littenberg, Jean-Christophe Malapert
+# This file is part of lisacattools <https://github.com/tlittenberg/lisacattools>
+# SPDX-License-Identifier: Apache-2.0
+
 """Module implemented the MBH catalog."""
 import glob
-import logging
 import os
 from itertools import chain
 from typing import List
@@ -26,11 +17,7 @@ import pandas as pd
 
 from ..catalog import GWCatalog
 from ..catalog import GWCatalogs
-from ..catalog import UtilsLogs
-from ..catalog import UtilsMonitoring
-
-UtilsLogs.addLoggingLevel("TRACE", 15)
-
+from ..monitoring import UtilsMonitoring, LogLevel
 
 class MbhCatalogs(GWCatalogs):
     """Implementation of the MBH catalogs."""
@@ -86,7 +73,7 @@ class MbhCatalogs(GWCatalogs):
         )
         self.__metadata = self.__metadata.sort_values(by="observation week")
 
-    @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def _search_directories(
         self, path: str, extra_directories: List[str]
     ) -> List[str]:
@@ -103,7 +90,7 @@ class MbhCatalogs(GWCatalogs):
         directories.append(path)
         return directories
 
-    @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def _search_files(
         self, directories: List[str], accepted_pattern, rejected_pattern
     ) -> List[str]:
@@ -136,7 +123,7 @@ class MbhCatalogs(GWCatalogs):
         cat_files = list(set(accepted_files) - set(rejected_files))
         return cat_files
 
-    @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def _read_cats(self, cat_file: str) -> pd.DataFrame:
         """Reads the metadata of a given catalog and the location of the file.
 
@@ -151,61 +138,61 @@ class MbhCatalogs(GWCatalogs):
         return df
 
     @property
-    @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def metadata(self) -> pd.DataFrame:
         __doc__ = GWCatalogs.metadata.__doc__  # noqa: F841
         return self.__metadata
 
     @property
-    @UtilsMonitoring.io(level=logging.TRACE)
+    @UtilsMonitoring.log_io(level=LogLevel.TRACE)
     def count(self) -> int:
         __doc__ = GWCatalogs.count.__doc__  # noqa: F841
         return len(self.metadata.index)
 
     @property
-    @UtilsMonitoring.io(level=logging.TRACE)
+    @UtilsMonitoring.log_io(level=LogLevel.TRACE)
     def files(self) -> List[str]:
         __doc__ = GWCatalogs.files.__doc__  # noqa: F841
         return self.cat_files
 
-    @UtilsMonitoring.io(level=logging.TRACE)
+    @UtilsMonitoring.log_io(level=LogLevel.TRACE)
     def get_catalogs_name(self) -> List[str]:
         __doc__ = GWCatalogs.get_catalogs_name.__doc__  # noqa: F841
         return list(self.metadata.index)
 
-    @UtilsMonitoring.io(level=logging.TRACE)
-    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
+    @UtilsMonitoring.log_io(level=LogLevel.TRACE)
+    @UtilsMonitoring.time_spent(level=LogLevel.DEBUG, threshold_in_ms=10)
     def get_first_catalog(self) -> GWCatalog:
         __doc__ = GWCatalogs.get_first_catalog.__doc__  # noqa: F841
         location = self.metadata.iloc[0]["location"]
         name = self.metadata.index[0]
         return MbhCatalog(name, location)
 
-    @UtilsMonitoring.io(level=logging.TRACE)
-    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
+    @UtilsMonitoring.log_io(level=LogLevel.TRACE)
+    @UtilsMonitoring.time_spent(level=LogLevel.DEBUG, threshold_in_ms=10)
     def get_last_catalog(self) -> GWCatalog:
         __doc__ = GWCatalogs.get_last_catalog.__doc__  # noqa: F841
         location = self.metadata.iloc[self.count - 1]["location"]
         name = self.metadata.index[self.count - 1]
         return MbhCatalog(name, location)
 
-    @UtilsMonitoring.io(level=logging.TRACE)
-    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
+    @UtilsMonitoring.log_io(level=LogLevel.TRACE)
+    @UtilsMonitoring.time_spent(level=LogLevel.DEBUG, threshold_in_ms=10)
     def get_catalog(self, idx: int) -> GWCatalog:
         __doc__ = GWCatalogs.get_catalog.__doc__  # noqa: F841
         location = self.metadata.iloc[idx]["location"]
         name = self.metadata.index[idx]
         return MbhCatalog(name, location)
 
-    @UtilsMonitoring.io(level=logging.TRACE)
-    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=10)
+    @UtilsMonitoring.log_io(level=LogLevel.TRACE)
+    @UtilsMonitoring.time_spent(level=LogLevel.DEBUG, threshold_in_ms=10)
     def get_catalog_by(self, name: str) -> GWCatalog:
         __doc__ = GWCatalogs.get_catalog_by.__doc__  # noqa: F841
         cat_idx = self.metadata.index.get_loc(name)
         return self.get_catalog(cat_idx)
 
-    @UtilsMonitoring.io(level=logging.TRACE)
-    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=100)
+    @UtilsMonitoring.log_io(level=LogLevel.TRACE)
+    @UtilsMonitoring.time_spent(level=LogLevel.DEBUG, threshold_in_ms=100)
     def get_lineage(self, cat_name: str, src_name: str) -> pd.DataFrame:
         __doc__ = GWCatalogs.get_lineage.__doc__  # noqa: F841
 
@@ -238,8 +225,8 @@ class MbhCatalogs(GWCatalogs):
         histDF.sort_values(by="Observation Week", ascending=True, inplace=True)
         return histDF
 
-    @UtilsMonitoring.io(level=logging.TRACE)
-    @UtilsMonitoring.time_spend(level=logging.DEBUG, threshold_in_ms=100)
+    @UtilsMonitoring.log_io(level=LogLevel.TRACE)
+    @UtilsMonitoring.time_spent(level=LogLevel.DEBUG, threshold_in_ms=100)
     def get_lineage_data(self, lineage: pd.DataFrame) -> pd.DataFrame:
         __doc__ = GWCatalogs.get_lineage_data.__doc__  # noqa: F841
 
@@ -311,7 +298,7 @@ class MbhCatalog(GWCatalog):
         store.close()
 
     @property
-    @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def datasets(self):
         """dataset.
 
@@ -320,7 +307,7 @@ class MbhCatalog(GWCatalog):
         """
         return self.__datasets
 
-    @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def get_dataset(self, name: str) -> pd.DataFrame:
         """Returns a dataset based on its name.
 
@@ -333,18 +320,18 @@ class MbhCatalog(GWCatalog):
         return pd.read_hdf(self.location, key=name)
 
     @property
-    @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def name(self) -> str:
         __doc__ = GWCatalog.name.__doc__  # noqa: F841
         return self.__name
 
     @property
-    @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def location(self) -> str:
         __doc__ = GWCatalog.location.__doc__  # noqa: F841
         return self.__location
 
-    @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def get_detections(
         self, attr: Union[List[str], str] = None
     ) -> Union[List[str], pd.DataFrame, pd.Series]:
@@ -354,12 +341,12 @@ class MbhCatalog(GWCatalog):
             list(detections.index) if attr is None else detections[attr].copy()
         )
 
-    @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def get_attr_detections(self) -> List[str]:
         __doc__ = GWCatalog.get_attr_detections.__doc__  # noqa: F841
         return list(self.get_dataset("detections").columns)
 
-    @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def get_median_source(self, attr: str) -> pd.DataFrame:
         __doc__ = GWCatalog.get_median_source.__doc__  # noqa: F841
         detections: pd.Series = self.get_detections(attr)
@@ -370,7 +357,7 @@ class MbhCatalog(GWCatalog):
             [source_idx]
         ]
 
-    @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def get_source_samples(
         self, source_name: str, attr: List[str] = None
     ) -> pd.DataFrame:
@@ -378,12 +365,12 @@ class MbhCatalog(GWCatalog):
         samples = self.get_dataset(f"{source_name}_chain")
         return samples if attr is None else samples[attr].copy()
 
-    @UtilsMonitoring.io(level=logging.DEBUG)
+    @UtilsMonitoring.log_io(level=LogLevel.DEBUG)
     def get_attr_source_samples(self, source_name: str) -> List[str]:
         __doc__ = GWCatalog.get_attr_source_samples.__doc__  # noqa: F841
         return list(self.get_dataset(f"{source_name}_chain").columns)
 
-    @UtilsMonitoring.io(level=logging.TRACE)
+    @UtilsMonitoring.log_io(level=LogLevel.TRACE)
     def describe_source_samples(self, source_name: str) -> pd.DataFrame:
         __doc__ = GWCatalog.describe_source_samples.__doc__  # noqa: F841
         return self.get_source_samples(source_name).describe()

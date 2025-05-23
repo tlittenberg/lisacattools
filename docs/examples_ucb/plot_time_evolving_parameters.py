@@ -13,7 +13,7 @@ import os
 
 import numpy as np
 import pandas as pd
-from chainconsumer import ChainConsumer
+from chainconsumer import ChainConsumer, Chain, PlotConfig, ChainConfig
 
 from lisacattools.catalog import GWCatalog
 from lisacattools.catalog import GWCatalogs
@@ -78,26 +78,44 @@ parameter_labels = [
     r"$\iota\ [{\rm rad}]$",
 ]
 
+labels = {
+    parameters[0]: parameter_labels[0],
+    parameters[1]: parameter_labels[1],
+    parameters[2]: parameter_labels[2],
+    parameters[3]: parameter_labels[3],
+    parameters[4]: parameter_labels[4]
+        
+}
 
 # add chains
+
 c.add_chain(
-    old_samples[parameters].values,
-    parameters=parameter_labels,
-    cloud=True,
-    name=old_source,
+    Chain(
+        samples=old_samples[parameters],
+        plot_cloud=True,
+        name=old_source,
+        labels=labels,
+        linestyles="-"
+    )
 )
 c.add_chain(
-    new_samples[parameters].values,
-    parameters=parameter_labels,
-    cloud=True,
-    name=new_source,
+    Chain(
+        samples=new_samples[parameters],
+        plot_cloud=True,
+        name=new_source,
+        labels=labels,
+        linestyles="--"
+    )
 )
 
+c.set_override(ChainConfig(sigmas=[1, 2, 3]))
+
 # plot!
-c.configure(
-    sigmas=[1, 2, 3],
-    linestyles=["-", "--"],
-    legend_color_text=False,
-    legend_kwargs={"fontsize": 18},
+c.set_plot_config(
+    PlotConfig(
+        legend_color_text=False,
+        legend_kwargs={"fontsize": 18},
+    )
 )
+
 fig = c.plotter.plot(figsize=1.5)

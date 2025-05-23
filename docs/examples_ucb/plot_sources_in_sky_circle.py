@@ -6,7 +6,7 @@ Select Sources in Sky Region
 Plot 2-sigma contours of all sources consistent with input error circle on the sky in galactic coordinates.
 """
 #%%
-import logging
+from loguru import logger
 import sys
 
 import healpy as hp
@@ -18,16 +18,13 @@ from matplotlib.patches import Ellipse
 
 from lisacattools import confidence_ellipse
 from lisacattools import convert_ecliptic_to_galactic
-from lisacattools import OFF
 from lisacattools.catalog import GWCatalogs
 from lisacattools.catalog import GWCatalogType
 from lisacattools.utils import HPbin
 from lisacattools.utils import HPhist
 
-logger = logging.getLogger("lisacattools")
-logger.setLevel(
-    OFF
-)  # Set the logger to OFF. By default, the logger is set to INFO
+# Make disable the logs
+logger.remove()
 
 # Start by loading the main catalog file processed from GBMCMC outputs
 catType = GWCatalogType.UCB  # catalog type (UCB or MBH)

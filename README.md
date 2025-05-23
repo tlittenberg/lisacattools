@@ -16,19 +16,22 @@ You will need python3 to run this program.
 ### 1.2 - Installing by cloning the repository
 
 First, we need to clone the repository
-```
+
+```bash
 git clone https://github.com/tlittenberg/lisacattools.git
 ```
 
 #### 1.2.1 - For users
 
 To install the package for non-root users:
-```
+
+```bash
 make user
 ```
 
 To install the package on the root system:
-```
+
+```bash
 make
 ```
 
@@ -36,20 +39,20 @@ make
 
 Create a virtualenv
 
-```
+```bash
 make prepare-dev
-source .lisacattools-env
+source ..venv
 ```
 
 Install the sotfware and the external libraries for development purpose
 
-```
+```bash
 make install-dev
 ```
 
 ### 1.3 - Installing by pip
 
-```
+```bash
 pip install lisacattools
 ```
 
@@ -60,18 +63,21 @@ pip install lisacattools
 Install the software by PIP (developers version)
 
 Then, develop your code and commit
-```
+
+```bash
 git commit
 ```
+
 The tests and code style formatter will be run automatically. To ignore the
 checks, do
-```
+
+```bash
 git commit --no-verify
 ```
 
 ### 2.2 - Running the tests
 
-```
+```bash
 make test
 ```
 
@@ -79,7 +85,7 @@ make test
 
 Install all required prerequisite dependencies:
 
-```
+```bash
 sudo apt-get update; sudo apt-get install make build-essential libssl-dev zlib1g-dev \
 libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
 libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
@@ -88,13 +94,13 @@ libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-d
 
 Download and execute installation script:
 ￼
-```
+```bash
 curl https://pyenv.run | bash
 ```
 
 Add the following entries into your ~/.bashrc file:
 
-```
+```bash
 # pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init --path)"
@@ -103,19 +109,19 @@ eval "$(pyenv virtualenv-init -)"
 
 Restart your shell:
 
-```
+```bash
 exec $SHELL
 ```
 
 Validate installation:
 
-```
+```bash
 pyenv --version
 ```
 
 Once the dependencies are installed, test on python 3.8, 3.8 and 3.10 :
 
-```
+```bash
 make tox
 ```
 
@@ -126,12 +132,14 @@ The data are downloaded from a google drive and are large files -- ~10GB in tota
 in `tutorial/data`.
 Datasets include a catalog of simulated MBH detections with parameters updated on a weekly cadence,
 and two UCB catalogs, using 3 and 6 months of simulated LISA data.
-```
+
+```bash
 make data
 ```
 
 Then install jupyter and run the tutorial
-```
+
+```bash
 make demo
 ```
 
